@@ -1,1151 +1,716 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEWM8S3WL0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-SEWM8S3WL0');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Handiweave | Premium Handcrafted Shawls from Himachal</title>
+    <meta name="theme-color" content="#7A5548">
+    
+    <title>Handiweave | Traditions and Trends</title>
     <link rel="icon" href="logo.png">
-    <!-- Google Fonts -->
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --primary: #7A5548; /* Brand Brown */
-            --primary-dark: #5D433A;
-            --accent: #C5A065; /* Gold */
-            --light-bg: #F9F8F6;
-            --text: #333333;
-            --text-light: #777777;
-            --white: #ffffff;
-            --success: #2E8B57;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.12);
-            --radius: 8px;
-            --transition: all 0.3s ease;
+            --bg: #F9F8F6; --card: #fff; --text: #333; --brand: #7A5548; --brand-dark: #5D433A;
+            --gold: #C5A065; --wa: #25D366; --rzp: #3395ff; --radius: 8px; --transition: all 0.3s ease;
         }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Lato', sans-serif;
-            color: var(--text);
-            background-color: var(--light-bg);
-            line-height: 1.6;
-            overflow-x: hidden;
-            padding-top: 0; /* Removed for fixed nav */
-        }
-        h1, h2, h3, h4, .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition);
-        }
-        button, .btn {
-            font-family: 'Lato', sans-serif;
-            cursor: pointer;
-            border: none;
-            transition: var(--transition);
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        section {
-            padding: 4rem 0;
-        }
-
-        /* ========== HERO SECTION (ADDED) ========== */
-        .hero {
-            background: linear-gradient(rgba(122, 85, 72, 0.85), rgba(93, 67, 58, 0.9)), url('images/hero-bg.jpg') center/cover no-repeat;
-            color: var(--white);
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        
+        /* ===== HERO SECTION WITH LOGO FIX ===== */
+        .hero-section {
+            background: linear-gradient(rgba(122, 85, 72, 0.9), rgba(93, 67, 58, 0.85)), 
+                        url('images/hero-bg.jpg') center/cover no-repeat;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 8rem 1rem;
-            margin-top: 0;
+            color: white;
+            padding: 2rem 1rem;
         }
-        .hero .logo-img {
-            width: 120px;
-            margin: 0 auto 1.5rem;
+        .hero-logo-container {
+            margin-bottom: 1.5rem;
+        }
+        .hero-logo {
+            width: 150px;
+            height: 150px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .hero-logo img {
+            width: 110px;
             filter: brightness(0) invert(1);
         }
-        .hero h1 {
-            font-size: 3.5rem;
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
             letter-spacing: 3px;
             margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-        .hero .tagline {
-            font-size: 1.3rem;
+        .hero-tagline {
+            color: var(--gold);
             font-style: italic;
-            color: var(--accent);
+            font-size: 1.2rem;
             margin-bottom: 2rem;
         }
-        .hero p {
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
-            opacity: 0.9;
-        }
-        .hero-btns {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .btn-primary, .btn-secondary {
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        .btn-primary {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-        .btn-primary:hover {
-            background-color: #b38f54;
-            transform: translateY(-3px);
-        }
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--white);
-            border: 2px solid var(--white);
-        }
-        .btn-secondary:hover {
-            background-color: rgba(255,255,255,0.1);
-            transform: translateY(-3px);
-        }
-
-        /* ========== TRUST BANNER ========== */
-        .trust-banner {
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 1rem;
-            text-align: center;
-        }
-        .trust-items {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            font-size: 0.9rem;
-        }
-        .trust-items span {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .trust-items i {
-            color: var(--accent);
-        }
-
-        /* ========== NAVIGATION (FIXED) ========== */
+        
+        /* ===== NAVIGATION ===== */
         .main-nav {
-            background-color: var(--white);
-            position: fixed;
+            background: white;
+            padding: 1rem;
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 1rem 0;
-        }
-        .nav-container {
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-        .nav-logo img {
-            width: 40px;
-        }
-        .nav-links {
-            display: flex;
+            justify-content: center;
             gap: 2rem;
         }
         .nav-link {
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text);
-            padding: 0.5rem 0;
-            position: relative;
-        }
-        .nav-link:hover, .nav-link.active {
-            color: var(--primary);
-        }
-        .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--accent);
-        }
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-        .cart-icon {
-            position: relative;
-            font-size: 1.3rem;
-            color: var(--primary);
             cursor: pointer;
+            color: var(--text);
+            letter-spacing: 1px;
         }
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background-color: var(--primary);
-            color: white;
-            font-size: 0.7rem;
-            width: 18px;
-            height: 18px;
+        .nav-link.active {
+            color: var(--brand);
+            border-bottom: 2px solid var(--gold);
+        }
+        
+        /* ===== CART ICON ===== */
+        .cart-icon {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: white;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-        }
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--primary);
+            font-size: 1.3rem;
+            color: var(--brand);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1001;
             cursor: pointer;
         }
-
-        /* ========== PRODUCTS SECTION ========== */
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--primary-dark);
-        }
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-        .section-subtitle {
-            color: var(--text-light);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .filter-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-        .tab-btn {
-            padding: 10px 24px;
-            background: transparent;
-            border: 1px solid #ddd;
-            border-radius: 50px;
-            font-weight: 600;
-            color: var(--text);
-            cursor: pointer;
-        }
-        .tab-btn.active, .tab-btn:hover {
-            background-color: var(--primary);
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--brand);
             color: white;
-            border-color: var(--primary);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
         }
+        
+        /* ===== SECTIONS ===== */
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+            display: none;
+        }
+        .active-section {
+            display: block;
+        }
+        
+        /* ===== PRODUCTS ===== */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2rem;
         }
         .product-card {
-            background-color: var(--white);
+            background: white;
             border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
         .product-image {
-            height: 300px;
+            height: 280px;
             overflow: hidden;
-            position: relative;
-            cursor: pointer;
         }
         .product-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        .product-card:hover .product-image img {
-            transform: scale(1.05);
-        }
-        .product-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background-color: var(--accent);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            z-index: 2;
         }
         .product-info {
-            padding: 1.5rem;
+            padding: 1.2rem;
             text-align: center;
-        }
-        .product-category {
-            color: var(--text-light);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-            display: block;
         }
         .product-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .product-price {
+            color: var(--brand);
+            font-weight: 700;
             font-size: 1.2rem;
-            margin-bottom: 0.8rem;
-            color: var(--primary-dark);
-            cursor: pointer;
-            font-weight: 600;
-            min-height: 3em;
-        }
-        .product-name:hover {
-            color: var(--primary);
-        }
-        .product-description {
-            color: var(--text-light);
-            font-size: 0.9rem;
             margin-bottom: 1rem;
-            line-height: 1.5;
-            min-height: 4em;
-        }
-        .price-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 1.2rem;
-            flex-wrap: wrap;
-        }
-        .original-price {
-            text-decoration: line-through;
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-        .current-price {
-            font-weight: 700;
-            font-size: 1.4rem;
-            color: var(--primary);
-        }
-        .discount-badge {
-            background-color: var(--success);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
-        .product-actions {
-            display: flex;
-            gap: 10px;
-        }
-        .add-to-cart-btn, .buy-now-btn {
-            flex: 1;
-            padding: 12px;
-            border-radius: 4px;
-            font-weight: 600;
-            text-align: center;
-            font-size: 0.9rem;
         }
         .add-to-cart-btn {
-            background-color: var(--primary);
+            background: var(--brand);
             color: white;
-        }
-        .add-to-cart-btn:hover {
-            background-color: var(--primary-dark);
-        }
-        .buy-now-btn {
-            background-color: var(--accent);
-            color: white;
-        }
-        .buy-now-btn:hover {
-            background-color: #b38f54;
-        }
-        .material-tag {
-            display: inline-block;
-            background-color: #f0f0f0;
-            color: var(--text);
-            padding: 4px 10px;
+            padding: 10px;
+            width: 100%;
             border-radius: 4px;
-            font-size: 0.75rem;
-            margin-top: 10px;
-        }
-
-        /* ========== PRODUCT MODAL (WITH PROPER CLOSE) ========== */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            z-index: 2000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .modal-overlay.active {
-            display: flex;
-        }
-        .product-modal {
-            background-color: var(--white);
-            width: 100%;
-            max-width: 900px;
-            max-height: 90vh;
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(0,0,0,0.6);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            z-index: 10;
             border: none;
+            font-weight: 600;
+            cursor: pointer;
         }
-        .modal-close:hover {
-            background: rgba(0,0,0,0.8);
+        
+        /* ===== NEW ALL SEASON SECTION ===== */
+        .craft-section {
+            background: white;
         }
-        .modal-images {
-            position: relative;
-            background-color: #f5f5f5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            min-height: 500px;
-        }
-        .modal-images img {
-            max-height: 100%;
-            width: auto;
-            max-width: 100%;
-            border-radius: 8px;
-        }
-        .zoom-hint {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            display: none;
-        }
-        .modal-details {
-            padding: 3rem;
-            overflow-y: auto;
-        }
-        .modal-details h2 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary-dark);
-        }
-        .modal-price {
-            font-size: 1.8rem;
-            color: var(--primary);
-            font-weight: 700;
-            margin: 1rem 0;
-        }
-        .modal-description {
-            margin: 1.5rem 0;
-            line-height: 1.7;
-            color: var(--text);
-        }
-        .specs-grid {
+        .craft-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin: 2rem 0;
-            padding: 1.5rem;
-            background-color: #f9f9f9;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .craft-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg);
             border-radius: var(--radius);
         }
-        .spec-item strong {
-            display: block;
-            color: var(--primary-dark);
-            margin-bottom: 5px;
-            font-size: 0.9rem;
+        .craft-icon {
+            font-size: 2.5rem;
+            color: var(--brand);
+            margin-bottom: 1rem;
         }
-        .spec-item span {
-            color: var(--text);
-            font-size: 0.95rem;
+        .craft-card h3 {
+            margin-bottom: 1rem;
+            color: var(--brand-dark);
         }
-        .modal-actions {
-            display: flex;
+        
+        /* ===== ABOUT GALLERY ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
             margin-top: 2rem;
         }
-        .modal-actions .add-to-cart-btn,
-        .modal-actions .buy-now-btn {
-            padding: 15px;
-            font-size: 1rem;
+        .gallery-grid img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-
-        /* ========== ABOUT SECTION ========== */
-        .about {
-            background-color: var(--white);
+        
+        /* ===== CONTACT FORM ===== */
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto 0;
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        .about-text h2 {
-            font-size: 2.5rem;
+        .form-group {
             margin-bottom: 1.5rem;
-            color: var(--primary-dark);
         }
-        .about-text p {
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: #444;
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
         }
-        .about-image {
+        .submit-btn {
+            background: var(--brand);
+            color: white;
+            padding: 14px;
+            width: 100%;
+            border-radius: 4px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        
+        /* ===== POLICIES ACCORDION ===== */
+        .policy-accordion {
+            max-width: 800px;
+            margin: 2rem auto 0;
+        }
+        .policy-item {
+            background: white;
+            margin-bottom: 1rem;
             border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: var(--shadow-hover);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
         }
-        .about-image img {
-            width: 100%;
-            height: auto;
-            transition: transform 0.5s ease;
+        .policy-header {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            background: var(--bg);
         }
-        .about-image:hover img {
-            transform: scale(1.03);
+        .policy-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
-
-        /* ========== CART SIDEBAR ========== */
-        .cart-overlay {
+        .policy-content.active {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+        
+        /* ===== CHECKOUT MODAL ===== */
+        .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.7);
             z-index: 1999;
             display: none;
         }
-        .cart-overlay.active {
+        .overlay.active {
             display: block;
         }
+        
+        .checkout-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            z-index: 2000;
+            border-radius: 12px;
+            padding: 2rem;
+            display: none;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .checkout-modal.active {
+            display: block;
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        /* ===== CART SIDEBAR ===== */
         .cart-sidebar {
             position: fixed;
             top: 0;
-            right: -450px;
+            right: -400px;
             width: 100%;
-            max-width: 400px;
+            max-width: 380px;
             height: 100%;
-            background-color: var(--white);
-            box-shadow: -5px 0 25px rgba(0,0,0,0.1);
-            z-index: 2000;
-            transition: right 0.4s ease;
+            background: white;
+            z-index: 2001;
+            transition: right 0.3s ease;
             display: flex;
             flex-direction: column;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.1);
         }
         .cart-sidebar.active {
             right: 0;
         }
-        .cart-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .cart-header h3 {
-            font-size: 1.5rem;
-            color: var(--primary-dark);
-        }
-        .cart-close {
-            background: none;
-            border: none;
-            font-size: 1.3rem;
-            color: var(--text-light);
-            cursor: pointer;
-        }
-        .cart-items {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1.5rem;
-        }
-        .cart-item {
-            display: flex;
-            align-items: center;
-            padding: 1rem 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        .cart-item-img {
-            width: 70px;
-            height: 70px;
-            border-radius: 6px;
-            overflow: hidden;
-            margin-right: 1rem;
-        }
-        .cart-item-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .cart-item-details {
-            flex: 1;
-        }
-        .cart-item-name {
-            font-weight: 600;
-            margin-bottom: 5px;
-            font-size: 0.95rem;
-        }
-        .cart-item-price {
-            color: var(--primary);
-            font-weight: 700;
-            font-size: 1rem;
-        }
-        .cart-item-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 8px;
-        }
-        .qty-btn {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background-color: #f0f0f0;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .qty-btn:hover {
-            background-color: #e0e0e0;
-        }
-        .cart-item-qty {
-            font-weight: 600;
-            min-width: 30px;
-            text-align: center;
-        }
-        .cart-item-remove {
-            color: #ff4444;
-            background: none;
-            border: none;
-            font-size: 0.9rem;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-        .cart-footer {
-            padding: 1.5rem;
-            border-top: 1px solid rgba(0,0,0,0.1);
-            background-color: #f9f9f9;
-        }
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 700;
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary-dark);
-        }
-        .cart-checkout-btn {
-            width: 100%;
-            padding: 16px;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 4px;
-            font-weight: 700;
-            font-size: 1rem;
-        }
-        .cart-checkout-btn:hover {
-            background-color: var(--primary-dark);
-        }
-        .empty-cart {
-            text-align: center;
-            padding: 3rem 1rem;
-            color: var(--text-light);
-        }
-        .empty-cart i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #ddd;
-        }
-
-        /* ========== FOOTER ========== */
+        
+        /* ===== FOOTER ===== */
         .main-footer {
-            background-color: var(--primary-dark);
-            color: white;
-            padding: 4rem 0 2rem;
-        }
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-        .footer-col h4 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        .footer-col h4::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-        .footer-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        .footer-tagline {
-            color: rgba(255,255,255,0.7);
-            font-style: italic;
-            margin-bottom: 1.5rem;
+            background: white;
+            padding: 3rem 1rem 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid #eee;
+            text-align: center;
         }
         .social-links {
             display: flex;
-            gap: 1rem;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
         }
         .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255,255,255,0.1);
+            color: var(--brand);
+            font-size: 1.5rem;
+        }
+        .footer-links {
             display: flex;
-            align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 1.2rem;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
         }
-        .social-link:hover {
-            background-color: var(--accent);
-            transform: translateY(-3px);
+        .footer-link {
+            color: var(--text);
+            cursor: pointer;
         }
-        .footer-links a {
-            display: block;
-            margin-bottom: 0.8rem;
-            color: rgba(255,255,255,0.8);
+        .footer-link:hover {
+            color: var(--brand);
         }
-        .footer-links a:hover {
-            color: white;
-            padding-left: 5px;
-        }
-        .contact-info p {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            color: rgba(255,255,255,0.8);
-        }
-        .contact-info i {
-            color: var(--accent);
-            margin-top: 5px;
-        }
-        .copyright {
-            text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.6);
-            font-size: 0.9rem;
-        }
-
-        /* ========== WHATSAPP FLOAT ========== */
+        
+        /* ===== WHATSAPP FLOAT ===== */
         .whatsapp-float {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 2rem;
+            right: 2rem;
             width: 60px;
             height: 60px;
-            background-color: #25D366;
+            background: var(--wa);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 1.8rem;
+            z-index: 999;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            z-index: 900;
-            transition: var(--transition);
         }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-
-        /* ========== NOTIFICATION ========== */
+        
+        /* ===== NOTIFICATION ===== */
         .notification {
             position: fixed;
             top: 20px;
             right: 20px;
-            background-color: var(--success);
+            background: #2E8B57;
             color: white;
             padding: 1rem 1.5rem;
             border-radius: 6px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             z-index: 2100;
             display: none;
             align-items: center;
             gap: 10px;
-            animation: slideInRight 0.3s ease;
-        }
-        @keyframes slideInRight {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         .notification.show {
             display: flex;
         }
-
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 992px) {
-            .product-modal {
-                grid-template-columns: 1fr;
-                max-height: 95vh;
-            }
-            .modal-images {
-                min-height: 300px;
-            }
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            .footer-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+        
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.8rem;
+            .hero-title {
+                font-size: 2.5rem;
             }
-            .mobile-menu-btn {
-                display: block;
+            .hero-logo {
+                width: 120px;
+                height: 120px;
             }
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background-color: var(--white);
-                flex-direction: column;
-                padding: 1.5rem;
-                transform: translateY(-100%);
-                transition: var(--transition);
-                z-index: 999;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            .hero-logo img {
+                width: 80px;
             }
-            .nav-links.active {
-                transform: translateY(0);
-            }
-            .nav-actions {
-                gap: 1rem;
+            .main-nav {
+                gap: 1.5rem;
+                flex-wrap: wrap;
             }
             .products-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
                 gap: 1.5rem;
             }
-            .hero-btns {
-                flex-direction: column;
-                align-items: center;
-            }
-            .hero-btns .btn-primary,
-            .hero-btns .btn-secondary {
-                width: 100%;
-                max-width: 300px;
-            }
-            .specs-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        @media (max-width: 576px) {
-            .hero {
-                padding: 6rem 1rem;
-            }
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-            .filter-tabs {
-                gap: 0.5rem;
-            }
-            .tab-btn {
-                padding: 8px 16px;
-                font-size: 0.9rem;
-            }
-            .modal-actions {
-                flex-direction: column;
-            }
-            .footer-container {
+            .craft-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
+
 <body>
-    <!-- Trust Banner -->
-    <div class="trust-banner">
-        <div class="container trust-items">
-            <span><i class="fas fa-check-circle"></i> 100% Handmade</span>
-            <span><i class="fas fa-truck"></i> Free Shipping over ₹1999</span>
-            <span><i class="fas fa-undo-alt"></i> 7-Day Easy Returns</span>
-            <span><i class="fas fa-shield-alt"></i> Secure Payment</span>
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/919882212962" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Hero Section with LOGO -->
+    <section class="hero-section" id="home">
+        <div class="hero-logo-container">
+            <div class="hero-logo">
+                <img src="logo.png" alt="Handiweave Logo" onerror="this.style.display='none'">
+            </div>
         </div>
+        <h1 class="hero-title">HANDIWEAVE</h1>
+        <p class="hero-tagline">Traditions and Trends</p>
+        <p style="max-width: 700px; margin: 0 auto; opacity: 0.9;">
+            Premium handcrafted wovens from Devbhoomi Himachal
+        </p>
+    </section>
+
+    <!-- Cart Icon -->
+    <div class="cart-icon" onclick="openCart()">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count" id="cartCount">0</span>
     </div>
 
     <!-- Navigation -->
     <nav class="main-nav">
-        <div class="container nav-container">
-            <div class="nav-logo">
-                <img src="logo.png" alt="Handiweave Logo">
-                <span>HANDIWEAVE</span>
-            </div>
-            <div class="nav-links" id="navLinks">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#products" class="nav-link">Products</a>
-                <a href="#about" class="nav-link">Our Story</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-            <div class="nav-actions">
-                <div class="cart-icon" id="cartIcon">
-                    <i class="fas fa-shopping-bag"></i>
-                    <span class="cart-count" id="cartCount">0</span>
-                </div>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
+        <span class="nav-link active" onclick="switchView('home')">Home</span>
+        <span class="nav-link" onclick="switchView('shop')">Wovens</span>
+        <span class="nav-link" onclick="switchView('allseason')">All Season</span>
+        <span class="nav-link" onclick="switchView('about')">Our Story</span>
+        <span class="nav-link" onclick="switchView('contact')">Contact</span>
+        <span class="nav-link" onclick="switchView('policies')">Policies</span>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <img src="logo.png" alt="Handiweave" class="logo-img">
-            <h1>HANDIWEAVE</h1>
-            <p class="tagline">Traditions and Trends</p>
-            <p>Discover the warmth and heritage of Devbhoomi Himachal. Each shawl is a story woven with tradition, care, and unparalleled craftsmanship by our skilled artisans.</p>
-            <div class="hero-btns">
-                <a href="#products" class="btn-primary"><i class="fas fa-shopping-bag"></i> Shop Collection</a>
-                <a href="#about" class="btn-secondary"><i class="fas fa-play-circle"></i> Our Story</a>
-            </div>
+    <!-- Shop Section -->
+    <section id="shop-view" class="section-container active-section">
+        <h2 style="text-align:center; margin-bottom:2rem;">Our Woven Collection</h2>
+        <div class="products-grid" id="productsContainer">
+            <!-- Products loaded by JavaScript -->
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section class="products" id="products">
-        <div class="container">
-            <div class="section-title">
-                <h2>Handcrafted Collections</h2>
-                <p class="section-subtitle">Premium materials, traditional techniques, and timeless designs from the heart of Himachal.</p>
+    <!-- New All Season Section -->
+    <section id="allseason-view" class="section-container craft-section">
+        <h2 style="text-align:center; margin-bottom:1rem;">Beyond Seasons</h2>
+        <p style="text-align:center; max-width:600px; margin:0 auto 2rem; color:#666;">
+            Creating pieces that speak the language of comfort and style, season after season.
+        </p>
+        
+        <div class="craft-grid">
+            <div class="craft-card">
+                <div class="craft-icon"><i class="fas fa-snowflake"></i></div>
+                <h3>All Season Crafting</h3>
+                <p>We are crafting pieces that feel like a warm hug in winter and a soft whisper in summer. Our all-season wovens adapt to you.</p>
             </div>
-            <div class="filter-tabs">
-                <button class="tab-btn active" data-category="all">All Products</button>
-                <button class="tab-btn" data-category="merino">Pure Merino Wool</button>
-                <button class="tab-btn" data-category="angora">Angora Wool</button>
-                <button class="tab-btn" data-category="blend">Wool Blend</button>
-                <button class="tab-btn" data-category="decor">Home Decor</button>
+            <div class="craft-card">
+                <div class="craft-icon"><i class="fas fa-yarn"></i></div>
+                <h3>Knitting Stories</h3>
+                <p>Every loop and stitch is a word in our storybook of textures. We knit not just fabrics, but narratives of home and heritage.</p>
             </div>
-            <div class="products-grid" id="productsContainer">
-                <!-- Products loaded by JavaScript -->
+            <div class="craft-card">
+                <div class="craft-icon"><i class="fas fa-ring"></i></div>
+                <h3>Crochet Magic</h3>
+                <p>Where a single thread transforms into intricate beauty. Our crochet pieces are spells woven with patience and love.</p>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>A Soul-Wrapped Heritage</h2>
-                    <p>Handiweave was born in Devbhoomi Himachal with a simple mission: to bring a hidden craft into the light — not just to be seen, but to be felt.</p>
-                    <p>We work directly with artisan families, ensuring fair wages and preserving techniques passed down through generations. Each 'tana-bana' (warp and weft) carries a heartbeat of tradition, memory, and love.</p>
-                    <p>When you choose Handiweave, you're not just buying a product. You're sustaining a livelihood, preserving a heritage, and owning a piece of authentic Himalayan craftsmanship.</p>
-                    <a href="#contact" class="btn-primary" style="margin-top: 1rem;"><i class="fas fa-envelope"></i> Connect With Us</a>
+    <section id="about-view" class="section-container">
+        <h2>Our Story</h2>
+        <p style="margin-top:1rem; margin-bottom:2rem;">
+            Every piece sustains a life, a family, a village. This is an effort to bring a hidden craft into the light.
+        </p>
+        
+        <div class="gallery-grid">
+            <img src="images/ar1.jpg" alt="Artisan 1" loading="lazy">
+            <img src="images/ar2.jpg" alt="Artisan 2" loading="lazy">
+            <img src="images/ar3.jpg" alt="Artisan 3" loading="lazy">
+            <img src="images/she1.jpg" alt="Sheep Wool" loading="lazy">
+            <img src="images/cr1.jpg" alt="Certificate" loading="lazy">
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact-view" class="section-container">
+        <h2>Contact Us</h2>
+        <div class="contact-form">
+            <form id="contactForm" action="https://formspree.io/f/xojagdvw" method="POST">
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control" placeholder="Your Name *" required>
                 </div>
-                <div class="about-image">
-                    <img src="images/ar1.jpg" alt="Handiweave Artisans at work" loading="lazy">
+                <div class="form-group">
+                    <input type="email" name="email" class="form-control" placeholder="Email Address *" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" class="form-control" placeholder="Your Message *" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+            
+            <div style="text-align:center; margin-top:2rem;">
+                <p><i class="fas fa-phone-alt"></i> +91 98822 12962</p>
+                <p><i class="fas fa-envelope"></i> handiweave@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Devbhoomi Himachal, India</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Policies Section -->
+    <section id="policies-view" class="section-container">
+        <h2>Our Policies</h2>
+        <div class="policy-accordion">
+            <div class="policy-item">
+                <div class="policy-header" onclick="togglePolicy(0)">
+                    <span><i class="fas fa-shipping-fast"></i> Shipping Policy</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="policy-content">
+                    <p><strong>We ship across India within 5-7 business days</strong> via trusted courier partners.</p>
+                    <ul style="margin-top:1rem; padding-left:1.2rem;">
+                        <li>Free shipping on orders above ₹1999</li>
+                        <li>Shipping charges calculated at checkout</li>
+                        <li>International shipping available on request</li>
+                        <li>Order tracking provided via WhatsApp/Email</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="policy-item">
+                <div class="policy-header" onclick="togglePolicy(1)">
+                    <span><i class="fas fa-undo-alt"></i> Return & Refund Policy</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="policy-content">
+                    <p><strong>7-day return policy</strong> from delivery date.</p>
+                    <ul style="margin-top:1rem; padding-left:1.2rem;">
+                        <li>Product must be unused, unwashed with tags attached</li>
+                        <li>Refunds processed in 5-7 business days</li>
+                        <li>Return shipping paid by customer (refunded if defective)</li>
+                        <li>Contact us before returning</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="policy-item">
+                <div class="policy-header" onclick="togglePolicy(2)">
+                    <span><i class="fas fa-shield-alt"></i> Privacy Policy</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="policy-content">
+                    <p><strong>Your privacy is important to us.</strong></p>
+                    <ul style="margin-top:1rem; padding-left:1.2rem;">
+                        <li>We never share your personal information</li>
+                        <li>Secure payment processing via Razorpay</li>
+                        <li>Order data used only for fulfillment</li>
+                        <li>You can request data deletion anytime</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="main-footer" id="contact">
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-col">
-                    <div class="footer-logo">HANDIWEAVE</div>
-                    <p class="footer-tagline">Traditions and Trends</p>
-                    <p style="color: rgba(255,255,255,0.8); margin-bottom: 1.5rem;">Premium handcrafted shawls, stoles & decor from Devbhoomi Himachal.</p>
-                    <div class="social-links">
-                        <a href="https://instagram.com/handiweave" class="social-link" target="_blank" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://x.com/handiweave" class="social-link" target="_blank" aria-label="Twitter">
-                            <i class="fab fa-x-twitter"></i>
-                        </a>
-                        <a href="https://youtube.com/@handiweave" class="social-link" target="_blank" aria-label="YouTube">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="https://wa.me/919882212962" class="social-link" target="_blank" aria-label="WhatsApp">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <div class="footer-links">
-                        <a href="#home">Home</a>
-                        <a href="#products">Shop All</a>
-                        <a href="#about">Our Story</a>
-                        <a href="#contact">Contact Us</a>
-                        <a href="#policies">Policies</a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4>Categories</h4>
-                    <div class="footer-links">
-                        <a href="#" data-category="merino">Pure Merino Wool</a>
-                        <a href="#" data-category="angora">Angora Wool</a>
-                        <a href="#" data-category="blend">Wool Blend Shawls</a>
-                        <a href="#" data-category="decor">Home Decor</a>
-                        <a href="#" data-category="all">New Arrivals</a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4>Contact Info</h4>
-                    <div class="contact-info">
-                        <p><i class="fas fa-phone-alt"></i> +91 98822 12962</p>
-                        <p><i class="fas fa-envelope"></i> handiweave@gmail.com</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Devbhoomi Himachal, India</p>
-                    </div>
-                    <div style="margin-top: 1.5rem;">
-                        <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem;"><i class="fas fa-info-circle"></i> For bulk orders & customizations, please call or WhatsApp.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>© 2025 Handiweave. All rights reserved. | Crafted with ❤️ in the Himalayas</p>
-            </div>
+    <footer class="main-footer">
+        <div class="social-links">
+            <a href="https://instagram.com/handiweave" class="social-link" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://x.com/handiweave" class="social-link" target="_blank">
+                <i class="fab fa-x-twitter"></i>
+            </a>
+            <a href="https://youtube.com/@handiweave" class="social-link" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        
+        <div class="footer-links">
+            <span class="footer-link" onclick="switchView('shop')">Wovens</span>
+            <span class="footer-link" onclick="switchView('allseason')">All Season</span>
+            <span class="footer-link" onclick="switchView('about')">Our Story</span>
+            <span class="footer-link" onclick="switchView('contact')">Contact</span>
+            <span class="footer-link" onclick="switchView('policies')">Policies</span>
+        </div>
+        
+        <div style="margin-top:1.5rem;">
+            <p>handiweave@gmail.com | +91 98822 12962</p>
+            <p style="margin-top:0.5rem; color:#666; font-size:0.9rem;">
+                For bulk orders & customizations, please call or WhatsApp
+            </p>
+        </div>
+        
+        <div style="margin-top:2rem;">
+            <p>© 2025 Handiweave. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- WhatsApp Float -->
-    <a href="https://wa.me/919882212962?text=Hi%20Handiweave!%20I%20would%20like%20to%20know%20more%20about%20your%20products." class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- Cart Sidebar & Overlay -->
-    <div class="cart-overlay" id="cartOverlay"></div>
+    <!-- Cart Sidebar -->
+    <div class="overlay" id="overlay"></div>
     <aside class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
+        <div style="padding:1.5rem; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">
             <h3>Your Shopping Bag</h3>
-            <button class="cart-close" id="closeCart"><i class="fas fa-times"></i></button>
+            <button class="modal-close" onclick="closeCart()"><i class="fas fa-times"></i></button>
         </div>
-        <div class="cart-items" id="cartItemsContainer">
-            <!-- Cart items loaded by JavaScript -->
-        </div>
-        <div class="cart-footer">
-            <div class="cart-total">
+        <div id="cartItemsList" style="flex:1; overflow-y:auto; padding:1.5rem;"></div>
+        <div style="padding:1.5rem; border-top:1px solid #eee;">
+            <div style="display:flex; justify-content:space-between; font-weight:700; margin-bottom:1.5rem;">
                 <span>Total:</span>
-                <span id="cartTotalPrice">₹0</span>
+                <span id="cartTotalText">₹0</span>
             </div>
-            <button class="cart-checkout-btn" id="checkoutBtn">Proceed to Secure Checkout</button>
-            <p style="text-align: center; margin-top: 10px; font-size: 0.85rem; color: var(--text-light);">
-                <i class="fas fa-lock"></i> Your payment is secured with Razorpay
-            </p>
+            <button onclick="openCheckout()" style="background:var(--brand); color:white; width:100%; padding:15px; border-radius:4px; font-weight:700; border:none; cursor:pointer;">
+                Proceed to Checkout
+            </button>
         </div>
     </aside>
 
-    <!-- Product Modal -->
-    <div class="modal-overlay" id="productModalOverlay">
-        <div class="product-modal" id="productModal">
-            <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
-            <div class="modal-images">
-                <img id="modalImage" src="" alt="Product Image">
-                <div class="zoom-hint" id="zoomHint">Scroll or pinch to zoom</div>
-            </div>
-            <div class="modal-details">
-                <h2 id="modalTitle"></h2>
-                <div class="modal-price" id="modalPrice"></div>
-                <p class="modal-description" id="modalDescription"></p>
-                <div class="specs-grid" id="modalSpecs"></div>
-                <div class="modal-actions">
-                    <button class="add-to-cart-btn" id="modalAddToCart">Add to Cart</button>
-                    <a href="#" class="buy-now-btn" id="modalBuyNow" target="_blank">Buy Now with Razorpay</a>
-                </div>
-            </div>
+    <!-- Checkout Modal -->
+    <div class="checkout-modal" id="checkoutModal">
+        <button class="modal-close" onclick="closeCheckout()"><i class="fas fa-times"></i></button>
+        <h2 style="margin-bottom:1.5rem;">Complete Your Order</h2>
+        
+        <div id="checkoutSummary" style="margin-bottom:1.5rem; padding:1rem; background:#f9f9f9; border-radius:8px;">
+            <!-- Order summary loaded here -->
         </div>
+        
+        <div style="font-size:1.3rem; font-weight:700; text-align:right; margin-bottom:1.5rem;">
+            Total: <span id="checkoutTotal">₹0</span>
+        </div>
+        
+        <form id="checkoutForm">
+            <div class="form-group">
+                <input type="text" id="customerName" class="form-control" placeholder="Full Name *" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="customerEmail" class="form-control" placeholder="Email Address *" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" id="customerPhone" class="form-control" placeholder="Phone Number *" required>
+            </div>
+            <div class="form-group">
+                <textarea id="customerAddress" class="form-control" placeholder="Shipping Address *" rows="3" required></textarea>
+            </div>
+            
+            <div style="display:flex; gap:10px; margin-top:1.5rem;">
+                <button type="button" onclick="processRazorpayPayment()" style="flex:1; background:var(--rzp); color:white; padding:14px; border-radius:4px; font-weight:700; border:none; cursor:pointer;">
+                    <i class="fas fa-credit-card"></i> Pay with Razorpay
+                </button>
+                <button type="button" onclick="whatsappCheckout()" style="flex:1; background:var(--wa); color:white; padding:14px; border-radius:4px; font-weight:700; border:none; cursor:pointer;">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Order
+                </button>
+            </div>
+        </form>
     </div>
 
     <!-- Notification -->
@@ -1155,194 +720,46 @@
     </div>
 
     <script>
-        // ========== PRODUCTS DATABASE ==========
+        // ========== PRODUCTS DATA ==========
         const PRODUCTS = [
-            {
-                id: 1,
-                name: "Merino Luxe I",
-                category: "merino",
-                price: 2499,
-                originalPrice: 2875,
-                description: "Experience ultimate luxury with our 100% Pure Merino Wool Shawl. Exceptionally soft, lightweight, and warm, it's handwoven by artisans in Himachal using traditional techniques. Perfect for chilly evenings and formal occasions.",
-                material: "100% Pure Merino Wool",
-                care: "Dry clean or gentle cold hand wash. Lay flat to dry.",
-                size: "70 x 200 cm",
-                weight: "450 grams",
-                color: "Natural, Grey, Beige",
-                stock: 12,
-                images: ["images/merino-luxe-1.jpg"],
-                paymentLink: "https://rzp.io/rzp/zuErYBO"
-            },
-            {
-                id: 2,
-                name: "Merino Luxe II",
-                category: "merino",
-                price: 2499,
-                originalPrice: 2875,
-                description: "The second variant in our Merino Luxe series features subtle traditional patterns woven into the fabric. It offers the same premium warmth and softness with added artistic detail.",
-                material: "100% Pure Merino Wool",
-                care: "Dry clean or gentle cold hand wash. Lay flat to dry.",
-                size: "70 x 200 cm",
-                weight: "450 grams",
-                color: "Brown, Cream",
-                stock: 8,
-                images: ["images/merino-luxe-2.jpg"],
-                paymentLink: "https://rzp.io/rzp/zuErYBO"
-            },
-            {
-                id: 3,
-                name: "Royal Angora Shawl",
-                category: "angora",
-                price: 5499,
-                originalPrice: 6325,
-                description: "Indulge in unparalleled softness with our premium Angora wool shawl. Known for its silky texture and exceptional heat retention, this is our most luxurious offering, handcrafted with meticulous attention to detail.",
-                material: "100% Angora Wool",
-                care: "Dry clean only. Store in a cool, dry place.",
-                color: "White, Off-White",
-                stock: 5,
-                images: ["images/royal-angora-white.jpg"],
-                paymentLink: "https://rzp.io/rzp/Tot28zKI"
-            },
-            {
-                id: 4,
-                name: "Daily Wear Shawl SH1",
-                category: "blend",
-                price: 1499,
-                originalPrice: 1899,
-                description: "A versatile and durable shawl perfect for everyday use. Made from a warm wool blend, it combines comfort, style, and practicality for daily wear in cooler climates.",
-                material: "Wool Blend (80% Wool, 20% Acrylic)",
-                care: "Machine or hand wash below 40°C with mild detergent.",
-                color: "Multicolor, Red-Black",
-                stock: 20,
-                images: ["images/daily-shawl-1.jpg"],
-                paymentLink: "https://rzp.io/rzp/ANjKAv1"
-            },
-            {
-                id: 5,
-                name: "Daily Wear Shawl SH2",
-                category: "blend",
-                price: 1199,
-                originalPrice: 1599,
-                description: "Features geometric patterns inspired by traditional Himachali designs. This wool blend shawl is both stylish and functional, offering great warmth for daily use.",
-                material: "Wool Blend (80% Wool, 20% Acrylic)",
-                care: "Machine or hand wash below 40°C with mild detergent.",
-                color: "Blue-Grey, Brown-Green",
-                stock: 18,
-                images: ["images/daily-shawl-2.jpg"],
-                paymentLink: "https://rzp.io/rzp/21e1fWfI"
-            },
-            {
-                id: 6,
-                name: "Daily Wear Shawl SH3",
-                category: "blend",
-                price: 1199,
-                originalPrice: 1599,
-                description: "A lightweight shawl with contemporary color combinations. Ideal for layering or as a casual accessory, providing moderate warmth without bulk.",
-                material: "Wool Blend (80% Wool, 20% Acrylic)",
-                care: "Machine or hand wash below 40°C with mild detergent.",
-                color: "Green-Black, Orange-Brown",
-                stock: 15,
-                images: ["images/daily-shawl-3.jpg"],
-                paymentLink: "https://rzp.io/rzp/21e1fWfI"
-            },
-            {
-                id: 7,
-                name: "Trendy Stole ST1",
-                category: "blend",
-                price: 699,
-                originalPrice: 999,
-                description: "A lightweight and elegant stole perfect for office wear or casual outings. Its versatile design pairs well with both traditional and western outfits.",
-                material: "Wool Blend (80% Wool, 20% Cotton)",
-                care: "Machine or hand wash below 40°C with mild detergent.",
-                size: "30 x 80 in",
-                weight: "250 grams",
-                color: "Grey, Black",
-                stock: 25,
-                images: ["images/stole-trendy-1.jpg"],
-                paymentLink: "https://rzp.io/rzp/3TgywOm"
-            },
-            {
-                id: 8,
-                name: "Trendy Stole ST2",
-                category: "blend",
-                price: 799,
-                originalPrice: 1099,
-                description: "Make a statement with this elegantly designed stole featuring contemporary patterns. Perfect for parties, weddings, and special occasions.",
-                material: "Wool Blend (80% Wool, 20% Cotton)",
-                care: "Machine or hand wash below 40°C with mild detergent.",
-                size: "30 x 80 in",
-                weight: "250 grams",
-                color: "Red, Blue",
-                stock: 22,
-                images: ["images/stole-trendy-2.jpg"],
-                paymentLink: "https://rzp.io/rzp/S4sfp5y"
-            },
-            {
-                id: 9,
-                name: "Trendy Stole ST3",
-                category: "blend",
-                price: 799,
-                originalPrice: 1099,
-                description: "Add a pop of color to your ensemble with this vibrant, patterned stole. The modern design is woven with care to create a unique accessory.",
-                material: "Wool Blend (80% Wool, 20% Cotton)",
-                care: "Machine or hand wash below 40°C with mild detergent.",
-                size: "30 x 80 in",
-                weight: "250 grams",
-                color: "Multicolor, Pink-Purple",
-                stock: 20,
-                images: ["images/stole-trendy-3.jpg"],
-                paymentLink: "https://rzp.io/rzp/S4sfp5y"
-            },
-            {
-                id: 10,
-                name: "Heritage Wall Art I",
-                category: "decor",
-                price: 1200,
-                originalPrice: 1380,
-                description: "Handwoven textile art that brings the warmth of Himalayan craftsmanship to your walls. This piece features traditional motifs in a modern display.",
-                material: "Wool/Cotton Blend",
-                care: "Dust gently. Dry clean if necessary.",
-                size: "60 x 90 cm",
-                weight: "800 grams",
-                color: "Natural, Brown",
-                stock: 10,
-                images: ["images/2wall.jpg"],
-                paymentLink: "https://rzp.io/rzp/tSEaQin3"
-            },
-            {
-                id: 11,
-                name: "Heritage Wall Art II",
-                category: "decor",
-                price: 1800,
-                originalPrice: 2070,
-                description: "A larger statement piece with intricate, detailed patterns. This wall art transforms any room into a gallery of traditional Himalayan artistry.",
-                material: "Wool/Cotton Blend",
-                care: "Dust gently. Dry clean if necessary.",
-                size: "15 x 20 in",
-                weight: "400 grams",
-                color: "Multicolor",
-                stock: 7,
-                images: ["images/3wall.jpg"],
-                paymentLink: "https://rzp.io/rzp/jrxu0ZIq"
-            }
+            { id: 1, name: "Merino Luxe I", price: 2499, img: "images/merino-luxe-1.jpg", 
+              paymentLink: "https://rzp.io/rzp/zuErYBO", type: "shawl" },
+            { id: 2, name: "Merino Luxe II", price: 2499, img: "images/merino-luxe-2.jpg", 
+              paymentLink: "https://rzp.io/rzp/zuErYBO", type: "shawl" },
+            { id: 3, name: "Royal Angora", price: 5499, img: "images/royal-angora-white.jpg", 
+              paymentLink: "https://rzp.io/rzp/Tot28zKI", type: "shawl" },
+            { id: 4, name: "Daily Shawl SH1", price: 1499, img: "images/daily-shawl-1.jpg", 
+              paymentLink: "https://rzp.io/rzp/ANjKAv1", type: "shawl" },
+            { id: 5, name: "Daily Shawl SH2", price: 1199, img: "images/daily-shawl-2.jpg", 
+              paymentLink: "https://rzp.io/rzp/21e1fWfI", type: "shawl" },
+            { id: 6, name: "Daily Shawl SH3", price: 1199, img: "images/daily-shawl-3.jpg", 
+              paymentLink: "https://rzp.io/rzp/21e1fWfI", type: "shawl" },
+            { id: 7, name: "Trendy Stole ST1", price: 699, img: "images/stole-trendy-1.jpg", 
+              paymentLink: "https://rzp.io/rzp/3TgywOm", type: "stole" },
+            { id: 8, name: "Trendy Stole ST2", price: 799, img: "images/stole-trendy-2.jpg", 
+              paymentLink: "https://rzp.io/rzp/S4sfp5y", type: "stole" },
+            { id: 9, name: "Trendy Stole ST3", price: 799, img: "images/stole-trendy-3.jpg", 
+              paymentLink: "https://rzp.io/rzp/S4sfp5y", type: "stole" },
+            { id: 10, name: "Heritage Wall Art I", price: 1200, img: "images/2wall.jpg", 
+              paymentLink: "https://rzp.io/rzp/tSEaQin3", type: "decor" },
+            { id: 11, name: "Heritage Wall Art II", price: 1800, img: "images/3wall.jpg", 
+              paymentLink: "https://rzp.io/rzp/jrxu0ZIq", type: "decor" }
         ];
 
         // ========== APP STATE ==========
         let cart = JSON.parse(localStorage.getItem('handiweave_cart')) || [];
-        let currentFilter = 'all';
+        let checkoutData = {};
 
         // ========== UTILITY FUNCTIONS ==========
         function formatPrice(price) {
             return '₹' + price.toLocaleString('en-IN');
-        }
-        function calculateDiscount(original, current) {
-            return Math.round(((original - current) / original) * 100);
         }
         function showNotification(message) {
             const notification = document.getElementById('notification');
             const text = document.getElementById('notificationText');
             text.textContent = message;
             notification.classList.add('show');
+            
             setTimeout(() => {
                 notification.classList.remove('show');
             }, 3000);
@@ -1365,83 +782,75 @@
         // ========== RENDER PRODUCTS ==========
         function renderProducts() {
             const container = document.getElementById('productsContainer');
-            const filtered = currentFilter === 'all' 
-                ? PRODUCTS 
-                : PRODUCTS.filter(p => p.category === currentFilter);
-
-            if (filtered.length === 0) {
-                container.innerHTML = '<div class="empty-cart" style="grid-column: 1/-1;"><i class="fas fa-box-open"></i><p>No products found in this category.</p></div>';
-                return;
-            }
-
-            container.innerHTML = filtered.map(product => {
-                const discount = calculateDiscount(product.originalPrice, product.price);
-                let materialTag = '';
-                if (product.category === 'merino') materialTag = 'Pure Merino Wool';
-                if (product.category === 'angora') materialTag = 'Angora Wool';
-                if (product.category === 'blend') materialTag = 'Wool Blend';
-                if (product.category === 'decor') materialTag = 'Handwoven Decor';
-
-                return `
-                    <div class="product-card" data-id="${product.id}" data-category="${product.category}">
-                        ${product.stock < 10 ? `<div class="product-badge">Only ${product.stock} Left</div>` : ''}
-                        <div class="product-image">
-                            <img src="${product.images[0]}" alt="${product.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x500/F9F8F6/8C6A5D?text=Handiweave'">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">${materialTag}</span>
-                            <h3 class="product-name" onclick="openProductModal(${product.id})">${product.name}</h3>
-                            <p class="product-description">${product.description.substring(0, 100)}...</p>
-                            <div class="price-container">
-                                <span class="original-price">${formatPrice(product.originalPrice)}</span>
-                                <span class="current-price">${formatPrice(product.price)}</span>
-                                <span class="discount-badge">${discount}% OFF</span>
-                            </div>
-                            <span class="material-tag">${product.material.split(' ')[0]}</span>
-                            <div class="product-actions">
-                                <button class="add-to-cart-btn" onclick="addToCart(${product.id})">Add to Cart</button>
-                                <a href="${product.paymentLink}" class="buy-now-btn" target="_blank" onclick="event.stopPropagation();">Buy Now</a>
-                            </div>
-                        </div>
+            container.innerHTML = PRODUCTS.map(product => `
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="${product.img}" alt="${product.name}" 
+                             onerror="this.src='https://via.placeholder.com/400x300/F9F8F6/8C6A5D?text=Handiweave'">
                     </div>
-                `;
-            }).join('');
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-price">${formatPrice(product.price)}</div>
+                        <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        // ========== FILTER PRODUCTS ==========
-        function setupFilters() {
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    currentFilter = this.dataset.category;
-                    renderProducts();
-                });
+        // ========== VIEW MANAGEMENT ==========
+        function switchView(view) {
+            // Hide all sections
+            document.querySelectorAll('.section-container').forEach(s => {
+                s.classList.remove('active-section');
             });
-            // Footer category links
-            document.querySelectorAll('.footer-links a[data-category]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const category = this.dataset.category;
-                    currentFilter = category;
-                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                    document.querySelector(`.tab-btn[data-category="${category}"]`).classList.add('active');
-                    renderProducts();
-                    window.scrollTo({ top: document.getElementById('products').offsetTop - 80, behavior: 'smooth' });
-                });
+            
+            // Show selected section
+            const section = document.getElementById(view + '-view');
+            if (section) {
+                section.classList.add('active-section');
+            }
+            
+            // Update navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.toggle('active', link.getAttribute('onclick').includes("'" + view + "'"));
             });
+            
+            // Scroll to top for non-home sections
+            if (view !== 'home') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                // Scroll to hero section
+                document.querySelector('.hero-section').scrollIntoView({ behavior: 'smooth' });
+            }
         }
 
         // ========== CART FUNCTIONS ==========
         function addToCart(productId) {
             const existingItem = cart.find(item => item.id === productId);
+            
             if (existingItem) {
                 existingItem.quantity += 1;
             } else {
                 cart.push({ id: productId, quantity: 1 });
             }
+            
             saveCart();
-            showNotification('Added to cart successfully!');
+            showNotification('Added to cart!');
+            
+            // Track event
+            if (typeof gtag !== 'undefined') {
+                const product = PRODUCTS.find(p => p.id === productId);
+                gtag('event', 'add_to_cart', {
+                    'items': [{
+                        'id': productId,
+                        'name': product.name,
+                        'price': product.price,
+                        'quantity': 1
+                    }]
+                });
+            }
         }
         function removeFromCart(index) {
             cart.splice(index, 1);
@@ -1451,6 +860,7 @@
         }
         function updateQuantity(index, change) {
             cart[index].quantity += change;
+            
             if (cart[index].quantity < 1) {
                 removeFromCart(index);
             } else {
@@ -1459,20 +869,21 @@
             }
         }
         function renderCart() {
-            const container = document.getElementById('cartItemsContainer');
-            const totalEl = document.getElementById('cartTotalPrice');
+            const container = document.getElementById('cartItemsList');
+            const totalEl = document.getElementById('cartTotalText');
             
             if (cart.length === 0) {
                 container.innerHTML = `
-                    <div class="empty-cart">
-                        <i class="fas fa-shopping-bag"></i>
+                    <div style="text-align:center; padding:3rem 1rem; color:#666;">
+                        <i class="fas fa-shopping-bag" style="font-size:3rem; margin-bottom:1rem; color:#ddd;"></i>
                         <p>Your cart is empty</p>
-                        <button onclick="closeCart(); document.querySelector('#products').scrollIntoView({behavior:'smooth'});" style="background: var(--primary); color: white; padding: 10px 20px; border-radius: 4px; border: none; margin-top: 15px; cursor: pointer;">
+                        <button onclick="closeCart(); switchView('shop');" 
+                                style="background:var(--brand); color:white; padding:10px 20px; border-radius:4px; border:none; margin-top:1rem; cursor:pointer;">
                             Continue Shopping
                         </button>
                     </div>
                 `;
-                totalEl.textContent = formatPrice(0);
+                totalEl.textContent = '₹0';
                 return;
             }
             
@@ -1485,18 +896,27 @@
                 total += itemTotal;
                 
                 itemsHTML += `
-                    <div class="cart-item">
-                        <div class="cart-item-img">
-                            <img src="${product.images[0]}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/100x100/F9F8F6/8C6A5D?text=Handiweave'">
-                        </div>
-                        <div class="cart-item-details">
-                            <div class="cart-item-name">${product.name}</div>
-                            <div class="cart-item-price">${formatPrice(product.price)}</div>
-                            <div class="cart-item-controls">
-                                <button class="qty-btn" onclick="updateQuantity(${index}, -1)">-</button>
-                                <span class="cart-item-qty">${item.quantity}</span>
-                                <button class="qty-btn" onclick="updateQuantity(${index}, 1)">+</button>
-                                <button class="cart-item-remove" onclick="removeFromCart(${index})"><i class="fas fa-trash"></i></button>
+                    <div style="display:flex; align-items:center; padding:1rem 0; border-bottom:1px solid #f0f0f0;">
+                        <img src="${product.img}" 
+                             style="width:60px; height:60px; object-fit:cover; border-radius:6px; margin-right:1rem;"
+                             onerror="this.src='https://via.placeholder.com/60x60/F9F8F6/8C6A5D?text=Handiweave'">
+                        <div style="flex:1;">
+                            <div style="font-weight:600; margin-bottom:5px;">${product.name}</div>
+                            <div style="color:var(--brand); font-weight:700;">${formatPrice(product.price)}</div>
+                            <div style="display:flex; align-items:center; gap:10px; margin-top:8px;">
+                                <button onclick="updateQuantity(${index}, -1)" 
+                                        style="width:25px; height:25px; border-radius:50%; background:#f0f0f0; border:none; display:flex; align-items:center; justify-content:center; cursor:pointer;">
+                                    <i class="fas fa-minus" style="font-size:0.7rem;"></i>
+                                </button>
+                                <span style="font-weight:600; min-width:30px; text-align:center;">${item.quantity}</span>
+                                <button onclick="updateQuantity(${index}, 1)" 
+                                        style="width:25px; height:25px; border-radius:50%; background:#f0f0f0; border:none; display:flex; align-items:center; justify-content:center; cursor:pointer;">
+                                    <i class="fas fa-plus" style="font-size:0.7rem;"></i>
+                                </button>
+                                <button onclick="removeFromCart(${index})" 
+                                        style="margin-left:10px; color:#ff4444; background:none; border:none; cursor:pointer;">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -1507,189 +927,215 @@
             totalEl.textContent = formatPrice(total);
         }
 
-        // ========== PRODUCT MODAL ==========
-        let currentModalProductId = null;
-        function openProductModal(productId) {
-            const product = PRODUCTS.find(p => p.id === productId);
-            if (!product) return;
-            
-            currentModalProductId = productId;
-            
-            document.getElementById('modalTitle').textContent = product.name;
-            document.getElementById('modalPrice').textContent = `${formatPrice(product.price)} (${calculateDiscount(product.originalPrice, product.price)}% OFF)`;
-            document.getElementById('modalDescription').textContent = product.description;
-            document.getElementById('modalImage').src = product.images[0];
-            document.getElementById('modalImage').alt = product.name;
-            document.getElementById('modalBuyNow').href = product.paymentLink;
-            
-            // Build specs
-            const specsGrid = document.getElementById('modalSpecs');
-            specsGrid.innerHTML = `
-                <div class="spec-item">
-                    <strong>Material</strong>
-                    <span>${product.material}</span>
-                </div>
-                <div class="spec-item">
-                    <strong>Care Instructions</strong>
-                    <span>${product.care}</span>
-                </div>
-                <div class="spec-item">
-                    <strong>Size</strong>
-                    <span>${product.size}</span>
-                </div>
-                <div class="spec-item">
-                    <strong>Weight</strong>
-                    <span>${product.weight}</span>
-                </div>
-                <div class="spec-item">
-                    <strong>Available Colors</strong>
-                    <span>${product.color}</span>
-                </div>
-                <div class="spec-item">
-                    <strong>In Stock</strong>
-                    <span>${product.stock} units</span>
-                </div>
-            `;
-            
-            // Setup modal add to cart button
-            const modalAddBtn = document.getElementById('modalAddToCart');
-            modalAddBtn.onclick = function() {
-                addToCart(productId);
-                closeProductModal();
-            };
-            
-            // Show modal
-            document.getElementById('productModalOverlay').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeProductModal() {
-            document.getElementById('productModalOverlay').classList.remove('active');
-            document.body.style.overflow = 'auto';
-            currentModalProductId = null;
-        }
-
         // ========== CART MODAL CONTROLS ==========
         function openCart() {
             renderCart();
             document.getElementById('cartSidebar').classList.add('active');
-            document.getElementById('cartOverlay').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
         function closeCart() {
             document.getElementById('cartSidebar').classList.remove('active');
-            document.getElementById('cartOverlay').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
-        // ========== CHECKOUT ==========
-        function setupCheckout() {
-            document.getElementById('checkoutBtn').addEventListener('click', function() {
-                if (cart.length === 0) {
-                    showNotification('Your cart is empty');
-                    return;
-                }
-                
-                // Build WhatsApp message
-                let message = `*Handiweave Order Request*%0A%0A`;
-                message += `*Customer Details:*%0A`;
-                message += `(Please provide your name, phone, and address)%0A%0A`;
-                message += `*Order Summary:*%0A`;
-                
-                cart.forEach((item, i) => {
-                    const product = PRODUCTS.find(p => p.id === item.id);
-                    message += `${i+1}. ${product.name} x${item.quantity} - ${formatPrice(product.price * item.quantity)}%0A`;
-                });
-                
-                message += `%0A*Total Amount: ${formatPrice(getCartTotal())}*%0A%0A`;
-                message += `Please confirm the order and provide delivery address.`;
-                
-                const whatsappUrl = `https://wa.me/919882212962?text=${encodeURIComponent(message)}`;
-                
-                // For demo, we'll just open WhatsApp
-                window.open(whatsappUrl, '_blank');
-                
-                // In a real scenario, you might clear cart after successful order
-                // cart = [];
-                // saveCart();
-                // closeCart();
-                // showNotification('Order placed successfully! We will contact you shortly.');
+        // ========== CHECKOUT SYSTEM ==========
+        function openCheckout() {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty');
+                return;
+            }
+            
+            // Build checkout summary
+            let total = 0;
+            let summaryHTML = '<h4 style="margin-bottom:1rem;">Order Summary:</h4>';
+            cart.forEach((item, index) => {
+                const product = PRODUCTS.find(p => p.id === item.id);
+                const itemTotal = product.price * item.quantity;
+                total += itemTotal;
+                summaryHTML += `
+                    <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem; font-size:0.9rem;">
+                        <span>${index+1}. ${product.name} x${item.quantity}</span>
+                        <span>${formatPrice(itemTotal)}</span>
+                    </div>
+                `;
             });
+            
+            document.getElementById('checkoutSummary').innerHTML = summaryHTML;
+            document.getElementById('checkoutTotal').textContent = formatPrice(total);
+            
+            // Show checkout modal
+            document.getElementById('checkoutModal').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Reset form
+            document.getElementById('checkoutForm').reset();
+            checkoutData = {};
+        }
+        function closeCheckout() {
+            document.getElementById('checkoutModal').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
 
-        // ========== INITIALIZE ==========
+        function processRazorpayPayment() {
+            // Collect customer info
+            const name = document.getElementById('customerName').value.trim();
+            const email = document.getElementById('customerEmail').value.trim();
+            const phone = document.getElementById('customerPhone').value.trim();
+            const address = document.getElementById('customerAddress').value.trim();
+            
+            // Validation
+            if (!name || !email || !phone || !address) {
+                showNotification('Please fill all required fields');
+                return;
+            }
+            
+            // Save checkout data
+            checkoutData = { name, email, phone, address };
+            
+            // Calculate total
+            const total = getCartTotal();
+            
+            // Track checkout event
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'begin_checkout', {
+                    'currency': 'INR',
+                    'value': total,
+                    'items': cart.map(item => {
+                        const product = PRODUCTS.find(p => p.id === item.id);
+                        return {
+                            'id': product.id,
+                            'name': product.name,
+                            'price': product.price,
+                            'quantity': item.quantity
+                        };
+                    })
+                });
+            }
+            
+            // For multiple products, we need to handle payment differently
+            // For now, we'll open the first product's payment link
+            // In production, you should create a combined payment link
+            if (cart.length > 0) {
+                const firstProduct = PRODUCTS.find(p => p.id === cart[0].id);
+                
+                // Show notification
+                showNotification('Redirecting to secure payment...');
+                
+                // Open Razorpay payment link
+                setTimeout(() => {
+                    window.open(firstProduct.paymentLink, '_blank');
+                }, 500);
+                
+                // Note: For multiple products, you might want to create a custom Razorpay link
+                // or handle payment via backend to combine amounts
+            }
+        }
+
+        function whatsappCheckout() {
+            const name = document.getElementById('customerName').value.trim();
+            const phone = document.getElementById('customerPhone').value.trim();
+            const address = document.getElementById('customerAddress').value.trim();
+            
+            if (!name || !phone || !address) {
+                showNotification('Please fill name, phone and address');
+                return;
+            }
+            
+            let message = `*Handiweave Order Request*%0A%0A`;
+            message += `*Customer Details:*%0A`;
+            message += `Name: ${name}%0A`;
+            message += `Phone: ${phone}%0A`;
+            message += `Address: ${address}%0A%0A`;
+            
+            message += `*Order Summary:*%0A`;
+            cart.forEach((item, index) => {
+                const product = PRODUCTS.find(p => p.id === item.id);
+                message += `${index+1}. ${product.name} x${item.quantity} - ${formatPrice(product.price * item.quantity)}%0A`;
+            });
+            
+            const total = getCartTotal();
+            message += `%0A*Total Amount: ${formatPrice(total)}*%0A%0A`;
+            message += `Please confirm this order and provide payment details.`;
+            
+            // Track WhatsApp checkout
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'whatsapp_checkout', {
+                    'value': total,
+                    'items': cart.length
+                });
+            }
+            
+            window.open(`https://wa.me/919882212962?text=${encodeURIComponent(message)}`, '_blank');
+            closeCheckout();
+        }
+
+        // ========== POLICIES ACCORDION ==========
+        function togglePolicy(index) {
+            const headers = document.querySelectorAll('.policy-header');
+            const contents = document.querySelectorAll('.policy-content');
+            
+            // Toggle clicked item
+            const isActive = headers[index].classList.contains('active');
+            
+            // Close all
+            headers.forEach(h => h.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+            
+            // Open clicked if it was closed
+            if (!isActive) {
+                headers[index].classList.add('active');
+                contents[index].classList.add('active');
+            }
+        }
+
+        // ========== FORM SUBMISSION ==========
+        document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+            // Formspree will handle submission
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'form_submit', {
+                    'event_category': 'contact',
+                    'event_label': 'contact_form'
+                });
+            }
+            showNotification('Message sent successfully!');
+        });
+
+        // ========== INITIALIZATION ==========
         document.addEventListener('DOMContentLoaded', function() {
             // Initial renders
             renderProducts();
             updateCartCount();
             
-            // Setup event listeners
-            setupFilters();
-            setupCheckout();
-            
-            // Mobile menu
-            document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-                document.getElementById('navLinks').classList.toggle('active');
+            // Event listeners
+            document.getElementById('overlay').addEventListener('click', function() {
+                closeCart();
+                closeCheckout();
             });
             
-            // Cart controls
-            document.getElementById('cartIcon').addEventListener('click', openCart);
-            document.getElementById('closeCart').addEventListener('click', closeCart);
-            document.getElementById('cartOverlay').addEventListener('click', closeCart);
-            
-            // Modal controls
-            document.getElementById('modalClose').addEventListener('click', closeProductModal);
-            document.getElementById('productModalOverlay').addEventListener('click', function(e) {
-                if (e.target === this) closeProductModal();
-            });
-            
-            // Close mobile menu when clicking a link
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', function() {
-                    document.getElementById('navLinks').classList.remove('active');
-                    // Update active nav link
-                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-            
-            // Smooth scroll for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    if(this.getAttribute('href') === '#') return;
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    if(targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-            
-            // Image zoom hint in modal
-            const modalImage = document.getElementById('modalImage');
-            const zoomHint = document.getElementById('zoomHint');
-            if(modalImage) {
-                modalImage.addEventListener('load', function() {
-                    if(this.naturalWidth > this.clientWidth) {
-                        zoomHint.style.display = 'block';
-                    }
-                });
+            // Initialize policies (open first one)
+            if (document.querySelector('.policy-header')) {
+                document.querySelector('.policy-header').classList.add('active');
+                document.querySelector('.policy-content').classList.add('active');
             }
             
-            // Set current year in footer
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            // Set current year in footer (optional)
+            // document.getElementById('currentYear').textContent = new Date().getFullYear();
         });
 
-        // Make functions globally available for onclick attributes
+        // Global functions
+        window.switchView = switchView;
         window.addToCart = addToCart;
-        window.openProductModal = openProductModal;
-        window.updateQuantity = updateQuantity;
-        window.removeFromCart = removeFromCart;
         window.openCart = openCart;
         window.closeCart = closeCart;
+        window.openCheckout = openCheckout;
+        window.closeCheckout = closeCheckout;
+        window.processRazorpayPayment = processRazorpayPayment;
+        window.whatsappCheckout = whatsappCheckout;
+        window.togglePolicy = togglePolicy;
     </script>
 </body>
 </html>
