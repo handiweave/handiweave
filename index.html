@@ -31,11 +31,14 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
         
-        /* ===== HERO SECTION FIXED (Dark Overlay for Readability) ===== */
+        /* ===== TRUST BANNER (Added) ===== */
+        .trust-banner { background: var(--brand); color: white; padding: 8px; font-size: 0.75rem; text-align: center; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; font-weight: 600; letter-spacing: 0.5px; }
+        
+        /* ===== HERO SECTION FIXED ===== */
         .hero-section {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                         url('images/ar3.jpg') center/cover no-repeat;
-            min-height: 85vh; 
+            min-height: 60vh; 
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -47,34 +50,34 @@
         }
 
         .hero-logo-container {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             animation: fadeInDown 1s ease;
         }
 
         .hero-logo {
-            width: 150px; /* Adjusted size for better fit */
-            height: 150px;
+            width: 130px;
+            height: 130px;
             background: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            border: 4px solid var(--gold);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            border: 3px solid var(--gold);
             padding: 15px;
         }
 
         .hero-logo img {
-            width: 100px;
+            width: 90px;
             height: auto;
             object-fit: contain;
         }
 
         .hero-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            letter-spacing: 4px;
+            font-size: 3rem;
+            letter-spacing: 3px;
             margin-bottom: 0.5rem;
             font-weight: 700;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
@@ -83,21 +86,19 @@
         .hero-tagline {
             color: var(--gold);
             font-style: italic;
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
             letter-spacing: 1px;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
         }
 
-        /* Mobile Responsiveness for Hero */
         @media (max-width: 768px) {
-            .hero-logo { width: 120px; height: 120px; }
-            .hero-logo img { width: 80px; }
-            .hero-title { font-size: 2.5rem; }
-            .hero-section { min-height: 70vh; }
+            .hero-logo { width: 110px; height: 110px; }
+            .hero-logo img { width: 70px; }
+            .hero-title { font-size: 2.2rem; }
+            .hero-section { min-height: 50vh; }
         }
 
-        /* Animation */
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -113,7 +114,8 @@
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
         .nav-link {
             font-size: 0.8rem;
@@ -173,7 +175,7 @@
             display: block;
         }
         
-        /* ===== PRODUCTS WITH DETAILS ===== */
+        /* ===== PRODUCTS GRID ===== */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -248,289 +250,71 @@
             background: var(--brand-dark);
         }
         
-        /* ===== NEW ALL SEASON SECTION ===== */
-        .craft-section {
-            background: white;
-        }
-        .craft-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .craft-card {
-            text-align: center;
-            padding: 2rem;
-            background: var(--bg);
-            border-radius: var(--radius);
-        }
-        .craft-icon {
-            font-size: 2.5rem;
-            color: var(--brand);
-            margin-bottom: 1rem;
-        }
-        .craft-card h3 {
-            margin-bottom: 1rem;
-            color: var(--brand-dark);
-        }
+        /* ===== CRAFT SECTION ===== */
+        .craft-section { background: white; }
+        .craft-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .craft-card { text-align: center; padding: 2rem; background: var(--bg); border-radius: var(--radius); }
+        .craft-icon { font-size: 2.5rem; color: var(--brand); margin-bottom: 1rem; }
+        .craft-card h3 { margin-bottom: 1rem; color: var(--brand-dark); }
         
-        /* ===== ABOUT SECTION FIXED ===== */
-        .story-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
-            margin-top: 2rem;
-        }
-        .story-image {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .story-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        .story-content {
-            padding: 0.5rem;
-        }
-        .story-content h2 {
-            margin-bottom: 1.5rem;
-            color: var(--brand-dark);
-        }
-        .story-text {
-            line-height: 1.8;
-        }
-        .story-text p {
-            margin-bottom: 1.2rem;
-        }
-        .highlight-quote {
-            font-style: italic;
-            color: var(--brand);
-            border-left: 3px solid var(--gold);
-            padding-left: 1rem;
-            margin: 1.5rem 0;
-            font-size: 1.1rem;
-        }
+        /* ===== ABOUT SECTION ===== */
+        .story-container { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; margin-top: 2rem; }
+        .story-image { border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .story-image img { width: 100%; height: auto; display: block; }
+        .story-content h2 { margin-bottom: 1.5rem; color: var(--brand-dark); }
+        .story-text { line-height: 1.8; }
+        .story-text p { margin-bottom: 1.2rem; }
+        .highlight-quote { font-style: italic; color: var(--brand); border-left: 3px solid var(--gold); padding-left: 1rem; margin: 1.5rem 0; font-size: 1.1rem; }
         
-        /* ===== GALLERY GRID ===== */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        .gallery-grid img {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        .gallery-grid img:hover {
-            transform: scale(1.03);
-        }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem; }
+        .gallery-grid img { width: 100%; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+        .gallery-grid img:hover { transform: scale(1.03); }
         
         /* ===== CONTACT FORM ===== */
-        .contact-form {
-            max-width: 600px;
-            margin: 2rem auto 0;
-            background: white;
-            padding: 2rem;
-            border-radius: var(--radius);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        .form-control {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        .submit-btn {
-            background: var(--brand);
-            color: white;
-            padding: 14px;
-            width: 100%;
-            border-radius: 4px;
-            border: none;
-            font-weight: 700;
-            cursor: pointer;
-        }
+        .contact-form { max-width: 600px; margin: 2rem auto 0; background: white; padding: 2rem; border-radius: var(--radius); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-control { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; }
+        .submit-btn { background: var(--brand); color: white; padding: 14px; width: 100%; border-radius: 4px; border: none; font-weight: 700; cursor: pointer; }
         
         /* ===== POLICIES ACCORDION ===== */
-        .policy-accordion {
-            max-width: 800px;
-            margin: 2rem auto 0;
-        }
-        .policy-item {
-            background: white;
-            margin-bottom: 1rem;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-        }
-        .policy-header {
-            padding: 1rem 1.5rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 700;
-            background: var(--bg);
-        }
-        .policy-content {
-            padding: 0 1.5rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        .policy-content.active {
-            padding: 1.5rem;
-            max-height: 500px;
-        }
+        .policy-accordion { max-width: 800px; margin: 2rem auto 0; }
+        .policy-item { background: white; margin-bottom: 1rem; border-radius: var(--radius); overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.05); }
+        .policy-header { padding: 1rem 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; background: var(--bg); }
+        .policy-content { padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: all 0.3s ease; }
+        .policy-content.active { padding: 1.5rem; max-height: 500px; }
         
-        /* ===== CHECKOUT MODAL ===== */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 1999;
-            display: none;
-        }
-        .overlay.active {
-            display: block;
-        }
+        /* ===== MODALS & SIDEBARS ===== */
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1999; display: none; }
+        .overlay.active { display: block; }
         
-        .checkout-modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 500px;
-            background: white;
-            z-index: 2000;
-            border-radius: 12px;
-            padding: 2rem;
-            display: none;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-        .checkout-modal.active {
-            display: block;
-        }
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #666;
-        }
+        .checkout-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 500px; background: white; z-index: 2000; border-radius: 12px; padding: 2rem; display: none; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .checkout-modal.active { display: block; }
+        .modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666; }
         
-        /* ===== CART SIDEBAR ===== */
-        .cart-sidebar {
-            position: fixed;
-            top: 0;
-            right: -400px;
-            width: 100%;
-            max-width: 380px;
-            height: 100%;
-            background: white;
-            z-index: 2001;
-            transition: right 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            box-shadow: -5px 0 25px rgba(0,0,0,0.1);
-        }
-        .cart-sidebar.active {
-            right: 0;
-        }
+        .cart-sidebar { position: fixed; top: 0; right: -400px; width: 100%; max-width: 380px; height: 100%; background: white; z-index: 2001; transition: right 0.3s ease; display: flex; flex-direction: column; box-shadow: -5px 0 25px rgba(0,0,0,0.1); }
+        .cart-sidebar.active { right: 0; }
         
         /* ===== FOOTER ===== */
-        .main-footer {
-            background: white;
-            padding: 3rem 1rem 2rem;
-            margin-top: 3rem;
-            border-top: 1px solid #eee;
-            text-align: center;
-        }
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        .social-link {
-            color: var(--brand);
-            font-size: 1.5rem;
-        }
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
-        }
-        .footer-link {
-            color: var(--text);
-            cursor: pointer;
-        }
-        .footer-link:hover {
-            color: var(--brand);
-        }
+        .main-footer { background: white; padding: 3rem 1rem 2rem; margin-top: 3rem; border-top: 1px solid #eee; text-align: center; }
+        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin: 1.5rem 0; }
+        .social-link { color: var(--brand); font-size: 1.5rem; }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin: 1.5rem 0; flex-wrap: wrap; }
+        .footer-link { color: var(--text); cursor: pointer; }
+        .footer-link:hover { color: var(--brand); }
         
         /* ===== WHATSAPP FLOAT ===== */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 60px;
-            height: 60px;
-            background: var(--wa);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            z-index: 999;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
+        .whatsapp-float { position: fixed; bottom: 2rem; right: 2rem; width: 60px; height: 60px; background: var(--wa); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; z-index: 999; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         
         /* ===== NOTIFICATION ===== */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #2E8B57;
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 6px;
-            z-index: 2100;
-            display: none;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        .notification.show {
-            display: flex;
-        }
+        .notification { position: fixed; top: 20px; right: 20px; background: #2E8B57; color: white; padding: 1rem 1.5rem; border-radius: 6px; z-index: 2100; display: none; align-items: center; gap: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .notification.show { display: flex; }
         
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .hero-logo { width: 120px; height: 120px; }
             .hero-logo img { width: 80px; }
             .hero-title { font-size: 2.5rem; }
-            .hero-section { min-height: 70vh; }
+            .hero-section { min-height: 50vh; }
             .main-nav { gap: 1.5rem; flex-wrap: wrap; }
             .products-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
             .craft-grid { grid-template-columns: 1fr; }
@@ -544,6 +328,12 @@
 </head>
 
 <body>
+    <div class="trust-banner">
+        <span><i class="fas fa-certificate"></i> Devbhoomi Himachal</span>
+        <span><i class="fas fa-hand-holding-heart"></i> 100% Handcrafted</span>
+        <span><i class="fas fa-truck"></i> Pan India Shipping</span>
+    </div>
+
     <a href="https://wa.me/919882212962" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
@@ -577,8 +367,7 @@
 
     <section id="shop-view" class="section-container active-section">
         <h2 style="text-align:center; margin-bottom:2rem;">Our Woven Collection</h2>
-        <div class="products-grid" id="productsContainer">
-            </div>
+        <div class="products-grid" id="productsContainer"></div>
     </section>
 
     <section id="allseason-view" class="section-container craft-section">
@@ -614,21 +403,16 @@
                 <h2>Our Story</h2>
                 <div class="story-text">
                     <p>This is an effort to bring a hidden craft into the light — not just to be seen, but to be felt. Our mission is to empower the hands behind the loom, and to honour their quiet strength.</p>
-                    <p>Each tana-bana carries a heartbeat — of tradition, of memory, of love passed down generations. We don't just weave shawls; we preserve stories that might otherwise fade into silence.</p>
-                    <p class="highlight-quote">"Reviving heritage, we give it a direction that belongs to tomorrow."</p>
+                    <p>Each tana-bana carries a heartbeat — of tradition, of memory, of love passed down generations. We don't just weave shawls; we preserve stories that might otherwise fade into silence. Reviving heritage, we give it a direction that belongs to tomorrow.</p>
+                    <img src="images/she1.jpg" style="width:100%; border-radius:8px; margin: 1.5rem 0;" alt="Artisan Work">
                     <p>Every piece sustains a life, a family, a village — and keeps the local economy gently flowing. As the tana-bana grows, so does a legacy rooted in dignity and care.</p>
-                    <p><strong>This is not a product. It's a soul-wrapped heritage.</strong></p>
+                    <p class="highlight-quote"><strong>This is not a product. It's a soul-wrapped heritage.</strong></p>
                 </div>
             </div>
         </div>
         
         <div style="margin-top: 4rem;">
-            <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--brand-dark);">
-                Behind the Loom
-            </h3>
-            <p style="text-align: center; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; color: #666;">
-                From raw wool to woven wonder – every thread tells a story of patience and pride.
-            </p>
+            <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--brand-dark);">Behind the Loom</h3>
             <div class="gallery-grid">
                 <img src="images/ar1.jpg" alt="Artisan weaving" loading="lazy">
                 <img src="images/ar2.jpg" alt="Handcrafting process" loading="lazy">
@@ -641,24 +425,16 @@
     <section id="contact-view" class="section-container">
         <h2>Contact Us</h2>
         <div class="contact-form">
-            <form id="contactForm" action="https://formspree.io/f/xojagdvw" method="POST">
-                <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="Your Name *" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="Email Address *" required>
-                </div>
-                <div class="form-group">
-                    <textarea name="message" class="form-control" placeholder="Your Message *" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">
-                    <i class="fas fa-paper-plane"></i> Send Message
-                </button>
+            <form id="contactForm">
+                <div class="form-group"><input type="text" name="name" class="form-control" placeholder="Your Name *" required></div>
+                <div class="form-group"><input type="email" name="email" class="form-control" placeholder="Email Address *" required></div>
+                <div class="form-group"><textarea name="message" class="form-control" placeholder="Your Message *" rows="5" required></textarea></div>
+                <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Send Message</button>
             </form>
             <div style="text-align:center; margin-top:2rem;">
                 <p><i class="fas fa-phone-alt"></i> +91 98822 12962</p>
                 <p><i class="fas fa-envelope"></i> handiweave@gmail.com</p>
-                <p><i class="fas fa-map-marker-alt"></i> Himachal Pradesh, India</p>
+                <p><i class="fas fa-map-marker-alt"></i> Devbhoomi Himachal</p>
             </div>
         </div>
     </section>
@@ -667,10 +443,7 @@
         <h2>Our Policies</h2>
         <div class="policy-accordion">
             <div class="policy-item">
-                <div class="policy-header" onclick="togglePolicy(0)">
-                    <span><i class="fas fa-shipping-fast"></i> Shipping Policy</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
+                <div class="policy-header" onclick="togglePolicy(0)"><span><i class="fas fa-shipping-fast"></i> Shipping Policy</span><i class="fas fa-chevron-down"></i></div>
                 <div class="policy-content">
                     <p><strong>We ship across India within 5-7 business days</strong> via trusted courier partners.</p>
                     <ul style="margin-top:1rem; padding-left:1.2rem;">
@@ -681,12 +454,8 @@
                     </ul>
                 </div>
             </div>
-            
             <div class="policy-item">
-                <div class="policy-header" onclick="togglePolicy(1)">
-                    <span><i class="fas fa-undo-alt"></i> Return & Refund Policy</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
+                <div class="policy-header" onclick="togglePolicy(1)"><span><i class="fas fa-undo-alt"></i> Return & Refund Policy</span><i class="fas fa-chevron-down"></i></div>
                 <div class="policy-content">
                     <p><strong>7-day return policy</strong> from delivery date.</p>
                     <ul style="margin-top:1rem; padding-left:1.2rem;">
@@ -697,12 +466,8 @@
                     </ul>
                 </div>
             </div>
-            
             <div class="policy-item">
-                <div class="policy-header" onclick="togglePolicy(2)">
-                    <span><i class="fas fa-shield-alt"></i> Privacy Policy</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
+                <div class="policy-header" onclick="togglePolicy(2)"><span><i class="fas fa-shield-alt"></i> Privacy Policy</span><i class="fas fa-chevron-down"></i></div>
                 <div class="policy-content">
                     <p><strong>Your privacy is important to us.</strong></p>
                     <ul style="margin-top:1rem; padding-left:1.2rem;">
@@ -718,17 +483,10 @@
 
     <footer class="main-footer">
         <div class="social-links">
-            <a href="https://instagram.com/handiweave" class="social-link" target="_blank">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://x.com/handiweave" class="social-link" target="_blank">
-                <i class="fab fa-x-twitter"></i>
-            </a>
-            <a href="https://youtube.com/@handiweave" class="social-link" target="_blank">
-                <i class="fab fa-youtube"></i>
-            </a>
+            <a href="https://instagram.com/handiweave" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/handiweave" class="social-link" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://youtube.com/@handiweave" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
         </div>
-        
         <div class="footer-links">
             <span class="footer-link" onclick="switchView('shop')">Wovens</span>
             <span class="footer-link" onclick="switchView('allseason')">All Season</span>
@@ -736,16 +494,14 @@
             <span class="footer-link" onclick="switchView('contact')">Contact</span>
             <span class="footer-link" onclick="switchView('policies')">Policies</span>
         </div>
-        
         <div style="margin-top:1.5rem;">
             <p>handiweave@gmail.com | +91 98822 12962</p>
             <p style="margin-top:0.5rem; color:#666; font-size:0.9rem;">
-                Himachal Pradesh | For bulk orders & customizations, please call or WhatsApp
+                Devbhoomi Himachal | For bulk orders & customizations, please call or WhatsApp
             </p>
         </div>
-        
         <div style="margin-top:2rem;">
-            <p>© 2025 Handiweave. All rights reserved. | Crafted with ❤️ in Himachal</p>
+            <p>© 2025 Handiweave. All rights reserved. | Crafted with ❤️ in Devbhoomi Himachal</p>
         </div>
     </footer>
 
@@ -758,426 +514,149 @@
         <div id="cartItemsList" style="flex:1; overflow-y:auto; padding:1.5rem;"></div>
         <div style="padding:1.5rem; border-top:1px solid #eee;">
             <div style="display:flex; justify-content:space-between; font-weight:700; margin-bottom:1.5rem;">
-                <span>Total:</span>
-                <span id="cartTotalText">₹0</span>
+                <span>Total:</span><span id="cartTotalText">₹0</span>
             </div>
-            <button onclick="openCheckout()" style="background:var(--brand); color:white; width:100%; padding:15px; border-radius:4px; font-weight:700; border:none; cursor:pointer;">
-                Proceed to Checkout
-            </button>
+            <button onclick="openCheckout()" style="background:var(--brand); color:white; width:100%; padding:15px; border-radius:4px; font-weight:700; border:none; cursor:pointer;">Proceed to Checkout</button>
         </div>
     </aside>
 
     <div class="checkout-modal" id="checkoutModal">
         <button class="modal-close" onclick="closeCheckout()"><i class="fas fa-times"></i></button>
         <h2 style="margin-bottom:1.5rem;">Complete Your Order</h2>
-        
-        <div id="checkoutSummary" style="margin-bottom:1.5rem; padding:1rem; background:#f9f9f9; border-radius:8px;">
-            </div>
-        
-        <div style="font-size:1.3rem; font-weight:700; text-align:right; margin-bottom:1.5rem;">
-            Total: <span id="checkoutTotal">₹0</span>
-        </div>
-        
+        <div id="checkoutSummary" style="margin-bottom:1.5rem; padding:1rem; background:#f9f9f9; border-radius:8px;"></div>
+        <div style="font-size:1.3rem; font-weight:700; text-align:right; margin-bottom:1.5rem;">Total: <span id="checkoutTotal">₹0</span></div>
         <form id="checkoutForm">
-            <div class="form-group">
-                <input type="text" id="customerName" class="form-control" placeholder="Full Name *" required>
-            </div>
-            <div class="form-group">
-                <input type="email" id="customerEmail" class="form-control" placeholder="Email Address *" required>
-            </div>
-            <div class="form-group">
-                <input type="tel" id="customerPhone" class="form-control" placeholder="Phone Number *" required>
-            </div>
-            <div class="form-group">
-                <textarea id="customerAddress" class="form-control" placeholder="Shipping Address *" rows="3" required></textarea>
-            </div>
-            
-            <div id="paymentButtons" style="display:flex; gap:10px; margin-top:1.5rem;">
-                </div>
-            
+            <div class="form-group"><input type="text" id="customerName" class="form-control" placeholder="Full Name *" required></div>
+            <div class="form-group"><input type="email" id="customerEmail" class="form-control" placeholder="Email Address *" required></div>
+            <div class="form-group"><input type="tel" id="customerPhone" class="form-control" placeholder="Phone Number *" required></div>
+            <div class="form-group"><textarea id="customerAddress" class="form-control" placeholder="Shipping Address *" rows="3" required></textarea></div>
+            <div id="paymentButtons" style="display:flex; gap:10px; margin-top:1.5rem;"></div>
             <div id="singleItemMessage" style="display:none; background:#e8f4fc; padding:1rem; border-radius:6px; margin-top:1rem; font-size:0.9rem;">
-                <i class="fas fa-info-circle" style="color:#3395ff;"></i>
-                <span>Only single items can be paid via Razorpay. For multiple items, use WhatsApp checkout.</span>
+                <i class="fas fa-info-circle" style="color:#3395ff;"></i> <span>Only single items can be paid via Razorpay. For multiple items, use WhatsApp checkout.</span>
             </div>
         </form>
     </div>
 
-    <div class="notification" id="notification">
-        <i class="fas fa-check-circle"></i>
-        <span id="notificationText"></span>
-    </div>
+    <div class="notification" id="notification"><i class="fas fa-check-circle"></i> <span id="notificationText"></span></div>
 
     <script>
-        // ========== PRODUCTS DATA WITH DETAILS ==========
         const PRODUCTS = [
-            { 
-                id: 1, 
-                name: "Merino Luxe I", 
-                price: 2499, 
-                img: "images/merino-luxe-1.jpg", 
-                paymentLink: "https://rzp.io/rzp/zuErYBO", 
-                type: "shawl", 
-                size: "40×90 inches", 
-                material: "Premium Merino Wool", 
-                care: "Hand wash below 40°C" 
-            },
-            { 
-                id: 2, 
-                name: "Merino Luxe II", 
-                price: 2499, 
-                img: "images/merino-luxe-2.jpg", 
-                paymentLink: "https://rzp.io/rzp/zuErYBO", 
-                type: "shawl", 
-                size: "40×90 inches", 
-                material: "Premium Merino Wool", 
-                care: "Hand wash below 40°C" 
-            },
-            { 
-                id: 3, 
-                name: "Royal Angora", 
-                price: 5499, 
-                img: "images/royal-angora-white.jpg", 
-                paymentLink: "https://rzp.io/rzp/Tot28zKI", 
-                type: "shawl", 
-                size: "40×90 inches", 
-                material: "Pure Angora Wool", 
-                care: "Dry clean recommended" 
-            },
-            { 
-                id: 4, 
-                name: "Daily Shawl SH1", 
-                price: 1499, 
-                img: "images/daily-shawl-1.jpg", 
-                paymentLink: "https://rzp.io/rzp/ANjKAv1", 
-                type: "shawl", 
-                size: "40×90 inches", 
-                material: "80% Wool, 20% Acrylic", 
-                care: "Machine wash below 40°C" 
-            },
-            { 
-                id: 5, 
-                name: "Daily Shawl SH2", 
-                price: 1199, 
-                img: "images/daily-shawl-2.jpg", 
-                paymentLink: "https://rzp.io/rzp/21e1fWfI", 
-                type: "shawl", 
-                size: "40×90 inches", 
-                material: "80% Wool, 20% Acrylic", 
-                care: "Machine wash below 40°C" 
-            },
-            { 
-                id: 6, 
-                name: "Daily Shawl SH3", 
-                price: 1199, 
-                img: "images/daily-shawl-3.jpg", 
-                paymentLink: "https://rzp.io/rzp/21e1fWfI", 
-                type: "shawl", 
-                size: "40×90 inches", 
-                material: "80% Wool, 20% Acrylic", 
-                care: "Machine wash below 40°C" 
-            },
-            { 
-                id: 7, 
-                name: "Trendy Stole ST1", 
-                price: 699, 
-                img: "images/stole-trendy-1.jpg", 
-                paymentLink: "https://rzp.io/rzp/3TgywOm", 
-                type: "stole", 
-                size: "30×80 inches", 
-                material: "80% Wool, 20% Acrylic", 
-                care: "Machine wash below 40°C" 
-            },
-            { 
-                id: 8, 
-                name: "Trendy Stole ST2", 
-                price: 799, 
-                img: "images/stole-trendy-2.jpg", 
-                paymentLink: "https://rzp.io/rzp/S4sfp5y", 
-                type: "stole", 
-                size: "30×80 inches", 
-                material: "80% Wool, 20% Acrylic", 
-                care: "Machine wash below 40°C" 
-            },
-            { 
-                id: 9, 
-                name: "Trendy Stole ST3", 
-                price: 799, 
-                img: "images/stole-trendy-3.jpg", 
-                paymentLink: "https://rzp.io/rzp/S4sfp5y", 
-                type: "stole", 
-                size: "30×80 inches", 
-                material: "80% Wool, 20% Acrylic", 
-                care: "Machine wash below 40°C" 
-            },
-            { 
-                id: 10, 
-                name: "Heritage Wall Art I", 
-                price: 1200, 
-                img: "images/2wall.jpg", 
-                paymentLink: "https://rzp.io/rzp/tSEaQin3", 
-                type: "decor", 
-                size: "15×19 inches", 
-                material: "Pure Wool, Wooden Frame, Glass Panel", 
-                care: "Dust with soft cloth. Avoid direct sunlight." 
-            },
-            { 
-                id: 11, 
-                name: "Heritage Wall Art II", 
-                price: 1800, 
-                img: "images/3wall.jpg", 
-                paymentLink: "https://rzp.io/rzp/jrxu0ZIq", 
-                type: "decor", 
-                size: "15×19 inches", 
-                material: "Pure Wool, Wooden Frame, Glass Panel", 
-                care: "Dust with soft cloth. Avoid direct sunlight." 
-            }
+            { id: 1, name: "Merino Luxe I", price: 2499, img: "images/merino-luxe-1.jpg", paymentLink: "https://rzp.io/rzp/zuErYBO", type: "shawl", size: "40×90 inches", material: "Premium Merino Wool", care: "Hand wash below 40°C" },
+            { id: 2, name: "Merino Luxe II", price: 2499, img: "images/merino-luxe-2.jpg", paymentLink: "https://rzp.io/rzp/zuErYBO", type: "shawl", size: "40×90 inches", material: "Premium Merino Wool", care: "Hand wash below 40°C" },
+            { id: 3, name: "Royal Angora", price: 5499, img: "images/royal-angora-white.jpg", paymentLink: "https://rzp.io/rzp/Tot28zKI", type: "shawl", size: "40×90 inches", material: "Pure Angora Wool", care: "Dry clean recommended" },
+            { id: 4, name: "Daily Shawl SH1", price: 1499, img: "images/daily-shawl-1.jpg", paymentLink: "https://rzp.io/rzp/ANjKAv1", type: "shawl", size: "40×90 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
+            { id: 5, name: "Daily Shawl SH2", price: 1199, img: "images/daily-shawl-2.jpg", paymentLink: "https://rzp.io/rzp/21e1fWfI", type: "shawl", size: "40×90 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
+            { id: 6, name: "Daily Shawl SH3", price: 1199, img: "images/daily-shawl-3.jpg", paymentLink: "https://rzp.io/rzp/21e1fWfI", type: "shawl", size: "40×90 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
+            { id: 7, name: "Trendy Stole ST1", price: 699, img: "images/stole-trendy-1.jpg", paymentLink: "https://rzp.io/rzp/3TgywOm", type: "stole", size: "30×80 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
+            { id: 8, name: "Trendy Stole ST2", price: 799, img: "images/stole-trendy-2.jpg", paymentLink: "https://rzp.io/rzp/S4sfp5y", type: "stole", size: "30×80 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
+            { id: 9, name: "Trendy Stole ST3", price: 799, img: "images/stole-trendy-3.jpg", paymentLink: "https://rzp.io/rzp/S4sfp5y", type: "stole", size: "30×80 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
+            { id: 10, name: "Heritage Wall Art I", price: 1200, img: "images/2wall.jpg", paymentLink: "https://rzp.io/rzp/tSEaQin3", type: "decor", size: "15×19 inches", material: "Pure Wool, Wood, Glass", care: "Dust with soft cloth" },
+            { id: 11, name: "Heritage Wall Art II", price: 1800, img: "images/3wall.jpg", paymentLink: "https://rzp.io/rzp/jrxu0ZIq", type: "decor", size: "15×19 inches", material: "Pure Wool, Wood, Glass", care: "Dust with soft cloth" }
         ];
 
         let cart = JSON.parse(localStorage.getItem('handiweave_cart')) || [];
         let checkoutData = {};
 
-        // ========== UTILITY FUNCTIONS ==========
-        function formatPrice(price) { 
-            return '₹' + price.toLocaleString('en-IN'); 
-        }
-        
+        function formatPrice(price) { return '₹' + price.toLocaleString('en-IN'); }
         function showNotification(message) {
             const n = document.getElementById('notification');
             document.getElementById('notificationText').textContent = message;
             n.classList.add('show');
-            
-            setTimeout(() => {
-                n.classList.remove('show');
-            }, 3000);
+            setTimeout(() => n.classList.remove('show'), 3000);
         }
-        
-        function saveCart() { 
-            localStorage.setItem('handiweave_cart', JSON.stringify(cart)); 
-            updateCartCount(); 
-        }
-        
-        function updateCartCount() { 
-            document.getElementById('cartCount').textContent = cart.reduce((t, i) => t + i.quantity, 0); 
-        }
-        
-        function getCartTotal() { 
-            return cart.reduce((t, i) => {
-                const product = PRODUCTS.find(p => p.id === item.id);
-                return total + (product.price * item.quantity);
-            }, 0); 
-        }
+        function saveCart() { localStorage.setItem('handiweave_cart', JSON.stringify(cart)); updateCartCount(); }
+        function updateCartCount() { document.getElementById('cartCount').textContent = cart.reduce((t, i) => t + i.quantity, 0); }
+        function getCartTotal() { return cart.reduce((t, i) => t + (PRODUCTS.find(p => p.id === i.id).price * i.quantity), 0); }
 
-        // ========== RENDER PRODUCTS WITH DETAILS ==========
         function renderProducts() {
-            const container = document.getElementById('productsContainer');
-            container.innerHTML = PRODUCTS.map(product => {
-                let careIcon = '<i class="fas fa-temperature-low"></i>';
-                if (product.type === 'decor') {
-                    careIcon = '<i class="fas fa-home"></i>';
-                }
-                
-                return `
+            document.getElementById('productsContainer').innerHTML = PRODUCTS.map(p => `
                 <div class="product-card">
-                    <div class="product-image">
-                        <img src="${product.img}" alt="${product.name}" 
-                             onerror="this.src='https://via.placeholder.com/400x300/F9F8F6/8C6A5D?text=Handiweave'">
-                    </div>
+                    <div class="product-image"><img src="${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/400x300?text=Handiweave'"></div>
                     <div class="product-info">
-                        <div class="product-name">${product.name}</div>
-                        <div class="product-price">${formatPrice(product.price)}</div>
-                        <div class="product-details">
-                            <div><strong>Size:</strong> ${product.size}</div>
-                            <div><strong>Material:</strong> ${product.material}</div>
-                        </div>
-                        <div class="care-info">
-                            ${careIcon} ${product.care}
-                        </div>
-                        <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
-                            Add to Cart
-                        </button>
+                        <div class="product-name">${p.name}</div>
+                        <div class="product-price">${formatPrice(p.price)}</div>
+                        <div class="product-details"><div>Size: ${p.size}</div><div>${p.material}</div></div>
+                        <div class="care-info"><i class="fas fa-hand-sparkles"></i> ${p.care}</div>
+                        <button class="add-to-cart-btn" onclick="addToCart(${p.id})">Add to Cart</button>
                     </div>
                 </div>
-                `;
-            }).join('');
+            `).join('');
         }
 
-        // ========== VIEW MANAGEMENT ==========
         function switchView(view) {
-            // Hide all sections
-            document.querySelectorAll('.section-container').forEach(s => {
-                s.classList.remove('active-section');
-            });
-            
-            // Show selected section
+            document.querySelectorAll('.section-container').forEach(s => s.classList.remove('active-section'));
             const section = document.getElementById(view + '-view');
-            if (section) {
-                section.classList.add('active-section');
-            }
-            
-            // Update navigation
+            if (section) section.classList.add('active-section');
+            if (view !== 'home') window.scrollTo({ top: 0, behavior: 'smooth' });
+            else document.querySelector('.hero-section').scrollIntoView({ behavior: 'smooth' });
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.toggle('active', link.getAttribute('onclick').includes("'" + view + "'"));
             });
-            
-            // Scroll to top for non-home sections
-            if (view !== 'home') {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                // Scroll to hero section
-                document.querySelector('.hero-section').scrollIntoView({ behavior: 'smooth' });
-            }
         }
 
-        // ========== CART FUNCTIONS ==========
-        function addToCart(productId) {
-            const existingItem = cart.find(item => item.id === productId);
-            
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ id: productId, quantity: 1 });
-            }
-            
-            saveCart();
-            showNotification('Added to cart!');
-            
-            // Track event
-            if (typeof gtag !== 'undefined') {
-                const product = PRODUCTS.find(p => p.id === productId);
-                gtag('event', 'add_to_cart', {
-                    'items': [{
-                        'id': productId,
-                        'name': product.name,
-                        'price': product.price,
-                        'quantity': 1
-                    }]
-                });
-            }
+        function addToCart(id) {
+            const item = cart.find(i => i.id === id);
+            item ? item.quantity++ : cart.push({ id, quantity: 1 });
+            saveCart(); showNotification('Added to cart!');
+            if (typeof gtag !== 'undefined') gtag('event', 'add_to_cart', { 'items': [{ 'id': id, 'quantity': 1 }] });
         }
-        
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            saveCart();
-            renderCart();
-            showNotification('Item removed from cart');
+        function removeFromCart(idx) { cart.splice(idx, 1); saveCart(); renderCart(); showNotification('Item removed'); }
+        function updateQuantity(idx, change) {
+            cart[idx].quantity += change;
+            if (cart[idx].quantity < 1) removeFromCart(idx); else { saveCart(); renderCart(); }
         }
-        
-        function updateQuantity(index, change) {
-            cart[index].quantity += change;
-            
-            if (cart[index].quantity < 1) {
-                removeFromCart(index);
-            } else {
-                saveCart();
-                renderCart();
-            }
-        }
-        
+
         function renderCart() {
             const container = document.getElementById('cartItemsList');
-            const totalEl = document.getElementById('cartTotalText');
-            
-            if (cart.length === 0) {
-                container.innerHTML = `
-                    <div style="text-align:center; padding:3rem 1rem; color:#666;">
-                        <i class="fas fa-shopping-bag" style="font-size:3rem; margin-bottom:1rem; color:#ddd;"></i>
-                        <p>Your cart is empty</p>
-                        <button onclick="closeCart(); switchView('shop');" 
-                                style="background:var(--brand); color:white; padding:10px 20px; border-radius:4px; border:none; margin-top:1rem; cursor:pointer;">
-                            Continue Shopping
-                        </button>
-                    </div>
-                `;
-                totalEl.textContent = '₹0';
+            if (!cart.length) {
+                container.innerHTML = '<div style="text-align:center;padding:2rem;color:#666;">Your cart is empty</div>';
+                document.getElementById('cartTotalText').textContent = '₹0';
                 return;
             }
-            
             let total = 0;
-            let itemsHTML = '';
-            
-            cart.forEach((item, index) => {
-                const product = PRODUCTS.find(p => p.id === item.id);
-                const itemTotal = product.price * item.quantity;
-                total += itemTotal;
-                
-                itemsHTML += `
-                    <div style="display:flex; align-items:center; padding:1rem 0; border-bottom:1px solid #f0f0f0;">
-                        <img src="${product.img}" 
-                             style="width:60px; height:60px; object-fit:cover; border-radius:6px; margin-right:1rem;"
-                             onerror="this.src='https://via.placeholder.com/60x60/F9F8F6/8C6A5D?text=Handiweave'">
-                        <div style="flex:1;">
-                            <div style="font-weight:600; margin-bottom:5px;">${product.name}</div>
-                            <div style="font-size:0.8rem; color:#666; margin-bottom:5px;">${product.size}</div>
-                            <div style="color:var(--brand); font-weight:700;">${formatPrice(product.price)}</div>
-                            <div style="display:flex; align-items:center; gap:10px; margin-top:8px;">
-                                <button onclick="updateQuantity(${index}, -1)" 
-                                        style="width:25px; height:25px; border-radius:50%; background:#f0f0f0; border:none; display:flex; align-items:center; justify-content:center; cursor:pointer;">
-                                    <i class="fas fa-minus" style="font-size:0.7rem;"></i>
-                                </button>
-                                <span style="font-weight:600; min-width:30px; text-align:center;">${item.quantity}</span>
-                                <button onclick="updateQuantity(${index}, 1)" 
-                                        style="width:25px; height:25px; border-radius:50%; background:#f0f0f0; border:none; display:flex; align-items:center; justify-content:center; cursor:pointer;">
-                                    <i class="fas fa-plus" style="font-size:0.7rem;"></i>
-                                </button>
-                                <button onclick="removeFromCart(${index})" 
-                                        style="margin-left:10px; color:#ff4444; background:none; border:none; cursor:pointer;">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </div>
+            container.innerHTML = cart.map((item, idx) => {
+                const p = PRODUCTS.find(x => x.id === item.id);
+                total += p.price * item.quantity;
+                return `<div style="display:flex;justify-content:space-between;margin-bottom:1rem;border-bottom:1px solid #f0f0f0;padding-bottom:10px;">
+                    <div><div style="font-weight:600;">${p.name}</div><div style="font-size:0.8rem;color:#666;">${formatPrice(p.price)} x ${item.quantity}</div></div>
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <button onclick="updateQuantity(${idx}, -1)" style="border:none;background:#eee;width:25px;height:25px;border-radius:50%;cursor:pointer;">-</button>
+                        <span>${item.quantity}</span>
+                        <button onclick="updateQuantity(${idx}, 1)" style="border:none;background:#eee;width:25px;height:25px;border-radius:50%;cursor:pointer;">+</button>
+                        <i class="fas fa-trash" style="color:red;cursor:pointer;margin-left:5px;" onclick="removeFromCart(${idx})"></i>
                     </div>
-                `;
-            });
-            
-            container.innerHTML = itemsHTML;
-            totalEl.textContent = formatPrice(total);
+                </div>`;
+            }).join('');
+            document.getElementById('cartTotalText').textContent = formatPrice(total);
         }
 
-        // ========== CART MODAL CONTROLS ==========
-        function openCart() {
-            renderCart();
-            document.getElementById('cartSidebar').classList.add('active');
-            document.getElementById('overlay').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeCart() {
-            document.getElementById('cartSidebar').classList.remove('active');
-            document.getElementById('overlay').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
+        function openCart() { renderCart(); document.getElementById('cartSidebar').classList.add('active'); document.getElementById('overlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeCart() { document.getElementById('cartSidebar').classList.remove('active'); document.getElementById('overlay').classList.remove('active'); document.body.style.overflow = 'auto'; }
 
-        // ========== CHECKOUT SYSTEM ==========
         function openCheckout() {
             if (cart.length === 0) {
                 showNotification('Your cart is empty');
                 return;
             }
             
-            // Build checkout summary
-            let total = 0;
-            // FIXED: Using PRODUCTS directly instead of calling getCartTotal inside loop logic for cleaner calc
+            let total = getCartTotal();
             let summaryHTML = '<h4 style="margin-bottom:1rem;">Order Summary:</h4>';
             cart.forEach((item, index) => {
-                const product = PRODUCTS.find(p => p.id === item.id);
-                const itemTotal = product.price * item.quantity;
-                total += itemTotal;
-                summaryHTML += `
-                    <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem; font-size:0.9rem;">
-                        <span>${index+1}. ${product.name} x${item.quantity}</span>
-                        <span>${formatPrice(itemTotal)}</span>
-                    </div>
-                `;
+                const p = PRODUCTS.find(x => x.id === item.id);
+                summaryHTML += `<div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;font-size:0.9rem;"><span>${index+1}. ${p.name} x${item.quantity}</span><span>${formatPrice(p.price * item.quantity)}</span></div>`;
             });
             
             document.getElementById('checkoutSummary').innerHTML = summaryHTML;
             document.getElementById('checkoutTotal').textContent = formatPrice(total);
             
-            // Set up payment buttons based on cart items
             const btns = document.getElementById('paymentButtons');
             const msg = document.getElementById('singleItemMessage');
             
-            if (cart.length === 1) {
-                // Single item - show both Razorpay and WhatsApp
+            // Logic: Check total QUANTITY of items
+            const totalQty = cart.reduce((t, i) => t + i.quantity, 0);
+            
+            if (totalQty === 1) {
+                // Exactly 1 item -> Razorpay
                 btns.innerHTML = `
                     <button type="button" onclick="processRazorpayPayment()" style="flex:1; background:var(--rzp); color:white; padding:14px; border-radius:4px; font-weight:700; border:none; cursor:pointer;">
                         <i class="fas fa-credit-card"></i> Pay with Razorpay
@@ -1188,7 +667,7 @@
                 `;
                 msg.style.display = 'none';
             } else {
-                // Multiple items - show only WhatsApp
+                // More than 1 item -> WhatsApp Only
                 btns.innerHTML = `
                     <button type="button" onclick="whatsappCheckout()" style="width:100%; background:var(--wa); color:white; padding:14px; border-radius:4px; font-weight:700; border:none; cursor:pointer;">
                         <i class="fab fa-whatsapp"></i> Order via WhatsApp
@@ -1197,48 +676,30 @@
                 msg.style.display = 'block';
             }
             
-            // Show checkout modal
             document.getElementById('checkoutModal').classList.add('active');
             document.getElementById('overlay').classList.add('active');
             document.body.style.overflow = 'hidden';
             
-            // Reset form
             document.getElementById('checkoutForm').reset();
             checkoutData = {};
         }
-        function closeCheckout() {
-            document.getElementById('checkoutModal').classList.remove('active');
-            document.getElementById('overlay').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
+        function closeCheckout() { document.getElementById('checkoutModal').classList.remove('active'); document.getElementById('overlay').classList.remove('active'); document.body.style.overflow = 'auto'; }
 
         function processRazorpayPayment() {
-            // Collect customer info
             const name = document.getElementById('customerName').value.trim();
-            const email = document.getElementById('customerEmail').value.trim();
             const phone = document.getElementById('customerPhone').value.trim();
             const address = document.getElementById('customerAddress').value.trim();
+            if(!name || !phone || !address) return showNotification('Please fill Name, Phone & Address');
             
-            // Validation
-            if (!name || !email || !phone || !address) {
-                showNotification('Please fill all required fields');
-                return;
-            }
+            // Logic: Double check quantity
+            const totalQty = cart.reduce((t, i) => t + i.quantity, 0);
             
-            // Save checkout data
-            checkoutData = { name, email, phone, address };
-            
-            // For single item, open that product's payment link
-            if (cart.length === 1) {
+            if (totalQty === 1) {
                 const product = PRODUCTS.find(p => p.id === cart[0].id);
-                
-                // Show notification
                 showNotification('Redirecting to secure payment...');
-                
-                // Open Razorpay payment link
                 setTimeout(() => {
                     window.open(product.paymentLink, '_blank');
-                    closeCheckout(); // AUTO-CLOSE MODAL
+                    closeCheckout();
                 }, 500);
             } else {
                 showNotification('For multiple items, please use WhatsApp checkout');
@@ -1249,129 +710,37 @@
             const name = document.getElementById('customerName').value.trim();
             const phone = document.getElementById('customerPhone').value.trim();
             const address = document.getElementById('customerAddress').value.trim();
-            const email = document.getElementById('customerEmail').value.trim();
+            if(!name || !phone || !address) return showNotification('Please fill Name, Phone & Address');
             
-            if (!name || !phone || !address) {
-                showNotification('Please fill name, phone and address');
-                return;
-            }
-            
-            let message = `*Handiweave Order Request*%0A%0A`;
-            message += `*Customer Details:*%0A`;
-            message += `Name: ${name}%0A`;
-            message += `Phone: ${phone}%0A`;
-            if (email) message += `Email: ${email}%0A`;
-            message += `Address: ${address}%0A%0A`;
-            
-            message += `*Order Summary:*%0A`;
-            // Calculate total again safely
-            let safeTotal = 0;
-            cart.forEach((item, index) => {
-                const product = PRODUCTS.find(p => p.id === item.id);
-                const itemPrice = product.price * item.quantity;
-                safeTotal += itemPrice;
-                message += `${index+1}. ${product.name} x${item.quantity} - ${formatPrice(itemPrice)}%0A`;
-                message += `   Size: ${product.size} | Material: ${product.material}%0A`;
+            let msg = `*Order Request*%0AName: ${name}%0APhone: ${phone}%0AAddress: ${address}%0A%0AItems:%0A`;
+            cart.forEach(i => {
+                const p = PRODUCTS.find(x => x.id === i.id);
+                msg += `${p.name} x${i.quantity}%0A`;
             });
-            
-            message += `%0A*Total Amount: ${formatPrice(safeTotal)}*%0A%0A`;
-            
-            if (cart.length > 1) {
-                message += `*Note:* Multiple items selected. Please provide payment details via UPI/Bank Transfer.%0A%0A`;
-            }
-            
-            message += `Please confirm this order and provide payment details.`;
-            
-            // Track WhatsApp checkout
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'whatsapp_checkout', {
-                    'value': safeTotal,
-                    'items': cart.length
-                });
-            }
-            
-            window.open(`https://wa.me/919882212962?text=${message}`, '_blank');
-            closeCheckout(); // AUTO-CLOSE MODAL
+            msg += `%0ATotal: ${formatPrice(getCartTotal())}`;
+            window.open(`https://wa.me/919882212962?text=${msg}`, '_blank');
+            closeCheckout();
         }
 
-        // ========== POLICIES ACCORDION ==========
         function togglePolicy(index) {
-            const headers = document.querySelectorAll('.policy-header');
             const contents = document.querySelectorAll('.policy-content');
-            
-            // Toggle clicked item
-            const isActive = headers[index].classList.contains('active');
-            
-            // Close all
-            headers.forEach(h => h.classList.remove('active'));
-            contents.forEach(c => c.classList.remove('active'));
-            
-            // Open clicked if it was closed
-            if (!isActive) {
-                headers[index].classList.add('active');
-                contents[index].classList.add('active');
-            }
+            contents.forEach((c, i) => {
+                if(i === index) c.classList.toggle('active'); else c.classList.remove('active');
+            });
         }
 
-        // ========== FORM SUBMISSION (FIXED: AJAX) ==========
         document.getElementById('contactForm')?.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent redirect
-            const form = e.target;
-            const data = new FormData(form);
-            
-            fetch("https://formspree.io/f/xojagdvw", {
-                method: "POST",
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            }).then(response => {
-                if (response.ok) {
-                    showNotification('Message sent successfully!');
-                    form.reset();
-                } else {
-                    showNotification('Oops! There was a problem sending your form');
-                }
-            }).catch(error => {
-                showNotification('Oops! There was a problem sending your form');
-            });
-            
-            // Formspree will handle submission
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'form_submit', {
-                    'event_category': 'contact',
-                    'event_label': 'contact_form'
-                });
-            }
+            e.preventDefault();
+            const data = new FormData(e.target);
+            fetch("https://formspree.io/f/xojagdvw", { method: "POST", body: data, headers: { 'Accept': 'application/json' } })
+            .then(r => { if(r.ok) { showNotification('Message sent!'); e.target.reset(); } else showNotification('Error sending message'); })
+            .catch(() => showNotification('Error sending message'));
         });
 
-        // ========== INITIALIZATION ==========
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initial renders
-            renderProducts();
-            updateCartCount();
-            
-            // Event listeners
-            document.getElementById('overlay').addEventListener('click', function() {
-                closeCart();
-                closeCheckout();
-            });
-            
-            // Initialize policies (open first one)
-            if (document.querySelector('.policy-header')) {
-                document.querySelector('.policy-header').classList.add('active');
-                document.querySelector('.policy-content').classList.add('active');
-            }
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts(); updateCartCount();
+            document.getElementById('overlay').addEventListener('click', () => { closeCart(); closeCheckout(); });
         });
-
-        // Global functions
-        window.switchView = switchView;
-        window.addToCart = addToCart;
-        window.openCart = openCart;
-        window.closeCart = closeCart;
-        window.openCheckout = openCheckout;
-        window.closeCheckout = closeCheckout;
-        window.processRazorpayPayment = processRazorpayPayment;
-        window.whatsappCheckout = whatsappCheckout;
-        window.togglePolicy = togglePolicy;
     </script>
 </body>
 </html>
