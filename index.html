@@ -10,1737 +10,711 @@
     </script>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#7A5548">
+
+    <title>Handiweave | Traditions and Trends</title>
+    <meta name="description" content="Authentic handcrafted shawls, stoles & decor from Devbhoomi Himachal. Premium wool & angora directly from artisans.">
     
-    <!-- SEO Meta Tags -->
-    <title>Handiweave | Premium Handcrafted Shawls & Home Decor from Himachal Pradesh</title>
-    <meta name="description" content="Buy authentic handcrafted shawls, stoles & home decor from Palampur, Himachal. Premium wool, angora, merino wool products. Direct from artisans. Free shipping over ₹1999.">
-    <meta name="keywords" content="handcrafted shawls, himachal shawls, angora wool, merino wool, handmade decor, Palampur, woolen stoles">
-    <meta name="author" content="Handiweave">
-    
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="Handiweave | Traditions and Trends">
-    <meta property="og:description" content="Authentic handcrafted shawls, stoles & home decor from Palampur, Himachal Pradesh">
-    <meta property="og:image" content="https://handiweave.com/logo.png">
-    <meta property="og:url" content="https://handiweave.com">
+    <meta property="og:title" content="Handiweave – Traditions and Trends">
+    <meta property="og:description" content="Soul-wrapped handcrafted shawls from Himachal Pradesh">
+    <meta property="og:image" content="logo.png">
     <meta property="og:type" content="website">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Handiweave | Traditions and Trends">
-    <meta name="twitter:description" content="Premium handcrafted products from Himachal Pradesh">
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Handiweave",
-      "url": "https://handiweave.com",
-      "logo": "https://handiweave.com/logo.png",
-      "description": "Authentic handcrafted shawls, stoles & decor from Palampur, Himachal Pradesh",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Palampur",
-        "addressRegion": "Himachal Pradesh",
-        "addressCountry": "IN"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+91-98822-12962",
-        "contactType": "Customer Service",
-        "availableLanguage": ["English", "Hindi"]
-      }
-    }
-    </script>
 
     <link rel="icon" href="logo.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* ===== CSS VARIABLES ===== */
         :root {
-            --bg: #F9F8F6; --card: #fff; --text: #333; --brand: #7A5548; --brand-dark: #5D433A;
-            --gold: #C5A065; --wa: #25D366; --rzp: #3395ff; --success: #2E8B57; --error: #DC143C;
-            --radius: 8px; --transition: all 0.3s ease; --shadow: 0 4px 12px rgba(0,0,0,0.08);
+            --bg: #F9F8F6;
+            --card: #fff;
+            --text: #333333;
+            --muted: #777777;
+            --brand: #7A5548;
+            --brand-dark: #5D433A;
+            --gold: #C5A065;
+            --wa: #25D366;
+            --rzp: #3395ff;
+            --success: #2E8B57;
+            --error: #DC143C;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.12);
+            --radius: 8px;
+            --transition: all 0.3s ease;
         }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        /* ===== RESET & BASE ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { 
-            font-family: 'Lato', sans-serif; 
-            background: var(--bg); 
-            color: var(--text); 
-            line-height: 1.6; 
-            overflow-x: hidden; 
-            padding-bottom: 80px; /* Space for fixed cart button */
+        body {
+            font-family: 'Lato', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        h1, h2, h3, h4, .logo-text { 
-            font-family: 'Playfair Display', serif; 
+        h1, h2, h3, h4, .logo-text, .tagline {
+            font-family: 'Playfair Display', serif;
             font-weight: 600;
         }
-        img { max-width: 100%; height: auto; }
-
-        /* Trust Banner */
-        .trust-banner {
-            background: var(--brand);
-            color: white;
-            padding: 8px 15px;
-            font-size: 0.8rem;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+        img { max-width: 100%; height: auto; display: block; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); cursor: pointer; }
+        button { font-family: 'Lato', sans-serif; cursor: pointer; border: none; transition: var(--transition); }
+        input, textarea { font-family: 'Lato', sans-serif; }
+        
+        a:focus, button:focus, input:focus, textarea:focus {
+            outline: 2px solid var(--brand);
+            outline-offset: 2px;
         }
-        .trust-banner span {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .trust-banner i { color: var(--gold); }
 
-        /* Navigation */
+        /* ===== NAVIGATION ===== */
         .main-nav {
-            background: white; 
-            padding: 0.8rem 1rem; 
-            position: sticky; 
-            top: 0; 
+            background: white;
+            padding: 0.8rem 2rem;
+            position: sticky;
+            top: 0;
             z-index: 1000;
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-        }
-        .nav-links { 
-            display: flex; 
-            gap: 1.2rem; 
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
             align-items: center;
         }
-        .nav-link { 
-            font-size: 0.8rem; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            cursor: pointer; 
-            color: var(--text);
-            padding: 5px 0;
-            position: relative;
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-link {
+            font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;
+            font-weight: 600; color: var(--text); padding: 0.5rem 0; position: relative;
         }
-        .nav-link.active { 
-            color: var(--brand); 
-        }
+        .nav-link.active, .nav-link:hover { color: var(--brand); }
         .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--gold);
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 100%; height: 2px; background: var(--gold);
         }
-
-        .cart-icon { 
-            position: relative; 
-            cursor: pointer; 
-            font-size: 1.4rem; 
-            color: var(--brand); 
-            padding: 5px; 
+        .cart-icon {
+            position: relative; cursor: pointer; font-size: 1.2rem;
+            color: var(--brand); padding: 0.5rem; border-radius: 50%;
         }
         .cart-count {
-            position: absolute; 
-            top: -5px; 
-            right: -5px; 
-            background: var(--brand); 
-            color: white;
-            border-radius: 50%; 
-            width: 18px; 
-            height: 18px; 
-            font-size: 0.65rem; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-weight: 700;
+            position: absolute; top: -5px; right: -5px; background: var(--brand);
+            color: white; border-radius: 50%; width: 20px; height: 20px;
+            font-size: 0.7rem; display: flex; align-items: center; justify-content: center; font-weight: 700;
         }
+        .mobile-menu-btn { display: none; background: none; font-size: 1.5rem; color: var(--brand); }
 
-        /* Header */
-        .main-header { 
-            background: white; 
-            padding: 2rem 1rem; 
-            text-align: center; 
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+        /* ===== HEADER ===== */
+        .main-header {
+            background: white; padding: 3rem 2rem 2rem; text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
-        .logo-img { 
-            width: 80px; 
-            margin-bottom: 0.5rem; 
-            border-radius: 50%;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        .logo-img { width: 120px; margin: 0 auto 1rem; }
+        .logo-text { font-size: 2.5rem; letter-spacing: 2px; color: var(--brand-dark); margin-bottom: 0.5rem; }
+        .tagline { color: var(--gold); font-style: italic; font-size: 1.1rem; margin-bottom: 1.5rem; }
+        .search-container { max-width: 500px; margin: 1.5rem auto 0; position: relative; }
+        .search-input {
+            width: 100%; padding: 0.9rem 1.5rem 0.9rem 3rem; border: 1px solid #ddd;
+            border-radius: 50px; font-size: 0.95rem; background: white;
         }
-        .logo-text { 
-            font-size: 1.8rem; 
-            color: var(--brand-dark); 
-            letter-spacing: 1px;
-        }
-        .tagline { 
-            color: var(--gold); 
-            font-style: italic; 
-            font-size: 0.9rem; 
-            margin-top: 5px;
-        }
+        .search-input:focus { outline: none; border-color: var(--brand); }
+        .search-icon { position: absolute; left: 1.2rem; top: 50%; transform: translateY(-50%); color: var(--muted); }
 
-        /* Hero Banner */
-        .hero-banner {
-            background: linear-gradient(rgba(122, 85, 72, 0.9), rgba(122, 85, 72, 0.8)), url('images/hero-bg.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 3rem 1rem;
-            text-align: center;
-            margin: 0;
-        }
-        .hero-banner h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-        }
-        .hero-banner p {
-            max-width: 600px;
-            margin: 0 auto 1.5rem;
-            font-size: 1rem;
-        }
-        .cta-button {
-            background: var(--gold);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 10px;
-            transition: var(--transition);
-        }
-        .cta-button:hover {
-            background: #b38f54;
-            transform: translateY(-2px);
-        }
-
-        /* Categories */
-        .categories {
-            padding: 2rem 1rem;
-            background: var(--bg);
-        }
-        .categories h2 {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            color: var(--brand-dark);
-        }
-        .category-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        .category-tab {
-            padding: 8px 20px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .category-tab.active {
-            background: var(--brand);
-            color: white;
-            border-color: var(--brand);
-        }
-        .category-tab:hover {
-            background: var(--brand);
-            color: white;
-        }
-
-        /* Products */
-        .section-container { 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            padding: 2rem 1rem; 
-            display: none; 
-        }
-        .active-section { 
-            display: block; 
-            animation: fadeIn 0.5s ease;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        /* ===== SECTIONS & TABS ===== */
+        .section-container { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; display: none; }
+        .active-section { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        .products-grid { 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 15px; 
+        .filter-tabs { display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+        .tab-btn {
+            padding: 0.6rem 1.8rem; border-radius: 50px; border: 1px solid #ddd;
+            background: transparent; font-size: 0.85rem; font-weight: 600; color: var(--text);
         }
-        @media (min-width: 640px) { 
-            .products-grid { 
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 20px; 
-            } 
-        }
-        @media (min-width: 768px) { 
-            .products-grid { 
-                grid-template-columns: repeat(3, 1fr); 
-                gap: 25px; 
-            } 
-        }
-        @media (min-width: 1024px) { 
-            .products-grid { 
-                grid-template-columns: repeat(4, 1fr); 
-                gap: 30px; 
-            } 
-        }
+        .tab-btn.active, .tab-btn:hover { background: var(--brand); color: white; border-color: var(--brand); }
 
-        .product-card { 
-            background: white; 
-            border-radius: var(--radius); 
-            overflow: hidden; 
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
+        /* ===== PRODUCTS ===== */
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+        .product-card {
+            background: var(--card); border-radius: var(--radius); overflow: hidden;
+            box-shadow: var(--shadow); transition: var(--transition);
         }
-        .product-card:hover { 
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        .product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+        .product-image { height: 300px; overflow: hidden; cursor: pointer; }
+        .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .product-card:hover .product-image img { transform: scale(1.05); }
+        .product-info { padding: 1.5rem; text-align: center; }
+        .product-name { font-size: 1.2rem; margin-bottom: 0.8rem; cursor: pointer; color: var(--brand-dark); }
+        .product-name:hover { color: var(--brand); }
+        .price-container { margin: 1rem 0; display: flex; justify-content: center; align-items: center; gap: 0.8rem; }
+        .original-price { text-decoration: line-through; color: #999; font-size: 0.95rem; }
+        .current-price { font-weight: 700; color: var(--brand); font-size: 1.3rem; }
+        .discount-badge { background: var(--gold); color: white; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.8rem; }
+        .add-to-cart-btn {
+            background: var(--brand); color: white; padding: 0.9rem 1.5rem; border-radius: 4px;
+            font-weight: 600; width: 100%; margin-top: 1rem;
         }
-        .product-image { 
-            aspect-ratio: 1/1; 
-            overflow: hidden; 
-            cursor: pointer; 
-            position: relative;
-        }
-        .product-image img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            transition: transform 0.5s ease;
-        }
-        .product-card:hover .product-image img {
-            transform: scale(1.05);
-        }
-        .product-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: var(--gold);
-            color: white;
-            padding: 3px 10px;
-            border-radius: 3px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            z-index: 2;
-        }
-        .product-info { 
-            padding: 15px; 
-            text-align: center; 
-        }
-        .product-name { 
-            font-size: 0.9rem; 
-            height: 2.8em; 
-            overflow: hidden; 
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--brand-dark);
-        }
-        .price-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            margin: 8px 0;
-        }
-        .original-price { 
-            text-decoration: line-through; 
-            color: #999; 
-            font-size: 0.85rem; 
-        }
-        .current-price { 
-            font-weight: 700; 
-            color: var(--brand); 
-            font-size: 1.1rem; 
-        }
-        .discount-badge {
-            background: var(--success);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
-        .add-to-cart-btn { 
-            background: var(--brand); 
-            color: white; 
-            width: 100%; 
-            padding: 10px; 
-            border-radius: 4px; 
-            font-size: 0.85rem; 
-            font-weight: 600; 
-            margin-top: 10px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .add-to-cart-btn:hover {
-            background: var(--brand-dark);
-        }
-        .buy-now-btn {
-            background: var(--rzp);
-            color: white;
-            width: 100%;
-            padding: 10px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-top: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            display: block;
-            text-align: center;
-            transition: var(--transition);
-        }
-        .buy-now-btn:hover {
-            background: #2b7ac9;
-        }
+        .add-to-cart-btn:hover { background: var(--brand-dark); }
 
-        /* Fixed Cart Button */
-        .fixed-cart-btn {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: var(--brand);
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            z-index: 900;
-            cursor: pointer;
-        }
-        .fixed-cart-btn i {
-            font-size: 1.2rem;
-        }
-        .fixed-cart-count {
-            font-size: 0.7rem;
-            margin-top: 2px;
-        }
+        /* ===== ABOUT ===== */
+        .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+        .about-text p { margin-bottom: 1.5rem; font-size: 1.05rem; line-height: 1.8; color: #444; }
+        .authenticity-section { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.1); }
+        .authenticity-image { width: 100%; max-width: 280px; border-radius: 8px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .artisan-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .artisan-img { width: 100%; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .artisan-img:first-child { grid-column: 1 / -1; }
 
-        /* Overlay & Modals */
-        .overlay { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background: rgba(0,0,0,0.7); 
-            z-index: 1900; 
-            display: none; 
+        /* ===== CONTACT ===== */
+        .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 1000px; margin: 0 auto; }
+        .contact-form-container { background: white; padding: 2.5rem; border-radius: var(--radius); box-shadow: var(--shadow); }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+        .form-input { width: 100%; padding: 0.9rem 1rem; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; }
+        .submit-btn { background: var(--brand); color: white; padding: 1rem; width: 100%; border-radius: 4px; font-weight: 600; }
+        .contact-item { display: flex; align-items: flex-start; margin-bottom: 1.8rem; }
+        .contact-icon { 
+            background: var(--bg); color: var(--brand); width: 50px; height: 50px; 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1.2rem; 
         }
-        .cart-sidebar { 
-            position: fixed; 
-            top: 0; 
-            right: -100%; 
-            width: 100%; 
-            max-width: 400px; 
-            height: 100%; 
-            background: white; 
-            z-index: 2000; 
-            transition: 0.3s ease; 
-            display: flex; 
-            flex-direction: column; 
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        .whatsapp-contact { background: rgba(37, 211, 102, 0.1); border-left: 4px solid var(--wa); padding: 1.2rem; }
+
+        /* ===== FOOTER ===== */
+        .main-footer { background: white; padding: 3rem 2rem; margin-top: 3rem; text-align: center; border-top: 1px solid #eee; }
+        .footer-logo-text { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--brand-dark); }
+        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin: 2rem 0; }
+        .social-link { 
+            width: 45px; height: 45px; border-radius: 50%; background: var(--bg); 
+            color: var(--brand); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; 
+        }
+        .footer-links-container { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        .footer-link:hover { color: var(--brand); }
+
+        /* ===== CART SIDEBAR ===== */
+        .cart-sidebar {
+            position: fixed; top: 0; right: -450px; width: 420px; max-width: 90vw; height: 100vh;
+            background: white; box-shadow: -5px 0 25px rgba(0,0,0,0.1); z-index: 1001;
+            transition: right 0.4s ease; display: flex; flex-direction: column;
         }
         .cart-sidebar.active { right: 0; }
+        .cart-header { padding: 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: space-between; }
+        .cart-items { flex: 1; overflow-y: auto; padding: 1.5rem; }
+        .cart-item { display: flex; align-items: center; padding: 1.2rem 0; border-bottom: 1px solid #f5f5f5; }
+        .cart-item-image { width: 80px; height: 80px; border-radius: 6px; overflow: hidden; margin-right: 1.2rem; }
+        .cart-footer { padding: 1.5rem; border-top: 1px solid rgba(0,0,0,0.1); }
+        .checkout-btn { background: var(--brand); color: white; padding: 1.2rem; width: 100%; border-radius: 4px; font-weight: 600; }
+
+        /* ===== MODALS & OVERLAY ===== */
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: none; }
+        .overlay.active { display: block; }
         
-        .product-modal { 
-            position: fixed; 
-            top: 50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%); 
-            width: 95%; 
-            max-width: 500px; 
-            max-height: 90vh;
-            background: white; 
-            z-index: 2001; 
-            display: none; 
-            border-radius: 12px; 
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        .product-modal, .checkout-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85);
+            z-index: 1002; display: none; align-items: center; justify-content: center; padding: 1.5rem;
         }
-        .product-modal.active { display: block; }
-
-        /* Cart Styles */
-        .cart-header {
-            padding: 20px;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--bg);
+        .product-modal.active, .checkout-modal.active { display: flex; }
+        
+        .modal-container, .checkout-container {
+            background: white; width: 100%; max-width: 1000px; max-height: 90vh; overflow-y: auto;
+            border-radius: 12px;
         }
-        .cart-items {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-        }
-        .cart-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 0;
-            border-bottom: 1px solid #f5f5f5;
-        }
-        .cart-item:last-child {
-            border-bottom: none;
-        }
-        .cart-item-image {
-            width: 60px;
-            height: 60px;
-            border-radius: 6px;
-            overflow: hidden;
-        }
-        .cart-item-details {
-            flex: 1;
-            padding: 0 15px;
-        }
-        .cart-item-name {
-            font-size: 0.9rem;
+        .modal-container { display: grid; grid-template-columns: 1fr 1fr; }
+        .modal-images { padding: 2rem; }
+        .modal-details, .checkout-container { padding: 2.5rem; }
+        .checkout-container { max-width: 500px; }
+        
+        /* Razorpay Button in Modal */
+        .razorpay-btn {
+            background: var(--rzp);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
             font-weight: 600;
-            margin-bottom: 5px;
-        }
-        .cart-item-price {
-            color: var(--brand);
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-        .cart-item-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .cart-item-quantity {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .quantity-btn {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: var(--bg);
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .remove-btn {
-            color: #ff4444;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 5px;
-        }
-        .cart-footer {
-            padding: 20px;
-            border-top: 1px solid #eee;
-            background: var(--bg);
-        }
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-        .cart-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .checkout-btn {
-            background: var(--brand);
-            color: white;
-            padding: 15px;
-            border-radius: 6px;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .checkout-btn:hover {
-            background: var(--brand-dark);
-        }
-        .whatsapp-checkout-btn {
-            background: var(--wa);
-            color: white;
-            padding: 15px;
-            border-radius: 6px;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
             text-align: center;
-            transition: var(--transition);
+            display: block;
+            margin-top: 10px;
+            flex: 1;
+            min-width: 200px;
         }
-        .whatsapp-checkout-btn:hover {
-            background: #1da851;
-        }
+        .razorpay-btn:hover { background: #2b7ac9; }
 
-        /* Notification */
+        /* ===== NOTIFICATION ===== */
         .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--success);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 6px;
-            z-index: 2100;
-            display: none;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            animation: slideIn 0.3s ease;
+            position: fixed; top: 1.5rem; right: 1.5rem; background: var(--success); color: white;
+            padding: 1rem 1.5rem; border-radius: 6px; transform: translateX(120%); transition: 0.3s; z-index: 1004;
         }
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
+        .notification.show { transform: translateX(0); }
 
-        /* About Section */
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .about-content, .contact-container, .modal-container { grid-template-columns: 1fr; gap: 2rem; }
         }
-        .about-text p {
-            margin-bottom: 1.2rem;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .gallery-img {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-        }
-
-        /* Contact Section */
-        .contact-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .contact-form {
-            background: white;
-            padding: 25px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-input, .form-textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-            font-family: 'Lato', sans-serif;
-        }
-        .form-textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        .submit-btn {
-            background: var(--brand);
-            color: white;
-            padding: 14px;
-            width: 100%;
-            border-radius: 4px;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-        .submit-btn:hover {
-            background: var(--brand-dark);
-        }
-
-        /* Footer */
-        .main-footer {
-            background: white;
-            padding: 3rem 1rem 2rem;
-            margin-top: 3rem;
-            border-top: 1px solid #eee;
-            text-align: center;
-        }
-        .footer-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: var(--brand-dark);
-            margin-bottom: 1rem;
-        }
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 1.5rem 0;
-        }
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--bg);
-            color: var(--brand);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            transition: var(--transition);
-        }
-        .social-link:hover {
-            background: var(--brand);
-            color: white;
-            transform: translateY(-3px);
-        }
-        .contact-info {
-            font-size: 0.9rem;
-            color: #666;
-            margin: 1rem 0;
-        }
-
-        /* WhatsApp Float */
-        .whatsapp-float { 
-            position: fixed; 
-            bottom: 90px; 
-            right: 20px; 
-            width: 60px; 
-            height: 60px; 
-            background: var(--wa); 
-            color: white; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 1.8rem; 
-            z-index: 900; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: var(--transition);
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-
-        /* Loading State */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Error States */
-        .error-message {
-            color: var(--error);
-            font-size: 0.85rem;
-            margin-top: 5px;
-            display: none;
-        }
-
-        /* Empty States */
-        .empty-state {
-            text-align: center;
-            padding: 3rem 1rem;
-            color: #666;
-        }
-        .empty-state i {
-            font-size: 3rem;
-            color: #ddd;
-            margin-bottom: 1rem;
-        }
-
-        /* Utility Classes */
-        .text-center { text-align: center; }
-        .mt-1 { margin-top: 1rem; }
-        .mt-2 { margin-top: 2rem; }
-        .mb-1 { margin-bottom: 1rem; }
-        .mb-2 { margin-bottom: 2rem; }
-        .hidden { display: none !important; }
-        .active { display: block !important; }
-
-        /* Responsive Adjustments */
-        @media (max-width: 480px) {
-            .products-grid { 
-                grid-template-columns: 1fr; 
-                gap: 15px; 
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed; top: 70px; left: 0; width: 100%; background: white; flex-direction: column;
+                padding: 1.5rem; transform: translateY(-100%); transition: var(--transition); z-index: 999;
             }
-            .nav-links { 
-                gap: 0.8rem; 
-            }
-            .nav-link { 
-                font-size: 0.75rem; 
-            }
-            .logo-text { 
-                font-size: 1.5rem; 
-            }
-            .hero-banner h2 {
-                font-size: 1.5rem;
-            }
-            .trust-banner {
-                font-size: 0.7rem;
-                gap: 10px;
-            }
+            .nav-links.active { transform: translateY(0); }
+            .mobile-menu-btn { display: block; }
+            .cart-sidebar { width: 100%; }
         }
-
-        @media (max-width: 360px) {
-            .nav-links { 
-                gap: 0.6rem; 
-            }
-            .nav-link { 
-                font-size: 0.7rem; 
-            }
-        }
+        .whatsapp-float { position: fixed; bottom: 2rem; right: 2rem; width: 60px; height: 60px; background: var(--wa); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; z-index: 999; }
     </style>
 </head>
 
 <body>
-    <!-- Trust Banner -->
-    <div class="trust-banner">
-        <span><i class="fas fa-check-circle"></i> 100% Handmade</span>
-        <span><i class="fas fa-shipping-fast"></i> Free Shipping over ₹1999</span>
-        <span><i class="fas fa-undo-alt"></i> 7-Day Easy Returns</span>
-        <span><i class="fas fa-shield-alt"></i> Secure Payment</span>
-    </div>
+    <a href="https://wa.me/919882212962?text=Hi%20Handiweave%21%20I%20would%20like%20to%20know%20more%20about%20your%20products." class="whatsapp-float" target="_blank" aria-label="Contact on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-    <!-- Navigation -->
     <nav class="main-nav">
-        <div class="nav-links">
-            <span class="nav-link active" onclick="switchView('shop')">Shop</span>
-            <span class="nav-link" onclick="switchView('about')">Our Story</span>
-            <span class="nav-link" onclick="switchView('contact')">Contact</span>
-            <span class="nav-link" onclick="switchView('policies')">Policies</span>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        <div class="nav-links" id="navLinks">
+            <a href="#shop" class="nav-link active" data-view="shop">Shop</a>
+            <a href="#about" class="nav-link" data-view="about">Our Story</a>
+            <a href="#contact" class="nav-link" data-view="contact">Contact</a>
+            <a href="#policies" class="nav-link" data-view="policies">Policies</a>
         </div>
-        <div class="cart-icon" onclick="toggleCart(true)">
+        <div class="cart-icon" id="cartIcon" aria-label="Cart">
             <i class="fas fa-shopping-bag"></i>
             <span class="cart-count" id="cartCount">0</span>
         </div>
     </nav>
 
-    <!-- Header -->
     <header class="main-header">
-        <img src="logo.png" alt="Handiweave Logo - Handcrafted Shawls from Himachal" class="logo-img">
-        <h1 class="logo-text">HANDIWEAVE</h1>
-        <p class="tagline">Traditions and Trends</p>
+        <div class="logo-container">
+            <img src="logo.png" alt="Handiweave Logo" class="logo-img" loading="lazy">
+            <h1 class="logo-text">HANDIWEAVE</h1>
+            <p class="tagline">Traditions and Trends</p>
+        </div>
+        <div class="search-container">
+            <input type="search" class="search-input" id="searchInput" placeholder="Search shawls, angora, decor..." aria-label="Search">
+            <i class="fas fa-search search-icon"></i>
+        </div>
     </header>
 
-    <!-- Hero Banner -->
-    <div class="hero-banner">
-        <h2>Premium Handcrafted Shawls from Himachal</h2>
-        <p>Authentic wool, angora & merino products made by skilled artisans in Palampur. Each piece tells a story of tradition and craftsmanship.</p>
-        <a href="#shop-view" class="cta-button" onclick="switchView('shop')">Shop Now</a>
-    </div>
-
-    <!-- Shop Section -->
     <section id="shop-view" class="section-container active-section">
-        <div class="categories">
-            <h2>Our Collections</h2>
-            <div class="category-tabs">
-                <span class="category-tab active" onclick="filterProducts('all')">All Products</span>
-                <span class="category-tab" onclick="filterProducts('shawls')">Shawls & Stoles</span>
-                <span class="category-tab" onclick="filterProducts('decor')">Home Decor</span>
-            </div>
+        <div class="filter-tabs">
+            <button class="tab-btn active" data-category="all">All Products</button>
+            <button class="tab-btn" data-category="shawls">Shawls & Stoles</button>
+            <button class="tab-btn" data-category="decor">Home Decor</button>
         </div>
-        <div class="products-grid" id="productsContainer">
-            <!-- Products will be dynamically inserted here -->
-        </div>
+        <div class="products-grid" id="productsContainer"></div>
     </section>
 
-    <!-- About Section -->
-    <section id="about-view" class="section-container">
-        <h2 class="text-center">Our Story</h2>
+    <section id="about-view" class="section-container about-section">
+        <h2>A Soul-Wrapped Heritage</h2>
         <div class="about-content">
             <div class="about-text">
-                <p>Handiweave was born in the picturesque hills of Palampur, Himachal Pradesh, with a mission to preserve and promote traditional weaving techniques passed down through generations.</p>
-                <p>Each product is meticulously handcrafted by skilled artisans who pour their heart and soul into every weave. We work directly with these artisans, ensuring fair wages and sustainable livelihoods.</p>
-                <p>Our materials are sourced locally - from the finest wool of Himalayan sheep to luxurious angora. Every piece is a blend of traditional craftsmanship and contemporary design.</p>
-                <p>When you buy from Handiweave, you're not just purchasing a product; you're supporting a community, preserving a heritage, and owning a piece of authentic Himachali craftsmanship.</p>
+                <p>This is an effort to bring a hidden craft into the light — not just to be seen, but to be felt. Our mission is to empower the hands behind the loom, and to honour their quiet strength. Each tana-bana carries a heartbeat — of tradition, of memory, of love passed down generations.</p>
+                <p>We don't just weave shawls; we preserve stories that might otherwise fade into silence. Reviving heritage, we give it a direction that belongs to tomorrow.</p>
+                <p>Every piece sustains a life, a family, a village — and keeps the local economy gently flowing. As the tana-bana grows, so does a legacy rooted in dignity and care. This is not a product. It's a soul-wrapped heritage from Devbhoomi Himachal.</p>
+                <div class="authenticity-section">
+                    <h3 class="authenticity-title">Our Promise of Authenticity</h3>
+                    <img src="images/cr1.jpg" alt="Authenticity Certificate" class="authenticity-image" loading="lazy" onerror="this.style.display='none'">
+                </div>
             </div>
-            <div class="gallery-grid">
-                <img src="images/ar1.jpg" alt="Handiweave Artisans at work" class="gallery-img" loading="lazy">
-                <img src="images/she1.jpg" alt="Traditional Weaving Process" class="gallery-img" loading="lazy">
-                <img src="images/cr1.jpg" alt="Handiweave Workshop" class="gallery-img" loading="lazy">
-                <img src="images/ar3.jpg" alt="Quality Check Process" class="gallery-img" loading="lazy">
+            <div class="artisan-gallery">
+                <img src="images/ar1.jpg" class="artisan-img" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/F9F8F6/8C6A5D?text=Handiweave';">
+                <img src="images/ar2.jpg" class="artisan-img" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/F9F8F6/8C6A5D?text=Handiweave';">
+                <img src="images/ar3.jpg" class="artisan-img" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/F9F8F6/8C6A5D?text=Handiweave';">
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact-view" class="section-container">
-        <h2 class="text-center">Get in Touch</h2>
+    <section id="contact-view" class="section-container contact-section">
+        <h2>Get in Touch</h2>
+        <p class="contact-intro">We'd love to hear from you. Whether you have questions about our products, need customization, or just want to learn more about our craft.</p>
         <div class="contact-container">
-            <div class="contact-form">
+            <div class="contact-form-container">
                 <form id="contactForm" action="https://formspree.io/f/xojagdvw" method="POST">
-                    <div class="form-group">
-                        <input type="text" name="name" class="form-input" placeholder="Your Name *" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" class="form-input" placeholder="Email Address *" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" name="phone" class="form-input" placeholder="Phone Number">
-                    </div>
-                    <div class="form-group">
-                        <textarea name="message" class="form-textarea" placeholder="Your Message *" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">
-                        <span id="submitText">Send Message</span>
-                        <span id="submitLoading" class="hidden"><div class="loading"></div></span>
-                    </button>
+                    <div class="form-group"><label class="form-label" for="contactName">Full Name *</label><input type="text" id="contactName" name="name" class="form-input" required></div>
+                    <div class="form-group"><label class="form-label" for="contactEmail">Email Address *</label><input type="email" id="contactEmail" name="email" class="form-input" required></div>
+                    <div class="form-group"><label class="form-label" for="contactPhone">Phone Number</label><input type="tel" id="contactPhone" name="phone" class="form-input"></div>
+                    <div class="form-group"><label class="form-label" for="contactMessage">Your Message *</label><textarea id="contactMessage" name="message" class="form-input" required></textarea></div>
+                    <button type="submit" class="submit-btn">Send Message</button>
                 </form>
             </div>
-            <div class="contact-info mt-2">
-                <p><i class="fas fa-phone-alt"></i> +91 98822 12962</p>
-                <p><i class="fas fa-envelope"></i> handiweave@gmail.com</p>
-                <p><i class="fas fa-map-marker-alt"></i> Palampur, Himachal Pradesh</p>
-                <p class="mt-1"><strong>Business Hours:</strong> Monday - Saturday, 10 AM - 7 PM</p>
+            <div class="contact-details">
+                <div class="contact-item"><div class="contact-icon"><i class="fab fa-whatsapp"></i></div><div class="contact-text"><h4>WhatsApp</h4><p>+91 98822 12962</p></div></div>
+                <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div class="contact-text"><h4>Email</h4><p>handiweave@gmail.com</p></div></div>
+                <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div class="contact-text"><h4>Location</h4><p>Devbhoomi Himachal</p></div></div>
             </div>
         </div>
     </section>
 
-    <!-- Policies Section -->
     <section id="policies-view" class="section-container">
-        <h2 class="text-center">Our Policies</h2>
-        <div class="about-content">
-            <div class="policy-item mb-2">
-                <h3><i class="fas fa-shipping-fast"></i> Shipping Policy</h3>
-                <p>We ship across India within 5-7 business days via trusted courier partners. Shipping charges are calculated at checkout based on weight and destination. Free shipping on all orders above ₹1999.</p>
-            </div>
-            <div class="policy-item mb-2">
-                <h3><i class="fas fa-undo-alt"></i> Return & Refund Policy</h3>
-                <p>We accept returns within 7 days of delivery if the product is unused, unwashed, and in original condition with all tags attached. Refunds are processed within 5-7 business days to your original payment method.</p>
-            </div>
-            <div class="policy-item">
-                <h3><i class="fas fa-shield-alt"></i> Privacy & Security</h3>
-                <p>Your privacy is important to us. We never share your personal information with third parties. All payments are processed through secure, encrypted gateways (Razorpay) for your safety.</p>
-            </div>
+        <div class="policies-container">
+            <h2>Our Policies</h2>
+            <div class="policy-section"><h3>Shipping Policy</h3><p>We ship across India within 5-7 business days via trusted courier partners. International shipping available on request. Shipping charges are calculated based on weight and destination.</p></div>
+            <div class="policy-section"><h3>Return & Refund Policy</h3><p>We accept returns within 7 days of delivery if the product is unused, unwashed, and in original condition. Refunds are processed within 5-7 business days to your original payment method.</p></div>
+            <div class="policy-section"><h3>Privacy Policy</h3><p>We respect your privacy. Your personal information is never shared with third parties without your consent.</p></div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="main-footer">
-        <div class="footer-logo">HANDIWEAVE</div>
+        <div class="footer-brand"><div class="footer-logo-text">HANDIWEAVE</div></div>
         <div class="social-links">
-            <a href="https://instagram.com/handiweave" class="social-link" target="_blank" aria-label="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://x.com/handiweave" class="social-link" target="_blank" aria-label="Twitter">
-                <i class="fab fa-x-twitter"></i>
-            </a>
-            <a href="https://youtube.com/@handiweave" class="social-link" target="_blank" aria-label="YouTube">
-                <i class="fab fa-youtube"></i>
-            </a>
-            <a href="https://wa.me/919882212962" class="social-link" target="_blank" aria-label="WhatsApp">
-                <i class="fab fa-whatsapp"></i>
-            </a>
+            <a href="https://instagram.com/handiweave" class="social-link" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/handiweave" class="social-link" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://youtube.com/@handiweave" class="social-link" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
         </div>
-        <div class="contact-info">
-            <p>handiweave@gmail.com | +91 98822 12962</p>
-            <p>Palampur, Himachal Pradesh, India</p>
+        <div class="footer-links-container">
+            <a href="#shop" class="footer-link" id="footerShop">Shop</a>
+            <a href="#about" class="footer-link" id="footerAbout">Our Story</a>
+            <a href="#contact" class="footer-link" id="footerContact">Contact</a>
         </div>
-        <div class="mt-1">
-            <a href="mailto:handiweave@gmail.com" style="color: var(--brand); text-decoration: none;">
-                <i class="fas fa-envelope"></i> Email for Bulk Orders & Customizations
-            </a>
-        </div>
-        <div class="mt-2">
-            <p>&copy; 2025 Handiweave. All rights reserved. | Crafted with ❤️ in Himachal</p>
-        </div>
+        <div class="contact-info-footer"><p>handiweave@gmail.com | +91 98822 12962</p></div>
+        <div class="copyright"><p>© 2025 Handiweave. All rights reserved.</p></div>
     </footer>
 
-    <!-- Fixed Cart Button -->
-    <div class="fixed-cart-btn" onclick="toggleCart(true)">
-        <i class="fas fa-shopping-bag"></i>
-        <div class="fixed-cart-count" id="fixedCartCount">0</div>
-    </div>
-
-    <!-- WhatsApp Float -->
-    <a href="https://wa.me/919882212962?text=Hi%20Handiweave!%20I%20would%20like%20to%20know%20more%20about%20your%20products." 
-       class="whatsapp-float" 
-       target="_blank" 
-       aria-label="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- Overlay -->
-    <div class="overlay" id="overlay" onclick="closeAll()"></div>
-
-    <!-- Cart Sidebar -->
     <aside class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-            <h3>Your Shopping Bag</h3>
-            <button onclick="closeAll()" style="background: none; border: none; font-size: 1.2rem; cursor: pointer;">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="cart-items" id="cartItemsList">
-            <!-- Cart items will be inserted here -->
-        </div>
+        <div class="cart-header"><h3>Your Shopping Bag</h3><button class="close-cart" id="closeCart" aria-label="Close Cart"><i class="fas fa-times"></i></button></div>
+        <div class="cart-items" id="cartItemsContainer"></div>
         <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total:</span>
-                <span id="cartTotalText">₹0</span>
-            </div>
-            <div class="cart-actions">
-                <button class="checkout-btn" onclick="openCheckoutModal()">
-                    <i class="fas fa-lock"></i> Secure Checkout
-                </button>
-                <a href="#" class="whatsapp-checkout-btn" id="whatsappCheckoutBtn">
-                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
-                </a>
-            </div>
+            <div class="cart-total"><span>Total:</span><span id="cartTotalPrice">₹0</span></div>
+            <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
         </div>
     </aside>
 
-    <!-- Product Modal -->
-    <div class="product-modal" id="productModal">
-        <div style="padding: 20px;">
-            <button onclick="closeAll()" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; float: right;">
-                <i class="fas fa-times"></i>
-            </button>
-            <div id="modalContent"></div>
-        </div>
-    </div>
-
-    <!-- Checkout Modal -->
-    <div class="product-modal" id="checkoutModal" style="max-width: 400px;">
-        <div style="padding: 20px;">
-            <button onclick="closeAll()" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; float: right;">
-                <i class="fas fa-times"></i>
-            </button>
-            <h3 style="margin-bottom: 20px;">Complete Your Order</h3>
+    <div class="product-modal" id="productModal"><button class="modal-close" id="closeModal" aria-label="Close"><i class="fas fa-times"></i></button><div class="modal-container" id="modalContainer"></div></div>
+    
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-container">
+            <button class="modal-close" id="closeCheckout" aria-label="Close"><i class="fas fa-times"></i></button>
+            <h2 class="checkout-title">Complete Your Order</h2>
+            <div class="checkout-summary"><div class="checkout-items" id="checkoutItems"></div><div class="checkout-total"><span>Total:</span><span id="checkoutTotalPrice">₹0</span></div></div>
             <form id="checkoutForm">
-                <div class="form-group">
-                    <input type="text" id="checkoutName" class="form-input" placeholder="Full Name *" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" id="checkoutEmail" class="form-input" placeholder="Email *" required>
-                </div>
-                <div class="form-group">
-                    <input type="tel" id="checkoutPhone" class="form-input" placeholder="Phone Number *" required>
-                </div>
-                <div class="form-group">
-                    <textarea id="checkoutAddress" class="form-textarea" placeholder="Delivery Address *" required></textarea>
-                </div>
-                <div class="form-group">
-                    <textarea id="checkoutNotes" class="form-textarea" placeholder="Additional Notes (Optional)"></textarea>
-                </div>
-                <button type="submit" class="submit-btn">
-                    <i class="fas fa-lock"></i> Proceed to Payment
-                </button>
+                <div class="form-group"><label for="checkoutName">Full Name *</label><input type="text" id="checkoutName" class="form-input" required></div>
+                <div class="form-group"><label for="checkoutEmail">Email *</label><input type="email" id="checkoutEmail" class="form-input" required></div>
+                <div class="form-group"><label for="checkoutPhone">Phone *</label><input type="tel" id="checkoutPhone" class="form-input" required></div>
+                <div class="form-group"><label for="checkoutAddress">Address *</label><textarea id="checkoutAddress" class="form-input" required></textarea></div>
+                <div class="form-group"><label for="checkoutNotes">Notes</label><textarea id="checkoutNotes" class="form-input"></textarea></div>
+                <button type="submit" class="submit-btn">Place Order via WhatsApp</button>
             </form>
         </div>
     </div>
 
-    <!-- Notification -->
-    <div class="notification" id="notification">
-        <i class="fas fa-check-circle"></i>
-        <span id="notificationText"></span>
-    </div>
+    <div class="overlay" id="overlay"></div>
+    <div class="notification" id="notification"><span class="notification-text"></span></div>
 
     <script>
-        // Enhanced Product Data
+        const SITE_CONFIG = { whatsappNumber: "919882212962", currency: "₹" };
+        
+        // Products with Specific Payment Links and Updated Details
         const PRODUCTS = [
             { 
                 id: 1, 
+                category: "shawls", 
                 name: "Merino Luxe I", 
                 price: 2499, 
-                originalPrice: 2875,
-                category: "shawls",
-                description: "Premium 100% Merino wool shawl, handwoven in Palampur. Exceptionally soft, warm, and lightweight. Perfect for winter elegance.",
-                material: "100% Pure Merino Wool",
-                care: "Dry clean or gentle cold hand wash",
-                colors: ["Natural", "Grey", "Beige"],
-                size: "70 x 200 cm",
-                weight: "450g",
-                stock: 15,
-                images: ["images/merino-luxe-1.jpg", "images/merino-luxe-1-alt.jpg"],
+                originalPrice: 2875, 
+                images: ["images/merino-luxe-1.jpg"], 
+                description: "Premium merino wool shawl, handwoven in Devbhoomi Himachal.", 
+                material: "100% Pure Merino Wool", 
+                care: "Dry Clean / Gentle Cold Handwash",
                 paymentLink: "https://rzp.io/rzp/zuErYBO"
             },
             { 
                 id: 2, 
+                category: "shawls", 
                 name: "Merino Luxe II", 
                 price: 2499, 
-                originalPrice: 2875,
-                category: "shawls",
-                description: "Second variant of our popular Merino Luxe series. Features traditional Himachali patterns with modern elegance.",
-                material: "100% Pure Merino Wool",
-                care: "Dry clean or gentle cold hand wash",
-                colors: ["Brown", "Cream"],
-                size: "70 x 200 cm",
-                weight: "450g",
-                stock: 12,
-                images: ["images/merino-luxe-2.jpg"],
+                originalPrice: 2875, 
+                images: ["images/merino-luxe-2.jpg"], 
+                description: "Second variant of our popular Merino Luxe series.", 
+                material: "100% Pure Merino Wool", 
+                care: "Dry Clean / Gentle Cold Handwash",
                 paymentLink: "https://rzp.io/rzp/zuErYBO"
             },
             { 
                 id: 3, 
-                name: "Royal Angora Shawl", 
+                category: "shawls", 
+                name: "Royal Angora", 
                 price: 5499, 
-                originalPrice: 6325,
-                category: "shawls",
-                description: "Luxurious angora wool shawl, incredibly soft and warm. Premium quality with exceptional thermal properties.",
-                material: "100% Angora Wool",
-                care: "Dry clean only",
-                colors: ["White", "Off-White"],
-                size: "75 x 210 cm",
-                weight: "350g",
-                stock: 8,
-                images: ["images/royal-angora-white.jpg"],
+                originalPrice: 6325, 
+                images: ["images/royal-angora-white.jpg"], 
+                description: "Luxurious angora wool shawl, incredibly soft and warm.", 
+                material: "100% Angora Wool", 
+                care: "Dry Clean Only",
                 paymentLink: "https://rzp.io/rzp/Tot28zKI"
             },
             { 
                 id: 4, 
-                name: "Daily Wear Shawl SH1", 
+                category: "shawls", 
+                name: "Daily Shawl SH1", 
                 price: 1499, 
-                originalPrice: 1899,
-                category: "shawls",
-                description: "Everyday wear shawl, comfortable and stylish. Durable blend perfect for daily use.",
-                material: "Woollen Blend (70% Wool, 30% Acrylic)",
+                originalPrice: 1899, 
+                images: ["images/daily-shawl-1.jpg"], 
+                description: "Everyday wear shawl, comfortable and stylish.", 
+                material: "Woollen Blend", 
                 care: "Machine/Hand wash < 40°C, Mild Detergent",
-                colors: ["Multicolor", "Red-Black"],
-                size: "65 x 180 cm",
-                weight: "500g",
-                stock: 25,
-                images: ["images/daily-shawl-1.jpg"],
                 paymentLink: "https://rzp.io/rzp/ANjKAv1"
             },
             { 
                 id: 5, 
-                name: "Daily Wear Shawl SH2", 
+                category: "shawls", 
+                name: "Daily Shawl SH2", 
                 price: 1199, 
-                originalPrice: 1599,
-                category: "shawls",
-                description: "Patterned daily wear shawl. Durable and warm with traditional geometric patterns.",
-                material: "Woollen Blend (70% Wool, 30% Acrylic)",
+                originalPrice: 1599, 
+                images: ["images/daily-shawl-2.jpg"], 
+                description: "Patterned daily wear shawl. Durable and warm.", 
+                material: "Woollen Blend", 
                 care: "Machine/Hand wash < 40°C, Mild Detergent",
-                colors: ["Blue-Grey", "Brown-Green"],
-                size: "65 x 180 cm",
-                weight: "500g",
-                stock: 20,
-                images: ["images/daily-shawl-2.jpg"],
                 paymentLink: "https://rzp.io/rzp/21e1fWfI"
             },
             { 
                 id: 6, 
-                name: "Daily Wear Shawl SH3", 
+                category: "shawls", 
+                name: "Daily Shawl SH3", 
                 price: 1199, 
-                originalPrice: 1599,
-                category: "shawls",
-                description: "Lightweight daily shawl for casual occasions. Features contemporary color combinations.",
-                material: "Woollen Blend (70% Wool, 30% Acrylic)",
+                originalPrice: 1599, 
+                images: ["images/daily-shawl-3.jpg"], 
+                description: "Lightweight daily shawl for casual occasions.", 
+                material: "Woollen Blend", 
                 care: "Machine/Hand wash < 40°C, Mild Detergent",
-                colors: ["Green-Black", "Orange-Brown"],
-                size: "65 x 180 cm",
-                weight: "480g",
-                stock: 18,
-                images: ["images/daily-shawl-3.jpg"],
                 paymentLink: "https://rzp.io/rzp/21e1fWfI"
             },
             { 
                 id: 7, 
+                category: "shawls", 
                 name: "Trendy Stole ST1", 
                 price: 699, 
-                originalPrice: 999,
-                category: "shawls",
-                description: "Lightweight stole for casual occasions and office wear. Versatile and elegant.",
-                material: "Woollen Blend (60% Wool, 40% Cotton)",
+                originalPrice: 999, 
+                images: ["images/stole-trendy-1.jpg"], 
+                description: "Lightweight stole for casual occasions.", 
+                material: "Woollen Blend", 
                 care: "Machine/Hand wash < 40°C, Mild Detergent",
-                colors: ["Grey", "Black"],
-                size: "50 x 180 cm",
-                weight: "250g",
-                stock: 30,
-                images: ["images/stole-trendy-1.jpg"],
                 paymentLink: "https://rzp.io/rzp/3TgywOm"
             },
             { 
                 id: 8, 
+                category: "shawls", 
                 name: "Trendy Stole ST2", 
                 price: 799, 
-                originalPrice: 1099,
-                category: "shawls",
-                description: "Elegant stole with contemporary designs. Perfect for parties and special occasions.",
-                material: "Woollen Blend (60% Wool, 40% Cotton)",
+                originalPrice: 1099, 
+                images: ["images/stole-trendy-2.jpg"], 
+                description: "Elegant stole with contemporary designs.", 
+                material: "Woollen Blend", 
                 care: "Machine/Hand wash < 40°C, Mild Detergent",
-                colors: ["Red", "Blue"],
-                size: "50 x 180 cm",
-                weight: "250g",
-                stock: 22,
-                images: ["images/stole-trendy-2.jpg"],
                 paymentLink: "https://rzp.io/rzp/S4sfp5y"
             },
             { 
                 id: 9, 
+                category: "shawls", 
                 name: "Trendy Stole ST3", 
                 price: 799, 
-                originalPrice: 1099,
-                category: "shawls",
-                description: "Colorful stole with modern patterns. Adds a pop of color to any outfit.",
-                material: "Woollen Blend (60% Wool, 40% Cotton)",
+                originalPrice: 1099, 
+                images: ["images/stole-trendy-3.jpg"], 
+                description: "Colorful stole with modern patterns.", 
+                material: "Woollen Blend", 
                 care: "Machine/Hand wash < 40°C, Mild Detergent",
-                colors: ["Multicolor", "Pink-Purple"],
-                size: "50 x 180 cm",
-                weight: "250g",
-                stock: 25,
-                images: ["images/stole-trendy-3.jpg"],
                 paymentLink: "https://rzp.io/rzp/S4sfp5y"
             },
             { 
                 id: 10, 
+                category: "decor", 
                 name: "Heritage Wall Art I", 
                 price: 1200, 
-                originalPrice: 1380,
-                category: "decor",
-                description: "Handwoven textile art, perfect for adding warmth to your living space. Traditional patterns with modern appeal.",
-                material: "Wool/Cotton Blend",
+                originalPrice: 1380, 
+                images: ["images/2wall.jpg"], 
+                description: "Handwoven textile art, perfect for adding warmth to your living space.", 
+                material: "Wool/Cotton Blend", 
                 care: "Dust gently / Dry Clean",
-                colors: ["Natural", "Brown"],
-                size: "60 x 90 cm",
-                weight: "800g",
-                stock: 10,
-                images: ["images/2wall.jpg"],
                 paymentLink: "https://rzp.io/rzp/tSEaQin3"
             },
             { 
                 id: 11, 
+                category: "decor", 
                 name: "Heritage Wall Art II", 
                 price: 1800, 
-                originalPrice: 2070,
-                category: "decor",
-                description: "Larger wall art piece with intricate patterns. Makes a statement in any room.",
-                material: "Wool/Cotton Blend",
+                originalPrice: 2070, 
+                images: ["images/3wall.jpg"], 
+                description: "Larger wall art piece with intricate patterns.", 
+                material: "Wool/Cotton Blend", 
                 care: "Dust gently / Dry Clean",
-                colors: ["Multicolor"],
-                size: "90 x 120 cm",
-                weight: "1200g",
-                stock: 8,
-                images: ["images/3wall.jpg"],
                 paymentLink: "https://rzp.io/rzp/jrxu0ZIq"
             }
         ];
 
-        // App State
-        const APP_STATE = {
-            cart: JSON.parse(localStorage.getItem('handiweave_cart')) || [],
-            currentCategory: 'all',
-            checkoutData: {}
-        };
-
-        // Utility Functions
+        const APP_STATE = { cart: JSON.parse(localStorage.getItem('handiweave_cart')) || [], currentCategory: 'all' };
+        
         const Utils = {
-            formatPrice: (price) => `₹${price.toLocaleString('en-IN')}`,
-            
-            calculateDiscount: (original, current) => {
-                return Math.round(((original - current) / original) * 100);
+            formatPrice: p => `${SITE_CONFIG.currency}${p.toLocaleString('en-IN')}`,
+            calculateDiscount: (o, c) => Math.round(((o - c) / o) * 100),
+            showNotification: (msg) => {
+                const n = document.getElementById('notification');
+                n.querySelector('.notification-text').textContent = msg;
+                n.classList.add('show'); setTimeout(() => n.classList.remove('show'), 3000);
             },
-            
-            showNotification: (message, type = 'success') => {
-                const notification = document.getElementById('notification');
-                const text = document.getElementById('notificationText');
-                
-                notification.style.background = type === 'success' ? 'var(--success)' : 'var(--error)';
-                text.textContent = message;
-                notification.style.display = 'flex';
-                
-                setTimeout(() => {
-                    notification.style.display = 'none';
-                }, 3000);
+            saveCart: () => { localStorage.setItem('handiweave_cart', JSON.stringify(APP_STATE.cart)); Utils.updateCartCount(); },
+            updateCartCount: () => { document.getElementById('cartCount').textContent = APP_STATE.cart.reduce((t, i) => t + i.quantity, 0); },
+            getCartTotal: () => APP_STATE.cart.reduce((t, i) => t + (PRODUCTS.find(p => p.id === i.id).price * i.quantity), 0)
+        };
+
+        const ViewManager = {
+            switchView: (view) => {
+                document.querySelectorAll('.section-container').forEach(s => s.classList.toggle('active-section', s.id === `${view}-view`));
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.toggle('active', l.dataset.view === view));
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                document.getElementById('navLinks').classList.remove('active');
             },
-            
-            saveCart: () => {
-                localStorage.setItem('handiweave_cart', JSON.stringify(APP_STATE.cart));
-                Utils.updateCartCount();
-            },
-            
-            updateCartCount: () => {
-                const count = APP_STATE.cart.reduce((total, item) => total + item.quantity, 0);
-                document.getElementById('cartCount').textContent = count;
-                document.getElementById('fixedCartCount').textContent = count;
-            },
-            
-            getCartTotal: () => {
-                return APP_STATE.cart.reduce((total, item) => {
-                    const product = PRODUCTS.find(p => p.id === item.productId);
-                    return total + (product.price * item.quantity);
-                }, 0);
-            },
-            
-            generateWhatsAppMessage: () => {
-                let message = `*Handiweave Order Request*%0A%0A`;
-                message += `*Order Details:*%0A`;
-                
-                APP_STATE.cart.forEach((item, index) => {
-                    const product = PRODUCTS.find(p => p.id === item.productId);
-                    message += `${index + 1}. ${product.name} (${item.color || 'Default'}) - Qty: ${item.quantity} - ₹${product.price * item.quantity}%0A`;
-                });
-                
-                message += `%0A*Total: ₹${Utils.getCartTotal()}*%0A%0A`;
-                message += `*Shipping Address:*%0A`;
-                message += `${APP_STATE.checkoutData.name || ''}%0A`;
-                message += `${APP_STATE.checkoutData.phone || ''}%0A`;
-                message += `${APP_STATE.checkoutData.address || ''}%0A`;
-                
-                if (APP_STATE.checkoutData.notes) {
-                    message += `%0A*Notes:* ${APP_STATE.checkoutData.notes}`;
-                }
-                
-                return encodeURIComponent(message);
+            filter: (cat) => {
+                APP_STATE.currentCategory = cat;
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.category === cat));
+                ProductRenderer.render();
             }
         };
 
-        // Cart Management
-        const CartManager = {
-            addToCart: (productId, color = 'Default') => {
-                const existingItem = APP_STATE.cart.find(item => 
-                    item.productId === productId && item.color === color
-                );
+        const ProductRenderer = {
+            render: () => {
+                const list = document.getElementById('productsContainer');
+                const q = document.getElementById('searchInput').value.toLowerCase();
+                const items = PRODUCTS.filter(p => (APP_STATE.currentCategory === 'all' || p.category === APP_STATE.currentCategory) && p.name.toLowerCase().includes(q));
                 
-                if (existingItem) {
-                    existingItem.quantity += 1;
-                } else {
-                    APP_STATE.cart.push({
-                        productId: productId,
-                        quantity: 1,
-                        color: color,
-                        addedAt: new Date().toISOString()
-                    });
-                }
-                
-                Utils.saveCart();
-                Utils.showNotification('Added to cart!');
-                
-                // Track add to cart event
-                if (typeof gtag !== 'undefined') {
-                    const product = PRODUCTS.find(p => p.id === productId);
-                    gtag('event', 'add_to_cart', {
-                        'items': [{
-                            'id': productId,
-                            'name': product.name,
-                            'category': product.category,
-                            'price': product.price,
-                            'quantity': 1
-                        }]
-                    });
-                }
-            },
-            
-            removeFromCart: (index) => {
-                APP_STATE.cart.splice(index, 1);
-                Utils.saveCart();
-                CartManager.renderCart();
-                Utils.showNotification('Item removed from cart');
-            },
-            
-            updateQuantity: (index, change) => {
-                const item = APP_STATE.cart[index];
-                item.quantity += change;
-                
-                if (item.quantity < 1) {
-                    CartManager.removeFromCart(index);
-                } else {
-                    Utils.saveCart();
-                    CartManager.renderCart();
-                }
-            },
-            
-            renderCart: () => {
-                const cartItemsList = document.getElementById('cartItemsList');
-                const cartTotalText = document.getElementById('cartTotalText');
-                
-                if (APP_STATE.cart.length === 0) {
-                    cartItemsList.innerHTML = `
-                        <div class="empty-state">
-                            <i class="fas fa-shopping-bag"></i>
-                            <p>Your cart is empty</p>
-                            <button onclick="switchView('shop'); closeAll();" 
-                                    style="background: var(--brand); color: white; padding: 10px 20px; border-radius: 4px; border: none; margin-top: 15px; cursor: pointer;">
-                                Continue Shopping
-                            </button>
+                list.innerHTML = items.map(p => `
+                    <article class="product-card">
+                        <div class="product-image" onclick="ProductManager.open(${p.id})">
+                            <img src="${p.images[0]}" alt="${p.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/F9F8F6/8C6A5D?text=Handiweave'">
                         </div>
-                    `;
-                    cartTotalText.textContent = '₹0';
-                    return;
-                }
-                
-                let total = 0;
-                let itemsHTML = '';
-                
-                APP_STATE.cart.forEach((item, index) => {
-                    const product = PRODUCTS.find(p => p.id === item.productId);
-                    const itemTotal = product.price * item.quantity;
-                    total += itemTotal;
-                    
-                    itemsHTML += `
-                        <div class="cart-item">
-                            <div class="cart-item-image">
-                                <img src="${product.images[0]}" alt="${product.name}" 
-                                     onerror="this.src='https://via.placeholder.com/100x100/F9F8F6/8C6A5D?text=Handiweave'">
+                        <div class="product-info">
+                            <h3 class="product-name" onclick="ProductManager.open(${p.id})">${p.name}</h3>
+                            <div class="price-container">
+                                <span class="original-price">${Utils.formatPrice(p.originalPrice)}</span>
+                                <span class="current-price">${Utils.formatPrice(p.price)}</span>
+                                <span class="discount-badge">${Utils.calculateDiscount(p.originalPrice, p.price)}% OFF</span>
                             </div>
-                            <div class="cart-item-details">
-                                <div class="cart-item-name">${product.name}</div>
-                                <div class="cart-item-price">${Utils.formatPrice(product.price)}</div>
-                                <div style="font-size: 0.8rem; color: #666;">Color: ${item.color}</div>
-                            </div>
-                            <div class="cart-item-controls">
-                                <div class="cart-item-quantity">
-                                    <button class="quantity-btn" onclick="CartManager.updateQuantity(${index}, -1)">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <span>${item.quantity}</span>
-                                    <button class="quantity-btn" onclick="CartManager.updateQuantity(${index}, 1)">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                                <button class="remove-btn" onclick="CartManager.removeFromCart(${index})">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
+                            <button class="add-to-cart-btn" onclick="CartManager.add(${p.id})">Add to Cart</button>
                         </div>
-                    `;
-                });
-                
-                cartItemsList.innerHTML = itemsHTML;
-                cartTotalText.textContent = Utils.formatPrice(total);
-                
-                // Update WhatsApp checkout link
-                const whatsappBtn = document.getElementById('whatsappCheckoutBtn');
-                whatsappBtn.href = `https://wa.me/919882212962?text=${Utils.generateWhatsAppMessage()}`;
-            },
-            
-            clearCart: () => {
-                APP_STATE.cart = [];
-                Utils.saveCart();
-                CartManager.renderCart();
+                    </article>
+                `).join('');
             }
         };
 
-        // Product Display
         const ProductManager = {
-            currentFilter: 'all',
-            
-            renderProducts: () => {
-                const container = document.getElementById('productsContainer');
-                const filteredProducts = this.currentFilter === 'all' 
-                    ? PRODUCTS 
-                    : PRODUCTS.filter(p => p.category === this.currentFilter);
-                
-                if (filteredProducts.length === 0) {
-                    container.innerHTML = `
-                        <div class="empty-state" style="grid-column: 1/-1;">
-                            <i class="fas fa-box-open"></i>
-                            <p>No products found in this category</p>
+            open: (id) => {
+                const p = PRODUCTS.find(x => x.id === id);
+                document.getElementById('modalContainer').innerHTML = `
+                    <div class="modal-images"><img src="${p.images[0]}" style="width:100%;border-radius:8px;"></div>
+                    <div class="modal-details">
+                        <h2>${p.name}</h2>
+                        <p style="color:var(--brand);font-weight:700;font-size:1.3rem;margin:10px 0;">${Utils.formatPrice(p.price)}</p>
+                        <p>${p.description}</p>
+                        <div style="margin-top:10px;padding-top:10px;border-top:1px solid #eee;">
+                            <p><strong>Material:</strong> ${p.material}</p>
+                            <p><strong>Care:</strong> ${p.care}</p>
                         </div>
-                    `;
-                    return;
-                }
-                
-                container.innerHTML = filteredProducts.map(product => {
-                    const discount = Utils.calculateDiscount(product.originalPrice, product.price);
-                    
-                    return `
-                        <div class="product-card">
-                            ${product.stock < 5 ? '<div class="product-badge">Low Stock</div>' : ''}
-                            <div class="product-image" onclick="ProductManager.openProduct(${product.id})">
-                                <img src="${product.images[0]}" 
-                                     alt="${product.name} - Handcrafted from Himachal" 
-                                     loading="lazy"
-                                     onerror="this.src='https://via.placeholder.com/400x400/F9F8F6/8C6A5D?text=Handiweave'">
-                            </div>
-                            <div class="product-info">
-                                <div class="product-name">${product.name}</div>
-                                <div class="price-container">
-                                    <span class="original-price">${Utils.formatPrice(product.originalPrice)}</span>
-                                    <span class="current-price">${Utils.formatPrice(product.price)}</span>
-                                    ${discount > 0 ? `<span class="discount-badge">${discount}% OFF</span>` : ''}
-                                </div>
-                                <button class="add-to-cart-btn" onclick="CartManager.addToCart(${product.id})">
-                                    <i class="fas fa-shopping-cart"></i> Add to Cart
-                                </button>
-                                <a href="${product.paymentLink}" 
-                                   class="buy-now-btn" 
-                                   target="_blank"
-                                   onclick="gtag('event', 'begin_checkout', {items: [{id: '${product.id}', name: '${product.name}'}]})">
-                                    <i class="fas fa-bolt"></i> Buy Now
-                                </a>
-                            </div>
+                        <div class="modal-actions" style="margin-top:20px; display:flex; gap:10px; flex-wrap:wrap;">
+                            <button class="add-to-cart-btn" style="margin-top:0; flex:1;" onclick="CartManager.add(${p.id}); document.getElementById('productModal').classList.remove('active'); document.getElementById('overlay').classList.remove('active');">Add to Cart</button>
+                            <a href="${p.paymentLink}" target="_blank" class="razorpay-btn" style="margin-top:0;">Buy Now</a>
                         </div>
-                    `;
-                }).join('');
-            },
-            
-            openProduct: (productId) => {
-                const product = PRODUCTS.find(p => p.id === productId);
-                const discount = Utils.calculateDiscount(product.originalPrice, product.price);
-                
-                const modalContent = document.getElementById('modalContent');
-                modalContent.innerHTML = `
-                    <div style="margin-bottom: 20px;">
-                        <img src="${product.images[0]}" 
-                             alt="${product.name}" 
-                             style="width: 100%; border-radius: 8px;"
-                             onerror="this.src='https://via.placeholder.com/500x500/F9F8F6/8C6A5D?text=Handiweave'">
-                    </div>
-                    <h2 style="margin-bottom: 10px;">${product.name}</h2>
-                    <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 15px;">
-                        <span style="font-size: 1.4rem; font-weight: bold; color: var(--brand);">
-                            ${Utils.formatPrice(product.price)}
-                        </span>
-                        ${product.originalPrice > product.price ? `
-                            <span style="text-decoration: line-through; color: #999;">
-                                ${Utils.formatPrice(product.originalPrice)}
-                            </span>
-                            <span style="background: var(--success); color: white; padding: 2px 10px; border-radius: 10px; font-size: 0.9rem;">
-                                ${discount}% OFF
-                            </span>
-                        ` : ''}
-                    </div>
-                    <p style="margin-bottom: 20px; color: #555;">${product.description}</p>
-                    
-                    <div style="background: var(--bg); padding: 15px; border-radius: 6px; margin-bottom: 20px;">
-                        <h4 style="margin-bottom: 10px;">Product Details</h4>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.9rem;">
-                            <div><strong>Material:</strong> ${product.material}</div>
-                            <div><strong>Care:</strong> ${product.care}</div>
-                            <div><strong>Size:</strong> ${product.size}</div>
-                            <div><strong>Weight:</strong> ${product.weight}</div>
-                            <div><strong>Stock:</strong> ${product.stock} available</div>
-                            <div><strong>Colors:</strong> ${product.colors.join(', ')}</div>
-                        </div>
-                    </div>
-                    
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        <button onclick="CartManager.addToCart(${product.id}); closeAll();" 
-                                style="flex: 1; background: var(--brand); color: white; padding: 12px; border-radius: 4px; border: none; cursor: pointer; font-weight: bold;">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <a href="${product.paymentLink}" 
-                           target="_blank"
-                           onclick="gtag('event', 'begin_checkout', {items: [{id: '${product.id}', name: '${product.name}'}]})"
-                           style="flex: 1; background: var(--rzp); color: white; padding: 12px; border-radius: 4px; text-decoration: none; text-align: center; font-weight: bold;">
-                            <i class="fas fa-bolt"></i> Buy Now
-                        </a>
-                    </div>
-                `;
-                
+                    </div>`;
                 document.getElementById('productModal').classList.add('active');
                 document.getElementById('overlay').classList.add('active');
             }
         };
 
-        // View Management
-        function switchView(view) {
-            // Update active nav link
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.toggle('active', link.textContent.trim().toLowerCase().includes(view));
-            });
-            
-            // Update active section
-            document.querySelectorAll('.section-container').forEach(section => {
-                section.classList.toggle('active-section', section.id === `${view}-view`);
-            });
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        const CartManager = {
+            add: (id) => {
+                const item = APP_STATE.cart.find(i => i.id === id);
+                item ? item.quantity++ : APP_STATE.cart.push({ id, quantity: 1 });
+                // Track Add to Cart Event
+                gtag('event', 'add_to_cart', {
+                    'event_category': 'ecommerce',
+                    'event_label': PRODUCTS.find(p => p.id === id).name,
+                    'value': PRODUCTS.find(p => p.id === id).price
+                });
+                Utils.saveCart(); Utils.showNotification("Added to Cart!");
+            },
+            remove: (id) => { APP_STATE.cart = APP_STATE.cart.filter(i => i.id !== id); Utils.saveCart(); CartManager.render(); },
+            update: (id, chg) => {
+                const item = APP_STATE.cart.find(i => i.id === id);
+                if (item) { item.quantity += chg; if (item.quantity < 1) CartManager.remove(id); else { Utils.saveCart(); CartManager.render(); } }
+            },
+            render: () => {
+                document.getElementById('cartItemsContainer').innerHTML = APP_STATE.cart.map(i => {
+                    const p = PRODUCTS.find(x => x.id === i.id);
+                    return `<div class="cart-item">
+                        <img src="${p.images[0]}" style="width:60px;height:60px;object-fit:cover;margin-right:10px;">
+                        <div style="flex:1;"><div>${p.name}</div><div style="color:var(--brand);font-weight:bold;">${Utils.formatPrice(p.price)}</div></div>
+                        <div style="display:flex;align-items:center;gap:10px;">
+                            <button onclick="CartManager.update(${i.id}, -1)">-</button><span>${i.quantity}</span><button onclick="CartManager.update(${i.id}, 1)">+</button>
+                        </div>
+                    </div>`;
+                }).join('');
+                document.getElementById('cartTotalPrice').textContent = Utils.formatPrice(Utils.getCartTotal());
+            },
+            checkout: (e) => {
+                e.preventDefault();
+                const name = document.getElementById('checkoutName').value.trim();
+                const email = document.getElementById('checkoutEmail').value.trim();
+                const phone = document.getElementById('checkoutPhone').value.trim();
+                const address = document.getElementById('checkoutAddress').value.trim();
+                const notes = document.getElementById('checkoutNotes').value.trim();
 
-        function filterProducts(category) {
-            ProductManager.currentFilter = category;
-            
-            // Update active tab
-            document.querySelectorAll('.category-tab').forEach(tab => {
-                tab.classList.toggle('active', tab.textContent.trim().toLowerCase().includes(category));
-            });
-            
-            // Render products
-            ProductManager.renderProducts();
-        }
-
-        // Cart Modal Management
-        function toggleCart(show) {
-            if (show) {
-                CartManager.renderCart();
-                document.getElementById('cartSidebar').classList.add('active');
-                document.getElementById('overlay').classList.add('active');
-            } else {
-                closeAll();
-            }
-        }
-
-        function closeAll() {
-            document.querySelectorAll('.active').forEach(el => {
-                if (el.id !== 'shop-view' && el.id !== 'about-view' && el.id !== 'contact-view' && el.id !== 'policies-view') {
-                    el.classList.remove('active');
+                if(!name || !email || !phone || !address) {
+                    return Utils.showNotification("Please fill all required fields");
                 }
-            });
-            document.getElementById('overlay').classList.remove('active');
-        }
 
-        // Checkout Management
-        function openCheckoutModal() {
-            if (APP_STATE.cart.length === 0) {
-                Utils.showNotification('Your cart is empty', 'error');
-                return;
-            }
-            
-            document.getElementById('checkoutModal').classList.add('active');
-            document.getElementById('overlay').classList.add('active');
-        }
-
-        // Form Handling
-        document.getElementById('contactForm')?.addEventListener('submit', function(e) {
-            const submitText = document.getElementById('submitText');
-            const submitLoading = document.getElementById('submitLoading');
-            
-            submitText.classList.add('hidden');
-            submitLoading.classList.remove('hidden');
-            
-            // Reset after 2 seconds (simulating submission)
-            setTimeout(() => {
-                submitText.classList.remove('hidden');
-                submitLoading.classList.add('hidden');
-                Utils.showNotification('Message sent successfully! We\'ll get back to you soon.');
-                this.reset();
-            }, 2000);
-        });
-
-        document.getElementById('checkoutForm')?.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Collect checkout data
-            APP_STATE.checkoutData = {
-                name: document.getElementById('checkoutName').value,
-                email: document.getElementById('checkoutEmail').value,
-                phone: document.getElementById('checkoutPhone').value,
-                address: document.getElementById('checkoutAddress').value,
-                notes: document.getElementById('checkoutNotes').value
-            };
-            
-            // For now, redirect to WhatsApp
-            const whatsappUrl = `https://wa.me/919882212962?text=${Utils.generateWhatsAppMessage()}`;
-            window.open(whatsappUrl, '_blank');
-            
-            // Close modal
-            closeAll();
-            
-            // Track purchase event
-            if (typeof gtag !== 'undefined') {
+                // Track Purchase Event
                 gtag('event', 'purchase', {
-                    'transaction_id': 'HW' + Date.now(),
-                    'value': Utils.getCartTotal(),
-                    'currency': 'INR',
-                    'items': APP_STATE.cart.map(item => {
-                        const product = PRODUCTS.find(p => p.id === item.productId);
-                        return {
-                            'id': product.id,
-                            'name': product.name,
-                            'category': product.category,
-                            'price': product.price,
-                            'quantity': item.quantity
-                        };
-                    })
+                    'event_category': 'ecommerce',
+                    'event_label': 'WhatsApp Checkout',
+                    'value': Utils.getCartTotal()
                 });
-            }
-            
-            // Clear cart after successful order
-            setTimeout(() => {
-                CartManager.clearCart();
-                Utils.showNotification('Order placed successfully! We\'ll contact you shortly.');
-            }, 1000);
-        });
 
-        // Initialize
-        window.onload = function() {
-            // Load products
-            ProductManager.renderProducts();
-            
-            // Update cart count
-            Utils.updateCartCount();
-            
-            // Add event listener for overlay click
-            document.getElementById('overlay').addEventListener('click', closeAll);
-            
-            // Initialize category tabs
-            document.querySelectorAll('.category-tab').forEach(tab => {
-                tab.addEventListener('click', function() {
-                    const category = this.textContent.trim().toLowerCase().replace('all products', 'all').replace('products', '').trim();
-                    filterProducts(category);
+                let msg = `*Order from Handiweave*%0A%0A`;
+                msg += `Name: ${name}%0AEmail: ${email}%0APhone: ${phone}%0AAddress: ${address}%0A`;
+                if(notes) msg += `Notes: ${notes}%0A`;
+                
+                msg += `%0A*Items:*%0A`;
+                APP_STATE.cart.forEach(i => { 
+                    const p = PRODUCTS.find(x => x.id === i.id); 
+                    msg += `${p.name} (x${i.quantity}) - ${Utils.formatPrice(p.price * i.quantity)}%0A`; 
                 });
-            });
-            
-            // Initialize navigation
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', function() {
-                    const view = this.textContent.trim().toLowerCase().replace('story', 'about');
-                    switchView(view);
-                });
-            });
-            
-            // Check if returning from payment
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has('payment_success')) {
-                Utils.showNotification('Payment successful! Your order is confirmed.');
-                CartManager.clearCart();
+                msg += `%0A*Total: ${Utils.formatPrice(Utils.getCartTotal())}*`;
+                
+                APP_STATE.cart = []; 
+                Utils.saveCart(); 
+                CartManager.render();
+                
+                document.getElementById('checkoutModal').classList.remove('active'); 
+                document.getElementById('overlay').classList.remove('active');
+                window.open(`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${msg}`, '_blank');
             }
-            
-            // Add view transition for better UX
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        switchView(targetId.replace('#', '').replace('-view', ''));
-                    }
-                });
-            });
         };
 
-        // Make functions available globally
-        window.switchView = switchView;
-        window.filterProducts = filterProducts;
-        window.toggleCart = toggleCart;
-        window.closeAll = closeAll;
-        window.openCheckoutModal = openCheckoutModal;
-        window.CartManager = CartManager;
-        window.ProductManager = ProductManager;
+        const App = {
+            init: () => {
+                Utils.updateCartCount();
+                ProductRenderer.render();
+                ['Shop', 'About', 'Contact'].forEach(page => {
+                    const el = document.getElementById(`footer${page}`);
+                    if(el) el.addEventListener('click', (e) => { e.preventDefault(); ViewManager.switchView(page.toLowerCase()); });
+                });
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            App.init();
+            document.getElementById('mobileMenuBtn').onclick = () => document.getElementById('navLinks').classList.toggle('active');
+            document.querySelectorAll('.tab-btn').forEach(b => b.onclick = () => ViewManager.filter(b.dataset.category));
+            document.getElementById('searchInput').oninput = (e) => { ProductRenderer.render(); };
+            document.getElementById('cartIcon').onclick = () => { CartManager.render(); document.getElementById('cartSidebar').classList.add('active'); document.getElementById('overlay').classList.add('active'); };
+            document.getElementById('closeCart').onclick = () => { document.getElementById('cartSidebar').classList.remove('active'); document.getElementById('overlay').classList.remove('active'); };
+            document.getElementById('overlay').onclick = () => { document.querySelectorAll('.active').forEach(e => e.classList.remove('active')); };
+            document.getElementById('closeModal').onclick = () => { document.getElementById('productModal').classList.remove('active'); document.getElementById('overlay').classList.remove('active'); };
+            document.getElementById('checkoutBtn').onclick = () => { 
+                if(APP_STATE.cart.length === 0) return alert("Cart is empty");
+                document.getElementById('cartSidebar').classList.remove('active'); 
+                document.getElementById('checkoutItems').innerHTML = APP_STATE.cart.map(i => `<div>${PRODUCTS.find(p=>p.id===i.id).name} x${i.quantity}</div>`).join('');
+                document.getElementById('checkoutTotalPrice').textContent = Utils.formatPrice(Utils.getCartTotal());
+                document.getElementById('checkoutModal').classList.add('active'); document.getElementById('overlay').classList.add('active'); 
+            };
+            document.getElementById('closeCheckout').onclick = () => { document.getElementById('checkoutModal').classList.remove('active'); document.getElementById('overlay').classList.remove('active'); };
+            document.getElementById('checkoutForm').onsubmit = CartManager.checkout;
+        });
     </script>
 </body>
 </html>
