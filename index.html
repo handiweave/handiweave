@@ -9,6 +9,8 @@
       gtag('config', 'G-SEWM8S3WL0');
     </script>
 
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#7A5548">
@@ -31,10 +33,10 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
         
-        /* ===== TRUST BANNER (Added) ===== */
+        /* ===== TRUST BANNER ===== */
         .trust-banner { background: var(--brand); color: white; padding: 8px; font-size: 0.75rem; text-align: center; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; font-weight: 600; letter-spacing: 0.5px; }
         
-        /* ===== HERO SECTION FIXED ===== */
+        /* ===== HERO SECTION ===== */
         .hero-section {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                         url('images/ar3.jpg') center/cover no-repeat;
@@ -291,6 +293,7 @@
         .checkout-modal.active { display: block; }
         .modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666; }
         
+        /* ===== CART SIDEBAR ===== */
         .cart-sidebar { position: fixed; top: 0; right: -400px; width: 100%; max-width: 380px; height: 100%; background: white; z-index: 2001; transition: right 0.3s ease; display: flex; flex-direction: column; box-shadow: -5px 0 25px rgba(0,0,0,0.1); }
         .cart-sidebar.active { right: 0; }
         
@@ -397,14 +400,14 @@
     <section id="about-view" class="section-container">
         <div class="story-container">
             <div class="story-image">
-                <img src="images/cr1.jpg" alt="Handiweave Certificate" loading="lazy">
+                <img src="images/cr1.jpg" alt="Handiweave Certificate" loading="lazy" onerror="this.src='https://via.placeholder.com/400x500/E8E4DF/7A5548?text=Story+Image'">
             </div>
             <div class="story-content">
                 <h2>Our Story</h2>
                 <div class="story-text">
                     <p>This is an effort to bring a hidden craft into the light — not just to be seen, but to be felt. Our mission is to empower the hands behind the loom, and to honour their quiet strength.</p>
                     <p>Each tana-bana carries a heartbeat — of tradition, of memory, of love passed down generations. We don't just weave shawls; we preserve stories that might otherwise fade into silence. Reviving heritage, we give it a direction that belongs to tomorrow.</p>
-                    <img src="images/she1.jpg" style="width:100%; border-radius:8px; margin: 1.5rem 0;" alt="Artisan Work">
+                    <img src="images/she1.jpg" style="width:100%; border-radius:8px; margin: 1.5rem 0;" alt="Artisan Work" onerror="this.style.display='none'">
                     <p>Every piece sustains a life, a family, a village — and keeps the local economy gently flowing. As the tana-bana grows, so does a legacy rooted in dignity and care.</p>
                     <p class="highlight-quote"><strong>This is not a product. It's a soul-wrapped heritage.</strong></p>
                 </div>
@@ -413,11 +416,14 @@
         
         <div style="margin-top: 4rem;">
             <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--brand-dark);">Behind the Loom</h3>
+            <p style="text-align: center; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; color: #666;">
+                From raw wool to woven wonder – every thread tells a story of patience and pride.
+            </p>
             <div class="gallery-grid">
-                <img src="images/ar1.jpg" alt="Artisan weaving" loading="lazy">
-                <img src="images/ar2.jpg" alt="Handcrafting process" loading="lazy">
-                <img src="images/ar3.jpg" alt="Detailed craftsmanship" loading="lazy">
-                <img src="images/she1.jpg" alt="Wool source" loading="lazy">
+                <img src="images/ar1.jpg" alt="Artisan weaving" loading="lazy" onerror="this.src='https://via.placeholder.com/300?text=Artisan'">
+                <img src="images/ar2.jpg" alt="Handcrafting process" loading="lazy" onerror="this.src='https://via.placeholder.com/300?text=Process'">
+                <img src="images/ar3.jpg" alt="Detailed craftsmanship" loading="lazy" onerror="this.src='https://via.placeholder.com/300?text=Detail'">
+                <img src="images/she1.jpg" alt="Wool source" loading="lazy" onerror="this.src='https://via.placeholder.com/300?text=Source'">
             </div>
         </div>
     </section>
@@ -490,7 +496,7 @@
         <div class="footer-links">
             <span class="footer-link" onclick="switchView('shop')">Wovens</span>
             <span class="footer-link" onclick="switchView('allseason')">All Season</span>
-            <span class="footer-link" onclick="switchView('about')">Our Story</span>
+            <span class="footer-link" onclick="switchView('about')">Story</span>
             <span class="footer-link" onclick="switchView('contact')">Contact</span>
             <span class="footer-link" onclick="switchView('policies')">Policies</span>
         </div>
@@ -531,9 +537,6 @@
             <div class="form-group"><input type="tel" id="customerPhone" class="form-control" placeholder="Phone Number *" required></div>
             <div class="form-group"><textarea id="customerAddress" class="form-control" placeholder="Shipping Address *" rows="3" required></textarea></div>
             <div id="paymentButtons" style="display:flex; gap:10px; margin-top:1.5rem;"></div>
-            <div id="singleItemMessage" style="display:none; background:#e8f4fc; padding:1rem; border-radius:6px; margin-top:1rem; font-size:0.9rem;">
-                <i class="fas fa-info-circle" style="color:#3395ff;"></i> <span>Only single items can be paid via Razorpay. For multiple items, use WhatsApp checkout.</span>
-            </div>
         </form>
     </div>
 
@@ -541,21 +544,21 @@
 
     <script>
         const PRODUCTS = [
-            { id: 1, name: "Merino Luxe I", price: 2499, img: "images/merino-luxe-1.jpg", paymentLink: "https://rzp.io/rzp/zuErYBO", type: "shawl", size: "40×90 inches", material: "Premium Merino Wool", care: "Hand wash below 40°C" },
-            { id: 2, name: "Merino Luxe II", price: 2499, img: "images/merino-luxe-2.jpg", paymentLink: "https://rzp.io/rzp/zuErYBO", type: "shawl", size: "40×90 inches", material: "Premium Merino Wool", care: "Hand wash below 40°C" },
-            { id: 3, name: "Royal Angora", price: 5499, img: "images/royal-angora-white.jpg", paymentLink: "https://rzp.io/rzp/Tot28zKI", type: "shawl", size: "40×90 inches", material: "Pure Angora Wool", care: "Dry clean recommended" },
-            { id: 4, name: "Daily Shawl SH1", price: 1499, img: "images/daily-shawl-1.jpg", paymentLink: "https://rzp.io/rzp/ANjKAv1", type: "shawl", size: "40×90 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
-            { id: 5, name: "Daily Shawl SH2", price: 1199, img: "images/daily-shawl-2.jpg", paymentLink: "https://rzp.io/rzp/21e1fWfI", type: "shawl", size: "40×90 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
-            { id: 6, name: "Daily Shawl SH3", price: 1199, img: "images/daily-shawl-3.jpg", paymentLink: "https://rzp.io/rzp/21e1fWfI", type: "shawl", size: "40×90 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
-            { id: 7, name: "Trendy Stole ST1", price: 699, img: "images/stole-trendy-1.jpg", paymentLink: "https://rzp.io/rzp/3TgywOm", type: "stole", size: "30×80 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
-            { id: 8, name: "Trendy Stole ST2", price: 799, img: "images/stole-trendy-2.jpg", paymentLink: "https://rzp.io/rzp/S4sfp5y", type: "stole", size: "30×80 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
-            { id: 9, name: "Trendy Stole ST3", price: 799, img: "images/stole-trendy-3.jpg", paymentLink: "https://rzp.io/rzp/S4sfp5y", type: "stole", size: "30×80 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
-            { id: 10, name: "Heritage Wall Art I", price: 1200, img: "images/2wall.jpg", paymentLink: "https://rzp.io/rzp/tSEaQin3", type: "decor", size: "15×19 inches", material: "Pure Wool, Wood, Glass", care: "Dust with soft cloth" },
-            { id: 11, name: "Heritage Wall Art II", price: 1800, img: "images/3wall.jpg", paymentLink: "https://rzp.io/rzp/jrxu0ZIq", type: "decor", size: "15×19 inches", material: "Pure Wool, Wood, Glass", care: "Dust with soft cloth" }
+            { id: 1, name: "Merino Luxe I", price: 2499, img: "images/merino-luxe-1.jpg", type: "shawl", size: "40×90 inches", material: "Premium Merino Wool", care: "Hand wash below 40°C" },
+            { id: 2, name: "Merino Luxe II", price: 2499, img: "images/merino-luxe-2.jpg", type: "shawl", size: "40×90 inches", material: "Premium Merino Wool", care: "Hand wash below 40°C" },
+            { id: 3, name: "Royal Angora", price: 5499, img: "images/royal-angora-white.jpg", type: "shawl", size: "40×90 inches", material: "Pure Angora Wool", care: "Dry clean recommended" },
+            { id: 4, name: "Daily Shawl SH1", price: 1499, img: "images/daily-shawl-1.jpg", type: "shawl", size: "40×90 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
+            { id: 5, name: "Daily Shawl SH2", price: 1199, img: "images/daily-shawl-2.jpg", type: "shawl", size: "40×90 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
+            { id: 6, name: "Daily Shawl SH3", price: 1199, img: "images/daily-shawl-3.jpg", type: "shawl", size: "40×90 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
+            { id: 7, name: "Trendy Stole ST1", price: 699, img: "images/stole-trendy-1.jpg", type: "stole", size: "30×80 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
+            { id: 8, name: "Trendy Stole ST2", price: 799, img: "images/stole-trendy-2.jpg", type: "stole", size: "30×80 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
+            { id: 9, name: "Trendy Stole ST3", price: 799, img: "images/stole-trendy-3.jpg", type: "stole", size: "30×80 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
+            { id: 10, name: "Heritage Wall Art I", price: 1200, img: "images/2wall.jpg", type: "decor", size: "15×19 inches", material: "Pure Wool, Wood, Glass", care: "Dust with soft cloth" },
+            { id: 11, name: "Heritage Wall Art II", price: 1800, img: "images/3wall.jpg", type: "decor", size: "15×19 inches", material: "Pure Wool, Wood, Glass", care: "Dust with soft cloth" }
         ];
 
         let cart = JSON.parse(localStorage.getItem('handiweave_cart')) || [];
-        let checkoutData = {};
+        const RAZORPAY_KEY = "rzp_live_RuhteYn3JzTrhD";
 
         function formatPrice(price) { return '₹' + price.toLocaleString('en-IN'); }
         function showNotification(message) {
@@ -569,18 +572,21 @@
         function getCartTotal() { return cart.reduce((t, i) => t + (PRODUCTS.find(p => p.id === i.id).price * i.quantity), 0); }
 
         function renderProducts() {
-            document.getElementById('productsContainer').innerHTML = PRODUCTS.map(p => `
+            document.getElementById('productsContainer').innerHTML = PRODUCTS.map(p => {
+                let careIcon = '<i class="fas fa-temperature-low"></i>';
+                if (p.type === 'decor') careIcon = '<i class="fas fa-home"></i>';
+                return `
                 <div class="product-card">
                     <div class="product-image"><img src="${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/400x300?text=Handiweave'"></div>
                     <div class="product-info">
                         <div class="product-name">${p.name}</div>
                         <div class="product-price">${formatPrice(p.price)}</div>
                         <div class="product-details"><div>Size: ${p.size}</div><div>${p.material}</div></div>
-                        <div class="care-info"><i class="fas fa-hand-sparkles"></i> ${p.care}</div>
+                        <div class="care-info">${careIcon} ${p.care}</div>
                         <button class="add-to-cart-btn" onclick="addToCart(${p.id})">Add to Cart</button>
                     </div>
-                </div>
-            `).join('');
+                </div>`;
+            }).join('');
         }
 
         function switchView(view) {
@@ -638,88 +644,74 @@
                 showNotification('Your cart is empty');
                 return;
             }
-            
             let total = getCartTotal();
             let summaryHTML = '<h4 style="margin-bottom:1rem;">Order Summary:</h4>';
             cart.forEach((item, index) => {
                 const p = PRODUCTS.find(x => x.id === item.id);
                 summaryHTML += `<div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;font-size:0.9rem;"><span>${index+1}. ${p.name} x${item.quantity}</span><span>${formatPrice(p.price * item.quantity)}</span></div>`;
             });
-            
             document.getElementById('checkoutSummary').innerHTML = summaryHTML;
             document.getElementById('checkoutTotal').textContent = formatPrice(total);
             
+            // PAY WITH RAZORPAY LOGIC FOR ALL ITEMS (Single or Multiple)
             const btns = document.getElementById('paymentButtons');
-            const msg = document.getElementById('singleItemMessage');
-            
-            // Logic: Check total QUANTITY of items
-            const totalQty = cart.reduce((t, i) => t + i.quantity, 0);
-            
-            if (totalQty === 1) {
-                // Exactly 1 item -> Razorpay
-                btns.innerHTML = `
-                    <button type="button" onclick="processRazorpayPayment()" style="flex:1; background:var(--rzp); color:white; padding:14px; border-radius:4px; font-weight:700; border:none; cursor:pointer;">
-                        <i class="fas fa-credit-card"></i> Pay with Razorpay
-                    </button>
-                    <button type="button" onclick="whatsappCheckout()" style="flex:1; background:var(--wa); color:white; padding:14px; border-radius:4px; font-weight:700; border:none; cursor:pointer;">
-                        <i class="fab fa-whatsapp"></i> WhatsApp Order
-                    </button>
-                `;
-                msg.style.display = 'none';
-            } else {
-                // More than 1 item -> WhatsApp Only
-                btns.innerHTML = `
-                    <button type="button" onclick="whatsappCheckout()" style="width:100%; background:var(--wa); color:white; padding:14px; border-radius:4px; font-weight:700; border:none; cursor:pointer;">
-                        <i class="fab fa-whatsapp"></i> Order via WhatsApp
-                    </button>
-                `;
-                msg.style.display = 'block';
-            }
+            btns.innerHTML = `<button type="button" onclick="payWithRazorpay()" style="width:100%;background:var(--rzp);color:white;padding:14px;border-radius:4px;border:none;cursor:pointer;font-weight:700;font-size:1rem;"><i class="fas fa-lock"></i> Pay Now (${formatPrice(total)})</button>`;
             
             document.getElementById('checkoutModal').classList.add('active');
             document.getElementById('overlay').classList.add('active');
             document.body.style.overflow = 'hidden';
             
             document.getElementById('checkoutForm').reset();
-            checkoutData = {};
         }
         function closeCheckout() { document.getElementById('checkoutModal').classList.remove('active'); document.getElementById('overlay').classList.remove('active'); document.body.style.overflow = 'auto'; }
 
-        function processRazorpayPayment() {
+        // NEW RAZORPAY LOGIC (No backend required for this flow)
+        function payWithRazorpay() {
             const name = document.getElementById('customerName').value.trim();
             const phone = document.getElementById('customerPhone').value.trim();
+            const email = document.getElementById('customerEmail').value.trim();
             const address = document.getElementById('customerAddress').value.trim();
-            if(!name || !phone || !address) return showNotification('Please fill Name, Phone & Address');
             
-            // Logic: Double check quantity
-            const totalQty = cart.reduce((t, i) => t + i.quantity, 0);
+            if(!name || !email || !phone || !address) return showNotification('Please fill all details');
             
-            if (totalQty === 1) {
-                const product = PRODUCTS.find(p => p.id === cart[0].id);
-                showNotification('Redirecting to secure payment...');
-                setTimeout(() => {
-                    window.open(product.paymentLink, '_blank');
+            const totalAmount = getCartTotal() * 100; // Convert to paise
+            
+            var options = {
+                "key": RAZORPAY_KEY,
+                "amount": totalAmount, 
+                "currency": "INR",
+                "name": "Handiweave",
+                "description": "Order Payment",
+                "image": "logo.png",
+                "handler": function (response){
+                    // Success Handler
+                    // Send to Formspree
+                    const formData = new FormData();
+                    formData.append('name', name);
+                    formData.append('email', email);
+                    formData.append('message', `New Order! Payment ID: ${response.razorpay_payment_id}. Items: ${JSON.stringify(cart)}. Address: ${address}. Phone: ${phone}`);
+                    
+                    fetch("https://formspree.io/f/xojagdvw", { method: "POST", body: formData, headers: {'Accept': 'application/json'} });
+                    
+                    // Success UI
+                    cart = [];
+                    saveCart();
                     closeCheckout();
-                }, 500);
-            } else {
-                showNotification('For multiple items, please use WhatsApp checkout');
-            }
-        }
-
-        function whatsappCheckout() {
-            const name = document.getElementById('customerName').value.trim();
-            const phone = document.getElementById('customerPhone').value.trim();
-            const address = document.getElementById('customerAddress').value.trim();
-            if(!name || !phone || !address) return showNotification('Please fill Name, Phone & Address');
-            
-            let msg = `*Order Request*%0AName: ${name}%0APhone: ${phone}%0AAddress: ${address}%0A%0AItems:%0A`;
-            cart.forEach(i => {
-                const p = PRODUCTS.find(x => x.id === i.id);
-                msg += `${p.name} x${i.quantity}%0A`;
-            });
-            msg += `%0ATotal: ${formatPrice(getCartTotal())}`;
-            window.open(`https://wa.me/919882212962?text=${msg}`, '_blank');
-            closeCheckout();
+                    renderCart();
+                    alert("Payment Successful! Order ID: " + response.razorpay_payment_id);
+                    showNotification("Order Placed Successfully! ❤️");
+                },
+                "prefill": {
+                    "name": name,
+                    "email": email,
+                    "contact": phone
+                },
+                "theme": {
+                    "color": "#7A5548"
+                }
+            };
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
         }
 
         function togglePolicy(index) {
@@ -743,5 +735,4 @@
         });
     </script>
 </body>
-
-</html> 
+</html>
