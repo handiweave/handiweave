@@ -34,7 +34,7 @@
         body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
         
         /* ===== TRUST BANNER ===== */
-        .trust-banner { background: var(--brand); color: white; padding: 8px; font-size: 0.75rem; text-align: center; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; font-weight: 600; letter-spacing: 0.5px; }
+        .trust-banner { background: var(--brand); color: white; padding: 8px; font-size: 0.75rem; text-align: center; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; font-weight: 600; letter-spacing: 0.5px; z-index: 1002; position: relative; }
         
         /* ===== HERO SECTION FIXED (Dark Overlay, 60vh Height, Round Logo) ===== */
         .hero-section {
@@ -535,7 +535,8 @@
             <div class="form-group"><input type="email" id="customerEmail" class="form-control" placeholder="Email Address *" required></div>
             <div class="form-group"><input type="tel" id="customerPhone" class="form-control" placeholder="Phone Number *" required></div>
             <div class="form-group"><textarea id="customerAddress" class="form-control" placeholder="Shipping Address *" rows="3" required></textarea></div>
-            <div id="paymentButtons" style="display:flex; gap:10px; margin-top:1.5rem;"></div>
+            
+            <div id="paymentButtons" style="margin-top:1.5rem;"></div>
         </form>
     </div>
 
@@ -557,7 +558,7 @@
         ];
 
         let cart = JSON.parse(localStorage.getItem('handiweave_cart')) || [];
-        // RAZORPAY KEY (LIVE)
+        // YOUR LIVE RAZORPAY KEY
         const RAZORPAY_KEY = "rzp_live_RuhteYn3JzTrhD";
 
         function formatPrice(price) { return '₹' + price.toLocaleString('en-IN'); }
@@ -654,7 +655,7 @@
             document.getElementById('checkoutSummary').innerHTML = summaryHTML;
             document.getElementById('checkoutTotal').textContent = formatPrice(total);
             
-            // ALWAYS RAZORPAY
+            // ALWAYS RAZORPAY BUTTON
             const btns = document.getElementById('paymentButtons');
             btns.innerHTML = `<button type="button" onclick="payWithRazorpay()" style="width:100%;background:var(--rzp);color:white;padding:14px;border-radius:4px;border:none;cursor:pointer;font-weight:700;font-size:1rem;"><i class="fas fa-lock"></i> Pay Now (${formatPrice(total)})</button>`;
             
@@ -679,12 +680,13 @@
             
             var options = {
                 "key": RAZORPAY_KEY,
-                "amount": totalAmount,
+                "amount": totalAmount, 
                 "currency": "INR",
                 "name": "Handiweave",
-                "description": "Payment for Order",
+                "description": "Order Payment",
                 "image": "logo.png",
                 "handler": function (response){
+                    // Success Handler
                     // Send to Formspree
                     const formData = new FormData();
                     formData.append('name', name);
@@ -693,6 +695,7 @@
                     
                     fetch("https://formspree.io/f/xojagdvw", { method: "POST", body: formData, headers: {'Accept': 'application/json'} });
                     
+                    // Success UI
                     cart = [];
                     saveCart();
                     closeCheckout();
