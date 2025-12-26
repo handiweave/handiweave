@@ -36,7 +36,7 @@
         /* ===== TRUST BANNER ===== */
         .trust-banner { background: var(--brand); color: white; padding: 8px; font-size: 0.75rem; text-align: center; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; font-weight: 600; letter-spacing: 0.5px; }
         
-        /* ===== HERO SECTION ===== */
+        /* ===== HERO SECTION FIXED (Dark Overlay, 60vh Height, Round Logo) ===== */
         .hero-section {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                         url('images/ar3.jpg') center/cover no-repeat;
@@ -67,7 +67,7 @@
             margin: 0 auto;
             box-shadow: 0 8px 25px rgba(0,0,0,0.4);
             border: 3px solid var(--gold);
-            padding: 15px;
+            padding: 10px;
         }
 
         .hero-logo img {
@@ -293,7 +293,6 @@
         .checkout-modal.active { display: block; }
         .modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666; }
         
-        /* ===== CART SIDEBAR ===== */
         .cart-sidebar { position: fixed; top: 0; right: -400px; width: 100%; max-width: 380px; height: 100%; background: white; z-index: 2001; transition: right 0.3s ease; display: flex; flex-direction: column; box-shadow: -5px 0 25px rgba(0,0,0,0.1); }
         .cart-sidebar.active { right: 0; }
         
@@ -400,7 +399,7 @@
     <section id="about-view" class="section-container">
         <div class="story-container">
             <div class="story-image">
-                <img src="images/cr1.jpg" alt="Handiweave Certificate" loading="lazy" onerror="this.src='https://via.placeholder.com/400x500/E8E4DF/7A5548?text=Story+Image'">
+                <img src="images/cr1.jpg" alt="Handiweave Certificate" loading="lazy" onerror="this.src='https://via.placeholder.com/400x500/E8E4DF/7A5548?text=Certificate'">
             </div>
             <div class="story-content">
                 <h2>Our Story</h2>
@@ -420,10 +419,10 @@
                 From raw wool to woven wonder – every thread tells a story of patience and pride.
             </p>
             <div class="gallery-grid">
-                <img src="images/ar1.jpg" alt="Artisan weaving" loading="lazy" onerror="this.src='https://via.placeholder.com/300?text=Artisan'">
+                <img src="images/ar1.jpg" alt="Artisan weaving" loading="lazy" onerror="this.src='https://via.placeholder.com/300?text=Weaving'">
                 <img src="images/ar2.jpg" alt="Handcrafting process" loading="lazy" onerror="this.src='https://via.placeholder.com/300?text=Process'">
                 <img src="images/ar3.jpg" alt="Detailed craftsmanship" loading="lazy" onerror="this.src='https://via.placeholder.com/300?text=Detail'">
-                <img src="images/she1.jpg" alt="Wool source" loading="lazy" onerror="this.src='https://via.placeholder.com/300?text=Source'">
+                <img src="images/she1.jpg" alt="Wool source" loading="lazy" onerror="this.src='https://via.placeholder.com/300?text=Wool'">
             </div>
         </div>
     </section>
@@ -544,20 +543,21 @@
 
     <script>
         const PRODUCTS = [
-            { id: 1, name: "Merino Luxe I", price: 2499, img: "images/merino-luxe-1.jpg", type: "shawl", size: "40×90 inches", material: "Premium Merino Wool", care: "Hand wash below 40°C" },
-            { id: 2, name: "Merino Luxe II", price: 2499, img: "images/merino-luxe-2.jpg", type: "shawl", size: "40×90 inches", material: "Premium Merino Wool", care: "Hand wash below 40°C" },
-            { id: 3, name: "Royal Angora", price: 5499, img: "images/royal-angora-white.jpg", type: "shawl", size: "40×90 inches", material: "Pure Angora Wool", care: "Dry clean recommended" },
-            { id: 4, name: "Daily Shawl SH1", price: 1499, img: "images/daily-shawl-1.jpg", type: "shawl", size: "40×90 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
-            { id: 5, name: "Daily Shawl SH2", price: 1199, img: "images/daily-shawl-2.jpg", type: "shawl", size: "40×90 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
-            { id: 6, name: "Daily Shawl SH3", price: 1199, img: "images/daily-shawl-3.jpg", type: "shawl", size: "40×90 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
-            { id: 7, name: "Trendy Stole ST1", price: 699, img: "images/stole-trendy-1.jpg", type: "stole", size: "30×80 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
-            { id: 8, name: "Trendy Stole ST2", price: 799, img: "images/stole-trendy-2.jpg", type: "stole", size: "30×80 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
-            { id: 9, name: "Trendy Stole ST3", price: 799, img: "images/stole-trendy-3.jpg", type: "stole", size: "30×80 inches", material: "80% Wool, 20% Acrylic", care: "Machine wash below 40°C" },
-            { id: 10, name: "Heritage Wall Art I", price: 1200, img: "images/2wall.jpg", type: "decor", size: "15×19 inches", material: "Pure Wool, Wood, Glass", care: "Dust with soft cloth" },
-            { id: 11, name: "Heritage Wall Art II", price: 1800, img: "images/3wall.jpg", type: "decor", size: "15×19 inches", material: "Pure Wool, Wood, Glass", care: "Dust with soft cloth" }
+            { id: 1, name: "Merino Luxe I", price: 2499, img: "images/merino-luxe-1.jpg", paymentLink: "https://rzp.io/rzp/zuErYBO", type: "shawl", size: "40×90 inches", material: "Premium Merino Wool", care: "Hand wash below 40°C, mild detergent" },
+            { id: 2, name: "Merino Luxe II", price: 2499, img: "images/merino-luxe-2.jpg", paymentLink: "https://rzp.io/rzp/zuErYBO", type: "shawl", size: "40×90 inches", material: "Premium Merino Wool", care: "Hand wash below 40°C, mild detergent" },
+            { id: 3, name: "Royal Angora", price: 5499, img: "images/royal-angora-white.jpg", paymentLink: "https://rzp.io/rzp/Tot28zKI", type: "shawl", size: "40×90 inches", material: "Pure Angora Wool", care: "Dry clean recommended" },
+            { id: 4, name: "Daily Shawl SH1", price: 1499, img: "images/daily-shawl-1.jpg", paymentLink: "https://rzp.io/rzp/ANjKAv1", type: "shawl", size: "40×90 inches", material: "80% Wool, 20% Acrylic", care: "Hand or machine wash below 40°C" },
+            { id: 5, name: "Daily Shawl SH2", price: 1199, img: "images/daily-shawl-2.jpg", paymentLink: "https://rzp.io/rzp/21e1fWfI", type: "shawl", size: "40×90 inches", material: "80% Wool, 20% Acrylic", care: "Hand or machine wash below 40°C" },
+            { id: 6, name: "Daily Shawl SH3", price: 1199, img: "images/daily-shawl-3.jpg", paymentLink: "https://rzp.io/rzp/21e1fWfI", type: "shawl", size: "40×90 inches", material: "80% Wool, 20% Acrylic", care: "Hand or machine wash below 40°C" },
+            { id: 7, name: "Trendy Stole ST1", price: 699, img: "images/stole-trendy-1.jpg", paymentLink: "https://rzp.io/rzp/3TgywOm", type: "stole", size: "30×80 inches", material: "80% Wool, 20% Acrylic", care: "Hand or machine wash below 40°C" },
+            { id: 8, name: "Trendy Stole ST2", price: 799, img: "images/stole-trendy-2.jpg", paymentLink: "https://rzp.io/rzp/S4sfp5y", type: "stole", size: "30×80 inches", material: "80% Wool, 20% Acrylic", care: "Hand or machine wash below 40°C" },
+            { id: 9, name: "Trendy Stole ST3", price: 799, img: "images/stole-trendy-3.jpg", paymentLink: "https://rzp.io/rzp/S4sfp5y", type: "stole", size: "30×80 inches", material: "80% Wool, 20% Acrylic", care: "Hand or machine wash below 40°C" },
+            { id: 10, name: "Heritage Wall Art I", price: 1200, img: "images/2wall.jpg", paymentLink: "https://rzp.io/rzp/tSEaQin3", type: "decor", size: "15×19 inches (per panel)", material: "Pure Wool, Wooden Frame, Glass Panel", care: "Dust with soft cloth. Avoid direct sunlight." },
+            { id: 11, name: "Heritage Wall Art II", price: 1800, img: "images/3wall.jpg", paymentLink: "https://rzp.io/rzp/jrxu0ZIq", type: "decor", size: "15×19 inches (per panel)", material: "Pure Wool, Wooden Frame, Glass Panel", care: "Dust with soft cloth. Avoid direct sunlight." }
         ];
 
         let cart = JSON.parse(localStorage.getItem('handiweave_cart')) || [];
+        // RAZORPAY KEY (LIVE)
         const RAZORPAY_KEY = "rzp_live_RuhteYn3JzTrhD";
 
         function formatPrice(price) { return '₹' + price.toLocaleString('en-IN'); }
@@ -581,7 +581,7 @@
                     <div class="product-info">
                         <div class="product-name">${p.name}</div>
                         <div class="product-price">${formatPrice(p.price)}</div>
-                        <div class="product-details"><div>Size: ${p.size}</div><div>${p.material}</div></div>
+                        <div class="product-details"><div><strong>Size:</strong> ${p.size}</div><div><strong>Material:</strong> ${p.material}</div></div>
                         <div class="care-info">${careIcon} ${p.care}</div>
                         <button class="add-to-cart-btn" onclick="addToCart(${p.id})">Add to Cart</button>
                     </div>
@@ -639,6 +639,7 @@
         function openCart() { renderCart(); document.getElementById('cartSidebar').classList.add('active'); document.getElementById('overlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
         function closeCart() { document.getElementById('cartSidebar').classList.remove('active'); document.getElementById('overlay').classList.remove('active'); document.body.style.overflow = 'auto'; }
 
+        // ============ UNIVERSAL CHECKOUT LOGIC ============
         function openCheckout() {
             if (cart.length === 0) {
                 showNotification('Your cart is empty');
@@ -653,7 +654,7 @@
             document.getElementById('checkoutSummary').innerHTML = summaryHTML;
             document.getElementById('checkoutTotal').textContent = formatPrice(total);
             
-            // PAY WITH RAZORPAY LOGIC FOR ALL ITEMS (Single or Multiple)
+            // ALWAYS RAZORPAY
             const btns = document.getElementById('paymentButtons');
             btns.innerHTML = `<button type="button" onclick="payWithRazorpay()" style="width:100%;background:var(--rzp);color:white;padding:14px;border-radius:4px;border:none;cursor:pointer;font-weight:700;font-size:1rem;"><i class="fas fa-lock"></i> Pay Now (${formatPrice(total)})</button>`;
             
@@ -665,7 +666,7 @@
         }
         function closeCheckout() { document.getElementById('checkoutModal').classList.remove('active'); document.getElementById('overlay').classList.remove('active'); document.body.style.overflow = 'auto'; }
 
-        // NEW RAZORPAY LOGIC (No backend required for this flow)
+        // RAZORPAY LOGIC (Handles any number of items)
         function payWithRazorpay() {
             const name = document.getElementById('customerName').value.trim();
             const phone = document.getElementById('customerPhone').value.trim();
@@ -678,22 +679,20 @@
             
             var options = {
                 "key": RAZORPAY_KEY,
-                "amount": totalAmount, 
+                "amount": totalAmount,
                 "currency": "INR",
                 "name": "Handiweave",
-                "description": "Order Payment",
+                "description": "Payment for Order",
                 "image": "logo.png",
                 "handler": function (response){
-                    // Success Handler
                     // Send to Formspree
                     const formData = new FormData();
                     formData.append('name', name);
                     formData.append('email', email);
-                    formData.append('message', `New Order! Payment ID: ${response.razorpay_payment_id}. Items: ${JSON.stringify(cart)}. Address: ${address}. Phone: ${phone}`);
+                    formData.append('message', `PAYMENT SUCCESS! ID: ${response.razorpay_payment_id}. Amount: ${totalAmount/100}. Items: ${JSON.stringify(cart)}. Address: ${address}. Phone: ${phone}`);
                     
                     fetch("https://formspree.io/f/xojagdvw", { method: "POST", body: formData, headers: {'Accept': 'application/json'} });
                     
-                    // Success UI
                     cart = [];
                     saveCart();
                     closeCheckout();
