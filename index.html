@@ -17,7 +17,7 @@
     
     <title>Handiweave | Traditions and Trends</title>
     
-    <link rel="icon" href="images/favicon.png" type="image/png">
+    <link rel="icon" href="favicon.png" type="image/png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,10 +37,11 @@
         /* ===== UTILITIES ===== */
         .trust-banner { background: var(--brand); color: white; padding: 8px; font-size: 0.75rem; text-align: center; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; font-weight: 600; letter-spacing: 0.5px; z-index: 1002; position: relative; }
         
-        /* ===== HERO SECTION (UNCHANGED) ===== */
+        /* ===== HERO SECTION (Path Fixed) ===== */
         .hero-section {
+            /* Removed 'images/' from url */
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('images/ar3.jpg') center/cover no-repeat;
+                        url('ar3.jpg') center/cover no-repeat;
             min-height: 60vh; 
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: white; padding: 2rem 1rem; position: relative;
@@ -214,7 +215,7 @@
     <section class="hero-section" id="home">
         <div class="hero-logo-container">
             <div class="hero-logo">
-                <img src="images/logo.png" alt="Handiweave Logo" onerror="this.style.display='none'">
+                <img src="logo.png" alt="Handiweave Logo" onerror="this.style.display='none'">
             </div>
         </div>
         <h1 class="hero-title">HANDIWEAVE</h1>
@@ -284,14 +285,14 @@
     <section id="about-view" class="section-container">
         <div class="story-container">
             <div class="story-image">
-                <img src="images/cr1.jpg" alt="Handiweave Certificate" loading="lazy">
+                <img src="cr1.jpg" alt="Handiweave Certificate" loading="lazy">
             </div>
             <div class="story-content">
                 <h2>Our Story</h2>
                 <div class="story-text">
                     <p>This is an effort to bring a hidden craft into the light — not just to be seen, but to be felt. Our mission is to empower the hands behind the loom, and to honour their quiet strength.</p>
                     <p>Each tana-bana carries a heartbeat — of tradition, of memory, of love passed down generations. We don't just weave shawls; we preserve stories that might otherwise fade into silence.</p>
-                    <img src="images/she1.jpg" style="width:100%; border-radius:8px; margin: 1.5rem 0;" alt="Artisan Work">
+                    <img src="she1.jpg" style="width:100%; border-radius:8px; margin: 1.5rem 0;" alt="Artisan Work">
                     <p class="highlight-quote"><strong>This is not a product. It's a soul-wrapped heritage.</strong></p>
                 </div>
             </div>
@@ -300,10 +301,10 @@
         <div style="margin-top: 4rem;">
             <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--brand-dark);">Behind the Loom</h3>
             <div class="gallery-grid">
-                <img src="images/ar1.jpg" alt="Artisan weaving" loading="lazy">
-                <img src="images/ar2.jpg" alt="Handcrafting process" loading="lazy">
-                <img src="images/ar3.jpg" alt="Detailed craftsmanship" loading="lazy">
-                <img src="images/she1.jpg" alt="Wool source" loading="lazy">
+                <img src="ar1.jpg" alt="Artisan weaving" loading="lazy">
+                <img src="ar2.jpg" alt="Handcrafting process" loading="lazy">
+                <img src="ar3.jpg" alt="Detailed craftsmanship" loading="lazy">
+                <img src="she1.jpg" alt="Wool source" loading="lazy">
             </div>
         </div>
     </section>
@@ -414,7 +415,7 @@
     <div class="notification" id="notification"><i class="fas fa-check-circle"></i> <span id="notificationText"></span></div>
 
     <script>
-        // 1. DATA: Full Inventory from Excel (Corrected Filenames)
+        // 1. DATA: Full Inventory (Corrected Filenames, No 'images/' prefix)
         const PRODUCTS = [
     {
         "id": 1,
@@ -422,23 +423,19 @@
         "category": "Wovens",
         "price": 2799,
         "originalPrice": 3999,
-        "img": "images/3 patti kullu himachali handloom shawl1.1.jpg",
+        "img": "3 patti kullu himachali handloom shawl1.1.jpg",
         "gallery": [
-            "images/3 patti kullu himachali handloom shawl1.1.jpg",
-            "images/3 patti kullu himachali handloom shawl1.2.jpg",
-            "images/3 patti kullu himachali handloom shawl1.3.jpg"
+            "3 patti kullu himachali handloom shawl1.1.jpg",
+            "3 patti kullu himachali handloom shawl1.2.jpg",
+            "3 patti kullu himachali handloom shawl1.3.jpg"
         ],
         "options": {
             "type": "Color",
-            "values": [
-                "Black",
-                "White",
-                "Grey(Shown)"
-            ]
+            "values": ["Black", "White", "Grey(Shown)"]
         },
         "shortDesc": "Elegant tripple (3) patti design.",
-        "desc": "Handwoven wool Shawl with a classic tripple patti design. Lightweight yet warm.Wrap yourself in the authentic warmth of the Kullu Valley. Meticulously hand-woven by local artisans, this shawl combines a solid, cozy base with vibrant, traditional patti (borders). It’s designed to provide superior insulation during cold winters while keeping you elegant. A perfect gift of heritage that never goes out of fashion.",
-        "care": "Hand or Machine wash below 40 degree, use mild deteregent. Use Napthalene ball/ Camphor (Kapur) (when not in use).",
+        "desc": "Handwoven wool Shawl with a classic tripple patti design. Lightweight yet warm. Wrap yourself in the authentic warmth of the Kullu Valley. Meticulously hand-woven by local artisans.",
+        "care": "Hand or Machine wash below 40 degree, use mild detergent.",
         "inStock": true
     },
     {
@@ -447,22 +444,19 @@
         "category": "Wovens",
         "price": 1599,
         "originalPrice": 2284,
-        "img": "images/Single patti kullu himachali handloom Shawl1.1.jpg",
+        "img": "Single patti kullu himachali handloom Shawl1.1.jpg",
         "gallery": [
-            "images/Single patti kullu himachali handloom Shawl1.1.jpg",
-            "images/Single patti kullu himachali handloom Shawl1.2.jpg",
-            "images/Single patti kullu himachali handloom Shawl1.3.jpg"
+            "Single patti kullu himachali handloom Shawl1.1.jpg",
+            "Single patti kullu himachali handloom Shawl1.2.jpg",
+            "Single patti kullu himachali handloom Shawl1.3.jpg"
         ],
         "options": {
             "type": "Color",
-            "values": [
-                "Ligh Grey(Shown) White",
-                "Light Brown"
-            ]
+            "values": ["Light Grey(Shown)", "White", "Light Brown"]
         },
-        "shortDesc": "Elegant tripple (3) patti design.",
-        "desc": "Handwoven wool Shawl with a classic tripple patti design. Lightweight yet warm.Wrap yourself in the authentic warmth of the Kullu Valley. Meticulously hand-woven by local artisans, this shawl combines a solid, cozy base with vibrant, traditional patti (borders). It’s designed to provide superior insulation during cold winters while keeping you elegant. A perfect gift of heritage that never goes out of fashion.",
-        "care": "Hand or Machine wash below 40 degree, use mild deteregent. Use Napthalene ball/ Camphor (Kapur) (when not in use).",
+        "shortDesc": "Elegant single patti design.",
+        "desc": "Handwoven wool Shawl with a classic single patti design. Lightweight yet warm. Perfect for everyday wear.",
+        "care": "Hand or Machine wash below 40 degree.",
         "inStock": true
     },
     {
@@ -471,76 +465,40 @@
         "category": "Wovens",
         "price": 949,
         "originalPrice": 1356,
-        "img": "images/3 patti kullu himachali handloom Stole1.1.jpg",
+        "img": "3 patti kullu himachali handloom Stole1.1.jpg",
         "gallery": [
-            "images/3 patti kullu himachali handloom Stole1.1.jpg",
-            "images/3 patti kullu himachali handloom Stole1.2.jpg",
-            "images/3 patti kullu himachali handloom Stole1.3.jpg"
+            "3 patti kullu himachali handloom Stole1.1.jpg",
+            "3 patti kullu himachali handloom Stole1.2.jpg",
+            "3 patti kullu himachali handloom Stole1.3.jpg"
         ],
         "options": {
             "type": "Color",
-            "values": [
-                "Grey (Shown)",
-                "White",
-                "Black",
-                "Red"
-            ]
+            "values": ["Grey (Shown)", "White", "Black", "Red"]
         },
-        "shortDesc": "Elegant tripple (3) patti design.",
-        "desc": "Handwoven wool Stole with a classic tripple patti design. Lightweight yet warm.This handloom stole is crafted for comfort, offering a soft texture and the vibrant, intricate patterns unique to the Kullu valley. A versatile accessory that adds an artistic touch to any outfit, whether you are dressing up for work or heading out for a casual evening.",
-        "care": "Hand or Machine wash below 40 degree, use mild deteregent. Use Napthalene ball/ Camphor (Kapur) (when not in use).",
-        "inStock": true
-    },
-    {
-        "id": 4,
-        "name": "Tripple (3) Patti Woolen Stole",
-        "category": "Wovens",
-        "price": 949,
-        "originalPrice": 1356,
-        "img": "images/3 patti kullu himachali handloom Stole2.1.jpg",
-        "gallery": [
-            "images/3 patti kullu himachali handloom Stole2.1.jpg",
-            "images/3 patti kullu himachali handloom Stole2.2.jpg"
-        ],
-        "options": {
-            "type": "Color",
-            "values": [
-                "Black (Shown)",
-                "White",
-                "Grey",
-                ""
-            ]
-        },
-        "shortDesc": "Elegant tripple (3) patti design.",
-        "desc": "Handwoven wool Stole with a classic tripple patti design. Lightweight yet warm.This handloom stole is crafted for comfort, offering a soft texture and the vibrant, intricate patterns unique to the Kullu valley. A versatile accessory that adds an artistic touch to any outfit, whether you are dressing up for work or heading out for a casual evening.",
-        "care": "Hand or Machine wash below 40 degree, use mild deteregent. Use Napthalene ball/ Camphor (Kapur) (when not in use).",
+        "shortDesc": "Elegant tripple (3) patti stole.",
+        "desc": "Handwoven wool Stole with a classic tripple patti design. A versatile accessory that adds an artistic touch to any outfit.",
+        "care": "Hand or Machine wash below 40 degree.",
         "inStock": true
     },
     {
         "id": 5,
-        "name": "Trendy Woolen Stole sigle patti",
+        "name": "Trendy Woolen Stole single patti",
         "category": "Wovens",
         "price": 699,
         "originalPrice": 999,
-        "img": "images/Single patti kullu himachali handloom Stole1.1.jpg",
+        "img": "Single patti kullu himachali handloom Stole1.1.jpg",
         "gallery": [
-            "images/Single patti kullu himachali handloom Stole1.1.jpg",
-            "images/Single patti kullu himachali handloom Stole1.2.jpg",
-            "images/Single patti kullu himachali handloom Stole1.3.jpg"
+            "Single patti kullu himachali handloom Stole1.1.jpg",
+            "Single patti kullu himachali handloom Stole1.2.jpg",
+            "Single patti kullu himachali handloom Stole1.3.jpg"
         ],
         "options": {
             "type": "Color",
-            "values": [
-                "Black",
-                "Red (Shown)",
-                "White",
-                "Grey",
-                "Pink"
-            ]
+            "values": ["Black", "Red (Shown)", "White", "Grey", "Pink"]
         },
-        "shortDesc": "Elegant Single patti along with dori design.",
-        "desc": "Handwoven wool Stole with a classic tripple patti design. Lightweight yet warm.This handloom stole is crafted for comfort, offering a soft texture and the vibrant, intricate patterns unique to the Kullu valley. A versatile accessory that adds an artistic touch to any outfit, whether you are dressing up for work or heading out for a casual evening.",
-        "care": "Hand or Machine wash below 40 degree, use mild deteregent. Use Napthalene ball/ Camphor (Kapur) (when not in use).",
+        "shortDesc": "Elegant Single patti design.",
+        "desc": "Handwoven wool Stole with a classic single patti design. Lightweight yet warm.",
+        "care": "Hand or Machine wash below 40 degree.",
         "inStock": true
     },
     {
@@ -549,22 +507,15 @@
         "category": "Wovens",
         "price": 799,
         "originalPrice": 1141,
-        "img": "images/handloom pure wool kulluvi coat patti yardage.jpg",
-        "gallery": [
-            "images/handloom pure wool kulluvi coat patti yardage.jpg"
-        ],
+        "img": "handloom pure wool kulluvi coat patti yardage.jpg",
+        "gallery": ["handloom pure wool kulluvi coat patti yardage.jpg"],
         "options": {
             "type": "Color",
-            "values": [
-                "Black (Shown)",
-                "White",
-                "Grey",
-                "White with black stipes"
-            ]
+            "values": ["Black (Shown)", "White", "Grey", "White with black stripes"]
         },
         "shortDesc": "Handmade Kulluvi yardage",
-        "desc": "Handwoven yardage or kulluvi patti best suited for all weather due to its wicking nature and best suited for full nehru coat, half jackets, lowers and shirting and suiting",
-        "care": "Hand or Machine wash below 40 degree, use mild deteregent. Use Napthalene ball/ Camphor (Kapur) (when not in use).",
+        "desc": "Handwoven yardage or kulluvi patti best suited for all weather due to its wicking nature and best suited for full nehru coat, half jackets, lowers and shirting.",
+        "care": "Hand or Machine wash below 40 degree.",
         "inStock": true
     },
     {
@@ -573,22 +524,18 @@
         "category": "Cap",
         "price": 699,
         "originalPrice": 999,
-        "img": "images/Traditional typical Kulluvi Himachali Cap pahari Topi.jpg",
+        "img": "Traditional typical Kulluvi Himachali Cap pahari Topi.jpg",
         "gallery": [
-            "images/Traditional typical Kulluvi Himachali Cap pahari Topi.jpg",
-            "images/Traditional typical Kulluvi Himachali Cap pahari Topi1.jpg",
-            "images/cap size.jpg"
+            "Traditional typical Kulluvi Himachali Cap pahari Topi.jpg",
+            "Traditional typical Kulluvi Himachali Cap pahari Topi1.jpg",
+            "cap size.jpg"
         ],
         "options": {
             "type": "Size",
-            "values": [
-                "Size 5 (Small)",
-                "Size 6 (Medium)",
-                "Size 7 (Large)"
-            ]
+            "values": ["Size 5 (Small)", "Size 6 (Medium)", "Size 7 (Large)"]
         },
-        "shortDesc": "Authentic Himachal Topi/Pahari Kulluvi Topi",
-        "desc": "Authentic colorful border cap from HImachal. Perfect for festive occasions.",
+        "shortDesc": "Authentic Himachal Topi",
+        "desc": "Authentic colorful border cap from Himachal. Perfect for festive occasions.",
         "care": "Do not wash in machine.",
         "inStock": true
     },
@@ -598,203 +545,115 @@
         "category": "Cap",
         "price": 599,
         "originalPrice": 856,
-        "img": "images/Traditional Kulluvi Himachali Cap pahari Topi.jpg",
+        "img": "Traditional Kulluvi Himachali Cap pahari Topi.jpg",
         "gallery": [
-            "images/Traditional Kulluvi Himachali Cap pahari Topi.jpg",
-            "images/Traditional Kulluvi Himachali Cap pahari Topi1.jpg"
+            "Traditional Kulluvi Himachali Cap pahari Topi.jpg",
+            "Traditional Kulluvi Himachali Cap pahari Topi1.jpg"
         ],
         "options": {
             "type": "Size",
-            "values": [
-                "Size 5 (Small)",
-                "Size 6 (Medium)",
-                "Size 7 (Large)"
-            ]
+            "values": ["Size 5 (Small)", "Size 6 (Medium)", "Size 7 (Large)"]
         },
-        "shortDesc": "Authentic Himachal Topi/Pahari Kulluvi Topi",
-        "desc": "Authentic colorful border cap from HImachal. Perfect for festive occasions.",
+        "shortDesc": "Authentic Himachal Topi",
+        "desc": "Authentic colorful border cap from Himachal. Perfect for festive occasions.",
         "care": "Do not wash in machine.",
         "inStock": true
     },
     {
         "id": 9,
-        "name": "Himachali Traditional Cap Pahari topi",
+        "name": "Maroon Himachali Cap Pahari topi",
         "category": "Cap",
         "price": 449,
         "originalPrice": 641,
-        "img": "images/Maroon Himachali Cap pahari Topi.jpg",
+        "img": "Maroon Himachali Cap pahari Topi.jpg",
         "gallery": [
-            "images/Maroon Himachali Cap pahari Topi.jpg",
-            "images/Maroon Himachali Cap pahari Topi1.jpg"
+            "Maroon Himachali Cap pahari Topi.jpg",
+            "Maroon Himachali Cap pahari Topi1.jpg"
         ],
         "options": {
             "type": "Size",
-            "values": [
-                "Size 5 (Small)",
-                "Size 6 (Medium)",
-                "Size 7 (Large)"
-            ]
+            "values": ["Size 5 (Small)", "Size 6 (Medium)", "Size 7 (Large)"]
         },
-        "shortDesc": "Authentic Himachal Topi/Pahari Kulluvi Topi",
-        "desc": "Authentic cap from HImachal. Perfect for festive occasions.",
+        "shortDesc": "Authentic Himachal Topi",
+        "desc": "Authentic cap from Himachal in Maroon base.",
         "care": "Do not wash in machine.",
         "inStock": true
     },
     {
         "id": 10,
-        "name": "Himachali Traditional Cap Pahari topi",
+        "name": "Green Himachali Cap Pahari topi",
         "category": "Cap",
         "price": 449,
         "originalPrice": 641,
-        "img": "images/Green Himachali Cap Pahari Topi.jpg",
-        "gallery": [
-            "images/Green Himachali Cap Pahari Topi.jpg"
-        ],
+        "img": "Green Himachali Cap Pahari Topi.jpg",
+        "gallery": ["Green Himachali Cap Pahari Topi.jpg"],
         "options": {
             "type": "Size",
-            "values": [
-                "Size 5 (Small)",
-                "Size 6 (Medium)",
-                "Size 7 (Large)"
-            ]
+            "values": ["Size 5 (Small)", "Size 6 (Medium)", "Size 7 (Large)"]
         },
-        "shortDesc": "Authentic Himachal Topi/Pahari Kulluvi Topi",
-        "desc": "Authentic cap from HImachal. Perfect for festive occasions.",
+        "shortDesc": "Authentic Himachal Topi",
+        "desc": "Authentic cap from Himachal in Green base.",
         "care": "Do not wash in machine.",
         "inStock": true
     },
     {
         "id": 11,
-        "name": "Himachali Traditional Cap Pahari topi",
+        "name": "Kingri Malana Himachali Cap",
         "category": "Cap",
         "price": 549,
         "originalPrice": 784,
-        "img": "images/Kingri Malana Himachali Cap Pahari Topi.jpg",
+        "img": "Kingri Malana Himachali Cap Pahari Topi.jpg",
         "gallery": [
-            "images/Kingri Malana Himachali Cap Pahari Topi.jpg",
-            "images/Kingri Malana Himachali Cap Pahari Topi1.jpg"
+            "Kingri Malana Himachali Cap Pahari Topi.jpg",
+            "Kingri Malana Himachali Cap Pahari Topi1.jpg"
         ],
         "options": {
             "type": "Size",
-            "values": [
-                "Size 5 (Small)",
-                "Size 6 (Medium)",
-                "Size 7 (Large)"
-            ]
+            "values": ["Size 5 (Small)", "Size 6 (Medium)", "Size 7 (Large)"]
         },
-        "shortDesc": "Authentic Himachal Topi/Pahari Kulluvi Topi",
-        "desc": "Authentic cap from HImachal. Perfect for festive occasions.",
+        "shortDesc": "Authentic Malana Style Topi",
+        "desc": "Authentic Kingri Malana cap from Himachal.",
         "care": "Do not wash in machine.",
         "inStock": true
     },
     {
         "id": 12,
-        "name": "Unisex Wool Hoodie",
+        "name": "Unisex Wool Hoodie (Blue/Gold)",
         "category": "Wovens",
         "price": 1099,
         "originalPrice": 1570,
-        "img": "images/unisex blue hoodie golden broad border 1.1.jpg",
+        "img": "unisex blue hoodie golden broad border 1.1.jpg",
         "gallery": [
-            "images/unisex blue hoodie golden broad border 1.1.jpg",
-            "images/unisex blue hoodie golden broad border 1.2.jpg",
-            "images/unisex hoodie fleece.jpg"
+            "unisex blue hoodie golden broad border 1.1.jpg",
+            "unisex blue hoodie golden broad border 1.2.jpg",
+            "unisex hoodie fleece.jpg"
         ],
         "options": {
             "type": "Size",
-            "values": [
-                "S",
-                "M",
-                "L",
-                "XL",
-                "XXL"
-            ]
+            "values": ["S", "M", "L", "XL", "XXL"]
         },
         "shortDesc": "Handwoven winter hoodie.",
         "desc": "A warm, breathable woolen hoodie suitable for both men and women.",
-        "care": "Hand wash with cold water.",
-        "inStock": true
+        "care": "Hand wash with cold water."
     },
     {
         "id": 13,
-        "name": "Unisex Wool Hoodie",
+        "name": "Unisex Wool Hoodie (Golden Broad)",
         "category": "Wovens",
         "price": 1099,
         "originalPrice": 1570,
-        "img": "images/unisex hoodie golden broad border 1.1.jpg",
+        "img": "unisex hoodie golden broad border 1.1.jpg",
         "gallery": [
-            "images/unisex hoodie golden broad border 1.1.jpg",
-            "images/unisex hoodie 3golden broad border 1.1.jpg"
+            "unisex hoodie golden broad border 1.1.jpg",
+            "unisex hoodie 3golden broad border 1.1.jpg"
         ],
         "options": {
             "type": "Size",
-            "values": [
-                "S",
-                "M",
-                "L",
-                "XL",
-                "XXL"
-            ]
+            "values": ["S", "M", "L", "XL", "XXL"]
         },
         "shortDesc": "Handwoven winter hoodie.",
-        "desc": "A warm, breathable woolen hoodie suitable for both men and women.",
-        "care": "Hand wash with cold water.",
-        "inStock": true
-    },
-    {
-        "id": 14,
-        "name": "Unisex Wool Hoodie",
-        "category": "Wovens",
-        "price": 1199,
-        "originalPrice": 1713,
-        "img": "images/unisex hoodie 3golden broad border 1.1.jpg",
-        "gallery": [
-            "images/unisex hoodie 3golden broad border 1.1.jpg",
-            "images/unisex grey hoodie narrow border border 1.2.jpg",
-            "images/unisex grey hoodie narrow border border 1.3.jpg",
-            "images/unisex hoodie fleece.jpg"
-        ],
-        "options": {
-            "type": "Size",
-            "values": [
-                "S",
-                "M",
-                "L",
-                "XL",
-                "XXL"
-            ]
-        },
-        "shortDesc": "Handwoven winter hoodie.",
-        "desc": "A warm, breathable woolen hoodie suitable for both men and women.",
-        "care": "Hand wash with cold water.",
-        "inStock": true
-    },
-    {
-        "id": 15,
-        "name": "Unisex Wool Hoodie",
-        "category": "Wovens",
-        "price": 999,
-        "originalPrice": 1427,
-        "img": "images/unisex grey hoodie narrow border border 1.1.jpg",
-        "gallery": [
-            "images/unisex grey hoodie narrow border border 1.1.jpg",
-            "images/unisex grey hoodie narrow border border 1.2.jpg",
-            "images/unisex grey hoodie narrow border border 1.3.jpg",
-            "images/unisex hoodie fleece.jpg"
-        ],
-        "options": {
-            "type": "Size",
-            "values": [
-                "S",
-                "M",
-                "L",
-                "XL",
-                "XXL"
-            ]
-        },
-        "shortDesc": "Handwoven winter hoodie.",
-        "desc": "A warm, breathable woolen hoodie suitable for both men and women.",
-        "care": "Hand wash with cold water.",
-        "inStock": true
+        "desc": "A warm, breathable woolen hoodie.",
+        "care": "Hand wash with cold water."
     },
     {
         "id": 16,
@@ -802,15 +661,12 @@
         "category": "Wovens",
         "price": 5499,
         "originalPrice": 7856,
-        "img": "images/royal-angora-white.jpg",
-        "gallery": [
-            "images/royal-angora-white.jpg"
-        ],
+        "img": "royal-angora-white.jpg",
+        "gallery": ["royal-angora-white.jpg"],
         "options": null,
         "shortDesc": "Premium Angora Wool.",
         "desc": "Luxurious and extremely soft Angora wool shawl. Very warm and lightweight.",
-        "care": "Expert Dry Clean Only.",
-        "inStock": true
+        "care": "Expert Dry Clean Only."
     },
     {
         "id": 17,
@@ -818,91 +674,56 @@
         "category": "Jacket",
         "price": 1099,
         "originalPrice": 1570,
-        "img": "images/Pure Wool Men's Half jacket sadri.jpg",
+        "img": "Pure Wool Men's Half jacket sadri.jpg",
         "gallery": [
-            "images/Pure Wool Men's Half jacket sadri.jpg",
-            "images/Pure Wool Men's Half jacket sadri1.jpg"
+            "Pure Wool Men's Half jacket sadri.jpg",
+            "Pure Wool Men's Half jacket sadri1.jpg"
         ],
         "options": {
             "type": "Size",
-            "values": [
-                "38",
-                "40",
-                "42",
-                "44"
-            ]
+            "values": ["38", "40", "42", "44"]
         },
         "shortDesc": "Stylish woolen jacket.",
         "desc": "Traditional weave jacket with modern fitting. Can be worn over kurta or shirt.",
-        "care": "Dry Clean Only.",
-        "inStock": true
+        "care": "Dry Clean Only."
     },
     {
         "id": 18,
-        "name": "Handmade handwoven Unisex Muffler",
+        "name": "Unisex Muffler",
         "category": "Wovens",
         "price": 399,
         "originalPrice": 570,
-        "img": "images/Unisex Muffler kulluvi border pure wool.jpg",
+        "img": "Unisex Muffler kulluvi border pure wool.jpg",
         "gallery": [
-            "images/Unisex Muffler kulluvi border pure wool.jpg",
-            "images/Unisex Muffler kulluvi border pure wool1.jpg"
+            "Unisex Muffler kulluvi border pure wool.jpg",
+            "Unisex Muffler kulluvi border pure wool1.jpg"
         ],
         "options": {
             "type": "Color",
-            "values": [
-                "White",
-                "Grey",
-                "Light Brown",
-                "Black"
-            ]
+            "values": ["White", "Grey", "Light Brown", "Black"]
         },
         "shortDesc": "Traditional lightweight Muffler",
-        "desc": "Traditional weave muffler with kulluvi motifs. Purewool muffler weave on traditional handloom",
-        "care": "Hand wash/Dry Clean with mild detergent/soap.",
-        "inStock": true
-    },
-    {
-        "id": 19,
-        "name": "Handmade handwoven Unisex Stripe Muffler",
-        "category": "Wovens",
-        "price": 399,
-        "originalPrice": 570,
-        "img": "images/Trendy himachali unisex striped muffler.jpg",
-        "gallery": [
-            "images/Trendy himachali unisex striped muffler.jpg",
-            "images/Trendy himachali unisex striped muffler1.jpg"
-        ],
-        "options": null,
-        "shortDesc": "",
-        "desc": "Traditional weave muffler with kulluvi motifs. Purewool muffler weave on traditional handloom",
-        "care": "Hand wash/Dry Clean with mild detergent/soap.",
-        "inStock": true
+        "desc": "Traditional weave muffler with kulluvi motifs. Pure wool.",
+        "care": "Hand wash/Dry Clean."
     },
     {
         "id": 20,
-        "name": "Embroided Women's Sleeveless Jacket",
+        "name": "Embroided Women's Sleeveless Jacket (Black)",
         "category": "Jacket",
         "price": 899,
         "originalPrice": 1284,
-        "img": "images/Embroided Sleeveless women's black jackets.jpg",
+        "img": "Embroided Sleeveless women's black jackets.jpg",
         "gallery": [
-            "images/Embroided Sleeveless women's black jackets.jpg",
-            "images/Embroided Sleeveless women's black jackets1.jpg"
+            "Embroided Sleeveless women's black jackets.jpg",
+            "Embroided Sleeveless women's black jackets1.jpg"
         ],
         "options": {
             "type": "Size",
-            "values": [
-                "38",
-                "40",
-                "42",
-                "44"
-            ]
+            "values": ["38", "40", "42", "44"]
         },
-        "shortDesc": "Stylish sleeveless woolen jacket for girls and women.Made from warm woolen fabric, suitable for winter layering and everyday wear",
-        "desc": "This women\u2019s sleeveless jacket is inspired by the traditional winter clothing commonly found in Himachal Pradesh. It is made using warm woolen fabric and finished with local embroidery that gives it a simple and authentic look.\n\nThe sleeveless pattern makes it easy to wear over kurtis, sweaters, or dresses. The jacket is comfortable, lightweight, and suitable for regular use during cold weather. The embroidery is neatly done and adds a subtle ethnic touch without making the jacket heavy.\n\nThis jacket is ideal for daily winter wear, hill stations, travel, and ethnic-fusion styling.",
-        "care": "Hand wash,Dry Clean.",
-        "inStock": true
+        "shortDesc": "Stylish sleeveless woolen jacket.",
+        "desc": "Women’s sleeveless jacket inspired by traditional winter clothing.",
+        "care": "Hand wash, Dry Clean."
     },
     {
         "id": 21,
@@ -910,25 +731,18 @@
         "category": "Jacket",
         "price": 899,
         "originalPrice": 1284,
-        "img": "images/Embroided Sleeveless women's jackets.jpg",
+        "img": "Embroided Sleeveless women's jackets.jpg",
         "gallery": [
-            "images/Embroided Sleeveless women's jackets.jpg",
-            "images/Embroided Sleeveless women's jackets1.jpg",
-            "images/Embroided Sleeveless women's jackets1.1.jpg"
+            "Embroided Sleeveless women's jackets.jpg",
+            "Embroided Sleeveless women's jackets1.jpg"
         ],
         "options": {
             "type": "Size",
-            "values": [
-                "38",
-                "40",
-                "42",
-                "44"
-            ]
+            "values": ["38", "40", "42", "44"]
         },
         "shortDesc": "Stylish woolen jacket.",
-        "desc": "This women\u2019s sleeveless jacket is inspired by the traditional winter clothing commonly found in Himachal Pradesh. It is made using warm woolen fabric and finished with local embroidery that gives it a simple and authentic look.\n\nThe sleeveless pattern makes it easy to wear over kurtis, sweaters, or dresses. The jacket is comfortable, lightweight, and suitable for regular use during cold weather. The embroidery is neatly done and adds a subtle ethnic touch without making the jacket heavy.\n\nThis jacket is ideal for daily winter wear, hill stations, travel, and ethnic-fusion styling.",
-        "care": "Hand wash,Dry Clean.",
-        "inStock": true
+        "desc": "Women’s sleeveless jacket inspired by traditional winter clothing.",
+        "care": "Hand wash, Dry Clean."
     },
     {
         "id": 22,
@@ -936,43 +750,15 @@
         "category": "Home Decor",
         "price": 1499,
         "originalPrice": 2141,
-        "img": "images/2.walljpg",
-        "gallery": [
-            "images/2.walljpg",
-            "images/2.wall.jpg"
-        ],
+        "img": "2.walljpg",
+        "gallery": ["2.wall.jpg"],
         "options": {
             "type": "Size",
-            "values": [
-                "15*18 in"
-            ]
+            "values": ["15*18 in"]
         },
-        "shortDesc": "Heritage Wall Art 2",
+        "shortDesc": "Heritage Wall Art",
         "desc": "15x18 inches (Per Panel) Made of pure wool material, wooden frame, Glass Panel",
-        "care": "Dust with Soft Cloth, avoid direct Sunlight.",
-        "inStock": true
-    },
-    {
-        "id": 23,
-        "name": "Extra weft Work Wall Decor",
-        "category": "Home Decor",
-        "price": 2099,
-        "originalPrice": 2999,
-        "img": "images/3.walljpg",
-        "gallery": [
-            "images/3.walljpg",
-            "images/3.wall.jpg"
-        ],
-        "options": {
-            "type": "Size",
-            "values": [
-                "15*18 in"
-            ]
-        },
-        "shortDesc": "Heritage Wall Art 2",
-        "desc": "15x18 inches (Per Panel) Made of pure wool material, wooden frame, Glass Panel",
-        "care": "Dust with Soft Cloth, avoid direct Sunlight.",
-        "inStock": true
+        "care": "Dust with Soft Cloth."
     },
     {
         "id": 24,
@@ -980,14 +766,14 @@
         "category": "Footwear",
         "price": 399,
         "originalPrice": 570,
-        "img": "images/Himachali Pullan hemp.jpg",
+        "img": "Himachali Pullan hemp.jpg",
         "gallery": [
-            "images/Himachali Pullan hemp.jpg",
-            "images/Himachali Pullan hemp1.jpg"
+            "Himachali Pullan hemp.jpg",
+            "Himachali Pullan hemp1.jpg"
         ],
         "options": null,
-        "shortDesc": "Traditional handicrafted footwear",
-        "desc": "Pahadi pullan or handmade slippers' is  weave with hemp bark by the handicraft artisans also use colorful threads for its decoration. Traditionally pullan were use for temple/kitchen which were made of fully natural fibre.",
+        "shortDesc": "Traditional handcrafted footwear",
+        "desc": "Pahadi pullan or handmade slippers are woven with hemp bark by handicraft artisans, using colorful threads for decoration. Traditionally used for temple/kitchen, made of fully natural fibre.",
         "care": "Dust with Soft Cloth, avoid direct Sunlight.",
         "inStock": true
     }
@@ -1217,7 +1003,7 @@
                 "currency": "INR",
                 "name": "Handiweave",
                 "description": "Order Payment",
-                "image": "images/logo.png",
+                "image": "logo.png",
                 "handler": function (response){
                     // Send data to Formspree
                     const formData = new FormData();
