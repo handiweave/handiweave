@@ -37,9 +37,9 @@
         /* ===== UTILITIES ===== */
         .trust-banner { background: var(--brand); color: white; padding: 8px; font-size: 0.75rem; text-align: center; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; font-weight: 600; letter-spacing: 0.5px; z-index: 1002; position: relative; }
         
-        /* ===== HERO SECTION (Path Fixed) ===== */
+        /* ===== HERO SECTION ===== */
         .hero-section {
-            /* Removed 'images/' from url */
+            /* Hero Image Fixed: ar3.jpg */
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                         url('ar3.jpg') center/cover no-repeat;
             min-height: 60vh; 
@@ -99,8 +99,8 @@
         .product-card { background: white; border-radius: var(--radius); overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: var(--transition); position: relative; }
         .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         
-        .product-image { height: 280px; overflow: hidden; position: relative; cursor: pointer; }
-        .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .product-image { height: 280px; overflow: hidden; position: relative; cursor: pointer; background: white; display: flex; align-items: center; justify-content: center; }
+        .product-image img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.5s ease; }
         .product-card:hover .product-image img { transform: scale(1.05); }
         
         .product-info { padding: 1rem; text-align: center; }
@@ -114,7 +114,7 @@
         .add-to-cart-btn:hover { background: var(--brand-dark); }
         .add-to-cart-btn:disabled { background: #ccc; cursor: not-allowed; }
 
-        /* ===== PRODUCT DETAIL MODAL (NEW) ===== */
+        /* ===== PRODUCT DETAIL MODAL ===== */
         .product-modal { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2002; 
             display: none; justify-content: center; align-items: center; padding: 1rem;
@@ -124,9 +124,9 @@
             display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 2rem; position: relative;
         }
         .modal-gallery { display: flex; flex-direction: column; gap: 10px; }
-        .main-modal-img { width: 100%; border-radius: 8px; height: 400px; object-fit: cover; }
+        .main-modal-img { width: 100%; border-radius: 8px; height: 400px; object-fit: contain; background: #f9f9f9; }
         .thumb-grid { display: flex; gap: 10px; overflow-x: auto; }
-        .thumb-img { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; cursor: pointer; border: 2px solid transparent; }
+        .thumb-img { width: 60px; height: 60px; object-fit: contain; border-radius: 4px; cursor: pointer; border: 2px solid #eee; background: white; }
         .thumb-img:hover { border-color: var(--brand); }
         
         .modal-details h2 { color: var(--brand-dark); margin-bottom: 5px; }
@@ -139,7 +139,7 @@
         .modal-care { font-size: 0.85rem; color: #555; background: #f1f1f1; padding: 12px; border-radius: 4px; margin-top: 1rem; border: 1px solid #ddd; }
         .modal-close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; border: none; background: none; cursor: pointer; color: #666; }
 
-        /* ===== OTHER SECTIONS (UNCHANGED) ===== */
+        /* ===== OTHER SECTIONS ===== */
         .craft-section { background: white; }
         .craft-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
         .craft-card { text-align: center; padding: 2rem; background: var(--bg); border-radius: var(--radius); }
@@ -415,7 +415,7 @@
     <div class="notification" id="notification"><i class="fas fa-check-circle"></i> <span id="notificationText"></span></div>
 
     <script>
-        // 1. DATA: Full Inventory (Corrected Filenames, No 'images/' prefix)
+        // 1. DATA: Full Inventory (Corrected Filenames, No 'images/' prefix, Forced inStock, Hoodies Fixed)
         const PRODUCTS = [
     {
         "id": 1,
@@ -634,7 +634,8 @@
         },
         "shortDesc": "Handwoven winter hoodie.",
         "desc": "A warm, breathable woolen hoodie suitable for both men and women.",
-        "care": "Hand wash with cold water."
+        "care": "Hand wash with cold water.",
+        "inStock": true
     },
     {
         "id": 13,
@@ -645,7 +646,7 @@
         "img": "unisex hoodie golden broad border 1.1.jpg",
         "gallery": [
             "unisex hoodie golden broad border 1.1.jpg",
-            "unisex hoodie 3golden broad border 1.1.jpg"
+            "unisex hoodie fleece.jpg"
         ],
         "options": {
             "type": "Size",
@@ -653,7 +654,50 @@
         },
         "shortDesc": "Handwoven winter hoodie.",
         "desc": "A warm, breathable woolen hoodie.",
-        "care": "Hand wash with cold water."
+        "care": "Hand wash with cold water.",
+        "inStock": true
+    },
+    {
+        "id": 14,
+        "name": "Unisex Wool Hoodie (3Golden Broad)",
+        "category": "Wovens",
+        "price": 1199,
+        "originalPrice": 1713,
+        "img": "unisex hoodie 3golden broad border 1.1.jpg",
+        "gallery": [
+            "unisex hoodie 3golden broad border 1.1.jpg",
+            "unisex hoodie fleece.jpg"
+        ],
+        "options": {
+            "type": "Size",
+            "values": ["S", "M", "L", "XL", "XXL"]
+        },
+        "shortDesc": "Handwoven winter hoodie.",
+        "desc": "A warm, breathable woolen hoodie suitable for both men and women.",
+        "care": "Hand wash with cold water.",
+        "inStock": true
+    },
+    {
+        "id": 15,
+        "name": "Unisex Wool Hoodie (Grey)",
+        "category": "Wovens",
+        "price": 999,
+        "originalPrice": 1427,
+        "img": "unisex grey hoodie narrow border border 1.1.jpg",
+        "gallery": [
+            "unisex grey hoodie narrow border border 1.1.jpg",
+            "unisex grey hoodie narrow border border 1.2.jpg",
+            "unisex grey hoodie narrow border border 1.3.jpg",
+            "unisex hoodie fleece.jpg"
+        ],
+        "options": {
+            "type": "Size",
+            "values": ["S", "M", "L", "XL", "XXL"]
+        },
+        "shortDesc": "Handwoven winter hoodie.",
+        "desc": "A warm, breathable woolen hoodie suitable for both men and women.",
+        "care": "Hand wash with cold water.",
+        "inStock": true
     },
     {
         "id": 16,
@@ -666,7 +710,8 @@
         "options": null,
         "shortDesc": "Premium Angora Wool.",
         "desc": "Luxurious and extremely soft Angora wool shawl. Very warm and lightweight.",
-        "care": "Expert Dry Clean Only."
+        "care": "Expert Dry Clean Only.",
+        "inStock": true
     },
     {
         "id": 17,
@@ -685,7 +730,8 @@
         },
         "shortDesc": "Stylish woolen jacket.",
         "desc": "Traditional weave jacket with modern fitting. Can be worn over kurta or shirt.",
-        "care": "Dry Clean Only."
+        "care": "Dry Clean Only.",
+        "inStock": true
     },
     {
         "id": 18,
@@ -704,7 +750,8 @@
         },
         "shortDesc": "Traditional lightweight Muffler",
         "desc": "Traditional weave muffler with kulluvi motifs. Pure wool.",
-        "care": "Hand wash/Dry Clean."
+        "care": "Hand wash/Dry Clean.",
+        "inStock": true
     },
     {
         "id": 20,
@@ -723,7 +770,8 @@
         },
         "shortDesc": "Stylish sleeveless woolen jacket.",
         "desc": "Women’s sleeveless jacket inspired by traditional winter clothing.",
-        "care": "Hand wash, Dry Clean."
+        "care": "Hand wash, Dry Clean.",
+        "inStock": true
     },
     {
         "id": 21,
@@ -742,7 +790,8 @@
         },
         "shortDesc": "Stylish woolen jacket.",
         "desc": "Women’s sleeveless jacket inspired by traditional winter clothing.",
-        "care": "Hand wash, Dry Clean."
+        "care": "Hand wash, Dry Clean.",
+        "inStock": true
     },
     {
         "id": 22,
@@ -750,7 +799,7 @@
         "category": "Home Decor",
         "price": 1499,
         "originalPrice": 2141,
-        "img": "2.walljpg",
+        "img": "2.wall.jpg",
         "gallery": ["2.wall.jpg"],
         "options": {
             "type": "Size",
@@ -758,7 +807,25 @@
         },
         "shortDesc": "Heritage Wall Art",
         "desc": "15x18 inches (Per Panel) Made of pure wool material, wooden frame, Glass Panel",
-        "care": "Dust with Soft Cloth."
+        "care": "Dust with Soft Cloth.",
+        "inStock": true
+    },
+    {
+        "id": 23,
+        "name": "Extra weft Work Wall Decor",
+        "category": "Home Decor",
+        "price": 2099,
+        "originalPrice": 2999,
+        "img": "3.wall.jpg",
+        "gallery": ["3.wall.jpg"],
+        "options": {
+            "type": "Size",
+            "values": ["15*18 in"]
+        },
+        "shortDesc": "Heritage Wall Art",
+        "desc": "15x18 inches (Per Panel) Made of pure wool material, wooden frame, Glass Panel",
+        "care": "Dust with Soft Cloth.",
+        "inStock": true
     },
     {
         "id": 24,
