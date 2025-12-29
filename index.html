@@ -3,10 +3,10 @@
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEWM8S3WL0"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-SEWM8S3WL0');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-SEWM8S3WL0');
     </script>
 
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -14,35 +14,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#7A5548">
-    
+
     <title>Handiweave | Traditions and Trends</title>
     
+    <meta name="description" content="Handiweave: Traditions and Trends. A platform empowering Himachal's artisans to market authentic handmade handloom and handicrafts. From Palampur to the world, supporting local heritage directly.">
+    <meta name="keywords" content="Handiweave, Himachal Handloom, Kullu Shawls, Artisan Platform, Palampur, Handmade Crafts, Traditions and Trends">
+    <link rel="canonical" href="https://handiweave.com/">
+
+    <meta property="og:title" content="Handiweave | Traditions and Trends">
+    <meta property="og:description" content="Empowering artisans from all over Himachal. Shop authentic handmade wovens directly from the source.">
+    <meta property="og:image" content="https://handiweave.com/logo.png">
+    <meta property="og:url" content="https://handiweave.com/">
+    <meta property="og:type" content="website">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Handiweave",
+      "url": "https://handiweave.com",
+      "logo": "https://handiweave.com/logo.png",
+      "description": "A platform empowering Himachal's artisans to market authentic handmade handloom and handicrafts.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Tehsil Palampur",
+        "addressLocality": "District Kangra",
+        "addressRegion": "Himachal Pradesh",
+        "postalCode": "176060",
+        "addressCountry": "IN"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-9882212962",
+        "contactType": "Customer Support"
+      },
+      "identifier": {
+        "@type": "PropertyValue",
+        "name": "MSME Registration",
+        "value": "Registered under MSME, Govt. of India"
+      },
+      "sameAs": [
+        "https://instagram.com/handiweave",
+        "https://x.com/handiweave"
+      ]
+    }
+    </script>
+
     <link rel="icon" href="favicon.png" type="image/png">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         :root {
             --bg: #F9F8F6; --card: #fff; --text: #333; --brand: #7A5548; --brand-dark: #5D433A;
             --gold: #C5A065; --wa: #25D366; --rzp: #3395ff; --radius: 8px; --transition: all 0.3s ease;
         }
-        
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-        
+
         /* ===== UTILITIES ===== */
-        .trust-banner { background: var(--brand); color: white; padding: 8px; font-size: 0.75rem; text-align: center; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; font-weight: 600; letter-spacing: 0.5px; z-index: 1002; position: relative; }
-        
+        .trust-banner { background: var(--brand); color: white; padding: 8px; font-size: 0.75rem; text-align: center; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
+        font-weight: 600; letter-spacing: 0.5px; z-index: 1002; position: relative; }
+
         /* ===== HERO SECTION ===== */
         .hero-section {
             /* Hero Image Fixed: ar3.jpg */
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('ar3.jpg') center/cover no-repeat;
-            min-height: 60vh; 
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+            url('ar3.jpg') center/cover no-repeat;
+            min-height: 60vh;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: white; padding: 2rem 1rem; position: relative;
         }
@@ -65,10 +109,10 @@
         }
         .nav-link { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; cursor: pointer; color: var(--text); letter-spacing: 1px; }
         .nav-link.active { color: var(--brand); border-bottom: 2px solid var(--gold); }
-        
+
         /* Search Bar Style */
-        .search-container { 
-            position: relative; display: flex; align-items: center; border: 1px solid #ddd; 
+        .search-container {
+            position: relative; display: flex; align-items: center; border: 1px solid #ddd;
             border-radius: 20px; padding: 5px 15px; background: #fff; margin-right: 15px;
         }
         .search-container input { border: none; outline: none; font-size: 0.9rem; width: 140px; }
@@ -86,41 +130,45 @@
             width: 20px; height: 20px; border-radius: 50%; font-size: 0.7rem; display: flex;
             align-items: center; justify-content: center; font-weight: 700;
         }
-        
+
         /* ===== PRODUCTS & CATEGORIES ===== */
         .section-container { max-width: 1200px; margin: 0 auto; padding: 3rem 1rem; display: none; }
         .active-section { display: block; }
-        
+
         .category-filters { display: flex; justify-content: center; gap: 10px; margin-bottom: 2rem; flex-wrap: wrap; }
-        .filter-btn { padding: 8px 16px; border: 1px solid var(--brand); background: transparent; color: var(--brand); border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: var(--transition); }
+        .filter-btn { padding: 8px 16px; border: 1px solid var(--brand); background: transparent; color: var(--brand); border-radius: 20px; cursor: pointer; font-size: 0.9rem;
+        transition: var(--transition); }
         .filter-btn.active, .filter-btn:hover { background: var(--brand); color: white; }
 
         .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2rem; }
         .product-card { background: white; border-radius: var(--radius); overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: var(--transition); position: relative; }
         .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        
+
         .product-image { height: 280px; overflow: hidden; position: relative; cursor: pointer; background: white; display: flex; align-items: center; justify-content: center; }
         .product-image img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.5s ease; }
         .product-card:hover .product-image img { transform: scale(1.05); }
-        
+
         .product-info { padding: 1rem; text-align: center; }
         .product-name { font-weight: 600; margin-bottom: 0.5rem; font-size: 1rem; height: 40px; overflow: hidden; }
         .product-price { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--brand); }
         .original-price { text-decoration: line-through; color: #999; font-size: 0.9rem; margin-right: 5px; font-weight: 400; }
-        .discount-badge { position: absolute; top: 10px; left: 10px; background: #e74c3c; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; z-index: 10; }
-        .sold-out-badge { position: absolute; top: 10px; right: 10px; background: #555; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; z-index: 10; }
+        .discount-badge { position: absolute; top: 10px; left: 10px; background: #e74c3c; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem;
+        font-weight: bold; z-index: 10; }
+        .sold-out-badge { position: absolute; top: 10px; right: 10px; background: #555; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem;
+        font-weight: bold; z-index: 10; }
 
-        .add-to-cart-btn { background: var(--brand); color: white; padding: 10px; width: 100%; border-radius: 4px; border: none; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .add-to-cart-btn { background: var(--brand); color: white; padding: 10px; width: 100%; border-radius: 4px; border: none; font-weight: 600; cursor: pointer; transition: var(--transition);
+        }
         .add-to-cart-btn:hover { background: var(--brand-dark); }
         .add-to-cart-btn:disabled { background: #ccc; cursor: not-allowed; }
 
         /* ===== PRODUCT DETAIL MODAL ===== */
-        .product-modal { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2002; 
+        .product-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2002;
             display: none; justify-content: center; align-items: center; padding: 1rem;
         }
-        .product-modal-content { 
-            background: white; width: 100%; max-width: 900px; max-height: 90vh; border-radius: 12px; overflow-y: auto; 
+        .product-modal-content {
+            background: white; width: 100%; max-width: 900px; max-height: 90vh; border-radius: 12px; overflow-y: auto;
             display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 2rem; position: relative;
         }
         .modal-gallery { display: flex; flex-direction: column; gap: 10px; }
@@ -128,7 +176,7 @@
         .thumb-grid { display: flex; gap: 10px; overflow-x: auto; }
         .thumb-img { width: 60px; height: 60px; object-fit: contain; border-radius: 4px; cursor: pointer; border: 2px solid #eee; background: white; }
         .thumb-img:hover { border-color: var(--brand); }
-        
+
         .modal-details h2 { color: var(--brand-dark); margin-bottom: 5px; }
         .modal-price { font-size: 1.5rem; font-weight: bold; color: var(--brand); margin: 10px 0; }
         .variant-selector { margin: 1.5rem 0; background: #f9f9f9; padding: 10px; border-radius: 4px; }
@@ -145,7 +193,7 @@
         .craft-card { text-align: center; padding: 2rem; background: var(--bg); border-radius: var(--radius); }
         .craft-icon { font-size: 2.5rem; color: var(--brand); margin-bottom: 1rem; }
         .craft-card h3 { margin-bottom: 1rem; color: var(--brand-dark); }
-        
+
         .story-container { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; margin-top: 2rem; }
         .story-image { border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         .story-image img { width: 100%; height: auto; display: block; }
@@ -160,7 +208,7 @@
         .form-group { margin-bottom: 1.5rem; }
         .form-control { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; }
         .submit-btn { background: var(--brand); color: white; padding: 14px; width: 100%; border-radius: 4px; border: none; font-weight: 700; cursor: pointer; }
-        
+
         .policy-accordion { max-width: 800px; margin: 2rem auto 0; }
         .policy-item { background: white; margin-bottom: 1rem; border-radius: var(--radius); overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.05); }
         .policy-header { padding: 1rem 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; background: var(--bg); }
@@ -170,19 +218,23 @@
         /* ===== CHECKOUT & CART ===== */
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1999; display: none; }
         .overlay.active { display: block; }
-        
-        .checkout-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 95%; max-width: 500px; background: white; z-index: 2100; border-radius: 12px; padding: 2rem; display: none; box-shadow: 0 20px 40px rgba(0,0,0,0.3); max-height: 90vh; overflow-y: auto; }
+
+        .checkout-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 95%; max-width: 500px; background: white; z-index: 2100;
+        border-radius: 12px; padding: 2rem; display: none; box-shadow: 0 20px 40px rgba(0,0,0,0.3); max-height: 90vh; overflow-y: auto; }
         .checkout-modal.active { display: block; }
-        
-        .cart-sidebar { position: fixed; top: 0; right: -400px; width: 100%; max-width: 380px; height: 100%; background: white; z-index: 2000; transition: right 0.3s ease; display: flex; flex-direction: column; box-shadow: -5px 0 25px rgba(0,0,0,0.1); }
+
+        .cart-sidebar { position: fixed; top: 0; right: -400px; width: 100%; max-width: 380px; height: 100%; background: white; z-index: 2000;
+        transition: right 0.3s ease; display: flex; flex-direction: column; box-shadow: -5px 0 25px rgba(0,0,0,0.1); }
         .cart-sidebar.active { right: 0; }
-        
+
         /* ===== FOOTER & UTILS ===== */
         .main-footer { background: white; padding: 3rem 1rem 2rem; margin-top: 3rem; border-top: 1px solid #eee; text-align: center; }
         .social-links { display: flex; justify-content: center; gap: 1.5rem; margin: 1.5rem 0; }
         .social-link { color: var(--brand); font-size: 1.5rem; }
-        .whatsapp-float { position: fixed; bottom: 2rem; right: 2rem; width: 60px; height: 60px; background: var(--wa); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; z-index: 999; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        .notification { position: fixed; top: 20px; right: 20px; background: #2E8B57; color: white; padding: 1rem 1.5rem; border-radius: 6px; z-index: 3000; display: none; align-items: center; gap: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .whatsapp-float { position: fixed; bottom: 2rem; right: 2rem; width: 60px; height: 60px; background: var(--wa); color: white; border-radius: 50%; display: flex;
+        align-items: center; justify-content: center; font-size: 1.8rem; z-index: 999; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .notification { position: fixed; top: 20px; right: 20px; background: #2E8B57; color: white; padding: 1rem 1.5rem; border-radius: 6px; z-index: 3000;
+        display: none; align-items: center; gap: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
         .notification.show { display: flex; }
 
         /* ===== RESPONSIVE ===== */
@@ -244,7 +296,7 @@
 
     <section id="shop-view" class="section-container active-section">
         <h2 style="text-align:center; margin-bottom:1rem;">Our Collection</h2>
-        
+
         <div class="category-filters">
             <button class="filter-btn active" onclick="filterCategory('all', this)">All</button>
             <button class="filter-btn" onclick="filterCategory('Wovens', this)">Wovens</button>
@@ -255,7 +307,7 @@
         </div>
 
         <div class="products-grid" id="productsContainer">
-            </div>
+        </div>
     </section>
 
     <section id="allseason-view" class="section-container craft-section">
@@ -267,12 +319,14 @@
             <div class="craft-card">
                 <div class="craft-icon"><i class="fas fa-snowflake"></i></div>
                 <h3>All Season Crafting</h3>
-                <p>We are crafting pieces that feel like a warm hug in winter and a soft whisper in summer. Our all-season wovens adapt to you.</p>
+                <p>We are crafting pieces that feel like a warm hug in winter and a soft whisper in summer. 
+                   Our all-season wovens adapt to you.</p>
             </div>
             <div class="craft-card">
                 <div class="craft-icon"><i class="fas fa-yarn"></i></div>
                 <h3>Knitting Stories</h3>
-                <p>Every loop and stitch is a word in our storybook of textures. We knit not just fabrics, but narratives of home and heritage.</p>
+                <p>Every loop and stitch is a word in our storybook of textures. 
+                   We knit not just fabrics, but narratives of home and heritage.</p>
             </div>
             <div class="craft-card">
                 <div class="craft-icon"><i class="fas fa-ring"></i></div>
@@ -290,14 +344,14 @@
             <div class="story-content">
                 <h2>Our Story</h2>
                 <div class="story-text">
-                    <p>This is an effort to bring a hidden craft into the light — not just to be seen, but to be felt. Our mission is to empower the hands behind the loom, and to honour their quiet strength.</p>
-                    <p>Each tana-bana carries a heartbeat — of tradition, of memory, of love passed down generations. We don't just weave shawls; we preserve stories that might otherwise fade into silence.</p>
+                    <p><strong>Traditions and Trends.</strong> At Handiweave, we are more than just a marketplace; we are a platform empowering the skilled artisans of Himachal Pradesh. We provide a direct stage ('munch') for creators across the entire state—not just a single region—to showcase and market their authentic handmade crafts to the world.</p>
+                    <p>By eliminating middlemen, we help artisans gain fair value for their work while preserving heritage. This is a collective effort to bring the hidden gems of Devbhoomi into the light. We are a firm registered under <strong>MSME, Govt. of India</strong>, committed to authentic growth.</p>
                     <img src="she1.jpg" style="width:100%; border-radius:8px; margin: 1.5rem 0;" alt="Artisan Work">
-                    <p class="highlight-quote"><strong>This is not a product. It's a soul-wrapped heritage.</strong></p>
+                    <p class="highlight-quote"><strong>"Supporting traditions, creating trends."</strong></p>
                 </div>
             </div>
         </div>
-        
+
         <div style="margin-top: 4rem;">
             <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--brand-dark);">Behind the Loom</h3>
             <div class="gallery-grid">
@@ -346,7 +400,7 @@
                     <p>We ship Pan-India via trusted courier partners. Delivery typically takes 5-7 business days depending on location.</p>
                 </div>
             </div>
-             <div class="policy-item">
+            <div class="policy-item">
                 <div class="policy-header" onclick="togglePolicy(2)"><span><i class="fas fa-shield-alt"></i> Privacy Policy</span><i class="fas fa-chevron-down"></i></div>
                 <div class="policy-content">
                     <p>Your privacy is important to us. We never share your personal data. Secure payments via Razorpay.</p>
@@ -359,6 +413,7 @@
         <div class="social-links">
             <a href="https://instagram.com/handiweave" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://wa.me/919882212962" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://x.com/handiweave" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>
         </div>
         <div class="footer-links">
             <span class="footer-link" onclick="switchView('shop')">Collection</span>
@@ -380,7 +435,7 @@
         <div class="product-modal-content">
             <button class="modal-close-btn" onclick="closeProductModal()">&times;</button>
             <div id="modalBody">
-                </div>
+            </div>
         </div>
     </div>
 
@@ -418,456 +473,456 @@
         // 1. DATA: Full Inventory (Corrected Filenames, No 'images/' prefix, Forced inStock, Hoodies Fixed)
         const PRODUCTS = [
     {
-        "id": 1,
-        "name": "Tripple (3) Patti Woolen Shawl",
-        "category": "Wovens",
-        "price": 2799,
-        "originalPrice": 3999,
-        "img": "3 patti kullu himachali handloom shawl1.1.jpg",
-        "gallery": [
-            "3 patti kullu himachali handloom shawl1.1.jpg",
-            "3 patti kullu himachali handloom shawl1.2.jpg",
-            "3 patti kullu himachali handloom shawl1.3.jpg"
-        ],
-        "options": {
-            "type": "Color",
-            "values": ["Black", "White", "Grey(Shown)"]
-        },
-        "shortDesc": "Elegant tripple (3) patti design.",
-        "desc": "Handwoven wool Shawl with a classic tripple patti design. Lightweight yet warm. Wrap yourself in the authentic warmth of the Kullu Valley. Meticulously hand-woven by local artisans.",
-        "care": "Hand or Machine wash below 40 degree, use mild detergent.",
-        "inStock": true
+      "id": 1,
+      "name": "Tripple (3) Patti Woolen Shawl",
+      "category": "Wovens",
+      "price": 2799,
+      "originalPrice": 3999,
+      "img": "3 patti kullu himachali handloom shawl1.1.jpg",
+      "gallery": [
+        "3 patti kullu himachali handloom shawl1.1.jpg",
+        "3 patti kullu himachali handloom shawl1.2.jpg",
+        "3 patti kullu himachali handloom shawl1.3.jpg"
+      ],
+      "options": {
+        "type": "Color",
+        "values": ["Black", "White", "Grey(Shown)"]
+      },
+      "shortDesc": "Elegant tripple (3) patti design.",
+      "desc": "Handwoven wool Shawl with a classic tripple patti design. Lightweight yet warm. Wrap yourself in the authentic warmth of the Kullu Valley. Meticulously hand-woven by local artisans.",
+      "care": "Hand or Machine wash below 40 degree, use mild detergent.",
+      "inStock": true
     },
     {
-        "id": 2,
-        "name": "Handloom made Signle Patti Woolen Shawl",
-        "category": "Wovens",
-        "price": 1599,
-        "originalPrice": 2284,
-        "img": "Single patti kullu himachali handloom Shawl1.1.jpg",
-        "gallery": [
-            "Single patti kullu himachali handloom Shawl1.1.jpg",
-            "Single patti kullu himachali handloom Shawl1.2.jpg",
-            "Single patti kullu himachali handloom Shawl1.3.jpg"
-        ],
-        "options": {
-            "type": "Color",
-            "values": ["Light Grey(Shown)", "White", "Light Brown"]
-        },
-        "shortDesc": "Elegant single patti design.",
-        "desc": "Handwoven wool Shawl with a classic single patti design. Lightweight yet warm. Perfect for everyday wear.",
-        "care": "Hand or Machine wash below 40 degree.",
-        "inStock": true
+      "id": 2,
+      "name": "Handloom made Signle Patti Woolen Shawl",
+      "category": "Wovens",
+      "price": 1599,
+      "originalPrice": 2284,
+      "img": "Single patti kullu himachali handloom Shawl1.1.jpg",
+      "gallery": [
+        "Single patti kullu himachali handloom Shawl1.1.jpg",
+        "Single patti kullu himachali handloom Shawl1.2.jpg",
+        "Single patti kullu himachali handloom Shawl1.3.jpg"
+      ],
+      "options": {
+        "type": "Color",
+        "values": ["Light Grey(Shown)", "White", "Light Brown"]
+      },
+      "shortDesc": "Elegant single patti design.",
+      "desc": "Handwoven wool Shawl with a classic single patti design. Lightweight yet warm. Perfect for everyday wear.",
+      "care": "Hand or Machine wash below 40 degree.",
+      "inStock": true
     },
     {
-        "id": 3,
-        "name": "Tripple (3) Patti Wool Stole",
-        "category": "Wovens",
-        "price": 949,
-        "originalPrice": 1356,
-        "img": "3 patti kullu himachali handloom Stole1.1.jpg",
-        "gallery": [
-            "3 patti kullu himachali handloom Stole1.1.jpg",
-            "3 patti kullu himachali handloom Stole1.2.jpg",
-            "3 patti kullu himachali handloom Stole1.3.jpg"
-        ],
-        "options": {
-            "type": "Color",
-            "values": ["Grey (Shown)", "White", "Black", "Red"]
-        },
-        "shortDesc": "Elegant tripple (3) patti stole.",
-        "desc": "Handwoven wool Stole with a classic tripple patti design. A versatile accessory that adds an artistic touch to any outfit.",
-        "care": "Hand or Machine wash below 40 degree.",
-        "inStock": true
+      "id": 3,
+      "name": "Tripple (3) Patti Wool Stole",
+      "category": "Wovens",
+      "price": 949,
+      "originalPrice": 1356,
+      "img": "3 patti kullu himachali handloom Stole1.1.jpg",
+      "gallery": [
+        "3 patti kullu himachali handloom Stole1.1.jpg",
+        "3 patti kullu himachali handloom Stole1.2.jpg",
+        "3 patti kullu himachali handloom Stole1.3.jpg"
+      ],
+      "options": {
+        "type": "Color",
+        "values": ["Grey (Shown)", "White", "Black", "Red"]
+      },
+      "shortDesc": "Elegant tripple (3) patti stole.",
+      "desc": "Handwoven wool Stole with a classic tripple patti design. A versatile accessory that adds an artistic touch to any outfit.",
+      "care": "Hand or Machine wash below 40 degree.",
+      "inStock": true
     },
     {
-        "id": 5,
-        "name": "Trendy Woolen Stole single patti",
-        "category": "Wovens",
-        "price": 699,
-        "originalPrice": 999,
-        "img": "Single patti kullu himachali handloom Stole1.1.jpg",
-        "gallery": [
-            "Single patti kullu himachali handloom Stole1.1.jpg",
-            "Single patti kullu himachali handloom Stole1.2.jpg",
-            "Single patti kullu himachali handloom Stole1.3.jpg"
-        ],
-        "options": {
-            "type": "Color",
-            "values": ["Black", "Red (Shown)", "White", "Grey", "Pink"]
-        },
-        "shortDesc": "Elegant Single patti design.",
-        "desc": "Handwoven wool Stole with a classic single patti design. Lightweight yet warm.",
-        "care": "Hand or Machine wash below 40 degree.",
-        "inStock": true
+      "id": 5,
+      "name": "Trendy Woolen Stole single patti",
+      "category": "Wovens",
+      "price": 699,
+      "originalPrice": 999,
+      "img": "Single patti kullu himachali handloom Stole1.1.jpg",
+      "gallery": [
+        "Single patti kullu himachali handloom Stole1.1.jpg",
+        "Single patti kullu himachali handloom Stole1.2.jpg",
+        "Single patti kullu himachali handloom Stole1.3.jpg"
+      ],
+      "options": {
+        "type": "Color",
+        "values": ["Black", "Red (Shown)", "White", "Grey", "Pink"]
+      },
+      "shortDesc": "Elegant Single patti design.",
+      "desc": "Handwoven wool Stole with a classic single patti design. Lightweight yet warm.",
+      "care": "Hand or Machine wash below 40 degree.",
+      "inStock": true
     },
     {
-        "id": 6,
-        "name": "Handmade handloom Coat Patti/yardages",
-        "category": "Wovens",
-        "price": 799,
-        "originalPrice": 1141,
-        "img": "handloom pure wool kulluvi coat patti yardage.jpg",
-        "gallery": ["handloom pure wool kulluvi coat patti yardage.jpg"],
-        "options": {
-            "type": "Color",
-            "values": ["Black (Shown)", "White", "Grey", "White with black stripes"]
-        },
-        "shortDesc": "Handmade Kulluvi yardage",
-        "desc": "Handwoven yardage or kulluvi patti best suited for all weather due to its wicking nature and best suited for full nehru coat, half jackets, lowers and shirting.",
-        "care": "Hand or Machine wash below 40 degree.",
-        "inStock": true
+      "id": 6,
+      "name": "Handmade handloom Coat Patti/yardages",
+      "category": "Wovens",
+      "price": 799,
+      "originalPrice": 1141,
+      "img": "handloom pure wool kulluvi coat patti yardage.jpg",
+      "gallery": ["handloom pure wool kulluvi coat patti yardage.jpg"],
+      "options": {
+        "type": "Color",
+        "values": ["Black (Shown)", "White", "Grey", "White with black stripes"]
+      },
+      "shortDesc": "Handmade Kulluvi yardage",
+      "desc": "Handwoven yardage or kulluvi patti best suited for all weather due to its wicking nature and best suited for full nehru coat, half jackets, lowers and shirting.",
+      "care": "Hand or Machine wash below 40 degree.",
+      "inStock": true
     },
     {
-        "id": 7,
-        "name": "Himachali Traditional Cap Pahari topi",
-        "category": "Cap",
-        "price": 699,
-        "originalPrice": 999,
-        "img": "Traditional typical Kulluvi Himachali Cap pahari Topi.jpg",
-        "gallery": [
-            "Traditional typical Kulluvi Himachali Cap pahari Topi.jpg",
-            "Traditional typical Kulluvi Himachali Cap pahari Topi1.jpg",
-            "cap size.jpg"
-        ],
-        "options": {
-            "type": "Size",
-            "values": ["Size 5 (Small)", "Size 6 (Medium)", "Size 7 (Large)"]
-        },
-        "shortDesc": "Authentic Himachal Topi",
-        "desc": "Authentic colorful border cap from Himachal. Perfect for festive occasions.",
-        "care": "Do not wash in machine.",
-        "inStock": true
+      "id": 7,
+      "name": "Himachali Traditional Cap Pahari topi",
+      "category": "Cap",
+      "price": 699,
+      "originalPrice": 999,
+      "img": "Traditional typical Kulluvi Himachali Cap pahari Topi.jpg",
+      "gallery": [
+        "Traditional typical Kulluvi Himachali Cap pahari Topi.jpg",
+        "Traditional typical Kulluvi Himachali Cap pahari Topi1.jpg",
+        "cap size.jpg"
+      ],
+      "options": {
+        "type": "Size",
+        "values": ["Size 5 (Small)", "Size 6 (Medium)", "Size 7 (Large)"]
+      },
+      "shortDesc": "Authentic Himachal Topi",
+      "desc": "Authentic colorful border cap from Himachal. Perfect for festive occasions.",
+      "care": "Do not wash in machine.",
+      "inStock": true
     },
     {
-        "id": 8,
-        "name": "Himachali Traditional Cap Pahari topi",
-        "category": "Cap",
-        "price": 599,
-        "originalPrice": 856,
-        "img": "Traditional Kulluvi Himachali Cap pahari Topi.jpg",
-        "gallery": [
-            "Traditional Kulluvi Himachali Cap pahari Topi.jpg",
-            "Traditional Kulluvi Himachali Cap pahari Topi1.jpg",
-            "cap size.jpg"
-        ],
-        "options": {
-            "type": "Size",
-            "values": ["Size 5 (Small)", "Size 6 (Medium)", "Size 7 (Large)"]
-        },
-        "shortDesc": "Authentic Himachal Topi",
-        "desc": "Authentic colorful border cap from Himachal. Perfect for festive occasions.",
-        "care": "Do not wash in machine.",
-        "inStock": true
+      "id": 8,
+      "name": "Himachali Traditional Cap Pahari topi",
+      "category": "Cap",
+      "price": 599,
+      "originalPrice": 856,
+      "img": "Traditional Kulluvi Himachali Cap pahari Topi.jpg",
+      "gallery": [
+        "Traditional Kulluvi Himachali Cap pahari Topi.jpg",
+        "Traditional Kulluvi Himachali Cap pahari Topi1.jpg",
+        "cap size.jpg"
+      ],
+      "options": {
+        "type": "Size",
+        "values": ["Size 5 (Small)", "Size 6 (Medium)", "Size 7 (Large)"]
+      },
+      "shortDesc": "Authentic Himachal Topi",
+      "desc": "Authentic colorful border cap from Himachal. Perfect for festive occasions.",
+      "care": "Do not wash in machine.",
+      "inStock": true
     },
     {
-        "id": 9,
-        "name": "Maroon Himachali Cap Pahari topi",
-        "category": "Cap",
-        "price": 449,
-        "originalPrice": 641,
-        "img": "Maroon Himachali Cap pahari Topi.jpg",
-        "gallery": [
-            "Maroon Himachali Cap pahari Topi.jpg",
-            "Maroon Himachali Cap pahari Topi1.jpg",
-            "cap size.jpg"
-        ],
-        "options": {
-            "type": "Size",
-            "values": ["Size 5 (Small)", "Size 6 (Medium)", "Size 7 (Large)"]
-        },
-        "shortDesc": "Authentic Himachal Topi",
-        "desc": "Authentic cap from Himachal in Maroon base.",
-        "care": "Do not wash in machine.",
-        "inStock": true
+      "id": 9,
+      "name": "Maroon Himachali Cap Pahari topi",
+      "category": "Cap",
+      "price": 449,
+      "originalPrice": 641,
+      "img": "Maroon Himachali Cap pahari Topi.jpg",
+      "gallery": [
+        "Maroon Himachali Cap pahari Topi.jpg",
+        "Maroon Himachali Cap pahari Topi1.jpg",
+        "cap size.jpg"
+      ],
+      "options": {
+        "type": "Size",
+        "values": ["Size 5 (Small)", "Size 6 (Medium)", "Size 7 (Large)"]
+      },
+      "shortDesc": "Authentic Himachal Topi",
+      "desc": "Authentic cap from Himachal in Maroon base.",
+      "care": "Do not wash in machine.",
+      "inStock": true
     },
     {
-        "id": 10,
-        "name": "Green Himachali Cap Pahari topi",
-        "category": "Cap",
-        "price": 449,
-        "originalPrice": 641,
-        "img": "Green Himachali Cap Pahari Topi.jpg",
-        "gallery": [
-            "Green Himachali Cap Pahari Topi1.jpg",
-            "cap size.jpg"
-        ],
-        "options": {
-            "type": "Size",
-            "values": ["Size 5 (Small)", "Size 6 (Medium)", "Size 7 (Large)"]
-        },
-        "shortDesc": "Authentic Himachal Topi",
-        "desc": "Authentic cap from Himachal in Green base.",
-        "care": "Do not wash in machine.",
-        "inStock": true
+      "id": 10,
+      "name": "Green Himachali Cap Pahari topi",
+      "category": "Cap",
+      "price": 449,
+      "originalPrice": 641,
+      "img": "Green Himachali Cap Pahari Topi.jpg",
+      "gallery": [
+        "Green Himachali Cap Pahari Topi1.jpg",
+        "cap size.jpg"
+      ],
+      "options": {
+        "type": "Size",
+        "values": ["Size 5 (Small)", "Size 6 (Medium)", "Size 7 (Large)"]
+      },
+      "shortDesc": "Authentic Himachal Topi",
+      "desc": "Authentic cap from Himachal in Green base.",
+      "care": "Do not wash in machine.",
+      "inStock": true
     },
     {
-        "id": 11,
-        "name": "Kingri Malana Himachali Cap",
-        "category": "Cap",
-        "price": 549,
-        "originalPrice": 784,
-        "img": "Kingri Malana Himachali Cap Pahari Topi.jpg",
-        "gallery": [
-            "Kingri Malana Himachali Cap Pahari Topi.jpg",
-            "Kingri Malana Himachali Cap Pahari Topi1.jpg",
-            "cap size.jpg"
-        ],
-        "options": {
-            "type": "Size",
-            "values": ["Size 5 (Small)", "Size 6 (Medium)", "Size 7 (Large)"]
-        },
-        "shortDesc": "Authentic Malana Style Topi",
-        "desc": "Authentic Kingri Malana cap from Himachal.",
-        "care": "Do not wash in machine.",
-        "inStock": true
+      "id": 11,
+      "name": "Kingri Malana Himachali Cap",
+      "category": "Cap",
+      "price": 549,
+      "originalPrice": 784,
+      "img": "Kingri Malana Himachali Cap Pahari Topi.jpg",
+      "gallery": [
+        "Kingri Malana Himachali Cap Pahari Topi.jpg",
+        "Kingri Malana Himachali Cap Pahari Topi1.jpg",
+        "cap size.jpg"
+      ],
+      "options": {
+        "type": "Size",
+        "values": ["Size 5 (Small)", "Size 6 (Medium)", "Size 7 (Large)"]
+      },
+      "shortDesc": "Authentic Malana Style Topi",
+      "desc": "Authentic Kingri Malana cap from Himachal.",
+      "care": "Do not wash in machine.",
+      "inStock": true
     },
     {
-        "id": 12,
-        "name": "Unisex Wool Hoodie (Blue/Gold)",
-        "category": "Wovens",
-        "price": 1099,
-        "originalPrice": 1570,
-        "img": "unisex blue hoodie golden broad border 1.1.jpg",
-        "gallery": [
-            "unisex blue hoodie golden broad border 1.1.jpg",
-            "unisex blue hoodie golden broad border 1.2.jpg",
-            "unisex hoodie fleece.jpg"
-        ],
-        "options": {
-            "type": "Size",
-            "values": ["S", "M", "L", "XL", "XXL"]
-        },
-        "shortDesc": "Handwoven winter hoodie.",
-        "desc": "A warm, breathable woolen hoodie suitable for both men and women.",
-        "care": "Hand wash with cold water.",
-        "inStock": true
+      "id": 12,
+      "name": "Unisex Wool Hoodie (Blue/Gold)",
+      "category": "Wovens",
+      "price": 1099,
+      "originalPrice": 1570,
+      "img": "unisex blue hoodie golden broad border 1.1.jpg",
+      "gallery": [
+        "unisex blue hoodie golden broad border 1.1.jpg",
+        "unisex blue hoodie golden broad border 1.2.jpg",
+        "unisex hoodie fleece.jpg"
+      ],
+      "options": {
+        "type": "Size",
+        "values": ["S", "M", "L", "XL", "XXL"]
+      },
+      "shortDesc": "Handwoven winter hoodie.",
+      "desc": "A warm, breathable woolen hoodie suitable for both men and women.",
+      "care": "Hand wash with cold water.",
+      "inStock": true
     },
     {
-        "id": 13,
-        "name": "Unisex Wool Hoodie (Golden Broad)",
-        "category": "Wovens",
-        "price": 1099,
-        "originalPrice": 1570,
-        "img": "unisex hoodie golden broad border 1.1.jpg",
-        "gallery": [
-            "unisex hoodie golden broad border 1.1.jpg",
-            "unisex hoodie fleece.jpg"
-        ],
-        "options": {
-            "type": "Size",
-            "values": ["S", "M", "L", "XL", "XXL"]
-        },
-        "shortDesc": "Handwoven winter hoodie.",
-        "desc": "A warm, breathable woolen hoodie.",
-        "care": "Hand wash with cold water.",
-        "inStock": true
+      "id": 13,
+      "name": "Unisex Wool Hoodie (Golden Broad)",
+      "category": "Wovens",
+      "price": 1099,
+      "originalPrice": 1570,
+      "img": "unisex hoodie golden broad border 1.1.jpg",
+      "gallery": [
+        "unisex hoodie golden broad border 1.1.jpg",
+        "unisex hoodie fleece.jpg"
+      ],
+      "options": {
+        "type": "Size",
+        "values": ["S", "M", "L", "XL", "XXL"]
+      },
+      "shortDesc": "Handwoven winter hoodie.",
+      "desc": "A warm, breathable woolen hoodie.",
+      "care": "Hand wash with cold water.",
+      "inStock": true
     },
     {
-        "id": 14,
-        "name": "Unisex Wool Hoodie (3Golden Broad)",
-        "category": "Wovens",
-        "price": 1199,
-        "originalPrice": 1713,
-        "img": "unisex hoodie 3golden broad border 1.1.jpg",
-        "gallery": [
-            "unisex hoodie 3golden broad border 1.1.jpg",
-            "unisex hoodie fleece.jpg"
-        ],
-        "options": {
-            "type": "Size",
-            "values": ["S", "M", "L", "XL", "XXL"]
-        },
-        "shortDesc": "Handwoven winter hoodie.",
-        "desc": "A warm, breathable woolen hoodie suitable for both men and women.",
-        "care": "Hand wash with cold water.",
-        "inStock": true
+      "id": 14,
+      "name": "Unisex Wool Hoodie (3Golden Broad)",
+      "category": "Wovens",
+      "price": 1199,
+      "originalPrice": 1713,
+      "img": "unisex hoodie 3golden broad border 1.1.jpg",
+      "gallery": [
+        "unisex hoodie 3golden broad border 1.1.jpg",
+        "unisex hoodie fleece.jpg"
+      ],
+      "options": {
+        "type": "Size",
+        "values": ["S", "M", "L", "XL", "XXL"]
+      },
+      "shortDesc": "Handwoven winter hoodie.",
+      "desc": "A warm, breathable woolen hoodie suitable for both men and women.",
+      "care": "Hand wash with cold water.",
+      "inStock": true
     },
     {
-        "id": 15,
-        "name": "Unisex Wool Hoodie (Grey)",
-        "category": "Wovens",
-        "price": 999,
-        "originalPrice": 1427,
-        "img": "unisex grey hoodie narrow border border 1.1.jpg",
-        "gallery": [
-            "unisex grey hoodie narrow border border 1.1.jpg",
-            "unisex grey hoodie narrow border border 1.2.jpg",
-            "unisex grey hoodie narrow border border 1.3.jpg",
-            "unisex hoodie fleece.jpg"
-        ],
-        "options": {
-            "type": "Size",
-            "values": ["S", "M", "L", "XL", "XXL"]
-        },
-        "shortDesc": "Handwoven winter hoodie.",
-        "desc": "A warm, breathable woolen hoodie suitable for both men and women.",
-        "care": "Hand wash with cold water.",
-        "inStock": true
+      "id": 15,
+      "name": "Unisex Wool Hoodie (Grey)",
+      "category": "Wovens",
+      "price": 999,
+      "originalPrice": 1427,
+      "img": "unisex grey hoodie narrow border border 1.1.jpg",
+      "gallery": [
+        "unisex grey hoodie narrow border border 1.1.jpg",
+        "unisex grey hoodie narrow border border 1.2.jpg",
+        "unisex grey hoodie narrow border border 1.3.jpg",
+        "unisex hoodie fleece.jpg"
+      ],
+      "options": {
+        "type": "Size",
+        "values": ["S", "M", "L", "XL", "XXL"]
+      },
+      "shortDesc": "Handwoven winter hoodie.",
+      "desc": "A warm, breathable woolen hoodie suitable for both men and women.",
+      "care": "Hand wash with cold water.",
+      "inStock": true
     },
     {
-        "id": 16,
-        "name": "Royal Angora Shawl",
-        "category": "Wovens",
-        "price": 5499,
-        "originalPrice": 7856,
-        "img": "royal-angora-white.jpg",
-        "gallery": ["royal-angora-white.jpg"],
-        "options": null,
-        "shortDesc": "Premium Angora Wool.",
-        "desc": "Luxurious and extremely soft Angora wool shawl. Very warm and lightweight.",
-        "care": "Expert Dry Clean Only.",
-        "inStock": true
+      "id": 16,
+      "name": "Royal Angora Shawl",
+      "category": "Wovens",
+      "price": 5499,
+      "originalPrice": 7856,
+      "img": "royal-angora-white.jpg",
+      "gallery": ["royal-angora-white.jpg"],
+      "options": null,
+      "shortDesc": "Premium Angora Wool.",
+      "desc": "Luxurious and extremely soft Angora wool shawl. Very warm and lightweight.",
+      "care": "Expert Dry Clean Only.",
+      "inStock": true
     },
     {
-        "id": 17,
-        "name": "Pure wool Half Jacket (Nehru Jacket)",
-        "category": "Jacket",
-        "price": 1099,
-        "originalPrice": 1570,
-        "img": "Pure Wool Men's Half jacket sadri.jpg",
-        "gallery": [
-            "Pure Wool Men's Half jacket sadri.jpg",
-            "Pure Wool Men's Half jacket sadri1.jpg"
-        ],
-        "options": {
-            "type": "Size",
-            "values": ["38", "40", "42", "44"]
-        },
-        "shortDesc": "Stylish woolen jacket.",
-        "desc": "Traditional weave jacket with modern fitting. Can be worn over kurta or shirt.",
-        "care": "Dry Clean Only.",
-        "inStock": true
+      "id": 17,
+      "name": "Pure wool Half Jacket (Nehru Jacket)",
+      "category": "Jacket",
+      "price": 1099,
+      "originalPrice": 1570,
+      "img": "Pure Wool Men's Half jacket sadri.jpg",
+      "gallery": [
+        "Pure Wool Men's Half jacket sadri.jpg",
+        "Pure Wool Men's Half jacket sadri1.jpg"
+      ],
+      "options": {
+        "type": "Size",
+        "values": ["38", "40", "42", "44"]
+      },
+      "shortDesc": "Stylish woolen jacket.",
+      "desc": "Traditional weave jacket with modern fitting. Can be worn over kurta or shirt.",
+      "care": "Dry Clean Only.",
+      "inStock": true
     },
     {
-        "id": 18,
-        "name": "Unisex Muffler",
-        "category": "Wovens",
-        "price": 399,
-        "originalPrice": 570,
-        "img": "Unisex Muffler kulluvi border pure wool.jpg",
-        "gallery": [
-            "Unisex Muffler kulluvi border pure wool.jpg",
-            "Unisex Muffler kulluvi border pure wool1.jpg"
-        ],
-        "options": {
-            "type": "Color",
-            "values": ["White", "Grey", "Light Brown", "Black"]
-        },
-        "shortDesc": "Traditional lightweight Muffler",
-        "desc": "Traditional weave muffler with kulluvi motifs. Pure wool.",
-        "care": "Hand wash/Dry Clean.",
-        "inStock": true
+      "id": 18,
+      "name": "Unisex Muffler",
+      "category": "Wovens",
+      "price": 399,
+      "originalPrice": 570,
+      "img": "Unisex Muffler kulluvi border pure wool.jpg",
+      "gallery": [
+        "Unisex Muffler kulluvi border pure wool.jpg",
+        "Unisex Muffler kulluvi border pure wool1.jpg"
+      ],
+      "options": {
+        "type": "Color",
+        "values": ["White", "Grey", "Light Brown", "Black"]
+      },
+      "shortDesc": "Traditional lightweight Muffler",
+      "desc": "Traditional weave muffler with kulluvi motifs. Pure wool.",
+      "care": "Hand wash/Dry Clean.",
+      "inStock": true
     },
     {
-        "id": 19,
-        "name": "Handmade Unisex Stripe Muffler",
-        "category": "Wovens",
-        "price": 399,
-        "originalPrice": 570,
-        "img": "stripe1.jpg",
-        "gallery": [
-            "stripe1.jpg",
-            "stripe2.jpg"
-        ],
-        "options": null,
-        "shortDesc": "Traditional weave muffler",
-        "desc": "Traditional weave muffler with kulluvi motifs. Purewool muffler weave on traditional handloom.",
-        "care": "Hand wash/Dry Clean.",
-        "inStock": true
+      "id": 19,
+      "name": "Handmade Unisex Stripe Muffler",
+      "category": "Wovens",
+      "price": 399,
+      "originalPrice": 570,
+      "img": "stripe1.jpg",
+      "gallery": [
+        "stripe1.jpg",
+        "stripe2.jpg"
+      ],
+      "options": null,
+      "shortDesc": "Traditional weave muffler",
+      "desc": "Traditional weave muffler with kulluvi motifs. Purewool muffler weave on traditional handloom.",
+      "care": "Hand wash/Dry Clean.",
+      "inStock": true
     },
     {
-        "id": 20,
-        "name": "Embroided Women's Sleeveless Jacket (Black)",
-        "category": "Jacket",
-        "price": 899,
-        "originalPrice": 1284,
-        "img": "Embroided Sleeveless women's black jackets.jpg",
-        "gallery": [
-            "Embroided Sleeveless women's black jackets.jpg",
-            "Embroided Sleeveless women's black jackets1.jpg"
-        ],
-        "options": {
-            "type": "Size",
-            "values": ["38", "40", "42", "44"]
-        },
-        "shortDesc": "Stylish sleeveless woolen jacket.",
-        "desc": "Women’s sleeveless jacket inspired by traditional winter clothing.",
-        "care": "Hand wash, Dry Clean.",
-        "inStock": true
+      "id": 20,
+      "name": "Embroided Women's Sleeveless Jacket (Black)",
+      "category": "Jacket",
+      "price": 899,
+      "originalPrice": 1284,
+      "img": "Embroided Sleeveless women's black jackets.jpg",
+      "gallery": [
+        "Embroided Sleeveless women's black jackets.jpg",
+        "Embroided Sleeveless women's black jackets1.jpg"
+      ],
+      "options": {
+        "type": "Size",
+        "values": ["38", "40", "42", "44"]
+      },
+      "shortDesc": "Stylish sleeveless woolen jacket.",
+      "desc": "Women’s sleeveless jacket inspired by traditional winter clothing.",
+      "care": "Hand wash, Dry Clean.",
+      "inStock": true
     },
     {
-        "id": 21,
-        "name": "Embroided Women's Sleeveless Jacket",
-        "category": "Jacket",
-        "price": 899,
-        "originalPrice": 1284,
-        "img": "Embroided Sleeveless women's jackets.jpg",
-        "gallery": [
-            "Embroided Sleeveless women's jackets.jpg",
-            "Embroided Sleeveless women's jackets1.jpg"
-        ],
-        "options": {
-            "type": "Size",
-            "values": ["38", "40", "42", "44"]
-        },
-        "shortDesc": "Stylish woolen jacket.",
-        "desc": "Women’s sleeveless jacket inspired by traditional winter clothing.",
-        "care": "Hand wash, Dry Clean.",
-        "inStock": true
+      "id": 21,
+      "name": "Embroided Women's Sleeveless Jacket",
+      "category": "Jacket",
+      "price": 899,
+      "originalPrice": 1284,
+      "img": "Embroided Sleeveless women's jackets.jpg",
+      "gallery": [
+        "Embroided Sleeveless women's jackets.jpg",
+        "Embroided Sleeveless women's jackets1.jpg"
+      ],
+      "options": {
+        "type": "Size",
+        "values": ["38", "40", "42", "44"]
+      },
+      "shortDesc": "Stylish woolen jacket.",
+      "desc": "Women’s sleeveless jacket inspired by traditional winter clothing.",
+      "care": "Hand wash, Dry Clean.",
+      "inStock": true
     },
     {
-        "id": 22,
-        "name": "Extra weft Work Wall Decor",
-        "category": "Home Decor",
-        "price": 1499,
-        "originalPrice": 2141,
-        "img": "2.wall.jpg",
-        "gallery": ["2.wall.jpg"],
-        "options": {
-            "type": "Size",
-            "values": ["15*18 in"]
-        },
-        "shortDesc": "Heritage Wall Art",
-        "desc": "15x18 inches (Per Panel) Made of pure wool material, wooden frame, Glass Panel",
-        "care": "Dust with Soft Cloth.",
-        "inStock": true
+      "id": 22,
+      "name": "Extra weft Work Wall Decor",
+      "category": "Home Decor",
+      "price": 1499,
+      "originalPrice": 2141,
+      "img": "2.wall.jpg",
+      "gallery": ["2.wall.jpg"],
+      "options": {
+        "type": "Size",
+        "values": ["15*18 in"]
+      },
+      "shortDesc": "Heritage Wall Art",
+      "desc": "15x18 inches (Per Panel) Made of pure wool material, wooden frame, Glass Panel",
+      "care": "Dust with Soft Cloth.",
+      "inStock": true
     },
     {
-        "id": 23,
-        "name": "Extra weft Work Wall Decor",
-        "category": "Home Decor",
-        "price": 2099,
-        "originalPrice": 2999,
-        "img": "3.wall.jpg",
-        "gallery": ["3.wall.jpg"],
-        "options": {
-            "type": "Size",
-            "values": ["15*18 in"]
-        },
-        "shortDesc": "Heritage Wall Art",
-        "desc": "15x18 inches (Per Panel) Made of pure wool material, wooden frame, Glass Panel",
-        "care": "Dust with Soft Cloth.",
-        "inStock": true
+      "id": 23,
+      "name": "Extra weft Work Wall Decor",
+      "category": "Home Decor",
+      "price": 2099,
+      "originalPrice": 2999,
+      "img": "3.wall.jpg",
+      "gallery": ["3.wall.jpg"],
+      "options": {
+        "type": "Size",
+        "values": ["15*18 in"]
+      },
+      "shortDesc": "Heritage Wall Art",
+      "desc": "15x18 inches (Per Panel) Made of pure wool material, wooden frame, Glass Panel",
+      "care": "Dust with Soft Cloth.",
+      "inStock": true
     },
     {
-        "id": 24,
-        "name": "Himachali pahadi Pullan/slippers",
-        "category": "Footwear",
-        "price": 399,
-        "originalPrice": 570,
-        "img": "Himachali Pullan hemp.jpg",
-        "gallery": [
-            "Himachali Pullan hemp.jpg",
-            "Himachali Pullan hemp1.jpg"
-        ],
-        "options": null,
-        "shortDesc": "Traditional handcrafted footwear",
-        "desc": "Pahadi pullan or handmade slippers are woven with hemp bark by handicraft artisans, using colorful threads for decoration. Traditionally used for temple/kitchen, made of fully natural fibre.",
-        "care": "Dust with Soft Cloth, avoid direct Sunlight.",
-        "inStock": true
+      "id": 24,
+      "name": "Himachali pahadi Pullan/slippers",
+      "category": "Footwear",
+      "price": 399,
+      "originalPrice": 570,
+      "img": "Himachali Pullan hemp.jpg",
+      "gallery": [
+        "Himachali Pullan hemp.jpg",
+        "Himachali Pullan hemp1.jpg"
+      ],
+      "options": null,
+      "shortDesc": "Traditional handcrafted footwear",
+      "desc": "Pahadi pullan or handmade slippers are woven with hemp bark by handicraft artisans, using colorful threads for decoration. Traditionally used for temple/kitchen, made of fully natural fibre.",
+      "care": "Dust with Soft Cloth, avoid direct Sunlight.",
+      "inStock": true
     }
-];
+  ];
 
         let cart = JSON.parse(localStorage.getItem('handiweave_cart')) || [];
         const RAZORPAY_KEY = "rzp_live_RuhteYn3JzTrhD";
@@ -919,7 +974,7 @@
 
             const modal = document.getElementById('productModal');
             const body = document.getElementById('modalBody');
-            
+
             // Build Options HTML
             let optionsHTML = '';
             if(product.options) {
@@ -958,7 +1013,7 @@
                     <div class="modal-care"><strong>Care:</strong> ${product.care}</div>
                 </div>
             `;
-            
+
             modal.style.display = 'flex';
         }
 
@@ -976,7 +1031,7 @@
 
             // Check if item exists with same variant
             const existingItem = cart.find(i => i.id === id && i.variant === selectedVariant);
-            
+
             if (existingItem) {
                 existingItem.quantity++;
             } else {
@@ -989,7 +1044,7 @@
                     quantity: 1
                 });
             }
-            
+
             saveCart();
             closeProductModal();
             showNotification('Added to Bag');
@@ -1062,10 +1117,10 @@
             });
             document.getElementById('checkoutSummary').innerHTML = summaryHTML;
             document.getElementById('checkoutTotal').textContent = formatPrice(total);
-            
+
             const btnDiv = document.getElementById('paymentButtons');
             btnDiv.innerHTML = `<button type="button" onclick="payWithRazorpay()" style="width:100%;background:var(--rzp);color:white;padding:14px;border-radius:4px;border:none;font-weight:700;">Pay Now ${formatPrice(total)}</button>`;
-            
+
             document.getElementById('checkoutModal').classList.add('active');
             document.getElementById('overlay').classList.add('active'); // Keep overlay for checkout
         }
@@ -1086,7 +1141,7 @@
             if(!name || !email || !phone || !addr) return alert("Please fill all details");
 
             const totalAmount = getCartTotal() * 100;
-            
+
             var options = {
                 "key": RAZORPAY_KEY,
                 "amount": totalAmount,
@@ -1099,9 +1154,9 @@
                     const formData = new FormData();
                     formData.append('Order Details', `ID: ${response.razorpay_payment_id}. Items: ${JSON.stringify(cart)}`);
                     formData.append('Customer', `${name}, ${phone}, ${addr}`);
-                    
+
                     fetch("https://formspree.io/f/xojagdvw", { method: "POST", body: formData, headers: {'Accept': 'application/json'} });
-                    
+
                     cart = []; saveCart(); closeCheckout();
                     alert("Payment Successful! Order ID: " + response.razorpay_payment_id);
                 },
@@ -1122,7 +1177,7 @@
         function filterCategory(cat, btn) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            
+
             if(cat === 'all') renderProducts(PRODUCTS);
             else renderProducts(PRODUCTS.filter(p => p.category === cat));
         }
@@ -1132,18 +1187,18 @@
             document.querySelectorAll('.section-container').forEach(s => s.classList.remove('active-section'));
             const el = document.getElementById(view + '-view');
             if(el) el.classList.add('active-section');
-            
+
             if(view === 'home') {
                 document.querySelector('.hero-section').scrollIntoView({ behavior: 'smooth' });
             } else {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-            
+
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.toggle('active', link.getAttribute('onclick').includes(`'${view}'`));
             });
         }
-        
+
         function togglePolicy(index) {
             document.querySelectorAll('.policy-content').forEach((c, i) => {
                 if(i === index) c.classList.toggle('active'); else c.classList.remove('active');
@@ -1155,30 +1210,28 @@
             e.preventDefault();
             const data = new FormData(e.target);
             // REPLACE THIS URL WITH YOUR OWN FORMSPREE ENDPOINT
-            fetch("https://formspree.io/f/xojagdvw", { 
-                method: "POST", 
-                body: data, 
-                headers: { 'Accept': 'application/json' } 
+            fetch("https://formspree.io/f/xojagdvw", {
+                method: "POST",
+                body: data,
+                headers: { 'Accept': 'application/json' }
             })
-            .then(r => { 
-                if(r.ok) { 
-                    showNotification('Message sent successfully!'); 
-                    e.target.reset(); 
-                } else { 
-                    showNotification('Error sending message'); 
-                } 
+            .then(r => {
+                if(r.ok) {
+                    showNotification('Message sent successfully!');
+                    e.target.reset();
+                } else {
+                    showNotification('Error sending message');
+                }
             })
             .catch(() => showNotification('Error sending message'));
         });
 
         // INIT
         document.addEventListener('DOMContentLoaded', () => {
-            renderProducts(); 
+            renderProducts();
             updateCartCount();
             document.getElementById('overlay').addEventListener('click', () => { closeCart(); closeCheckout(); closeProductModal(); });
         });
     </script>
 </body>
-
 </html>
-
