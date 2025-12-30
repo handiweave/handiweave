@@ -76,7 +76,8 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-/* ===== NEW: SHARE BUTTON & REVIEWS STYLES ===== */
+
+        /* ===== NEW: SHARE BUTTON & REVIEWS STYLES ===== */
         
         /* Share & Cart Buttons Layout */
         .action-buttons {
@@ -606,7 +607,7 @@
     <div class="notification" id="notification"><i class="fas fa-check-circle"></i> <span id="notificationText"></span></div>
 
     <script>
-        // 1. DATA: Full Inventory (Corrected Filenames, No 'images/' prefix, Forced inStock, Hoodies Fixed)
+        // 1. DATA: Full Inventory
         const PRODUCTS = [
     {
       "id": 1,
@@ -626,26 +627,6 @@
       },
       "shortDesc": "Elegant tripple (3) patti design.",
       "desc": "Handwoven wool Shawl with a classic tripple patti design. Lightweight yet warm.Wrap yourself in the authentic warmth of the Kullu Valley. Meticulously hand-woven by local artisans, this shawl combines a solid, cozy base with vibrant, traditional patti (borders). It’s designed to provide superior insulation during cold winters while keeping you elegant. A perfect gift of heritage that never goes out of fashion. Meticulously hand-woven by local artisans.",
-      "care": "Hand or Machine wash below 40 degree, use mild detergent.",
-      "inStock": true,
-          {
-      "id": 1,
-      "name": "Tripple (3) Patti Woolen Shawl",
-      "category": "Wovens",
-      "price": 2599,
-      "originalPrice": 3499,
-      "img": "3 patti kullu himachali handloom shawl1.1.jpg",
-      "gallery": [
-        "3 patti kullu himachali handloom shawl1.1.jpg",
-        "3 patti kullu himachali handloom shawl1.2.jpg",
-        "3 patti kullu himachali handloom shawl1.3.jpg"
-      ],
-      "options": {
-        "type": "Color",
-        "values": ["Black", "White", "Grey(Shown)"]
-      },
-      "shortDesc": "Elegant tripple (3) patti design.",
-      "desc": "Handwoven wool Shawl with a classic tripple patti design. Lightweight yet warm.Wrap yourself in the authentic warmth of the Kullu Valley.",
       "care": "Hand or Machine wash below 40 degree, use mild detergent.",
       "inStock": true,
       "reviews": [
@@ -956,7 +937,7 @@
       "shortDesc": "Stylish woolen jacket.",
       "desc": "Traditional weave jacket with modern fitting. Can be worn over kurta or shirt.",
       "care": "Dry Clean Only.",
-     "inStock": true,
+      "inStock": true,
       "reviews": [
         { "user": "Sarita Devi", "rating": 5, "text": "Mere husband k liye mangvaya tha size 40.. fitting ekdm perfect aayi hai. Wool pure lg ra hai. Acha product hai." },
         { "user": "Vikram", "rating": 4, "text": "Nice jacket, looks royal with kurta." }
@@ -1080,7 +1061,6 @@
         { "user": "Mayank Sharma", "rating": 5, "text": "Masterpiece! Love from Bangalore." }
       ]
     },
-    },
     {
       "id": 24,
       "name": "Himachali pahadi Pulla/slippers",
@@ -1096,7 +1076,7 @@
       "shortDesc": "Traditional handcrafted footwear",
       "desc": "Free Size Pahadi pullan or handmade slippers are woven with hemp bark by handicraft artisans, using colorful threads for decoration. Traditionally used for temple/kitchen, made of fully natural fibre.",
       "care": "Dust with Soft Cloth, avoid direct Sunlight.",
-     "inStock": true,
+      "inStock": true,
       "reviews": [
         { "user": "Amit", "rating": 4, "text": "Ghar mein pehnne k liye best hai. look b traditional hai." },
         { "user": "Devansh Thakur", "rating": 5, "text": "Old memories refreshed. Good work." }
@@ -1151,7 +1131,7 @@
             `}).join('');
         }
 
-        // 3. PRODUCT MODAL (POPUP)
+        // 3. PRODUCT MODAL (Updated with Share & Reviews)
         function openProductModal(id) {
             const product = PRODUCTS.find(p => p.id === id);
             if(!product) return;
@@ -1176,6 +1156,29 @@
                 `<img src="${src}" class="thumb-img" onclick="document.querySelector('.main-modal-img').src='${src}'">`
             ).join('');
 
+            // Build Reviews HTML
+            let reviewsHTML = '';
+            if (product.reviews && product.reviews.length > 0) {
+                const reviewsList = product.reviews.map(r => `
+                    <div class="review-card">
+                        <div class="review-header">
+                            <span>${r.user} <i class="fas fa-check-circle" style="color:#25D366;font-size:0.8rem;"></i></span>
+                            <span class="stars">${'★'.repeat(r.rating)}</span>
+                        </div>
+                        <div style="color:#555;">"${r.text}"</div>
+                    </div>
+                `).join('');
+                
+                reviewsHTML = `
+                    <div class="review-section">
+                        <div class="review-title">Customer Reviews (${product.reviews.length})</div>
+                        ${reviewsList}
+                    </div>
+                `;
+            } else {
+                reviewsHTML = `<div class="review-section" style="color:#777; font-style:italic;">No reviews yet. Be the first to buy!</div>`;
+            }
+
             body.innerHTML = `
                 <div class="modal-gallery">
                     <img src="${product.img}" alt="${product.name}" class="main-modal-img">
@@ -1190,11 +1193,19 @@
                     <div class="modal-short-desc">${product.shortDesc}</div>
                     <div class="modal-desc">${product.desc}</div>
                     ${product.inStock ? optionsHTML : ''}
-                    <button class="add-to-cart-btn" style="margin-top:1rem; padding:15px; ${!product.inStock ? 'background:#888;cursor:not-allowed;' : ''}" 
-                        onclick="addToCartFromModal(${product.id})" ${!product.inStock ? 'disabled' : ''}>
-                        ${product.inStock ? 'ADD TO BAG' : 'OUT OF STOCK'}
-                    </button>
+                    
+                    <div class="action-buttons">
+                        <button class="add-to-cart-btn" style="flex:2; padding:15px; ${!product.inStock ? 'background:#888;cursor:not-allowed;' : ''}" 
+                            onclick="addToCartFromModal(${product.id})" ${!product.inStock ? 'disabled' : ''}>
+                            ${product.inStock ? 'ADD TO BAG' : 'OUT OF STOCK'}
+                        </button>
+                        <button class="share-btn" onclick="shareProduct('${product.name}')">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
+                    </div>
+
                     <div class="modal-care"><strong>Care:</strong> ${product.care}</div>
+                    ${reviewsHTML}
                 </div>
             `;
 
@@ -1202,6 +1213,20 @@
         }
 
         function closeProductModal() { document.getElementById('productModal').style.display = 'none'; }
+
+        // Share Function Logic
+        function shareProduct(name) {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Handiweave',
+                    text: `Check out ${name} on Handiweave!`,
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                const text = `Check out ${name} on Handiweave! ${window.location.href}`;
+                window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+            }
+        }
 
         // 4. ADD TO CART LOGIC
         function addToCartFromModal(id) {
@@ -1413,19 +1438,19 @@
         }
 
        // FILTERS & SEARCH
-function searchProducts() {
-    const term = document.getElementById('searchInput').value.toLowerCase();
-    
-    // Ab ye Name aur Category ke sath Description bhi padhega
-    const filtered = PRODUCTS.filter(p => 
-        p.name.toLowerCase().includes(term) || 
-        p.category.toLowerCase().includes(term) ||
-        (p.desc && p.desc.toLowerCase().includes(term)) ||
-        (p.shortDesc && p.shortDesc.toLowerCase().includes(term))
-    );
-    
-    renderProducts(filtered);
-}
+        function searchProducts() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            
+            // Ab ye Name aur Category ke sath Description bhi padhega
+            const filtered = PRODUCTS.filter(p => 
+                p.name.toLowerCase().includes(term) || 
+                p.category.toLowerCase().includes(term) ||
+                (p.desc && p.desc.toLowerCase().includes(term)) ||
+                (p.shortDesc && p.shortDesc.toLowerCase().includes(term))
+            );
+            
+            renderProducts(filtered);
+        }
 
         function filterCategory(cat, btn) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -1487,5 +1512,4 @@ function searchProducts() {
         });
     </script>
 </body>
-
 </html>
