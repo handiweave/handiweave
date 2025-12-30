@@ -81,14 +81,53 @@
         .trust-banner { background: var(--brand); color: white; padding: 8px; font-size: 0.75rem; text-align: center; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
         font-weight: 600; letter-spacing: 0.5px; z-index: 1002; position: relative; }
 
-        /* ===== HERO SECTION ===== */
+        /* ===== HERO SECTION ANIMATION KEYFRAMES ===== */
+        @keyframes slideshowFade {
+            0% { opacity: 0; }
+            20% { opacity: 1; }  /* Fade in quickly */
+            60% { opacity: 1; }  /* Stay visible for a while */
+            100% { opacity: 0; } /* Fade out */
+        }
+
+        /* ===== HERO SECTION BASE STYLES ===== */
         .hero-section {
-            /* Hero Image Fixed: ar3.jpg */
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-            url('ar3.jpg') center/cover no-repeat;
+            /* Removed static background property */
             min-height: 45vh;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; color: white; padding: 2rem 1rem; position: relative;
+            text-align: center; color: white; padding: 2rem 1rem;
+            position: relative; /* Essential for positioning background layers */
+            overflow: hidden;   /* Ensures images don't overflow */
+        }
+
+        /* Setup pseudo-elements for background layers */
+        .hero-section::before,
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place behind content */
+            background-size: cover;
+            background-position: center;
+            opacity: 0; /* Start hidden */
+            /* Apply animation: 12 seconds total cycle, looping forever */
+            animation: slideshowFade 12s infinite ease-in-out;
+        }
+
+        /* LAYER 1: Image ar3.jpg (Starts immediately) */
+        .hero-section::before {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                              url('ar3.jpg');
+            animation-delay: 0s;
+        }
+
+        /* LAYER 2: Image ar2.jpg (Starts halfway through the cycle) */
+        .hero-section::after {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                              url('ar2.jpg');
+            animation-delay: 6s; /* 6s delay ensures smooth crossfade with 12s total duration */
         }
         .hero-logo-container { margin-bottom: 1rem; animation: fadeInDown 1s ease; }
         .hero-logo {
@@ -456,13 +495,38 @@
     <div class="checkout-modal" id="checkoutModal">
         <button class="modal-close" onclick="closeCheckout()">&times;</button>
         <h2 style="margin-bottom:1.5rem;">Checkout</h2>
+        
         <div id="checkoutSummary" style="margin-bottom:1.5rem; padding:1rem; background:#f9f9f9; border-radius:8px; font-size:0.9rem;"></div>
+        
         <div style="font-size:1.3rem; font-weight:700; text-align:right; margin-bottom:1.5rem;">Total: <span id="checkoutTotal">₹0</span></div>
+        
         <form id="checkoutForm">
-            <div class="form-group"><input type="text" id="customerName" class="form-control" placeholder="Full Name *" required></div>
-            <div class="form-group"><input type="email" id="customerEmail" class="form-control" placeholder="Email Address *" required></div>
-            <div class="form-group"><input type="tel" id="customerPhone" class="form-control" placeholder="Phone Number *" required></div>
-            <div class="form-group"><textarea id="customerAddress" class="form-control" placeholder="Complete Shipping Address *" rows="3" required></textarea></div>
+            <div class="form-group">
+                <input type="text" id="customerName" class="form-control" placeholder="Full Name (Naam) *" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" id="customerPhone" class="form-control" placeholder="Mobile Number *" required pattern="[0-9]{10}">
+            </div>
+            
+            <div class="form-group">
+                <input type="email" id="customerEmail" class="form-control" placeholder="Email Address (Optional)">
+            </div>
+
+            <h4 style="margin: 15px 0 10px; font-size: 0.95rem; color: var(--brand); border-bottom: 1px solid #eee; padding-bottom: 5px;">Shipping Address</h4>
+            
+            <div class="form-group">
+                <input type="text" id="addrLine1" class="form-control" placeholder="House No, Village / Ward / Town *" required>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <input type="text" id="addrDistrict" class="form-control" placeholder="District *" required>
+                <input type="text" id="addrState" class="form-control" placeholder="State *" required value="Himachal Pradesh">
+            </div>
+            
+            <div class="form-group" style="margin-top: 10px;">
+                <input type="number" id="addrPin" class="form-control" placeholder="Pincode *" required>
+            </div>
+
             <div id="paymentButtons" style="margin-top:1.5rem;"></div>
         </form>
     </div>
@@ -938,16 +1002,20 @@
         function updateCartCount() { document.getElementById('cartCount').textContent = cart.reduce((t,i) => t + i.quantity, 0); }
         function getCartTotal() { return cart.reduce((t,i) => t + (i.price * i.quantity), 0); }
 
-        // 2. RENDER PRODUCTS
+        // 2. RENDER PRODUCTS (Updated with Real Discount Calculation)
         function renderProducts(items = PRODUCTS) {
             const container = document.getElementById('productsContainer');
             if(items.length === 0) {
                 container.innerHTML = '<p style="grid-column:1/-1;text-align:center;">No products found.</p>';
                 return;
             }
-            container.innerHTML = items.map(p => `
+            container.innerHTML = items.map(p => {
+                // Percentage Calculate karne ka formula
+                const discount = Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100);
+                
+                return `
                 <div class="product-card">
-                    <span class="discount-badge">30% OFF</span>
+                    <span class="discount-badge">${discount}% OFF</span>
                     ${!p.inStock ? '<span class="sold-out-badge">SOLD OUT</span>' : ''}
                     <div class="product-image" onclick="openProductModal(${p.id})">
                         <img src="${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/300?text=Handiweave'">
@@ -964,7 +1032,7 @@
                         </button>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
         }
 
         // 3. PRODUCT MODAL (POPUP)
@@ -1099,30 +1167,64 @@
         }
         function removeCartItem(idx) { cart.splice(idx, 1); saveCart(); renderCartItems(); }
 
-        // CHECKOUT FLOW FIX
+       // CHECKOUT FLOW FIX & SHIPPING LOGIC
+
+        // 1. Helper Functions for Shipping
+        function getCartCount() {
+            return cart.reduce((t, i) => t + i.quantity, 0);
+        }
+
+        function getShippingCharge() {
+            const count = getCartCount();
+            if (count <= 2) return 40;        // 1-2 items: Rs 40
+            if (count <= 5) return 120;       // 3-5 items: Rs 120
+            return 150;                       // 6+ items: Rs 150
+        }
+
+        // 2. Open Checkout with Shipping
         function openCheckout() {
             if(cart.length === 0) return alert("Cart is empty");
             
-            // 1. Close Cart Sidebar FIRST
+            // Close Cart Sidebar
             document.getElementById('cartSidebar').classList.remove('active');
             
-            // 2. Open Checkout Modal
-            const total = getCartTotal();
-            let summaryHTML = '<h4 style="margin-bottom:10px;">Items:</h4>';
+            // Calculate Totals
+            const subtotal = getCartTotal();
+            const shipping = getShippingCharge();
+            const finalTotal = subtotal + shipping;
+            const count = getCartCount();
+
+            // Build Order Summary HTML
+            let summaryHTML = '<h4 style="margin-bottom:10px;">Order Summary:</h4>';
             cart.forEach(item => {
-                summaryHTML += `<div style="display:flex;justify-content:space-between;font-size:0.9rem;margin-bottom:5px;">
-                    <span>${item.name} (${item.variant}) x${item.quantity}</span>
+                summaryHTML += `<div style="display:flex;justify-content:space-between;font-size:0.9rem;margin-bottom:5px;color:#555;">
+                    <span>${item.name} x${item.quantity}</span>
                     <span>${formatPrice(item.price * item.quantity)}</span>
                 </div>`;
             });
-            document.getElementById('checkoutSummary').innerHTML = summaryHTML;
-            document.getElementById('checkoutTotal').textContent = formatPrice(total);
 
+            // Add Subtotal and Shipping Lines
+            summaryHTML += `<hr style="margin:10px 0; border:0; border-top:1px dashed #ccc;">`;
+            summaryHTML += `<div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+                <span>Subtotal (${count} items):</span>
+                <span>${formatPrice(subtotal)}</span>
+            </div>`;
+            summaryHTML += `<div style="display:flex;justify-content:space-between;margin-bottom:5px; color:var(--brand);">
+                <span>Shipping Charges:</span>
+                <span>+ ${formatPrice(shipping)}</span>
+            </div>`;
+
+            document.getElementById('checkoutSummary').innerHTML = summaryHTML;
+            
+            // Update Grand Total Display
+            document.getElementById('checkoutTotal').innerHTML = formatPrice(finalTotal);
+
+            // Update Pay Now Button with Final Amount
             const btnDiv = document.getElementById('paymentButtons');
-            btnDiv.innerHTML = `<button type="button" onclick="payWithRazorpay()" style="width:100%;background:var(--rzp);color:white;padding:14px;border-radius:4px;border:none;font-weight:700;">Pay Now ${formatPrice(total)}</button>`;
+            btnDiv.innerHTML = `<button type="button" onclick="payWithRazorpay()" style="width:100%;background:var(--rzp);color:white;padding:14px;border-radius:4px;border:none;font-weight:700;">Pay Now ${formatPrice(finalTotal)}</button>`;
 
             document.getElementById('checkoutModal').classList.add('active');
-            document.getElementById('overlay').classList.add('active'); // Keep overlay for checkout
+            document.getElementById('overlay').classList.add('active');
         }
 
         function closeCheckout() {
@@ -1131,36 +1233,63 @@
             document.body.style.overflow = 'auto';
         }
 
-        // RAZORPAY
+      // RAZORPAY PAYMENT LOGIC (Final Fixed Version)
         function payWithRazorpay() {
+            
+            // 1. SAFETY LOCK: Check if cart is empty first
+            if(cart.length === 0) {
+                return alert("Cart is empty! Please add items.");
+            }
+
+            // 2. Get values from new input fields
             const name = document.getElementById('customerName').value;
-            const email = document.getElementById('customerEmail').value;
             const phone = document.getElementById('customerPhone').value;
-            const addr = document.getElementById('customerAddress').value;
+            const email = document.getElementById('customerEmail').value || ""; // Optional (Empty if not provided)
+            
+            // 3. Address Parts
+            const line1 = document.getElementById('addrLine1').value;
+            const dist = document.getElementById('addrDistrict').value;
+            const state = document.getElementById('addrState').value;
+            const pin = document.getElementById('addrPin').value;
 
-            if(!name || !email || !phone || !addr) return alert("Please fill all details");
+            // 4. Validation (Email is NOT checked here, so it remains optional)
+            if(!name || !phone || !line1 || !dist || !state || !pin) {
+                return alert("Please fill Name, Phone and Complete Address fields.");
+            }
 
-            const totalAmount = getCartTotal() * 100;
+            // 5. Combine Address for Database/Email
+            const fullAddress = `${line1}, Dist: ${dist}, ${state}, Pin: ${pin}`;
+
+            // 6. Calculate Total Amount including Shipping
+            const subtotal = getCartTotal();
+            const shipping = getShippingCharge(); 
+            const finalAmount = subtotal + shipping;
+            const amountInPaise = finalAmount * 100;
 
             var options = {
                 "key": RAZORPAY_KEY,
-                "amount": totalAmount,
+                "amount": amountInPaise,
                 "currency": "INR",
                 "name": "Handiweave",
-                "description": "Order Payment",
+                "description": `Order Payment (${getCartCount()} Items)`,
                 "image": "logo.png",
                 "handler": function (response){
-                    // Send data to Formspree
+                    // Send order details to Formspree
                     const formData = new FormData();
-                    formData.append('Order Details', `ID: ${response.razorpay_payment_id}. Items: ${JSON.stringify(cart)}`);
-                    formData.append('Customer', `${name}, ${phone}, ${addr}`);
+                    formData.append('Order Summary', `ID: ${response.razorpay_payment_id} | Total: ₹${finalAmount} (Ship: ₹${shipping})`);
+                    formData.append('Cart Items', JSON.stringify(cart));
+                    formData.append('Customer Details', `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${fullAddress}`);
 
                     fetch("https://formspree.io/f/xojagdvw", { method: "POST", body: formData, headers: {'Accept': 'application/json'} });
 
                     cart = []; saveCart(); closeCheckout();
                     alert("Payment Successful! Order ID: " + response.razorpay_payment_id);
                 },
-                "prefill": { "name": name, "email": email, "contact": phone },
+                "prefill": { 
+                    "name": name, 
+                    "email": email, 
+                    "contact": phone 
+                },
                 "theme": { "color": "#7A5548" }
             };
             var rzp1 = new Razorpay(options);
@@ -1244,5 +1373,6 @@ function searchProducts() {
 </body>
 
 </html>
+
 
 
