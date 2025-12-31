@@ -1098,7 +1098,7 @@
         function updateCartCount() { document.getElementById('cartCount').textContent = cart.reduce((t,i) => t + i.quantity, 0); }
         function getCartTotal() { return cart.reduce((t,i) => t + (i.price * i.quantity), 0); }
 
-        // 2. RENDER PRODUCTS (Updated with Real Discount Calculation)
+        // 2. RENDER PRODUCTS (Updated with GST Text & Real Discount)
         function renderProducts(items = PRODUCTS) {
             const container = document.getElementById('productsContainer');
             if(items.length === 0) {
@@ -1114,14 +1114,14 @@
                     <span class="discount-badge">${discount}% OFF</span>
                     ${!p.inStock ? '<span class="sold-out-badge">SOLD OUT</span>' : ''}
                     <div class="product-image" onclick="openProductModal(${p.id})">
-                        <img src="${p.img}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/300?text=Handiweave'">
+                        <img src="${p.img}" alt="${p.name}" onerror="this.src='https://placehold.co/300x300?text=Handiweave';">
                         ${!p.inStock ? '<div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.6);"></div>' : ''}
                     </div>
                     <div class="product-info">
                         <div class="product-name">${p.name}</div>
                         <div class="product-price">
                             <span class="original-price">${formatPrice(p.originalPrice)}</span>
-                            ${formatPrice(p.price)}
+                            ${formatPrice(p.price)} <span style="font-size:0.7em;font-weight:400;color:#555;">(Inc. GST)</span>
                         </div>
                         <button class="add-to-cart-btn" onclick="openProductModal(${p.id})" ${!p.inStock ? 'disabled style="background:#888;"' : ''}>
                             ${p.inStock ? 'Quick View' : 'Sold Out'}
@@ -1131,10 +1131,19 @@
             `}).join('');
         }
 
-        // 3. PRODUCT MODAL (Updated with Share & Reviews)
+        // 3. PRODUCT MODAL (Updated with Fixed Share Link & GA4 View Item)
         function openProductModal(id) {
             const product = PRODUCTS.find(p => p.id === id);
             if(!product) return;
+            
+            // GA4 Event: View Item
+            if(typeof gtag === 'function') {
+                gtag('event', 'view_item', {
+                    currency: 'INR',
+                    value: product.price,
+                    items: [{ item_id: product.id, item_name: product.name, price: product.price }]
+                });
+            }
 
             const modal = document.getElementById('productModal');
             const body = document.getElementById('modalBody');
@@ -1181,14 +1190,14 @@
 
             body.innerHTML = `
                 <div class="modal-gallery">
-                    <img src="${product.img}" alt="${product.name}" class="main-modal-img">
+                    <img src="${product.img}" alt="${product.name}" class="main-modal-img" onerror="this.src='https://placehold.co/400x400?text=Handiweave';">
                     <div class="thumb-grid">${thumbs}</div>
                 </div>
                 <div class="modal-details">
                     <h2>${product.name}</h2>
                     <div class="modal-price">
                         <span style="color:#999; text-decoration:line-through; font-size:1rem; font-weight:normal;">${formatPrice(product.originalPrice)}</span>
-                        ${formatPrice(product.price)}
+                        ${formatPrice(product.price)} <span style="font-size:0.6em;font-weight:400;color:#555;">(Inc. GST)</span>
                     </div>
                     <div class="modal-short-desc">${product.shortDesc}</div>
                     <div class="modal-desc">${product.desc}</div>
@@ -1214,24 +1223,26 @@
 
         function closeProductModal() { document.getElementById('productModal').style.display = 'none'; }
 
-        // Share Function Logic
+        // Fixed Share Function (Universal Link)
         function shareProduct(name) {
+            const url = window.location.href;
             if (navigator.share) {
                 navigator.share({
                     title: 'Handiweave',
                     text: `Check out ${name} on Handiweave!`,
-                    url: window.location.href
+                    url: url
                 }).catch(console.error);
             } else {
-                const text = `Check out ${name} on Handiweave! ${window.location.href}`;
-                window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+                const text = `Check out ${name} on Handiweave! ${url}`;
+                // Using api.whatsapp.com for better compatibility
+                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
             }
         }
 
-        // 4. ADD TO CART LOGIC
+        // 4. ADD TO CART LOGIC (With GA4 Event)
         function addToCartFromModal(id) {
             const product = PRODUCTS.find(p => p.id === id);
-            if (!product.inStock) return; // Safety check
+            if (!product.inStock) return; 
 
             let selectedVariant = 'Standard';
             
@@ -1255,9 +1266,19 @@
             }
 
             saveCart();
+            
+            // GA4 Event: Add to Cart
+            if(typeof gtag === 'function') {
+                gtag('event', 'add_to_cart', {
+                    currency: 'INR',
+                    value: product.price,
+                    items: [{ item_id: product.id, item_name: product.name, price: product.price, quantity: 1 }]
+                });
+            }
+
             closeProductModal();
             showNotification('Added to Bag');
-            openCart(); // Show cart after adding
+            openCart(); 
         }
 
         // 5. CART & CHECKOUT LOGIC
@@ -1283,7 +1304,7 @@
             container.innerHTML = cart.map((item, idx) => `
                 <div style="display:flex; justify-content:space-between; margin-bottom:1rem; border-bottom:1px solid #f0f0f0; padding-bottom:10px;">
                     <div style="display:flex; gap:10px;">
-                        <img src="${item.img}" style="width:50px; height:50px; object-fit:cover; border-radius:4px;">
+                        <img src="${item.img}" style="width:50px; height:50px; object-fit:cover; border-radius:4px;" onerror="this.src='https://placehold.co/100x100?text=HW';">
                         <div>
                             <div style="font-weight:600; font-size:0.9rem;">${item.name}</div>
                             <div style="font-size:0.8rem; color:#666;">${item.variant}</div>
@@ -1326,6 +1347,15 @@
         function openCheckout() {
             if(cart.length === 0) return alert("Cart is empty");
             
+            // GA4 Event: Begin Checkout
+            if(typeof gtag === 'function') {
+                gtag('event', 'begin_checkout', {
+                    currency: 'INR',
+                    value: getCartTotal(),
+                    items: cart.map(i => ({ item_id: i.id, item_name: i.name, price: i.price, quantity: i.quantity }))
+                });
+            }
+
             // Close Cart Sidebar
             document.getElementById('cartSidebar').classList.remove('active');
             
@@ -1335,7 +1365,7 @@
             const finalTotal = subtotal + shipping;
             const count = getCartCount();
 
-            // Build Order Summary HTML
+            // Build Order Summary HTML (VISIBLE SHIPPING LOGIC FIX)
             let summaryHTML = '<h4 style="margin-bottom:10px;">Order Summary:</h4>';
             cart.forEach(item => {
                 summaryHTML += `<div style="display:flex;justify-content:space-between;font-size:0.9rem;margin-bottom:5px;color:#555;">
@@ -1374,7 +1404,7 @@
             document.body.style.overflow = 'auto';
         }
 
-      // RAZORPAY PAYMENT LOGIC (Final Fixed Version)
+      // RAZORPAY PAYMENT LOGIC (Final Fixed Version with Phone Validation & Cart Clear)
         function payWithRazorpay() {
             
             // 1. SAFETY LOCK: Check if cart is empty first
@@ -1385,7 +1415,7 @@
             // 2. Get values from new input fields
             const name = document.getElementById('customerName').value;
             const phone = document.getElementById('customerPhone').value;
-            const email = document.getElementById('customerEmail').value || ""; // Optional (Empty if not provided)
+            const email = document.getElementById('customerEmail').value || ""; 
             
             // 3. Address Parts
             const line1 = document.getElementById('addrLine1').value;
@@ -1393,9 +1423,14 @@
             const state = document.getElementById('addrState').value;
             const pin = document.getElementById('addrPin').value;
 
-            // 4. Validation (Email is NOT checked here, so it remains optional)
+            // 4. Validation 
             if(!name || !phone || !line1 || !dist || !state || !pin) {
                 return alert("Please fill Name, Phone and Complete Address fields.");
+            }
+
+            // Phone Number Validation Fix
+            if(!/^[0-9]{10}$/.test(phone)) {
+                return alert("Please enter a valid 10-digit mobile number.");
             }
 
             // 5. Combine Address for Database/Email
@@ -1423,7 +1458,22 @@
 
                     fetch("https://formspree.io/f/xojagdvw", { method: "POST", body: formData, headers: {'Accept': 'application/json'} });
 
-                    cart = []; saveCart(); closeCheckout();
+                    // GA4 Event: Purchase
+                    if(typeof gtag === 'function') {
+                        gtag('event', 'purchase', {
+                            transaction_id: response.razorpay_payment_id,
+                            value: finalAmount,
+                            currency: 'INR',
+                            shipping: shipping,
+                            items: cart.map(i => ({ item_id: i.id, item_name: i.name, price: i.price, quantity: i.quantity }))
+                        });
+                    }
+
+                    // --- CRITICAL FIX: CLEAR CART AFTER PAYMENT ---
+                    cart = []; // Empty the variable
+                    saveCart(); // Save empty array to LocalStorage
+                    renderCartItems(); // Clear visual list
+                    closeCheckout();
                     alert("Payment Successful! Order ID: " + response.razorpay_payment_id);
                 },
                 "prefill": { 
