@@ -1098,38 +1098,46 @@
         function updateCartCount() { document.getElementById('cartCount').textContent = cart.reduce((t,i) => t + i.quantity, 0); }
         function getCartTotal() { return cart.reduce((t,i) => t + (i.price * i.quantity), 0); }
 
-        // 2. RENDER PRODUCTS (Updated with GST Text & Real Discount)
-        function renderProducts(items = PRODUCTS) {
-            const container = document.getElementById('productsContainer');
-            if(items.length === 0) {
-                container.innerHTML = '<p style="grid-column:1/-1;text-align:center;">No products found.</p>';
-                return;
-            }
-            container.innerHTML = items.map(p => {
-                // Percentage Calculate karne ka formula
-                const discount = Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100);
+        // 2. RENDER PRODUCTS (Updated: "Add to Bag" Button + "View Details" Link)
+function renderProducts(items = PRODUCTS) {
+    const container = document.getElementById('productsContainer');
+    if(items.length === 0) {
+        container.innerHTML = '<p style="grid-column:1/-1;text-align:center;">No products found.</p>';
+        return;
+    }
+    container.innerHTML = items.map(p => {
+        // Percentage Calculate karne ka formula
+        const discount = Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100);
+        
+        return `
+        <div class="product-card">
+            <span class="discount-badge">${discount}% OFF</span>
+            ${!p.inStock ? '<span class="sold-out-badge">SOLD OUT</span>' : ''}
+            
+            <div class="product-image" onclick="openProductModal(${p.id})">
+                <img src="${p.img}" alt="${p.name}" onerror="this.src='https://placehold.co/300x300?text=Handiweave';">
+                ${!p.inStock ? '<div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.6);"></div>' : ''}
+            </div>
+
+            <div class="product-info">
+                <div class="product-name" style="cursor:pointer;" onclick="openProductModal(${p.id})">${p.name}</div>
                 
-                return `
-                <div class="product-card">
-                    <span class="discount-badge">${discount}% OFF</span>
-                    ${!p.inStock ? '<span class="sold-out-badge">SOLD OUT</span>' : ''}
-                    <div class="product-image" onclick="openProductModal(${p.id})">
-                        <img src="${p.img}" alt="${p.name}" onerror="this.src='https://placehold.co/300x300?text=Handiweave';">
-                        ${!p.inStock ? '<div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.6);"></div>' : ''}
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">${p.name}</div>
-                        <div class="product-price">
-                            <span class="original-price">${formatPrice(p.originalPrice)}</span>
-                            ${formatPrice(p.price)} <span style="font-size:0.7em;font-weight:400;color:#555;">(Inc. GST)</span>
-                        </div>
-                        <button class="add-to-cart-btn" onclick="openProductModal(${p.id})" ${!p.inStock ? 'disabled style="background:#888;"' : ''}>
-                            ${p.inStock ? 'Quick View' : 'Sold Out'}
-                        </button>
-                    </div>
+                <div class="product-price">
+                    <span class="original-price">${formatPrice(p.originalPrice)}</span>
+                    ${formatPrice(p.price)} <span style="font-size:0.7em;font-weight:400;color:#555;">(Inc. GST)</span>
                 </div>
-            `}).join('');
-        }
+
+                <button class="add-to-cart-btn" onclick="openProductModal(${p.id})" ${!p.inStock ? 'disabled style="background:#888;"' : ''}>
+                    <i class="fas fa-shopping-bag"></i> ${p.inStock ? ' ADD TO BAG' : ' Sold Out'}
+                </button>
+                
+                <div style="margin-top:8px; font-size:0.85rem; text-decoration:underline; color:#666; cursor:pointer;" onclick="openProductModal(${p.id})">
+                    View More Details
+                </div>
+                </div>
+        </div>
+    `}).join('');
+}
 
         // 3. PRODUCT MODAL (Updated with Fixed Share Link & GA4 View Item)
         function openProductModal(id) {
@@ -1563,4 +1571,5 @@
     </script>
 </body>
 </html>
+
 
