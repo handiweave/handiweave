@@ -16,15 +16,16 @@
     <meta name="theme-color" content="#7A5548">
 
     <title>Handiweave | Traditions and Trends</title>
-    
     <meta name="description" content="Handiweave: Traditions and Trends. A platform empowering Himachal's artisans to market authentic handmade handloom and handicrafts. From Palampur to the world, supporting local heritage directly.">
     <meta name="keywords" content="Handiweave, Himachal Handloom, Kullu Shawls, Artisan Platform, Palampur, Handmade Crafts, Traditions and Trends">
     <link rel="canonical" href="https://handiweave.com/">
 
+    <link rel="icon" type="image/png" href="favicon.png">
+
     <meta property="og:title" content="Handiweave | Traditions and Trends">
-    <meta property="og:description" content="Empowering artisans from all over Himachal. Shop authentic handmade wovens directly from the source.">
-    <meta property="og:image" content="https://handiweave.com/logo.png">
-    <meta property="og:url" content="https://handiweave.com/">
+    <meta property="og:description" content="Discover the warmth of Himalayas. 100% Handwoven Shawls, Stoles & Caps from Palampur.">
+    <meta property="og:image" content="https://handiweave.com/artisan1.jpg">
+    <meta property="og:url" content="https://handiweave.com">
     <meta property="og:type" content="website">
 
     <script type="application/ld+json">
@@ -550,7 +551,7 @@
             <div class="craft-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:15px; margin-top:0;">
                 <div style="text-align:center;">
                     <img src="artisan.jpg" style="width:100%; height:160px; object-fit:cover; border-radius:8px;">
-                    <h5 style="margin-top:8px; font-size:0.9rem;">1. Beam Winding</h5>
+                    <h5 style="margin-top:8px; font-size:0.9rem;">1. Handloom</h5>
                 </div>
                 <div style="text-align:center;">
                     <img src="close.jpg" style="width:100%; height:160px; object-fit:cover; border-radius:8px;">
@@ -649,47 +650,52 @@
     </aside>
 
     <div class="checkout-modal" id="checkoutModal">
-        <button class="modal-close" onclick="closeCheckout()">&times;</button>
-        <h2 style="margin-bottom:1.5rem;">Checkout</h2>
+    <button class="modal-close" onclick="closeCheckout()">&times;</button>
+    <h2 style="margin-bottom:1.5rem;">Checkout</h2>
+    
+    <div id="checkoutSummary" style="margin-bottom:1.5rem; padding:1rem; background:#f9f9f9; border-radius:8px; font-size:0.9rem;"></div>
+    
+    <div style="font-size:1.3rem; font-weight:700; text-align:right; margin-bottom:1.5rem;">Total: <span id="checkoutTotal">₹0</span></div>
+    
+    <form id="checkoutForm">
+        <div class="form-group">
+            <input type="text" id="customerName" class="form-control" placeholder="Full Name *" required>
+        </div>
+        <div class="form-group">
+            <input type="tel" id="customerPhone" class="form-control" placeholder="Mobile Number *" required pattern="[0-9]{10}">
+        </div>
         
-        <div id="checkoutSummary" style="margin-bottom:1.5rem; padding:1rem; background:#f9f9f9; border-radius:8px; font-size:0.9rem;"></div>
+        <div class="form-group">
+            <input type="email" id="customerEmail" class="form-control" placeholder="Email Address (Optional)">
+        </div>
+
+        <h4 style="margin: 15px 0 10px; font-size: 0.95rem; color: var(--brand); border-bottom: 1px solid #eee; padding-bottom: 5px;">Shipping Address</h4>
         
-        <div style="font-size:1.3rem; font-weight:700; text-align:right; margin-bottom:1.5rem;">Total: <span id="checkoutTotal">₹0</span></div>
+        <div class="form-group">
+            <input type="text" id="addrLine1" class="form-control" placeholder="House No, Village / Ward / Town *" required>
+        </div>
         
-        <form id="checkoutForm">
-            <div class="form-group">
-                <input type="text" id="customerName" class="form-control" placeholder="Full Name (Naam) *" required>
-            </div>
-            <div class="form-group">
-                <input type="tel" id="customerPhone" class="form-control" placeholder="Mobile Number *" required pattern="[0-9]{10}">
-            </div>
-            
-            <div class="form-group">
-                <input type="email" id="customerEmail" class="form-control" placeholder="Email Address (Optional)">
-            </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <input type="text" id="addrDistrict" class="form-control" placeholder="District *" required>
+            <input type="text" id="addrState" class="form-control" placeholder="State *" required value="Himachal Pradesh">
+        </div>
+        
+        <div class="form-group" style="margin-top: 10px;">
+            <input type="number" id="addrPin" class="form-control" placeholder="Pincode *" required>
+        </div>
 
-            <h4 style="margin: 15px 0 10px; font-size: 0.95rem; color: var(--brand); border-bottom: 1px solid #eee; padding-bottom: 5px;">Shipping Address</h4>
-            
-            <div class="form-group">
-                <input type="text" id="addrLine1" class="form-control" placeholder="House No, Village / Ward / Town *" required>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                <input type="text" id="addrDistrict" class="form-control" placeholder="District *" required>
-                <input type="text" id="addrState" class="form-control" placeholder="State *" required value="Himachal Pradesh">
-            </div>
-            
-            <div class="form-group" style="margin-top: 10px;">
-                <input type="number" id="addrPin" class="form-control" placeholder="Pincode *" required>
-            </div>
-
-            <div id="paymentButtons" style="margin-top:1.5rem;"></div>
-        </form>
-    </div>
-
-    <div class="notification" id="notification"><i class="fas fa-check-circle"></i> <span id="notificationText"></span></div>
-
-    <script>
+        <div style="margin-top:15px; background:#fff8e1; padding:10px; border-radius:6px; border:1px dashed var(--gold);">
+            <label style="display:flex; align-items:center; cursor:pointer; gap:10px; margin-bottom:0;">
+                <input type="checkbox" id="isGift" style="width:20px; height:20px; accent-color:var(--brand);">
+                <span style="font-size:0.9rem; color:var(--brand-dark);">
+                    <strong>🎁 Send as a Gift?</strong><br>
+                    <span style="font-size:0.8rem; color:#666;">We'll remove the price tag & pack with love.</span>
+                </span>
+            </label>
+        </div>
+        <div id="paymentButtons" style="margin-top:1.5rem;"></div>
+    </form>
+</div>
         // 1. DATA: Full Inventory
         const PRODUCTS = [
     {
@@ -1148,7 +1154,7 @@
       "id": 24,
       "name": "Himachali pahadi Pulla/slippers",
       "category": "Footwear",
-      "price": 399,
+      "price": 349,
       "originalPrice": 570,
       "img": "Himachali Pullan hemp.jpg",
       "gallery": [
@@ -1157,7 +1163,7 @@
       ],
       "options": null,
       "shortDesc": "Traditional handcrafted footwear",
-      "desc": "Free Size Pahadi pullan or handmade slippers are woven with hemp bark by handicraft artisans, using colorful threads for decoration. Traditionally used for temple/kitchen, made of fully natural fibre.",
+      "desc": "Free Size Pahadi pulla or handmade slippers are woven with hemp bark by handicraft artisans, using colorful threads for decoration. Traditionally used for temple/kitchen, made of fully natural fibre.",
       "care": "keep them dry,avoid water.",
       "inStock": true,
       "reviews": [
@@ -1422,162 +1428,240 @@ function renderProducts(items = PRODUCTS) {
 
        // CHECKOUT FLOW FIX & SHIPPING LOGIC
 
-        // 1. Helper Functions for Shipping
-        function getCartCount() {
-            return cart.reduce((t, i) => t + i.quantity, 0);
+       // ---------------------------------------------------------
+    // 1. HELPER FUNCTIONS (Shipping & Count) - YE MISSING THA
+    // ---------------------------------------------------------
+    function getCartCount() {
+        return cart.reduce((t, i) => t + i.quantity, 0);
+    }
+
+    function getShippingCharge() {
+        const count = getCartCount();
+        if (count <= 2) return 40;   // 1-2 items: ₹40
+        if (count <= 5) return 120;  // 3-5 items: ₹120
+        return 150;                  // 6+ items: ₹150
+    }
+
+    // ---------------------------------------------------------
+    // 2. OPEN CHECKOUT LOGIC (Renders Summary + 2 Buttons)
+    // ---------------------------------------------------------
+    function openCheckout() {
+        if (cart.length === 0) {
+            return alert("Cart is empty");
         }
 
-        function getShippingCharge() {
-            const count = getCartCount();
-            if (count <= 2) return 40;        // 1-2 items: Rs 40
-            if (count <= 5) return 120;       // 3-5 items: Rs 120
-            return 150;                       // 6+ items: Rs 150
-        }
-
-        // 2. Open Checkout with Shipping
-        function openCheckout() {
-            if(cart.length === 0) return alert("Cart is empty");
-            
-            // GA4 Event: Begin Checkout
-            if(typeof gtag === 'function') {
-                gtag('event', 'begin_checkout', {
-                    currency: 'INR',
-                    value: getCartTotal(),
-                    items: cart.map(i => ({ item_id: i.id, item_name: i.name, price: i.price, quantity: i.quantity }))
-                });
-            }
-
-            // Close Cart Sidebar
-            document.getElementById('cartSidebar').classList.remove('active');
-            
-            // Calculate Totals
-            const subtotal = getCartTotal();
-            const shipping = getShippingCharge();
-            const finalTotal = subtotal + shipping;
-            const count = getCartCount();
-
-            // Build Order Summary HTML (VISIBLE SHIPPING LOGIC FIX)
-            let summaryHTML = '<h4 style="margin-bottom:10px;">Order Summary:</h4>';
-            cart.forEach(item => {
-                summaryHTML += `<div style="display:flex;justify-content:space-between;font-size:0.9rem;margin-bottom:5px;color:#555;">
-                    <span>${item.name} x${item.quantity}</span>
-                    <span>${formatPrice(item.price * item.quantity)}</span>
-                </div>`;
+        // GA4 Event: Begin Checkout
+        if (typeof gtag === 'function') {
+            gtag('event', 'begin_checkout', {
+                currency: 'INR',
+                value: getCartTotal(),
+                items: cart.map(i => ({ item_id: i.id, item_name: i.name, price: i.price, quantity: i.quantity }))
             });
+        }
 
-            // Add Subtotal and Shipping Lines
-            summaryHTML += `<hr style="margin:10px 0; border:0; border-top:1px dashed #ccc;">`;
-            summaryHTML += `<div style="display:flex;justify-content:space-between;margin-bottom:5px;">
-                <span>Subtotal (${count} items):</span>
-                <span>${formatPrice(subtotal)}</span>
+        // Close Cart Sidebar
+        document.getElementById('cartSidebar').classList.remove('active');
+
+        // Calculate Totals
+        const subtotal = getCartTotal();
+        const shipping = getShippingCharge();
+        const finalTotal = subtotal + shipping;
+        const count = getCartCount();
+
+        // Build Order Summary HTML
+        let summaryHTML = '<h4 style="margin-bottom:10px;">Order Summary:</h4>';
+        cart.forEach(item => {
+            summaryHTML += `<div style="display:flex;justify-content:space-between;font-size:0.9rem;margin-bottom:5px;color:#555;">
+                <span>${item.name} x${item.quantity}</span>
+                <span>${formatPrice(item.price * item.quantity)}</span>
             </div>`;
-            summaryHTML += `<div style="display:flex;justify-content:space-between;margin-bottom:5px; color:var(--brand);">
-                <span>Shipping Charges:</span>
-                <span>+ ${formatPrice(shipping)}</span>
-            </div>`;
+        });
 
-            document.getElementById('checkoutSummary').innerHTML = summaryHTML;
-            
-            // Update Grand Total Display
-            document.getElementById('checkoutTotal').innerHTML = formatPrice(finalTotal);
+        // Add Subtotal and Shipping Lines
+        summaryHTML += `<hr style="margin:10px 0; border:0; border-top:1px dashed #ccc;">`;
+        summaryHTML += `<div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+            <span>Subtotal (${count} items):</span>
+            <span>${formatPrice(subtotal)}</span>
+        </div>`;
+        summaryHTML += `<div style="display:flex;justify-content:space-between;margin-bottom:5px; color:var(--brand);">
+            <span>Shipping Charges:</span>
+            <span>+ ${formatPrice(shipping)}</span>
+        </div>`;
 
-            // Update Pay Now Button with Final Amount
-            const btnDiv = document.getElementById('paymentButtons');
-            btnDiv.innerHTML = `<button type="button" onclick="payWithRazorpay()" style="width:100%;background:var(--rzp);color:white;padding:14px;border-radius:4px;border:none;font-weight:700;">Pay Now ${formatPrice(finalTotal)}</button>`;
+        // Inject Summary and Total
+        document.getElementById('checkoutSummary').innerHTML = summaryHTML;
+        document.getElementById('checkoutTotal').innerHTML = formatPrice(finalTotal);
 
-            document.getElementById('checkoutModal').classList.add('active');
-            document.getElementById('overlay').classList.add('active');
+        // --- INJECT BOTH PAYMENT BUTTONS HERE ---
+        const btnDiv = document.getElementById('paymentButtons');
+        btnDiv.innerHTML = `
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <button type="button" onclick="payWithRazorpay()" style="width:100%; background:var(--rzp); color:white; padding:14px; border-radius:4px; border:none; font-weight:700; cursor:pointer;">
+                    <i class="fas fa-credit-card"></i> Pay Now ${formatPrice(finalTotal)} (Razorpay)
+                </button>
+                
+                <button type="button" onclick="sendOrderToWhatsapp()" style="width:100%; background:#25D366; color:white; padding:14px; border-radius:4px; border:none; font-weight:700; cursor:pointer;">
+                    <i class="fab fa-whatsapp"></i> Order via WhatsApp / UPI
+                </button>
+            </div>
+        `;
+
+        // Show Modal
+        document.getElementById('checkoutModal').classList.add('active');
+        document.getElementById('overlay').classList.add('active');
+    }
+
+    function closeCheckout() {
+        document.getElementById('checkoutModal').classList.remove('active');
+        document.getElementById('overlay').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+
+    // ---------------------------------------------------------
+    // 3. RAZORPAY PAYMENT LOGIC (With Gift & Split Address)
+    // ---------------------------------------------------------
+    function payWithRazorpay() {
+        if (cart.length === 0) return alert("Cart is empty! Please add items.");
+
+        // Get Input Values
+        const name = document.getElementById('customerName').value;
+        const phone = document.getElementById('customerPhone').value;
+        const email = document.getElementById('customerEmail').value || "";
+
+        // Get Address Parts
+        const line1 = document.getElementById('addrLine1').value;
+        const dist = document.getElementById('addrDistrict').value;
+        const state = document.getElementById('addrState').value;
+        const pin = document.getElementById('addrPin').value;
+
+        // Get Gift Checkbox Status
+        const giftElement = document.getElementById('isGift');
+        const isGift = giftElement ? giftElement.checked : false;
+
+        // Validation
+        if (!name || !phone || !line1 || !dist || !state || !pin) {
+            return alert("Please fill Name, Phone and Complete Address fields.");
+        }
+        if (!/^[0-9]{10}$/.test(phone)) {
+            return alert("Please enter a valid 10-digit mobile number.");
         }
 
-        function closeCheckout() {
-            document.getElementById('checkoutModal').classList.remove('active');
-            document.getElementById('overlay').classList.remove('active');
-            document.body.style.overflow = 'auto';
+        // Combine Address
+        let fullAddress = `${line1}, Dist: ${dist}, ${state}, Pin: ${pin}`;
+        if (isGift) {
+            fullAddress += " \n[🎁 GIFT PACKING REQUESTED - Remove Price Tag]";
         }
 
-      // RAZORPAY PAYMENT LOGIC (Final Fixed Version with Phone Validation & Cart Clear)
-        function payWithRazorpay() {
-            
-            // 1. SAFETY LOCK: Check if cart is empty first
-            if(cart.length === 0) {
-                return alert("Cart is empty! Please add items.");
-            }
+        // Calculate Amount
+        const subtotal = getCartTotal();
+        const shipping = getShippingCharge();
+        const finalAmount = subtotal + shipping;
+        const amountInPaise = finalAmount * 100;
 
-            // 2. Get values from new input fields
-            const name = document.getElementById('customerName').value;
-            const phone = document.getElementById('customerPhone').value;
-            const email = document.getElementById('customerEmail').value || ""; 
-            
-            // 3. Address Parts
-            const line1 = document.getElementById('addrLine1').value;
-            const dist = document.getElementById('addrDistrict').value;
-            const state = document.getElementById('addrState').value;
-            const pin = document.getElementById('addrPin').value;
+        var options = {
+            "key": RAZORPAY_KEY,
+            "amount": amountInPaise,
+            "currency": "INR",
+            "name": "Handiweave",
+            "description": `Order Payment (${getCartCount()} Items)`,
+            "image": "logo.png",
+            "handler": function(response) {
+                // Send Data to Formspree
+                const formData = new FormData();
+                formData.append('Order Summary', `ID: ${response.razorpay_payment_id} | Total: ₹${finalAmount} (Ship: ₹${shipping})`);
+                formData.append('Cart Items', JSON.stringify(cart));
+                formData.append('Customer Details', `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${fullAddress}`);
 
-            // 4. Validation 
-            if(!name || !phone || !line1 || !dist || !state || !pin) {
-                return alert("Please fill Name, Phone and Complete Address fields.");
-            }
+                fetch("https://formspree.io/f/xojagdvw", { method: "POST", body: formData, headers: { 'Accept': 'application/json' } });
 
-            // Phone Number Validation Fix
-            if(!/^[0-9]{10}$/.test(phone)) {
-                return alert("Please enter a valid 10-digit mobile number.");
-            }
+                // GA4 Event: Purchase
+                if (typeof gtag === 'function') {
+                    gtag('event', 'purchase', {
+                        transaction_id: response.razorpay_payment_id,
+                        value: finalAmount,
+                        currency: 'INR',
+                        shipping: shipping,
+                        items: cart.map(i => ({ item_id: i.id, item_name: i.name, price: i.price, quantity: i.quantity }))
+                    });
+                }
 
-            // 5. Combine Address for Database/Email
-            const fullAddress = `${line1}, Dist: ${dist}, ${state}, Pin: ${pin}`;
+                // Clear Cart & Close
+                cart = [];
+                saveCart();
+                renderCartItems();
+                closeCheckout();
+                alert("Payment Successful! Order ID: " + response.razorpay_payment_id);
+            },
+            "prefill": { "name": name, "email": email, "contact": phone },
+            "theme": { "color": "#7A5548" }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    }
 
-            // 6. Calculate Total Amount including Shipping
-            const subtotal = getCartTotal();
-            const shipping = getShippingCharge(); 
-            const finalAmount = subtotal + shipping;
-            const amountInPaise = finalAmount * 100;
 
-            var options = {
-                "key": RAZORPAY_KEY,
-                "amount": amountInPaise,
-                "currency": "INR",
-                "name": "Handiweave",
-                "description": `Order Payment (${getCartCount()} Items)`,
-                "image": "logo.png",
-                "handler": function (response){
-                    // Send order details to Formspree
-                    const formData = new FormData();
-                    formData.append('Order Summary', `ID: ${response.razorpay_payment_id} | Total: ₹${finalAmount} (Ship: ₹${shipping})`);
-                    formData.append('Cart Items', JSON.stringify(cart));
-                    formData.append('Customer Details', `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${fullAddress}`);
+    // ---------------------------------------------------------
+    // 4. WHATSAPP ORDER LOGIC (Correct Number: 12962)
+    // ---------------------------------------------------------
+    function sendOrderToWhatsapp() {
+        // Get Input Values
+        const name = document.getElementById('customerName').value;
+        const phone = document.getElementById('customerPhone').value;
+        const line1 = document.getElementById('addrLine1').value;
+        const dist = document.getElementById('addrDistrict').value;
+        const state = document.getElementById('addrState').value;
+        const pin = document.getElementById('addrPin').value;
 
-                    fetch("https://formspree.io/f/xojagdvw", { method: "POST", body: formData, headers: {'Accept': 'application/json'} });
+        // Get Gift Checkbox Status
+        const giftElement = document.getElementById('isGift');
+        const isGift = giftElement ? giftElement.checked : false;
 
-                    // GA4 Event: Purchase
-                    if(typeof gtag === 'function') {
-                        gtag('event', 'purchase', {
-                            transaction_id: response.razorpay_payment_id,
-                            value: finalAmount,
-                            currency: 'INR',
-                            shipping: shipping,
-                            items: cart.map(i => ({ item_id: i.id, item_name: i.name, price: i.price, quantity: i.quantity }))
-                        });
-                    }
-
-                    // --- CRITICAL FIX: CLEAR CART AFTER PAYMENT ---
-                    cart = []; // Empty the variable
-                    saveCart(); // Save empty array to LocalStorage
-                    renderCartItems(); // Clear visual list
-                    closeCheckout();
-                    alert("Payment Successful! Order ID: " + response.razorpay_payment_id);
-                },
-                "prefill": { 
-                    "name": name, 
-                    "email": email, 
-                    "contact": phone 
-                },
-                "theme": { "color": "#7A5548" }
-            };
-            var rzp1 = new Razorpay(options);
-            rzp1.open();
+        // Validation
+        if (!name || !phone || !line1 || !dist || !state || !pin) {
+            return alert("Please fill all details marked with *");
+        }
+        if (!/^[0-9]{10}$/.test(phone)) {
+            return alert("Please enter valid 10-digit number");
         }
 
+        // Combine Address
+        const fullAddr = `${line1}, Dist: ${dist}, ${state}, Pin: ${pin}`;
+
+        // Create Message
+        let msg = `*New Order Request* 🛍️\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Address:* ${fullAddr}\n\n`;
+
+        if (isGift) {
+            msg += `🎁 *GIFT REQUESTED* (Remove Price Tag)\n\n`;
+        }
+
+        msg += `*Items:*\n`;
+
+        // Cart Loop
+        cart.forEach(i => {
+            msg += `- ${i.name} (x${i.quantity}) ₹${i.price * i.quantity}\n`;
+        });
+
+        const subtotal = getCartTotal();
+        const shipping = getShippingCharge();
+        const finalTotal = subtotal + shipping;
+
+        msg += `\nSubtotal: ₹${subtotal}`;
+        msg += `\nShipping: ₹${shipping}`;
+        msg += `\n*Grand Total: ₹${finalTotal}*`;
+
+        // Add UPI ID (Updated Correct Number)
+        msg += `\n\nPay via UPI: 9882212962@upi`;
+
+        // Open WhatsApp
+        window.open(`https://wa.me/919882212962?text=${encodeURIComponent(msg)}`, '_blank');
+
+        // Clear Cart & Close
+        cart = [];
+        saveCart();
+        renderCartItems();
+        closeCheckout();
+    }
        // FILTERS & SEARCH
         function searchProducts() {
             const term = document.getElementById('searchInput').value.toLowerCase();
@@ -1601,23 +1685,38 @@ function renderProducts(items = PRODUCTS) {
             else renderProducts(PRODUCTS.filter(p => p.category === cat));
         }
 
-        // VIEW SWITCHER
-        function switchView(view) {
-            document.querySelectorAll('.section-container').forEach(s => s.classList.remove('active-section'));
-            const el = document.getElementById(view + '-view');
-            if(el) el.classList.add('active-section');
+       // VIEW SWITCHER (Updated: Handles Hero Section Visibility)
+    function switchView(view) {
+        // 1. Select the Hero Section and all Content Sections
+        const hero = document.querySelector('.hero-section');
+        const allSections = document.querySelectorAll('.section-container');
 
-            if(view === 'home') {
-                document.querySelector('.hero-section').scrollIntoView({ behavior: 'smooth' });
-            } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.toggle('active', link.getAttribute('onclick').includes(`'${view}'`));
-            });
+        // 2. Reset: Hide all content sections first
+        allSections.forEach(s => s.classList.remove('active-section'));
+        
+        // 3. Main Logic
+        if (view === 'home') {
+            // Case A: User clicked 'Home'
+            // Show the Hero Section
+            hero.style.display = 'flex'; 
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            // Case B: User clicked Shop/Contact/etc.
+            // Hide the Hero Section
+            hero.style.display = 'none'; 
+            
+            // Show the specific section requested
+            const activeEl = document.getElementById(view + '-view');
+            if (activeEl) activeEl.classList.add('active-section');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // 4. Update Navigation Links (Underline the active link)
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.toggle('active', link.getAttribute('onclick').includes(`'${view}'`));
+        });
+    }
         function togglePolicy(index) {
             document.querySelectorAll('.policy-content').forEach((c, i) => {
                 if(i === index) c.classList.toggle('active'); else c.classList.remove('active');
@@ -1654,6 +1753,7 @@ function renderProducts(items = PRODUCTS) {
     </script>
 </body>
 </html>
+
 
 
 
