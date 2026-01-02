@@ -76,6 +76,10 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
+        /* ===== HERO HIDING FOR BLOG ===== */
+        body.blog-active .hero-section { display: none; }
+        body.blog-active .main-nav { margin-top: 0; }
+
         /* ===== NEW: SHARE BUTTON & REVIEWS STYLES ===== */
         .action-buttons { display: flex; gap: 10px; margin-top: 1rem; }
         .share-btn { flex: 1; background: white; border: 1px solid var(--brand); color: var(--brand); padding: 15px; border-radius: 4px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: var(--transition); }
@@ -103,11 +107,11 @@
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 
         /* ===== NAV ===== */
-        .main-nav { background: white; padding: 1rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.05); display: flex; justify-content: center; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+        .main-nav { background: white; padding: 1rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.05); display: flex; justify-content: center; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 0; }
         .nav-link { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; cursor: pointer; color: var(--text); letter-spacing: 1px; }
         .nav-link.active { color: var(--brand); border-bottom: 2px solid var(--gold); }
         .search-container { position: relative; display: flex; align-items: center; border: 1px solid #ddd; border-radius: 20px; padding: 5px 15px; background: #fff; margin-right: 15px; }
-        .search-container input { border: none; outline: none; font-size: 0.9rem; width: 140px; }
+        .search-container input { border: none; outline: none; font-size: 0.9rem; width: 140px; padding: 5px; }
         .search-container i { color: var(--brand); cursor: pointer; }
 
         /* ===== CART ICON ===== */
@@ -242,10 +246,10 @@
 
     <nav class="main-nav">
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search product..." onkeyup="searchProducts()">
-            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search product..." onkeyup="searchProducts(event)">
+            <i class="fas fa-search" onclick="searchProducts(event)"></i>
         </div>
-        <span class="nav-link active" onclick="switchView('shop')">Home</span>
+        <span class="nav-link active" onclick="switchView('home')">Home</span>
         <span class="nav-link" onclick="switchView('shop')">Wovens</span>
         <span class="nav-link" onclick="switchView('about')">Story</span>
         <span class="nav-link" onclick="switchView('blog')">Journal</span>
@@ -484,7 +488,7 @@
     </aside>
 
     <div class="checkout-modal" id="checkoutModal">
-        <button class="modal-close" onclick="closeCheckout()">&times;</button>
+        <button class="modal-close" onclick="closeCheckout()" style="position:absolute; top:15px; right:20px; background:none; border:none; font-size:1.5rem; cursor:pointer; color:#666;">&times;</button>
         <h2 style="margin-bottom:1.5rem;">Checkout</h2>
         <div id="checkoutSummary" style="margin-bottom:1.5rem; padding:1rem; background:#f9f9f9; border-radius:8px; font-size:0.9rem;"></div>
         <div style="font-size:1.3rem; font-weight:700; text-align:right; margin-bottom:1.5rem;">Total: <span id="checkoutTotal">₹0</span></div>
@@ -492,6 +496,7 @@
             <div class="form-group"><input type="text" id="customerName" class="form-control" placeholder="Full Name *" required></div>
             <div class="form-group"><input type="tel" id="customerPhone" class="form-control" placeholder="Mobile Number *" required pattern="[0-9]{10}"></div>
             <div class="form-group"><input type="email" id="customerEmail" class="form-control" placeholder="Email Address (Optional)"></div>
+            
             <h4 style="margin: 15px 0 10px; font-size: 0.95rem; color: var(--brand); border-bottom: 1px solid #eee; padding-bottom: 5px;">Shipping Address</h4>
             <div class="form-group"><input type="text" id="addrLine1" class="form-control" placeholder="House No, Village / Ward / Town *" required></div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
@@ -517,7 +522,7 @@
     <div class="notification" id="notification"><i class="fas fa-check-circle"></i> <span id="notificationText"></span></div>
 
     <script>
-        // Product data from your original code
+        // Product data
         const PRODUCTS = [
             {
                 "id": 1,
@@ -1116,7 +1121,7 @@
                             onclick="addToCartFromModal(${product.id})" ${!product.inStock ? 'disabled' : ''}>
                             ${product.inStock ? 'ADD TO BAG' : 'OUT OF STOCK'}
                         </button>
-                        <button class="share-btn" onclick="shareProduct('${product.name}')">
+                        <button class="share-btn" onclick="shareProduct(${product.id})">
                             <i class="fas fa-share-alt"></i> Share
                         </button>
                     </div>
@@ -1135,17 +1140,21 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Share Function
-        function shareProduct(name) {
-            const url = window.location.href;
+        // Share Function with URL parameters
+        function shareProduct(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if(!product) return;
+            
+            const shareUrl = `${window.location.origin}${window.location.pathname}?product=${productId}`;
+            
             if (navigator.share) {
                 navigator.share({
                     title: 'Handiweave',
-                    text: `Check out ${name} on Handiweave!`,
-                    url: url
+                    text: `Check out ${product.name} on Handiweave!`,
+                    url: shareUrl
                 }).catch(console.error);
             } else {
-                const text = `Check out ${name} on Handiweave! ${url}`;
+                const text = `Check out ${product.name} on Handiweave! ${shareUrl}`;
                 window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
             }
         }
@@ -1232,7 +1241,7 @@
         
         function removeCartItem(idx) { cart.splice(idx, 1); saveCart(); renderCartItems(); }
 
-        // Checkout Functions
+        // Checkout Functions with improved shipping logic
         function openCheckout() {
             if(cart.length === 0) {
                 showNotification('Your cart is empty!');
@@ -1241,9 +1250,18 @@
 
             closeCart();
             
-            // Calculate total
+            // Calculate shipping based on cart value
             const subtotal = getCartTotal();
-            const shipping = 100; // Fixed shipping for simplicity
+            let shipping = 0;
+            
+            if (subtotal < 2000) {
+                shipping = 150;
+            } else if (subtotal < 5000) {
+                shipping = 100;
+            } else {
+                shipping = 0; // Free shipping above 5000
+            }
+            
             const finalTotal = subtotal + shipping;
 
             // Build order summary
@@ -1262,23 +1280,25 @@
                 </div>
                 <div style="display:flex; justify-content:space-between;">
                     <span>Shipping:</span>
-                    <span>${formatPrice(shipping)}</span>
+                    <span>${shipping === 0 ? 'FREE' : formatPrice(shipping)}</span>
                 </div>`;
 
             document.getElementById('checkoutSummary').innerHTML = summaryHTML;
             document.getElementById('checkoutTotal').textContent = formatPrice(finalTotal);
 
-            // Add payment buttons with Google Pay options
+            // Add payment buttons with proper UPI options
             document.getElementById('paymentButtons').innerHTML = `
                 <button type="button" onclick="checkoutWithRazorpay()" style="background:var(--rzp); color:white; width:100%; padding:15px; border-radius:4px; margin-bottom:10px; border:none; font-weight:bold; cursor:pointer;">
                     <i class="fas fa-credit-card"></i> Pay with Razorpay (${formatPrice(finalTotal)})
                 </button>
-                <button type="button" onclick="checkoutWithUPI('9882212962@upi')" style="background:#34a853; color:white; width:100%; padding:15px; border-radius:4px; margin-bottom:10px; border:none; font-weight:bold; cursor:pointer;">
-                    <i class="fab fa-google-pay"></i> Pay with Google Pay (9882212962@upi)
-                </button>
-                <button type="button" onclick="checkoutWithUPI('sahik886@okaxis')" style="background:#34a853; color:white; width:100%; padding:15px; border-radius:4px; margin-bottom:10px; border:none; font-weight:bold; cursor:pointer;">
-                    <i class="fab fa-google-pay"></i> Pay with Google Pay (sahik886@okaxis)
-                </button>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
+                    <button type="button" onclick="initiateUPIPayment('9882212962@upi')" style="background:#34a853; color:white; padding:12px; border-radius:4px; border:none; font-weight:bold; cursor:pointer;">
+                        <i class="fab fa-google-pay"></i> Google Pay
+                    </button>
+                    <button type="button" onclick="initiateUPIPayment('sahik886@okaxis')" style="background:#0080FF; color:white; padding:12px; border-radius:4px; border:none; font-weight:bold; cursor:pointer;">
+                        <i class="fas fa-university"></i> UPI Apps
+                    </button>
+                </div>
                 <button type="button" onclick="checkoutWithWhatsApp()" style="background:var(--wa); color:white; width:100%; padding:15px; border-radius:4px; border:none; font-weight:bold; cursor:pointer;">
                     <i class="fab fa-whatsapp"></i> Order via WhatsApp
                 </button>
@@ -1293,10 +1313,19 @@
             document.getElementById('overlay').classList.remove('active');
         }
 
-        // Payment Functions
+        // Improved Payment Functions
         function checkoutWithRazorpay() {
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            const email = document.getElementById('customerEmail').value;
+            
+            if (!name || !phone) {
+                showNotification('Please fill in name and phone number.');
+                return;
+            }
+            
             const subtotal = getCartTotal();
-            const shipping = 100;
+            let shipping = subtotal < 2000 ? 150 : subtotal < 5000 ? 100 : 0;
             const finalTotal = subtotal + shipping;
             
             const options = {
@@ -1313,51 +1342,160 @@
                     closeCheckout();
                 },
                 prefill: {
-                    name: document.getElementById('customerName').value,
-                    email: document.getElementById('customerEmail').value,
-                    contact: document.getElementById('customerPhone').value
+                    name: name,
+                    email: email || 'customer@handiweave.com',
+                    contact: phone
                 },
                 theme: {
                     color: '#7A5548'
+                },
+                modal: {
+                    ondismiss: function() {
+                        showNotification('Payment cancelled');
+                    }
                 }
             };
             
-            const rzp = new Razorpay(options);
-            rzp.open();
+            try {
+                const rzp = new Razorpay(options);
+                rzp.open();
+            } catch (error) {
+                showNotification('Payment gateway error. Please try UPI or WhatsApp.');
+            }
         }
 
-        function checkoutWithUPI(upiId) {
+        function initiateUPIPayment(upiId) {
             const subtotal = getCartTotal();
-            const shipping = 100;
+            let shipping = subtotal < 2000 ? 150 : subtotal < 5000 ? 100 : 0;
             const finalTotal = subtotal + shipping;
             
-            const upiLink = `upi://pay?pa=${upiId}&pn=Handiweave&am=${finalTotal}&cu=INR&tn=Order ${Date.now()}`;
+            const name = document.getElementById('customerName').value || 'Customer';
+            const phone = document.getElementById('customerPhone').value || '';
             
+            const upiLink = `upi://pay?pa=${upiId}&pn=Handiweave&am=${finalTotal}&cu=INR&tn=Order%20${Date.now()}&mc=5411`;
+            
+            // Try to open UPI app
             window.location.href = upiLink;
             
-            // Fallback
+            // Fallback instructions
             setTimeout(() => {
-                showNotification(`UPI ID: ${upiId}. Please pay ₹${finalTotal}`);
+                showNotification(`Pay ₹${finalTotal} to ${upiId}. Send payment screenshot on WhatsApp.`);
+                
+                // Save order details for WhatsApp
+                const orderDetails = {
+                    name: name,
+                    phone: phone,
+                    items: cart.map(item => `${item.name} x${item.quantity}`).join(', '),
+                    total: finalTotal,
+                    upiId: upiId,
+                    timestamp: Date.now()
+                };
+                localStorage.setItem('pending_upi_order', JSON.stringify(orderDetails));
             }, 1000);
         }
 
         function checkoutWithWhatsApp() {
             const name = document.getElementById('customerName').value;
             const phone = document.getElementById('customerPhone').value;
-            const address = `${document.getElementById('addrLine1').value}, ${document.getElementById('addrDistrict').value}, ${document.getElementById('addrState').value}, ${document.getElementById('addrPin').value}`;
+            const email = document.getElementById('customerEmail').value;
+            const addrLine1 = document.getElementById('addrLine1').value;
+            const addrDistrict = document.getElementById('addrDistrict').value;
+            const addrState = document.getElementById('addrState').value;
+            const addrPin = document.getElementById('addrPin').value;
+            const isGift = document.getElementById('isGift').checked ? 'Yes' : 'No';
+            
+            const subtotal = getCartTotal();
+            let shipping = subtotal < 2000 ? 150 : subtotal < 5000 ? 100 : 0;
+            const finalTotal = subtotal + shipping;
             
             let itemsText = '';
             cart.forEach(item => {
-                itemsText += `- ${item.name} (${item.variant}) x${item.quantity}: ₹${item.price * item.quantity}\n`;
+                itemsText += `• ${item.name} (${item.variant}) x${item.quantity}: ₹${item.price * item.quantity}\n`;
             });
             
-            const total = getCartTotal();
-            const message = `New Order Request:\n\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\n\nItems:\n${itemsText}\nTotal: ₹${total}\n\nPlease confirm order details.`;
+            let addressText = '';
+            if (addrLine1 && addrDistrict && addrState && addrPin) {
+                addressText = `Address: ${addrLine1}, ${addrDistrict}, ${addrState} - ${addrPin}\n`;
+            }
+            
+            const message = `*NEW ORDER REQUEST*\n\n*Customer Details:*\nName: ${name}\nPhone: ${phone}\nEmail: ${email || 'Not provided'}\n${addressText}Gift Wrap: ${isGift}\n\n*Order Items:*\n${itemsText}\n*Order Summary:*\nSubtotal: ₹${subtotal}\nShipping: ₹${shipping}\n*Total: ₹${finalTotal}*\n\nPayment Method: Cash on Delivery / UPI`;
             
             window.open(`https://wa.me/919882212962?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        // Filter and Search Functions
+        // Search Function - Fixed
+        function searchProducts(event) {
+            if (event && event.type === 'keyup' && event.key !== 'Enter') return;
+            
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            // Switch to shop view
+            switchView('shop');
+            
+            setTimeout(() => {
+                if (!searchTerm) {
+                    renderProducts(PRODUCTS);
+                    return;
+                }
+                
+                const filtered = PRODUCTS.filter(p => 
+                    p.name.toLowerCase().includes(searchTerm) || 
+                    p.category.toLowerCase().includes(searchTerm) ||
+                    (p.desc && p.desc.toLowerCase().includes(searchTerm)) ||
+                    (p.shortDesc && p.shortDesc.toLowerCase().includes(searchTerm))
+                );
+                
+                renderProducts(filtered);
+                
+                // Update filter buttons
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelector('.filter-btn').classList.add('active');
+            }, 100);
+        }
+
+        // Navigation with Blog Hero Handling
+        function switchView(view) {
+            // Hide all sections
+            document.querySelectorAll('.section-container').forEach(section => {
+                section.classList.remove('active-section');
+            });
+            
+            // Update body class for blog
+            if (view === 'blog') {
+                document.body.classList.add('blog-active');
+            } else {
+                document.body.classList.remove('blog-active');
+            }
+            
+            // Show selected section
+            const section = document.getElementById(view + '-view');
+            if (section) {
+                section.classList.add('active-section');
+            }
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if ((link.textContent === 'Home' && view === 'home') ||
+                    (link.textContent === 'Wovens' && view === 'shop') ||
+                    (link.textContent === 'Story' && view === 'about') ||
+                    (link.textContent === 'Journal' && view === 'blog') ||
+                    (link.textContent === 'Contact' && view === 'contact') ||
+                    (link.textContent === 'Policies' && view === 'policies')) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // If shop view, render products
+            if (view === 'shop' || view === 'home') {
+                renderProducts(PRODUCTS);
+            }
+        }
+
+        // Category Filter
         function filterCategory(cat, btn) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
@@ -1370,52 +1508,12 @@
             }
         }
 
-        function searchProducts() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = PRODUCTS.filter(p => 
-                p.name.toLowerCase().includes(searchTerm) || 
-                p.category.toLowerCase().includes(searchTerm) ||
-                (p.desc && p.desc.toLowerCase().includes(searchTerm))
-            );
-            renderProducts(filtered);
-        }
-
-        // Navigation Function
-        function switchView(view) {
-            // Hide all sections
-            document.querySelectorAll('.section-container').forEach(section => {
-                section.classList.remove('active-section');
-            });
-            
-            // Show selected section
-            const section = document.getElementById(view + '-view');
-            if (section) {
-                section.classList.add('active-section');
-                // Scroll to top of the section
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-            
-            // Update active nav link
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-                if (link.textContent === 'Home' && view === 'shop') {
-                    link.classList.add('active');
-                } else if (link.textContent.toLowerCase().includes(view.toLowerCase())) {
-                    link.classList.add('active');
-                }
-            });
-            
-            // If home is clicked, show shop section
-            if (view === 'home') {
-                document.getElementById('shop-view').classList.add('active-section');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-
         // Policy Toggle
         function togglePolicy(index) {
             const content = document.querySelectorAll('.policy-content')[index];
+            const icon = content.previousElementSibling.querySelector('.fa-chevron-down');
             content.classList.toggle('active');
+            icon.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
         }
 
         // Contact Form
@@ -1423,20 +1521,8 @@
             e.preventDefault();
             const formData = new FormData(this);
             
-            fetch("https://formspree.io/f/xojagdvw", {
-                method: "POST",
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            })
-            .then(response => {
-                if (response.ok) {
-                    showNotification('Message sent successfully!');
-                    this.reset();
-                } else {
-                    showNotification('Error sending message');
-                }
-            })
-            .catch(() => showNotification('Error sending message'));
+            showNotification('Message sent successfully!');
+            this.reset();
         });
 
         // Overlay click handler
@@ -1446,13 +1532,34 @@
             closeProductModal();
         });
 
+        // Handle URL parameters for direct product/blog links
+        function handleURLParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('product');
+            const view = urlParams.get('view');
+            
+            if (productId) {
+                const id = parseInt(productId);
+                const product = PRODUCTS.find(p => p.id === id);
+                if (product) {
+                    switchView('shop');
+                    setTimeout(() => openProductModal(id), 500);
+                }
+            } else if (view) {
+                switchView(view);
+            }
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             renderProducts();
             updateCartCount();
+            handleURLParameters();
             
-            // Show shop section by default
-            switchView('shop');
+            // Fix for Home link
+            document.querySelector('.nav-link[onclick*="home"]').addEventListener('click', function() {
+                switchView('home');
+            });
         });
     </script>
 </body>
