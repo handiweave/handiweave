@@ -1094,7 +1094,7 @@
             else return 150;
         }
 
-       // ===== RENDER PRODUCTS (Updated with GST Label) =====
+      // ===== RENDER PRODUCTS (Final & Perfect) =====
         function renderProducts(items = PRODUCTS) {
             const container = document.getElementById('productsContainer');
             if(items.length === 0) {
@@ -1126,7 +1126,7 @@
                             <i class="fas fa-shopping-bag"></i> ${p.inStock ? ' ADD TO BAG' : ' Sold Out'}
                         </button>
                         
-                        <div style="margin-top:8px; font-size:0.85rem; text-decoration:underline; color:#666; cursor:pointer;" onclick="openProductModal(${p.id})">
+                        <div style="margin-top:8px; font-size:0.85rem; text-decoration:underline; color:#666; cursor:pointer; padding: 5px;" onclick="openProductModal(${p.id})">
                             View More Details
                         </div>
                     </div>
@@ -1710,8 +1710,9 @@
                     showNotification('Error sending message'); 
                 } 
             })
-            .catch(() => showNotification('Error sending message'));
+           .catch(() => showNotification('Error sending message'));
         });
+
         // ===== OVERLAY CLICK HANDLER =====
         document.getElementById('overlay').addEventListener('click', function() {
             closeCart();
@@ -1758,5 +1759,6 @@
     </script>
 </body>
 </html>
+
 
 
