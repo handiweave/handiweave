@@ -24,7 +24,7 @@
 
     <meta property="og:title" content="Handiweave | Traditions and Trends">
     <meta property="og:description" content="Discover the warmth of Himalayas. 100% Handwoven Shawls, Stoles & Caps from Palampur.">
-    <meta property="og:image" content="https://handiweave.com/artisan1.jpg">
+    <meta property="og:image" content="https://handiweave.com/logo.png">
     <meta property="og:url" content="https://handiweave.com">
     <meta property="og:type" content="website">
 
@@ -326,7 +326,7 @@
 
         <div style="background:white; padding:2rem; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,0.05); margin-bottom:3rem;">
             <div style="border-left:4px solid var(--gold); padding-left:20px; margin-bottom:1.5rem;">
-                <h3 style="color:var(--brand-dark); margin-bottom:0.5rem; font-size:1.5rem;">Meet the Hands Behind the 'Handloomi(khaddi)'</h3>
+                <h3 style="color:var(--brand-dark); margin-bottom:0.5rem; font-size:1.5rem;">Meet the Hands Behind the 'Handloom(khaddi)'</h3>
                 <p style="color:#777; font-size:0.9rem;">Preserving the Soul of Himachal</p>
             </div>
             <div class="story-container" style="margin-top:0; align-items:flex-start;">
@@ -1269,20 +1269,23 @@
             renderCartItems(); 
         }
 
-        // ===== CHECKOUT FUNCTIONS (WITH FIXED VALIDATION) =====
+    // ===== CHECKOUT FUNCTIONS (Step 1: Open Checkout Logic) =====
         function openCheckout() {
+            // 1. Check if cart is empty
             if(cart.length === 0) {
                 showNotification('Your cart is empty!');
                 return;
             }
 
+            // 2. Close the cart sidebar first
             closeCart();
             
+            // 3. Calculate Totals (Using Quantity-Based Shipping)
             const subtotal = getCartTotal();
-            const shipping = calculateShipping();
+            const shipping = calculateShipping(); // Uses the 40/120/150 logic
             const finalTotal = subtotal + shipping;
 
-            // Build order summary
+            // 4. Build Order Summary HTML
             let summaryHTML = '<h4>Order Summary</h4>';
             cart.forEach(item => {
                 summaryHTML += `<div style="display:flex; justify-content:space-between; margin:5px 0;">
@@ -1291,7 +1294,9 @@
                 </div>`;
             });
             
+            // Get total count for display
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
             summaryHTML += `<hr style="margin:10px 0;">
                 <div style="display:flex; justify-content:space-between;">
                     <span>Subtotal:</span>
@@ -1302,14 +1307,16 @@
                     <span>${formatPrice(shipping)}</span>
                 </div>`;
 
+            // 5. Inject Summary and Grand Total
             document.getElementById('checkoutSummary').innerHTML = summaryHTML;
             document.getElementById('checkoutTotal').textContent = formatPrice(finalTotal);
 
-            // Add payment buttons
+            // 6. Add Payment Buttons (Razorpay, GPay, UPI, WhatsApp)
             document.getElementById('paymentButtons').innerHTML = `
                 <button type="button" onclick="checkoutWithRazorpay()" style="background:var(--rzp); color:white; width:100%; padding:15px; border-radius:4px; margin-bottom:10px; border:none; font-weight:bold; cursor:pointer;">
                     <i class="fas fa-credit-card"></i> Pay with Razorpay (${formatPrice(finalTotal)})
                 </button>
+                
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
                     <button type="button" onclick="initiateUPIPayment('9882212962@upi')" style="background:#34a853; color:white; padding:12px; border-radius:4px; border:none; font-weight:bold; cursor:pointer;">
                         <i class="fab fa-google-pay"></i> Google Pay
@@ -1318,11 +1325,13 @@
                         <i class="fas fa-university"></i> UPI Apps
                     </button>
                 </div>
+                
                 <button type="button" onclick="checkoutWithWhatsApp()" style="background:var(--wa); color:white; width:100%; padding:15px; border-radius:4px; border:none; font-weight:bold; cursor:pointer;">
                     <i class="fab fa-whatsapp"></i> Order via WhatsApp
                 </button>
             `;
 
+            // 7. Show the Modal
             document.getElementById('checkoutModal').classList.add('active');
             document.getElementById('overlay').classList.add('active');
         }
@@ -1361,26 +1370,77 @@
             return true;
         }
 
-        // ===== PAYMENT FUNCTIONS (WITH VALIDATION) =====
+        // ===== VALIDATE CHECKOUT FORM =====
+        function validateCheckoutForm() {
+            const requiredFields = [
+                {id: 'customerName', name: 'Full Name'},
+                {id: 'customerPhone', name: 'Mobile Number'},
+                {id: 'addrLine1', name: 'Address'},
+                {id: 'addrDistrict', name: 'District'},
+                {id: 'addrState', name: 'State'},
+                {id: 'addrPin', name: 'Pincode'}
+            ];
+            
+            for (let field of requiredFields) {
+                const element = document.getElementById(field.id);
+                if (!element || !element.value.trim()) {
+                    showNotification(`Please fill in ${field.name}`);
+                    element?.focus();
+                    return false;
+                }
+            }
+            
+            const phone = document.getElementById('customerPhone').value;
+            if (!/^[0-9]{10}$/.test(phone)) {
+                showNotification('Please enter a valid 10-digit mobile number');
+                return false;
+            }
+            
+            return true;
+        }
+
+        // ===== PAYMENT FUNCTIONS (Corrected Address & Shipping Logic) =====
         function checkoutWithRazorpay() {
             if (!validateCheckoutForm()) return;
             
+            // 1. Get Customer Details
             const name = document.getElementById('customerName').value;
             const phone = document.getElementById('customerPhone').value;
             const email = document.getElementById('customerEmail').value;
             
+            // 2. Get Address & Gift Info (CRITICAL FIX)
+            const addrLine1 = document.getElementById('addrLine1').value;
+            const addrDistrict = document.getElementById('addrDistrict').value;
+            const addrState = document.getElementById('addrState').value;
+            const addrPin = document.getElementById('addrPin').value;
+            const isGift = document.getElementById('isGift').checked ? 'Yes' : 'No';
+            
+            // Combine Address for Formspree
+            const fullAddress = `${addrLine1}, ${addrDistrict}, ${addrState} - ${addrPin} (Gift: ${isGift})`;
+
+            // 3. Calculate Totals (Using Quantity-Based Shipping)
             const subtotal = getCartTotal();
             const shipping = calculateShipping();
             const finalTotal = subtotal + shipping;
             
             const options = {
                 key: RAZORPAY_KEY,
-                amount: finalTotal * 100,
+                amount: finalTotal * 100, // Amount in paise
                 currency: 'INR',
                 name: 'Handiweave',
                 description: 'Handicraft Purchase',
                 handler: function(response) {
                     showNotification('Payment successful! Order placed.');
+                    
+                    // 4. Send Data to Formspree (With Full Address)
+                    const formData = new FormData();
+                    formData.append('Order Summary', `ID: ${response.razorpay_payment_id} | Total: ₹${finalTotal} (Ship: ₹${shipping})`);
+                    formData.append('Cart Items', JSON.stringify(cart));
+                    formData.append('Customer Details', `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${fullAddress}`);
+                    
+                    fetch("https://formspree.io/f/xojagdvw", { method: "POST", body: formData, headers: {'Accept': 'application/json'} });
+
+                    // Clear Cart
                     cart = [];
                     saveCart();
                     updateCartCount();
@@ -1410,7 +1470,6 @@
         }
 
         function initiateUPIPayment(upiId) {
-            // MUST VALIDATE FORM BEFORE UPI PAYMENT
             if (!validateCheckoutForm()) return;
             
             const subtotal = getCartTotal();
@@ -1420,6 +1479,7 @@
             const name = document.getElementById('customerName').value;
             const phone = document.getElementById('customerPhone').value;
             
+            // Generate UPI Deep Link
             const upiLink = `upi://pay?pa=${upiId}&pn=Handiweave&am=${finalTotal}&cu=INR&tn=Order%20${Date.now()}&mc=5411`;
             
             // Try to open UPI app
@@ -1429,6 +1489,7 @@
             setTimeout(() => {
                 showNotification(`Pay ₹${finalTotal} to ${upiId}. Send payment screenshot on WhatsApp.`);
                 
+                // Save order details locally for WhatsApp follow-up
                 const orderDetails = {
                     name: name,
                     phone: phone,
@@ -1616,3 +1677,4 @@
     </script>
 </body>
 </html>
+
