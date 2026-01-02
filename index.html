@@ -76,11 +76,11 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-        /* ===== HERO HIDING FOR BLOG ===== */
-        body.blog-active .hero-section { display: none; }
-        body.blog-active .main-nav { margin-top: 0; }
+        /* ===== HERO HIDING ===== */
+        body.hide-hero .hero-section { display: none; }
+        body.hide-hero .main-nav { margin-top: 0; }
 
-        /* ===== NEW: SHARE BUTTON & REVIEWS STYLES ===== */
+        /* ===== SHARE BUTTON & REVIEWS ===== */
         .action-buttons { display: flex; gap: 10px; margin-top: 1rem; }
         .share-btn { flex: 1; background: white; border: 1px solid var(--brand); color: var(--brand); padding: 15px; border-radius: 4px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: var(--transition); }
         .share-btn:hover { background: #f9f9f9; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
@@ -326,7 +326,7 @@
 
         <div style="background:white; padding:2rem; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,0.05); margin-bottom:3rem;">
             <div style="border-left:4px solid var(--gold); padding-left:20px; margin-bottom:1.5rem;">
-                <h3 style="color:var(--brand-dark); margin-bottom:0.5rem; font-size:1.5rem;">Meet the Hands Behind the 'Khaddi'</h3>
+                <h3 style="color:var(--brand-dark); margin-bottom:0.5rem; font-size:1.5rem;">Meet the Hands Behind the 'Handloomi(khaddi)'</h3>
                 <p style="color:#777; font-size:0.9rem;">Preserving the Soul of Himachal</p>
             </div>
             <div class="story-container" style="margin-top:0; align-items:flex-start;">
@@ -1002,18 +1002,39 @@
         let cart = JSON.parse(localStorage.getItem('handiweave_cart')) || [];
         const RAZORPAY_KEY = "rzp_live_RuhteYn3JzTrhD";
 
-        // Utils
+        // ===== UTILITY FUNCTIONS =====
         function formatPrice(p) { return '₹' + p.toLocaleString('en-IN'); }
+        
         function showNotification(msg) {
             const n = document.getElementById('notification');
             document.getElementById('notificationText').textContent = msg;
-            n.classList.add('show'); setTimeout(() => n.classList.remove('show'), 3000);
+            n.classList.add('show'); 
+            setTimeout(() => n.classList.remove('show'), 3000);
         }
-        function saveCart() { localStorage.setItem('handiweave_cart', JSON.stringify(cart)); updateCartCount(); }
-        function updateCartCount() { document.getElementById('cartCount').textContent = cart.reduce((t,i) => t + i.quantity, 0); }
-        function getCartTotal() { return cart.reduce((t,i) => t + (i.price * i.quantity), 0); }
+        
+        function saveCart() { 
+            localStorage.setItem('handiweave_cart', JSON.stringify(cart)); 
+            updateCartCount(); 
+        }
+        
+        function updateCartCount() { 
+            const count = cart.reduce((t,i) => t + i.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+        
+        function getCartTotal() { 
+            return cart.reduce((t,i) => t + (i.price * i.quantity), 0); 
+        }
 
-        // Render Products
+        // ===== NEW: CALCULATE SHIPPING BASED ON QUANTITY =====
+        function calculateShipping() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            if (totalItems <= 2) return 40;
+            else if (totalItems <= 5) return 120;
+            else return 150;
+        }
+
+        // ===== RENDER PRODUCTS =====
         function renderProducts(items = PRODUCTS) {
             const container = document.getElementById('productsContainer');
             if(items.length === 0) {
@@ -1029,7 +1050,7 @@
                     ${!p.inStock ? '<span class="sold-out-badge">SOLD OUT</span>' : ''}
                     
                     <div class="product-image" onclick="openProductModal(${p.id})">
-                        <img src="${p.img}" alt="${p.name}" onerror="this.src='https://placehold.co/300x300?text=Handiweave';">
+                        <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='https://placehold.co/300x300?text=Handiweave';">
                         ${!p.inStock ? '<div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.6);"></div>' : ''}
                     </div>
 
@@ -1048,12 +1069,12 @@
                         <div style="margin-top:8px; font-size:0.85rem; text-decoration:underline; color:#666; cursor:pointer;" onclick="openProductModal(${p.id})">
                             View More Details
                         </div>
-                        </div>
+                    </div>
                 </div>
             `}).join('');
         }
 
-        // Product Modal
+        // ===== PRODUCT MODAL =====
         function openProductModal(id) {
             const product = PRODUCTS.find(p => p.id === id);
             if(!product) return;
@@ -1075,7 +1096,7 @@
 
             // Build Gallery Thumbs
             let thumbs = product.gallery.map(src => 
-                `<img src="${src}" class="thumb-img" onclick="document.querySelector('.main-modal-img').src='${src}'">`
+                `<img src="${src}" class="thumb-img" loading="lazy" onclick="document.querySelector('.main-modal-img').src='${src}'">`
             ).join('');
 
             // Build Reviews HTML
@@ -1103,7 +1124,7 @@
 
             body.innerHTML = `
                 <div class="modal-gallery">
-                    <img src="${product.img}" alt="${product.name}" class="main-modal-img" onerror="this.src='https://placehold.co/400x400?text=Handiweave';">
+                    <img src="${product.img}" alt="${product.name}" class="main-modal-img" loading="lazy" onerror="this.src='https://placehold.co/400x400?text=Handiweave';">
                     <div class="thumb-grid">${thumbs}</div>
                 </div>
                 <div class="modal-details">
@@ -1140,16 +1161,18 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Share Function with URL parameters
+        // ===== SHARE PRODUCT (FIXED) =====
         function shareProduct(productId) {
             const product = PRODUCTS.find(p => p.id === productId);
             if(!product) return;
             
-            const shareUrl = `${window.location.origin}${window.location.pathname}?product=${productId}`;
+            // Create a clean URL without existing parameters
+            const baseUrl = window.location.origin + window.location.pathname;
+            const shareUrl = `${baseUrl}?product=${productId}`;
             
             if (navigator.share) {
                 navigator.share({
-                    title: 'Handiweave',
+                    title: 'Handiweave - ' + product.name,
                     text: `Check out ${product.name} on Handiweave!`,
                     url: shareUrl
                 }).catch(console.error);
@@ -1159,7 +1182,7 @@
             }
         }
 
-        // Add to Cart from Modal
+        // ===== ADD TO CART FROM MODAL =====
         function addToCartFromModal(id) {
             const product = PRODUCTS.find(p => p.id === id);
             if (!product.inStock) return; 
@@ -1191,7 +1214,7 @@
             openCart(); 
         }
 
-        // Cart Functions
+        // ===== CART FUNCTIONS =====
         function openCart() {
             renderCartItems();
             document.getElementById('cartSidebar').classList.add('active');
@@ -1215,7 +1238,7 @@
             container.innerHTML = cart.map((item, idx) => `
                 <div style="display:flex; justify-content:space-between; margin-bottom:1rem; border-bottom:1px solid #f0f0f0; padding-bottom:10px;">
                     <div style="display:flex; gap:10px;">
-                        <img src="${item.img}" style="width:50px; height:50px; object-fit:cover; border-radius:4px;" onerror="this.src='https://placehold.co/100x100?text=HW';">
+                        <img src="${item.img}" style="width:50px; height:50px; object-fit:cover; border-radius:4px;" loading="lazy" onerror="this.src='https://placehold.co/100x100?text=HW';">
                         <div>
                             <div style="font-weight:600; font-size:0.9rem;">${item.name}</div>
                             <div style="font-size:0.8rem; color:#666;">${item.variant}</div>
@@ -1236,12 +1259,17 @@
         function updateQty(idx, change) {
             cart[idx].quantity += change;
             if (cart[idx].quantity < 1) cart.splice(idx, 1);
-            saveCart(); renderCartItems();
+            saveCart(); 
+            renderCartItems();
         }
         
-        function removeCartItem(idx) { cart.splice(idx, 1); saveCart(); renderCartItems(); }
+        function removeCartItem(idx) { 
+            cart.splice(idx, 1); 
+            saveCart(); 
+            renderCartItems(); 
+        }
 
-        // Checkout Functions with improved shipping logic
+        // ===== CHECKOUT FUNCTIONS (WITH FIXED VALIDATION) =====
         function openCheckout() {
             if(cart.length === 0) {
                 showNotification('Your cart is empty!');
@@ -1250,18 +1278,8 @@
 
             closeCart();
             
-            // Calculate shipping based on cart value
             const subtotal = getCartTotal();
-            let shipping = 0;
-            
-            if (subtotal < 2000) {
-                shipping = 150;
-            } else if (subtotal < 5000) {
-                shipping = 100;
-            } else {
-                shipping = 0; // Free shipping above 5000
-            }
-            
+            const shipping = calculateShipping();
             const finalTotal = subtotal + shipping;
 
             // Build order summary
@@ -1273,20 +1291,21 @@
                 </div>`;
             });
             
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             summaryHTML += `<hr style="margin:10px 0;">
                 <div style="display:flex; justify-content:space-between;">
                     <span>Subtotal:</span>
                     <span>${formatPrice(subtotal)}</span>
                 </div>
                 <div style="display:flex; justify-content:space-between;">
-                    <span>Shipping:</span>
-                    <span>${shipping === 0 ? 'FREE' : formatPrice(shipping)}</span>
+                    <span>Shipping (${totalItems} items):</span>
+                    <span>${formatPrice(shipping)}</span>
                 </div>`;
 
             document.getElementById('checkoutSummary').innerHTML = summaryHTML;
             document.getElementById('checkoutTotal').textContent = formatPrice(finalTotal);
 
-            // Add payment buttons with proper UPI options
+            // Add payment buttons
             document.getElementById('paymentButtons').innerHTML = `
                 <button type="button" onclick="checkoutWithRazorpay()" style="background:var(--rzp); color:white; width:100%; padding:15px; border-radius:4px; margin-bottom:10px; border:none; font-weight:bold; cursor:pointer;">
                     <i class="fas fa-credit-card"></i> Pay with Razorpay (${formatPrice(finalTotal)})
@@ -1313,19 +1332,45 @@
             document.getElementById('overlay').classList.remove('active');
         }
 
-        // Improved Payment Functions
+        // ===== VALIDATE CHECKOUT FORM =====
+        function validateCheckoutForm() {
+            const requiredFields = [
+                {id: 'customerName', name: 'Full Name'},
+                {id: 'customerPhone', name: 'Mobile Number'},
+                {id: 'addrLine1', name: 'Address'},
+                {id: 'addrDistrict', name: 'District'},
+                {id: 'addrState', name: 'State'},
+                {id: 'addrPin', name: 'Pincode'}
+            ];
+            
+            for (let field of requiredFields) {
+                const element = document.getElementById(field.id);
+                if (!element || !element.value.trim()) {
+                    showNotification(`Please fill in ${field.name}`);
+                    element?.focus();
+                    return false;
+                }
+            }
+            
+            const phone = document.getElementById('customerPhone').value;
+            if (!/^[0-9]{10}$/.test(phone)) {
+                showNotification('Please enter a valid 10-digit mobile number');
+                return false;
+            }
+            
+            return true;
+        }
+
+        // ===== PAYMENT FUNCTIONS (WITH VALIDATION) =====
         function checkoutWithRazorpay() {
+            if (!validateCheckoutForm()) return;
+            
             const name = document.getElementById('customerName').value;
             const phone = document.getElementById('customerPhone').value;
             const email = document.getElementById('customerEmail').value;
             
-            if (!name || !phone) {
-                showNotification('Please fill in name and phone number.');
-                return;
-            }
-            
             const subtotal = getCartTotal();
-            let shipping = subtotal < 2000 ? 150 : subtotal < 5000 ? 100 : 0;
+            const shipping = calculateShipping();
             const finalTotal = subtotal + shipping;
             
             const options = {
@@ -1365,12 +1410,15 @@
         }
 
         function initiateUPIPayment(upiId) {
+            // MUST VALIDATE FORM BEFORE UPI PAYMENT
+            if (!validateCheckoutForm()) return;
+            
             const subtotal = getCartTotal();
-            let shipping = subtotal < 2000 ? 150 : subtotal < 5000 ? 100 : 0;
+            const shipping = calculateShipping();
             const finalTotal = subtotal + shipping;
             
-            const name = document.getElementById('customerName').value || 'Customer';
-            const phone = document.getElementById('customerPhone').value || '';
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
             
             const upiLink = `upi://pay?pa=${upiId}&pn=Handiweave&am=${finalTotal}&cu=INR&tn=Order%20${Date.now()}&mc=5411`;
             
@@ -1381,7 +1429,6 @@
             setTimeout(() => {
                 showNotification(`Pay ₹${finalTotal} to ${upiId}. Send payment screenshot on WhatsApp.`);
                 
-                // Save order details for WhatsApp
                 const orderDetails = {
                     name: name,
                     phone: phone,
@@ -1395,6 +1442,8 @@
         }
 
         function checkoutWithWhatsApp() {
+            if (!validateCheckoutForm()) return;
+            
             const name = document.getElementById('customerName').value;
             const phone = document.getElementById('customerPhone').value;
             const email = document.getElementById('customerEmail').value;
@@ -1405,7 +1454,7 @@
             const isGift = document.getElementById('isGift').checked ? 'Yes' : 'No';
             
             const subtotal = getCartTotal();
-            let shipping = subtotal < 2000 ? 150 : subtotal < 5000 ? 100 : 0;
+            const shipping = calculateShipping();
             const finalTotal = subtotal + shipping;
             
             let itemsText = '';
@@ -1413,17 +1462,14 @@
                 itemsText += `• ${item.name} (${item.variant}) x${item.quantity}: ₹${item.price * item.quantity}\n`;
             });
             
-            let addressText = '';
-            if (addrLine1 && addrDistrict && addrState && addrPin) {
-                addressText = `Address: ${addrLine1}, ${addrDistrict}, ${addrState} - ${addrPin}\n`;
-            }
+            const addressText = `Address: ${addrLine1}, ${addrDistrict}, ${addrState} - ${addrPin}\n`;
             
             const message = `*NEW ORDER REQUEST*\n\n*Customer Details:*\nName: ${name}\nPhone: ${phone}\nEmail: ${email || 'Not provided'}\n${addressText}Gift Wrap: ${isGift}\n\n*Order Items:*\n${itemsText}\n*Order Summary:*\nSubtotal: ₹${subtotal}\nShipping: ₹${shipping}\n*Total: ₹${finalTotal}*\n\nPayment Method: Cash on Delivery / UPI`;
             
             window.open(`https://wa.me/919882212962?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        // Search Function - Fixed
+        // ===== SEARCH FUNCTION =====
         function searchProducts(event) {
             if (event && event.type === 'keyup' && event.key !== 'Enter') return;
             
@@ -1453,24 +1499,25 @@
             }, 100);
         }
 
-        // Navigation with Blog Hero Handling
+        // ===== NAVIGATION (FIXED HERO HIDING) =====
         function switchView(view) {
             // Hide all sections
             document.querySelectorAll('.section-container').forEach(section => {
                 section.classList.remove('active-section');
             });
             
-            // Update body class for blog
-            if (view === 'blog') {
-                document.body.classList.add('blog-active');
+            // Show/hide hero section
+            if (view === 'home') {
+                document.body.classList.remove('hide-hero');
+                // Show shop section for home
+                document.getElementById('shop-view').classList.add('active-section');
             } else {
-                document.body.classList.remove('blog-active');
-            }
-            
-            // Show selected section
-            const section = document.getElementById(view + '-view');
-            if (section) {
-                section.classList.add('active-section');
+                document.body.classList.add('hide-hero');
+                // Show the selected section
+                const section = document.getElementById(view + '-view');
+                if (section) {
+                    section.classList.add('active-section');
+                }
             }
             
             // Update active nav link
@@ -1489,13 +1536,13 @@
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
             
-            // If shop view, render products
+            // If home or shop view, render products
             if (view === 'shop' || view === 'home') {
                 renderProducts(PRODUCTS);
             }
         }
 
-        // Category Filter
+        // ===== CATEGORY FILTER =====
         function filterCategory(cat, btn) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
@@ -1508,7 +1555,7 @@
             }
         }
 
-        // Policy Toggle
+        // ===== POLICY TOGGLE =====
         function togglePolicy(index) {
             const content = document.querySelectorAll('.policy-content')[index];
             const icon = content.previousElementSibling.querySelector('.fa-chevron-down');
@@ -1516,45 +1563,50 @@
             icon.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
         }
 
-        // Contact Form
+        // ===== CONTACT FORM =====
         document.getElementById('contactForm')?.addEventListener('submit', function(e) {
             e.preventDefault();
-            const formData = new FormData(this);
-            
             showNotification('Message sent successfully!');
             this.reset();
         });
 
-        // Overlay click handler
+        // ===== OVERLAY CLICK HANDLER =====
         document.getElementById('overlay').addEventListener('click', function() {
             closeCart();
             closeCheckout();
             closeProductModal();
         });
 
-        // Handle URL parameters for direct product/blog links
+        // ===== HANDLE URL PARAMETERS (FIXED) =====
         function handleURLParameters() {
             const urlParams = new URLSearchParams(window.location.search);
             const productId = urlParams.get('product');
             const view = urlParams.get('view');
+            
+            // Clear URL parameters after reading
+            const cleanUrl = window.location.origin + window.location.pathname;
+            window.history.replaceState({}, document.title, cleanUrl);
             
             if (productId) {
                 const id = parseInt(productId);
                 const product = PRODUCTS.find(p => p.id === id);
                 if (product) {
                     switchView('shop');
-                    setTimeout(() => openProductModal(id), 500);
+                    setTimeout(() => openProductModal(id), 100);
                 }
             } else if (view) {
                 switchView(view);
             }
         }
 
-        // Initialize
+        // ===== INITIALIZE =====
         document.addEventListener('DOMContentLoaded', function() {
-            renderProducts();
-            updateCartCount();
-            handleURLParameters();
+            // Performance optimization: Load products after a small delay
+            setTimeout(() => {
+                renderProducts();
+                updateCartCount();
+                handleURLParameters();
+            }, 50);
             
             // Fix for Home link
             document.querySelector('.nav-link[onclick*="home"]').addEventListener('click', function() {
