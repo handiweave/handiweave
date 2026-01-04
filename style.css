@@ -79,13 +79,25 @@ body.hide-hero .main-nav {
 }
 
 /* =========================================
-   3. HERO SECTION (WITH LOGO FIX)
+   3. HERO SECTION (WITH CINEMATIC TEXT)
    ========================================= */
 @keyframes slideshowFade {
     0% { opacity: 0; }
     20% { opacity: 1; }
     60% { opacity: 1; }
     100% { opacity: 0; }
+}
+
+/* Text Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-section {
@@ -101,6 +113,7 @@ body.hide-hero .main-nav {
     overflow: hidden;
 }
 
+/* Background Slideshow */
 .hero-section::before,
 .hero-section::after {
     content: "";
@@ -117,18 +130,64 @@ body.hide-hero .main-nav {
 }
 
 .hero-section::before {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('ar3.jpg');
+    /* Darker Gradient for better text readability */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('ar3.jpg');
     animation-delay: 0s;
 }
 
 .hero-section::after {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('ar2.jpg'); /* Reverted to ar2 as per your image logic */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('ar2.jpg');
     animation-delay: 6s;
 }
 
 .hero-logo-container {
     margin-bottom: 1rem;
     animation: fadeInDown 1s ease;
+}
+
+/* ✨ CINEMATIC TEXT STYLING STARTS HERE ✨ */
+
+.hero-title {
+    font-family: 'Playfair Display', serif; /* Royal Font */
+    font-size: 3.5rem; /* Bada Size */
+    font-weight: 700;
+    letter-spacing: 6px; /* Aksharon mein hawa (Cinematic Look) */
+    text-transform: uppercase;
+    text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.7); /* Gehra Shadow */
+    margin: 0.5rem 0;
+    animation: fadeInUp 1.2s ease;
+}
+
+.hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-style: italic; /* Thoda style */
+    letter-spacing: 2px;
+    color: #f0f0f0;
+    text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.6);
+    margin-bottom: 1rem;
+    animation: fadeInUp 1.4s ease;
+}
+
+/* Jo chota text hai (Premium handcrafted...) */
+.hero-section p {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+    animation: fadeInUp 1.6s ease;
+}
+
+/* Mobile ke liye text thoda chota */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+        letter-spacing: 3px;
+    }
+    .hero-tagline {
+        font-size: 1.2rem;
+    }
 }
 
 /* --- LOGO FIX: SQUARE CONTAINER --- */
@@ -314,18 +373,18 @@ body.hide-hero .main-nav {
     gap: 2rem;
 }
 
+/* Product Cards ko 'Zinda' karne ke liye */
 .product-card {
+    border: 1px solid #eee;
     background: white;
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transition: var(--transition);
-    position: relative;
+    transition: all 0.4s ease; /* Smooth movement */
+    border-radius: 8px; /* Kone Gol */
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(-8px); /* Thoda upar uthega */
+    box-shadow: 0 15px 30px rgba(104, 34, 40, 0.15); /* Wine color ka shadow */
+    border-color: var(--gold); /* Border Gold ho jayega */
 }
 
 .product-image {
@@ -955,3 +1014,4 @@ body.hide-hero .main-nav {
     }
 
 }
+
