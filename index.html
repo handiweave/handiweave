@@ -1533,6 +1533,7 @@
             }
         }
 
+       // ===== UPDATED UPI FUNCTION (FINAL) =====
         function initiateUPIPayment(upiId) {
             if (!validateCheckoutForm()) return;
             
@@ -1542,28 +1543,48 @@
             
             const name = document.getElementById('customerName').value;
             const phone = document.getElementById('customerPhone').value;
+            const email = document.getElementById('customerEmail').value;
             
-            // Generate UPI Deep Link
-            const upiLink = `upi://pay?pa=${upiId}&pn=Handiweave&am=${finalTotal}&cu=INR&tn=Order%20${Date.now()}&mc=5411`;
+            // Address Details
+            const addrLine1 = document.getElementById('addrLine1').value;
+            const addrDistrict = document.getElementById('addrDistrict').value;
+            const addrState = document.getElementById('addrState').value;
+            const addrPin = document.getElementById('addrPin').value;
+            const fullAddress = `${addrLine1}, ${addrDistrict}, ${addrState} - ${addrPin}`;
+
+            // 1. Send Order Details to Formspree (Email) IMMEDIATELY
+            const formData = new FormData();
+            formData.append('Order Type', 'UPI / Google Pay Order');
+            formData.append('Payment Status', 'Pending (Check Screenshot/Bank)');
+            formData.append('Total Amount', `₹${finalTotal} (Ship: ₹${shipping})`);
+            formData.append('Customer Details', `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${fullAddress}`);
+            formData.append('Items', JSON.stringify(cart.map(i => `${i.name} (${i.quantity})`)));
             
-            // Try to open UPI app
+            // Send data quietly in background
+            fetch("https://formspree.io/f/xlgdnggr", { 
+                method: "POST", 
+                body: formData, 
+                headers: {'Accept': 'application/json'} 
+            });
+
+            // 2. Generate UPI Deep Link
+            // tn (Transaction Note) mein Phone number daala hai taaki match karne mein easy ho
+            const upiLink = `upi://pay?pa=${upiId}&pn=Handiweave&am=${finalTotal}&cu=INR&tn=Order-${phone}&mc=5411`;
+            
+            // 3. Open UPI App
             window.location.href = upiLink;
             
-            // Fallback instructions
+            // 4. Show Instructions to User (2 Second delay is safer)
             setTimeout(() => {
-                showNotification(`Pay ₹${finalTotal} to ${upiId}. Send payment screenshot on WhatsApp.`);
+                showNotification(`Request sent! Please pay ₹${finalTotal} in your app.`);
+                alert(`Order Email Sent to Handiweave!\n\nPlease complete payment of ₹${finalTotal} in your UPI App and share screenshot on WhatsApp if needed.`);
                 
-                // Save order details locally for WhatsApp follow-up
-                const orderDetails = {
-                    name: name,
-                    phone: phone,
-                    items: cart.map(item => `${item.name} x${item.quantity}`).join(', '),
-                    total: finalTotal,
-                    upiId: upiId,
-                    timestamp: Date.now()
-                };
-                localStorage.setItem('pending_upi_order', JSON.stringify(orderDetails));
-            }, 1000);
+                // Clear Cart & Close
+                cart = [];
+                saveCart();
+                updateCartCount();
+                closeCheckout();
+            }, 2000);
         }
 
         function checkoutWithWhatsApp() {
@@ -1756,6 +1777,7 @@
     </script>
 </body>
 </html>
+
 
 
 
