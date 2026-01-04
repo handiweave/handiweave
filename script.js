@@ -12,8 +12,8 @@ const PRODUCTS = [
         "originalPrice": 3399,
         "img": "3 patti kullu himachali handloom shawl1.1.jpg",
         "gallery": [
-            "3 patti kullu himachali handloom shawl1.1.jpg",
-            "3 patti kullu himachali handloom shawl1.2.jpg",
+            "3  kullu himachali handloom shawl1.1.jpg",
+            "3  kullu himachali handloom shawl1.2.jpg",
             "3 patti kullu himachali handloom shawl1.3.jpg"
         ],
         "options": { "type": "Color", "values": ["Black", "White", "Grey(Shown)"] },
@@ -536,7 +536,7 @@ function openProductModal(id) {
 
     // 2. METER/YARDAGE LOGIC (Only appears if name contains 'yardage' or 'patti')
     let meterHtml = '';
-    if (product.name.toLowerCase().includes('yardage') || product.name.toLowerCase().includes('patti')) {
+    if (product.name.toLowerCase().includes('yardage') || product.name.toLowerCase().includes('coat')) {
         meterHtml = `
             <div style="margin: 15px 0; background: #fff8e1; padding: 10px; border-radius: 4px; border: 1px dashed #C5A065;">
                 <label style="font-weight:bold; color:#7A5548;">Length (Meters):</label>
@@ -1055,3 +1055,4 @@ document.addEventListener('DOMContentLoaded', function() {
         handleURLParameters();
     }, 50);
 });
+
