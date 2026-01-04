@@ -1,15 +1,20 @@
 /* =========================================
-   1. GLOBAL VARIABLES & RESET
+   1. GLOBAL VARIABLES & RESET (Royal Wine Theme)
    ========================================= */
 :root {
-    --bg: #F9F8F6;
-    --card: #fff;
-    --text: #333;
-    --brand: #7A5548;
-    --brand-dark: #5D433A;
-    --gold: #C5A065;
-    --wa: #25D366;
-    --rzp: #3395ff;
+    /* PALETTE: Himachali Heritage */
+    --bg: #FFFCF7;          /* Raw Wool Cream */
+    --card: #ffffff;        /* Pure White */
+    --text: #2C2C2C;        /* Dark Charcoal */
+    
+    --brand: #682228;       /* Deep Himachali Wine/Burgundy */
+    --brand-dark: #4A1217;  /* Darker Shade for Hover */
+    --gold: #D4AF37;        /* Metallic Gold for Accents */
+    
+    /* FUNCTIONAL */
+    --wa: #25D366;          /* WhatsApp */
+    --rzp: #3395ff;         /* Razorpay */
+    
     --radius: 8px;
     --transition: all 0.3s ease;
 }
@@ -37,14 +42,13 @@ a {
     color: inherit;
 }
 
-/* Helper Class to hide Hero on specific pages if needed */
+/* Helper Class to hide Hero on specific pages */
 body.hide-hero .hero-section {
     display: none;
 }
 body.hide-hero .main-nav {
     margin-top: 0;
 }
-
 
 /* =========================================
    2. UTILITIES & BANNER
@@ -73,7 +77,6 @@ body.hide-hero .main-nav {
     margin: 1.5rem 0;
     font-size: 1.1rem;
 }
-
 
 /* =========================================
    3. HERO SECTION (WITH LOGO FIX)
@@ -950,4 +953,5 @@ body.hide-hero .main-nav {
     .main-modal-img {
         height: 300px;
     }
+
 }
