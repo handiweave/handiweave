@@ -10,11 +10,11 @@ const PRODUCTS = [
         "category": "Wovens",
         "price": 2549,
         "originalPrice": 3399,
-        "img": "3 patti kullu himachali handloom shawl1.1.jpg",
+        "img": "3pattikullushawl1.jpg",
         "gallery": [
-            "3 patti kullu himachali handloom shawl1.1.jpg",
-            "3 patti kullu himachali handloom shawl1.2.jpg",
-            "3 patti kullu himachali handloom shawl1.3.jpg"
+            "3pattikullushawl1.jpg",
+            "3pattikullushawl2.jpg",
+            "3pattikullushawl3.jpg"
         ],
         "options": { "type": "Color", "values": ["Black", "White", "Grey(Shown)"] },
         "shortDesc": "Authentic 3-Patti geometric border shawl.",
@@ -1055,5 +1055,6 @@ document.addEventListener('DOMContentLoaded', function() {
         handleURLParameters();
     }, 50);
 });
+
 
 
