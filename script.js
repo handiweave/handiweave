@@ -12,8 +12,8 @@ const PRODUCTS = [
         "originalPrice": 3399,
         "img": "3 patti kullu himachali handloom shawl1.1.jpg",
         "gallery": [
-            "3  kullu himachali handloom shawl1.1.jpg",
-            "3  kullu himachali handloom shawl1.2.jpg",
+            "3 patti kullu himachali handloom shawl1.1.jpg",
+            "3 patti kullu himachali handloom shawl1.2.jpg",
             "3 patti kullu himachali handloom shawl1.3.jpg"
         ],
         "options": { "type": "Color", "values": ["Black", "White", "Grey(Shown)"] },
@@ -1055,4 +1055,5 @@ document.addEventListener('DOMContentLoaded', function() {
         handleURLParameters();
     }, 50);
 });
+
 
