@@ -4,7 +4,7 @@ const PRODUCTS = [
         "id": 1,
         "name": "Tripple (3) Patti Woolen Shawl",
         "category": "Wovens",
-        "price": 2599,
+        "price": 2499,
         "originalPrice": 3499,
         "img": "3 patti kullu himachali handloom shawl1.1.jpg",
         "gallery": [
@@ -107,8 +107,8 @@ const PRODUCTS = [
         "gallery": ["handloom pure wool kulluvi coat patti yardage.jpg"],
         "options": { "type": "Color", "values": ["Black (Shown)", "White", "Grey", "White with black stripes"] },
         "shortDesc": "Handmade Kulluvi yardage",
-        "desc": "Handwoven yardage or kulluvi patti best suited for all weather due to its wicking nature and best suited for full nehru coat, half jackets, lowers and shirting.",
-        "care": "Hand or Machine wash below 40 degree.",
+        "desc": "Price of patti/yardage is mentioned per meter. This Handwoven yardage or kulluvi patti best suited for all weather due to its wicking nature and best suited for full nehru coat, half jackets, lowers and shirting.",
+        "care": "Dry Clean only.",
         "inStock": true
     },
     {
@@ -510,7 +510,7 @@ function renderProducts(items = PRODUCTS) {
     `}).join('');
 }
 
-// ===== PRODUCT MODAL =====
+// ===== PRODUCT MODAL (Updated with Meter Logic) =====
 function openProductModal(id) {
     const product = PRODUCTS.find(p => p.id === id);
     if(!product) return;
@@ -518,6 +518,7 @@ function openProductModal(id) {
     const modal = document.getElementById('productModal');
     const body = document.getElementById('modalBody');
 
+    // 1. OPTIONS LOGIC
     let optionsHTML = '';
     if(product.options) {
         const opts = product.options.values.map(v => `<option value="${v}">${v}</option>`).join('');
@@ -529,10 +530,28 @@ function openProductModal(id) {
         `;
     }
 
+    // 2. METER/YARDAGE LOGIC (Only appears if name contains 'yardage' or 'patti')
+    let meterHtml = '';
+    if (product.name.toLowerCase().includes('yardage') || product.name.toLowerCase().includes('patti')) {
+        meterHtml = `
+            <div style="margin: 15px 0; background: #fff8e1; padding: 10px; border-radius: 4px; border: 1px dashed #C5A065;">
+                <label style="font-weight:bold; color:#7A5548;">Length (Meters):</label>
+                <div style="display:flex; gap:10px; margin-top:5px;">
+                    <input type="number" id="meterInput" value="1" min="1" 
+                           style="width:80px; padding:8px; border:1px solid #ccc; border-radius:4px; font-weight:bold; font-size:1.1rem;">
+                    <span style="align-self:center; color:#555;">Meters</span>
+                </div>
+                <small style="color:#666;">Price calculates per meter in cart.</small>
+            </div>
+        `;
+    }
+
+    // 3. THUMBS LOGIC
     let thumbs = product.gallery.map(src => 
         `<img src="${src}" class="thumb-img" loading="lazy" onclick="document.querySelector('.main-modal-img').src='${src}'">`
     ).join('');
 
+    // 4. REVIEWS LOGIC
     let reviewsHTML = '';
     if (product.reviews && product.reviews.length > 0) {
         const reviewsList = product.reviews.map(r => `
@@ -574,6 +593,8 @@ function openProductModal(id) {
             
             ${product.inStock ? optionsHTML : ''}
             
+            ${product.inStock ? meterHtml : ''}
+            
             <div class="action-buttons">
                 <button class="add-to-cart-btn" style="flex:2; padding:15px; ${!product.inStock ? 'background:#888;cursor:not-allowed;' : ''}" 
                     onclick="addToCartFromModal(${product.id})" ${!product.inStock ? 'disabled' : ''}>
@@ -599,14 +620,74 @@ function closeProductModal() {
     document.body.style.overflow = 'auto';
 }
 
-function shareProduct(productId) {
+// ===== ADD TO CART FROM MODAL (Updated to read Meter Input) =====
+function addToCartFromModal(productId) {
     const product = PRODUCTS.find(p => p.id === productId);
-    if(!product) return;
+    if (!product) return;
+
+    // Check for Variant
+    let selectedVariant = null;
+    const variantSelect = document.getElementById('modalVariantSelect');
+    if (variantSelect) {
+        selectedVariant = variantSelect.value;
+    } else if (product.options) {
+        selectedVariant = product.options.values[0];
+    }
+
+    // Check for Meter/Quantity Input
+    let quantity = 1;
+    const meterInput = document.getElementById('meterInput');
+    if (meterInput) {
+        quantity = parseInt(meterInput.value);
+        if (quantity < 1) quantity = 1;
+    }
+
+    // Check if item already in cart
+    const existingItem = cart.find(item => item.id === productId && item.variant === selectedVariant);
+
+    if (existingItem) {
+        existingItem.quantity += quantity;
+    } else {
+        cart.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.img,
+            variant: selectedVariant,
+            quantity: quantity
+        });
+    }
+
+    updateCartCount();
+    closeProductModal();
+    openCart();
     
-    // Updated Logic for Multi-Page: Always link to shop.html
-    const baseUrl = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
-    const shareUrl = `${baseUrl}/shop.html?product=${productId}`;
+    // Show Notification
+    const notif = document.getElementById('notification');
+    const notifText = document.getElementById('notificationText');
+    notifText.innerText = `${quantity} ${quantity > 1 ? 'Meters' : 'Item'} added to bag!`;
+    notif.classList.add('show');
+    setTimeout(() => { notif.classList.remove('show'); }, 3000);
+}
+// ===== UPDATED SHARE FUNCTION (Dynamic Name) =====
+function shareProduct(productId) {
+    // 1. Find the product details using ID
+    const product = PRODUCTS.find(p => p.id === productId);
+    if (!product) return;
     
+    // 2. Create a "Slug" from the actual product name
+    // It replaces spaces with hyphens (e.g., "Tripple Patti Shawl" becomes "Tripple-Patti-Shawl")
+    const slug = product.name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '');
+    
+    // 3. Construct the correct URL
+    // This works on both GitHub Pages and Custom Domains
+    const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+    const baseUrl = window.location.origin + path;
+    
+    // Final Link Format: .../shop.html?product=12&item=Product-Name-Here
+    const shareUrl = `${baseUrl}shop.html?product=${productId}&item=${slug}`;
+    
+    // 4. Trigger Share Menu or WhatsApp
     if (navigator.share) {
         navigator.share({
             title: 'Handiweave - ' + product.name,
@@ -618,37 +699,59 @@ function shareProduct(productId) {
         window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
     }
 }
-
+// ===== ADD TO CART FROM MODAL (Final Safe Version) =====
 function addToCartFromModal(id) {
     const product = PRODUCTS.find(p => p.id === id);
-    if (!product.inStock) return; 
+    // Stock check (Purana logic)
+    if (product.inStock === false) return; 
 
+    // 1. Variant Select Logic (Purana)
     let selectedVariant = 'Standard';
-    
     const selectBox = document.getElementById('modalVariantSelect');
     if (selectBox) selectedVariant = selectBox.value;
 
+    // 2. ⭐ NEW METER LOGIC ⭐
+    // Default quantity 1 rahegi (Shawls/Stoles ke liye)
+    let quantity = 1; 
+    
+    // Check karega agar Meter Box maujood hai (Sirf Yardage ke liye)
+    const meterInput = document.getElementById('meterInput');
+    if (meterInput) {
+        quantity = parseInt(meterInput.value);
+        if (quantity < 1) quantity = 1;
+    }
+
+    // 3. Cart Logic
     const existingItem = cart.find(i => i.id === id && i.variant === selectedVariant);
 
     if (existingItem) {
-        existingItem.quantity++;
+        // Agar pehle se hai, toh quantity badha do
+        existingItem.quantity += quantity;
     } else {
+        // Naya item add karo
         cart.push({
             id: product.id,
             name: product.name,
             price: product.price,
             img: product.img,
             variant: selectedVariant,
-            quantity: 1
+            quantity: quantity // Yahan ab sahi quantity jayegi
         });
     }
 
-    saveCart();
+    // 4. Saving & UI (Tera Purana Code)
+    saveCart(); // Ye zaroori tha, wapas daal diya
     closeProductModal();
-    showNotification('Added to Bag');
+    
+    // Notification mein thoda smartness daal diya
+    if(quantity > 1) {
+        showNotification(`${quantity} Meters Added to Bag`);
+    } else {
+        showNotification('Added to Bag');
+    }
+    
     openCart(); 
 }
-
 // ===== CART FUNCTIONS =====
 function openCart() {
     renderCartItems();
@@ -1009,4 +1112,5 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCartCount();
         handleURLParameters();
     }, 50);
+
 });
