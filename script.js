@@ -342,11 +342,11 @@ const PRODUCTS = [
             "stripe1.jpg",
             "stripe2.jpg"
         ],
-        "options": null,
+        "options": { "type": "Color", "values": ["Black(Shown)", "Grey", "White"] },
         "shortDesc": "Traditional weave muffler",
         "desc": "Woven on a handloom using a self-stripe technique. This muffler focuses on the texture of the wool rather than intricate patterns, giving it a rustic, rugged look. Very warm and durable.",
         "care": "Hand wash/Dry Clean.",
-        "inStock": true
+        "inStock": false
     },
     {
         "id": 20,
@@ -1055,6 +1055,7 @@ document.addEventListener('DOMContentLoaded', function() {
         handleURLParameters();
     }, 50);
 });
+
 
 
 
