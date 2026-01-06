@@ -1055,6 +1055,148 @@ document.addEventListener('DOMContentLoaded', function() {
         handleURLParameters();
     }, 50);
 });
+// ===== SUPER FINAL LOGIC (Paste at bottom of script.js) =====
+
+// Global Variables
+window.currentGallery = [];
+window.currentIndex = 0;
+
+// 1. OPEN MODAL FUNCTION
+window.openProductModal = function(id) {
+    if (typeof PRODUCTS === 'undefined') { console.error("PRODUCTS data missing!"); return; }
+
+    const product = PRODUCTS.find(p => p.id === id);
+    if(!product) return;
+    
+    // Setup Gallery
+    window.currentGallery = product.gallery && product.gallery.length > 0 ? product.gallery : [product.img];
+    window.currentIndex = 0;
+    const showArrows = window.currentGallery.length > 1;
+
+    const modal = document.getElementById('productModal');
+    const body = document.getElementById('modalBody');
+
+    // Badge Logic (Hoodie/Jewelry/Footwear detection)
+    const pName = product.name.toLowerCase();
+    const pCat = product.category ? product.category.toLowerCase() : "";
+    let badgeText = "100% Handwoven";
+    let badgeIcon = "fa-hand-holding-heart";
+
+    if (pName.includes('hoodie') || pName.includes('jacket') || pCat.includes('jacket')) {
+        badgeText = "Premium Quality"; badgeIcon = "fa-star";
+    } else if (pName.includes('jewel') || pCat.includes('decor')) {
+        badgeText = "Handcrafted Art"; badgeIcon = "fa-gem";
+    } else if (pCat.includes('footwear') || pName.includes('pullan')) {
+        badgeText = "Handmade Footwear"; badgeIcon = "fa-shoe-prints";
+    }
+
+    // Discount Logic
+    let discountHTML = '', saveHTML = '';
+    if(product.originalPrice > product.price) {
+        const discPercent = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+        discountHTML = `<span class="off-sticker">-${discPercent}% OFF</span>`;
+        saveHTML = `<span class="save-badge">You Save ₹${product.originalPrice - product.price}</span>`;
+    }
+
+    // Options Logic
+    let optionsHTML = '';
+    if(product.options) {
+        const opts = product.options.values.map(v => `<option value="${v}">${v}</option>`).join('');
+        optionsHTML = `<div class="variant-selector" style="margin: 1.5rem 0;">
+            <label style="font-weight:bold; display:block; margin-bottom:8px;">Select ${product.options.type}:</label>
+            <select id="modalVariantSelect" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px;">${opts}</select>
+        </div>`;
+    }
+
+    // Meter Logic
+    let meterHtml = '';
+    if (pName.includes('yardage') || pName.includes('coat')) {
+        meterHtml = `<div style="margin: 15px 0; background: #fff8e1; padding: 15px; border-radius: 6px; border: 1px dashed #C5A065;">
+            <label style="font-weight:bold; color:#7A5548;">Length Required (Meters):</label>
+            <div style="display:flex; gap:10px; margin-top:5px;">
+                <input type="number" id="meterInput" value="1" min="1" style="width:80px; padding:8px; border:1px solid #ccc; border-radius:4px; font-weight:bold; font-size:1.1rem;">
+                <span style="align-self:center; color:#555; font-weight:600;">Meters</span>
+            </div>
+            <small style="color:#666; display:block; margin-top:5px;">*Price calculated per meter.</small>
+        </div>`;
+    }
+
+    // Thumbs Logic
+    let thumbs = window.currentGallery.map((src, idx) => 
+        `<img src="${src}" class="thumb-img" style="height:60px; width:60px; border:1px solid #ddd; padding:2px; cursor:pointer;" 
+        onclick="changeSlideDirect(${idx})">`
+    ).join('');
+
+    // Arrows HTML
+    const arrowsHTML = showArrows ? `
+        <button class="slide-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="slide-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
+    ` : '';
+
+    // Build HTML
+    body.innerHTML = `
+        <button onclick="closeProductModal()" style="position:absolute; top:15px; right:15px; z-index:100; background:white; border:2px solid #682228; color:#682228; font-weight:bold; padding:8px 15px; border-radius:30px; cursor:pointer; display:flex; align-items:center; gap:8px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+            CLOSE <i class="fas fa-times"></i>
+        </button>
+
+        <div class="modal-gallery">
+            <div class="slider-container">
+                ${discountHTML}
+                ${arrowsHTML}
+                <img id="mainModalImage" src="${window.currentGallery[0]}" alt="${product.name}" class="main-modal-img" style="width:100%; border-radius:8px; transition: opacity 0.3s;">
+            </div>
+            <div class="thumb-grid" style="margin-top:15px; display:flex; gap:10px; overflow-x:auto;">${thumbs}</div>
+        </div>
+        
+        <div class="modal-details" style="padding-top:10px;">
+            <h2 style="font-size:1.6rem; margin-bottom:5px; line-height:1.2; padding-right:30px;">${product.name}</h2>
+            <div class="modal-price" style="margin: 15px 0; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                <span style="font-size:1.8rem; font-weight:700; color:#7A5548;">₹${product.price.toLocaleString('en-IN')}</span>
+                <span style="color:#999; text-decoration:line-through; font-size:1.1rem;">₹${product.originalPrice.toLocaleString('en-IN')}</span>
+                ${saveHTML}
+            </div>
+            <div style="font-size:0.85rem; color:#666; margin-bottom:10px;">(Shipping calculated at checkout)</div>
+            <div style="color:#555; font-size:1rem; line-height:1.6; border-left:3px solid #682228; padding-left:15px; margin-bottom:20px;">${product.shortDesc}</div>
+            ${product.inStock ? optionsHTML : ''}
+            ${product.inStock ? meterHtml : ''}
+            <button class="add-to-cart-btn" style="width:100%; padding:18px; font-size:1.1rem; font-weight:bold; background: #682228; color:white; border:none; border-radius:6px; cursor:pointer; display:flex; justify-content:center; gap:10px;" 
+                onclick="addToCartFromModal(${product.id})" ${!product.inStock ? 'disabled style="background:#ccc;"' : ''}>
+                <i class="fas fa-shopping-bag"></i> ${product.inStock ? 'ADD TO BAG' : 'OUT OF STOCK'}
+            </button>
+            <div class="modal-trust-badges">
+                <div class="trust-item"><i class="fas ${badgeIcon}"></i> ${badgeText}</div>
+                <div class="trust-item"><i class="fas fa-truck"></i> Pan India Shipping</div>
+                <div class="trust-item"><i class="fas fa-sync-alt"></i> 7 Days Exchange T&C</div>
+                <div class="trust-item"><i class="fas fa-certificate"></i> Authentic Himachali</div>
+            </div>
+            <div style="margin-top:25px; border-top:1px solid #eee; padding-top:15px;">
+                <h4 style="margin-bottom:10px;">Product Details</h4>
+                <p style="color:#666; font-size:0.95rem;">${product.desc}</p>
+                <div style="background:#fff3cd; padding:10px; margin-top:10px; border-radius:4px; font-size:0.9rem;"><strong>Care:</strong> ${product.care}</div>
+            </div>
+        </div>
+    `;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+// 2. SLIDER FUNCTIONS (Global)
+window.changeSlide = function(step) {
+    window.currentIndex += step;
+    if (window.currentIndex >= window.currentGallery.length) window.currentIndex = 0;
+    if (window.currentIndex < 0) window.currentIndex = window.currentGallery.length - 1;
+    document.getElementById('mainModalImage').src = window.currentGallery[window.currentIndex];
+}
+
+window.changeSlideDirect = function(idx) {
+    window.currentIndex = idx;
+    document.getElementById('mainModalImage').src = window.currentGallery[window.currentIndex];
+}
+
+window.closeProductModal = function() { 
+    document.getElementById('productModal').style.display = 'none'; 
+    document.body.style.overflow = 'auto';
+}
 
 
 
