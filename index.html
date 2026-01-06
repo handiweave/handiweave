@@ -34,6 +34,57 @@
         gtag('js', new Date());
         gtag('config', 'G-SEWM8S3WL0');
     </script>
+    <style>
+    /* ===== MODAL PREMIUM DESIGN ===== */
+    .product-modal-content {
+        width: 95% !important;
+        max-width: 1100px !important;
+        max-height: 90vh;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 30px;
+        padding: 30px !important;
+        border-radius: 12px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .modal-trust-badges {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-top: 25px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border: 1px dashed #ddd;
+    }
+    .trust-item {
+        font-size: 0.85rem; color: #333; font-weight: 600;
+        display: flex; align-items: center; gap: 10px;
+    }
+    .trust-item i { color: #7A5548; font-size: 1.2rem; }
+    
+    .save-badge {
+        background: #27ae60; color: white; font-size: 0.75rem; 
+        padding: 4px 8px; border-radius: 4px; font-weight: bold; 
+        vertical-align: middle; margin-left: 10px;
+    }
+    .off-sticker {
+        position: absolute; top: 15px; left: 15px;
+        background: #e74c3c; color: white; padding: 5px 12px; 
+        font-weight: bold; border-radius: 4px; z-index: 10;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    
+    @media (max-width: 768px) {
+        .product-modal-content {
+            grid-template-columns: 1fr !important;
+            padding: 15px !important;
+            width: 100% !important;
+            height: 100%; border-radius: 0;
+        }
+        .main-modal-img { max-height: 350px; object-fit: contain; }
+    }
+</style>
 </head>
 
 <body>
@@ -157,7 +208,119 @@
     <div class="notification" id="notification"><i class="fas fa-check-circle"></i> <span id="notificationText"></span></div>
     
     <script src="script.js"></script>
+    <script>
+// ===== FINAL MODAL LOGIC (Correct Policies) =====
+
+function openProductModal(id) {
+    // Note: Hum maan rahe hain PRODUCTS array script.js se load ho chuka hai
+    const product = PRODUCTS.find(p => p.id === id);
+    if(!product) return;
+    
+    const modal = document.getElementById('productModal');
+    const body = document.getElementById('modalBody');
+
+    // 1. Discount Badge
+    let discountHTML = '';
+    let saveHTML = '';
+    if(product.originalPrice > product.price) {
+        const discPercent = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+        discountHTML = `<span class="off-sticker">-${discPercent}% OFF</span>`;
+        saveHTML = `<span class="save-badge">You Save ₹${product.originalPrice - product.price}</span>`;
+    }
+
+    // 2. Options (Size/Color)
+    let optionsHTML = '';
+    if(product.options) {
+        const opts = product.options.values.map(v => `<option value="${v}">${v}</option>`).join('');
+        optionsHTML = `
+            <div class="variant-selector" style="margin: 1.5rem 0;">
+                <label style="font-weight:bold; display:block; margin-bottom:8px;">Select ${product.options.type}:</label>
+                <select id="modalVariantSelect" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px;">
+                    ${opts}
+                </select>
+            </div>`;
+    }
+
+    // 3. Meter Logic (Sirf 'yardage' ya 'coat' ke liye)
+    let meterHtml = '';
+    if (product.name.toLowerCase().includes('yardage') || product.name.toLowerCase().includes('coat')) {
+        meterHtml = `
+            <div style="margin: 15px 0; background: #fff8e1; padding: 15px; border-radius: 6px; border: 1px dashed #C5A065;">
+                <label style="font-weight:bold; color:#7A5548;">Length Required (Meters):</label>
+                <div style="display:flex; gap:10px; margin-top:5px;">
+                    <input type="number" id="meterInput" value="1" min="1" 
+                           style="width:80px; padding:8px; border:1px solid #ccc; border-radius:4px; font-weight:bold; font-size:1.1rem;">
+                    <span style="align-self:center; color:#555; font-weight:600;">Meters</span>
+                </div>
+                <small style="color:#666; display:block; margin-top:5px;">*Price calculated per meter.</small>
+            </div>`;
+    }
+
+    // 4. Thumbs
+    let thumbs = product.gallery.map(src => 
+        `<img src="${src}" class="thumb-img" style="height:60px; width:60px; border:1px solid #ddd; padding:2px; cursor:pointer;" 
+        onclick="document.querySelector('.main-modal-img').src='${src}'">`
+    ).join('');
+
+    // 5. HTML Structure (No Fake Certificates)
+    body.innerHTML = `
+        <div class="modal-gallery" style="position:relative;">
+            ${discountHTML}
+            <img src="${product.img}" alt="${product.name}" class="main-modal-img" style="width:100%; border-radius:8px;">
+            <div class="thumb-grid" style="margin-top:15px; display:flex; gap:10px; overflow-x:auto;">${thumbs}</div>
+        </div>
+        
+        <div class="modal-details">
+            <h2 style="font-size:1.8rem; margin-bottom:5px; line-height:1.2;">${product.name}</h2>
+            
+            <div class="modal-price" style="margin: 15px 0; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                <span style="font-size:1.8rem; font-weight:700; color:#7A5548;">₹${product.price.toLocaleString('en-IN')}</span>
+                <span style="color:#999; text-decoration:line-through; font-size:1.1rem;">₹${product.originalPrice.toLocaleString('en-IN')}</span>
+                ${saveHTML}
+            </div>
+            <div style="font-size:0.85rem; color:#666; margin-bottom:10px;">(Shipping calculated at checkout)</div>
+
+            <div style="color:#555; font-size:1rem; line-height:1.6; border-left:3px solid #C5A065; padding-left:15px; margin-bottom:20px;">
+                ${product.shortDesc}
+            </div>
+
+            ${product.inStock ? optionsHTML : ''}
+            ${product.inStock ? meterHtml : ''}
+            
+            <button class="add-to-cart-btn" style="width:100%; padding:18px; font-size:1.1rem; font-weight:bold; background: #7A5548; color:white; border:none; border-radius:6px; cursor:pointer; display:flex; justify-content:center; gap:10px;" 
+                onclick="addToCartFromModal(${product.id})" ${!product.inStock ? 'disabled style="background:#ccc;"' : ''}>
+                <i class="fas fa-shopping-bag"></i> 
+                ${product.inStock ? 'ADD TO BAG' : 'OUT OF STOCK'}
+            </button>
+
+            <div class="modal-trust-badges">
+                <div class="trust-item"><i class="fas fa-hand-holding-heart"></i> 100% Handwoven</div>
+                <div class="trust-item"><i class="fas fa-truck"></i> Pan India Shipping</div>
+                <div class="trust-item"><i class="fas fa-sync-alt"></i> 7 Days Exchange</div>
+                <div class="trust-item"><i class="fas fa-certificate"></i> Authentic Himachali</div>
+            </div>
+
+            <div style="margin-top:25px; border-top:1px solid #eee; padding-top:15px;">
+                <h4 style="margin-bottom:10px;">Product Details</h4>
+                <p style="color:#666; font-size:0.95rem;">${product.desc}</p>
+                <div style="background:#fff3cd; padding:10px; margin-top:10px; border-radius:4px; font-size:0.9rem;">
+                    <strong>Care:</strong> ${product.care}
+                </div>
+            </div>
+        </div>
+    `;
+
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProductModal() { 
+    document.getElementById('productModal').style.display = 'none'; 
+    document.body.style.overflow = 'auto';
+}
+</script>
 </body>
 </html>
+
 
 
