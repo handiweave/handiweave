@@ -1014,4 +1014,70 @@ body.hide-hero .main-nav {
     }
 
 }
+/* ===== NEW MODAL & SLIDER CSS (Paste at bottom of style.css) ===== */
+
+/* 1. Modal Bada aur App Jaisa */
+.product-modal-content {
+    width: 95% !important;
+    max-width: 1100px !important;
+    max-height: 90vh;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 30px;
+    padding: 30px !important;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+/* 2. Mobile View Fix */
+@media (max-width: 768px) {
+    .product-modal-content {
+        grid-template-columns: 1fr !important;
+        padding: 15px !important;
+        width: 100% !important;
+        height: 100%; border-radius: 0;
+    }
+    .main-modal-img { max-height: 350px; object-fit: contain; }
+}
+
+/* 3. Trust Badges Grid */
+.modal-trust-badges {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 15px;
+    margin-top: 25px; padding: 20px; background: #f8f9fa;
+    border-radius: 8px; border: 1px dashed #ddd;
+}
+.trust-item {
+    font-size: 0.85rem; color: #333; font-weight: 600;
+    display: flex; align-items: center; gap: 10px;
+}
+.trust-item i { color: #682228; font-size: 1.2rem; }
+
+/* 4. Stickers & Badges */
+.save-badge {
+    background: #27ae60; color: white; font-size: 0.75rem; 
+    padding: 4px 8px; border-radius: 4px; font-weight: bold; 
+    vertical-align: middle; margin-left: 10px;
+}
+.off-sticker {
+    position: absolute; top: 15px; left: 15px;
+    background: #e74c3c; color: white; padding: 5px 12px; 
+    font-weight: bold; border-radius: 4px; z-index: 10;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* 5. Slider Arrow Buttons */
+.slider-container {
+    position: relative; width: 100%; overflow: hidden; border-radius: 8px;
+}
+.slide-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9); color: #682228; border: none;
+    width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
+    font-size: 1.2rem; z-index: 50;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    display: flex; align-items: center; justify-content: center;
+}
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
+.slide-btn:active { background: #682228; color: white; }
 
