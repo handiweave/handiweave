@@ -209,9 +209,6 @@
     
     <script src="script.js"></script>
     <script>
-<script>
-<script>
-<script>
 // ===== FINAL LOGIC: SLIDER + BADGES + WINE BUTTON =====
 
 let currentGallery = []; // Photos store karne ke liye
@@ -229,11 +226,28 @@ function openProductModal(id) {
     const modal = document.getElementById('productModal');
     const body = document.getElementById('modalBody');
 
-    // 2. BADGE LOGIC (Ye fix kiya hai)
-    // Check karo agar naam mein 'hoodie' hai
-    const isHoodie = product.name.toLowerCase().includes('hoodie');
-    const badgeText = isHoodie ? "Premium Quality" : "100% Handwoven";
-    const badgeIcon = isHoodie ? "fa-star" : "fa-hand-holding-heart";
+   // 2. SMART BADGE LOGIC (Updated for Jackets, Jewelry & Future items)
+    let badgeText = "100% Handwoven"; // Default (Shawls, Caps ke liye)
+    let badgeIcon = "fa-hand-holding-heart";
+
+    const pName = product.name.toLowerCase();
+    const pCat = product.category.toLowerCase();
+
+    // Rule 1: Silla hua kapda (Hoodie, Jacket, etc.)
+    if (pName.includes('hoodie') || pName.includes('jacket') || pCat.includes('jacket')) {
+        badgeText = "Premium Quality";
+        badgeIcon = "fa-star";
+    }
+    // Rule 2: Future Items (Jewellery / Decor)
+    else if (pName.includes('jewel') || pName.includes('necklace') || pCat.includes('decor')) {
+        badgeText = "Handcrafted Art";
+        badgeIcon = "fa-gem"; // Hira ka icon
+    }
+    // Rule 3: Footwear
+    else if (pCat.includes('footwear') || pName.includes('pulla')) {
+        badgeText = "Handmade Footwear";
+        badgeIcon = "fa-shoe-prints";
+    }
 
     // 3. DISCOUNT LOGIC
     let discountHTML = '';
@@ -347,6 +361,7 @@ function closeProductModal() {
 </script>
 </body>
 </html>
+
 
 
 
