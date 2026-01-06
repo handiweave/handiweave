@@ -1094,7 +1094,7 @@ window.openProductModal = function(id) {
     let discountHTML = '', saveHTML = '';
     if(product.originalPrice > product.price) {
         const discPercent = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
-        discountHTML = `<span class="off-sticker">-${discPercent}% OFF</span>`;
+        discountHTML = `<span class="off-sticker" style="position: absolute; top: 15px; left: 15px; background: #e74c3c; color: white; padding: 5px 12px; font-weight: bold; border-radius: 4px; z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.2); pointer-events: none;">-${discPercent}% OFF</span>`;
         saveHTML = `<span class="save-badge">You Save ₹${product.originalPrice - product.price}</span>`;
     }
 
