@@ -209,17 +209,23 @@
     
     <script src="script.js"></script>
     <script>
-// ===== FINAL MODAL LOGIC (Correct Policies) =====
+<script>
+<script>
+// ===== FINAL FIXED LOGIC (Smart Badge + Close Button) =====
 
 function openProductModal(id) {
-    // Note: Hum maan rahe hain PRODUCTS array script.js se load ho chuka hai
     const product = PRODUCTS.find(p => p.id === id);
     if(!product) return;
     
     const modal = document.getElementById('productModal');
     const body = document.getElementById('modalBody');
 
-    // 1. Discount Badge
+    // 1. Logic: Kya ye Hoodie hai? (To change "Handwoven" tag)
+    const isHoodie = product.name.toLowerCase().includes('hoodie');
+    const badgeText = isHoodie ? "Premium Quality" : "100% Handwoven";
+    const badgeIcon = isHoodie ? "fa-star" : "fa-hand-holding-heart";
+
+    // 2. Discount Calculation
     let discountHTML = '';
     let saveHTML = '';
     if(product.originalPrice > product.price) {
@@ -228,7 +234,7 @@ function openProductModal(id) {
         saveHTML = `<span class="save-badge">You Save ₹${product.originalPrice - product.price}</span>`;
     }
 
-    // 2. Options (Size/Color)
+    // 3. Options Logic
     let optionsHTML = '';
     if(product.options) {
         const opts = product.options.values.map(v => `<option value="${v}">${v}</option>`).join('');
@@ -241,7 +247,7 @@ function openProductModal(id) {
             </div>`;
     }
 
-    // 3. Meter Logic (Sirf 'yardage' ya 'coat' ke liye)
+    // 4. Meter Logic
     let meterHtml = '';
     if (product.name.toLowerCase().includes('yardage') || product.name.toLowerCase().includes('coat')) {
         meterHtml = `
@@ -256,22 +262,26 @@ function openProductModal(id) {
             </div>`;
     }
 
-    // 4. Thumbs
+    // 5. Thumbs
     let thumbs = product.gallery.map(src => 
         `<img src="${src}" class="thumb-img" style="height:60px; width:60px; border:1px solid #ddd; padding:2px; cursor:pointer;" 
         onclick="document.querySelector('.main-modal-img').src='${src}'">`
     ).join('');
 
-    // 5. HTML Structure (No Fake Certificates)
+    // 6. BUILD HTML (With Close Button inside)
     body.innerHTML = `
+        <button onclick="closeProductModal()" style="position:absolute; top:15px; right:15px; z-index:100; background:white; border:2px solid #682228; color:#682228; font-weight:bold; padding:8px 15px; border-radius:30px; cursor:pointer; display:flex; align-items:center; gap:8px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+    CLOSE <i class="fas fa-times"></i>
+</button>
+
         <div class="modal-gallery" style="position:relative;">
             ${discountHTML}
             <img src="${product.img}" alt="${product.name}" class="main-modal-img" style="width:100%; border-radius:8px;">
             <div class="thumb-grid" style="margin-top:15px; display:flex; gap:10px; overflow-x:auto;">${thumbs}</div>
         </div>
         
-        <div class="modal-details">
-            <h2 style="font-size:1.8rem; margin-bottom:5px; line-height:1.2;">${product.name}</h2>
+        <div class="modal-details" style="padding-top:10px;">
+            <h2 style="font-size:1.6rem; margin-bottom:5px; line-height:1.2; padding-right:30px;">${product.name}</h2>
             
             <div class="modal-price" style="margin: 15px 0; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
                 <span style="font-size:1.8rem; font-weight:700; color:#7A5548;">₹${product.price.toLocaleString('en-IN')}</span>
@@ -294,7 +304,7 @@ function openProductModal(id) {
             </button>
 
             <div class="modal-trust-badges">
-                <div class="trust-item"><i class="fas fa-hand-holding-heart"></i> 100% Handwoven</div>
+                <div class="trust-item"><i class="fas ${badgeIcon}"></i> ${badgeText}</div>
                 <div class="trust-item"><i class="fas fa-truck"></i> Pan India Shipping</div>
                 <div class="trust-item"><i class="fas fa-sync-alt"></i> 7 Days Exchange</div>
                 <div class="trust-item"><i class="fas fa-certificate"></i> Authentic Himachali</div>
@@ -321,6 +331,7 @@ function closeProductModal() {
 </script>
 </body>
 </html>
+
 
 
 
