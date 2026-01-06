@@ -17,7 +17,7 @@ const PRODUCTS = [
             "3pattikullushawl3.jpg"
         ],
         "options": { "type": "Color", "values": ["Black", "White", "Grey(Shown)"] },
-        "shortDesc": "Authentic 3-Patti geometric border shawl.",
+        "shortDesc": "Authentic 3-Patti kullu border shawl.",
         "desc": "A classic symbol of Himachali craftsmanship. This shawl features the traditional 'Teen Patti' (Three Borders) design, woven using the extra-weft technique where artisans manually insert colored threads to create geometric motifs. The main body is woven from a warm wool blend, making it durable yet breathable. Standard full size (approx 2+ meters), perfect for wrapping during harsh winters.",
         "care": "Hand or Machine wash below 40 degree, use mild detergent.",
         "inStock": true,
@@ -39,7 +39,7 @@ const PRODUCTS = [
             "Single patti kullu himachali handloom Shawl1.3.jpg"
         ],
         "options": { "type": "Color", "values": ["Light Grey(Shown)", "White", "Light Brown"] },
-        "shortDesc": "Minimalist single border design.",
+        "shortDesc": "Minimalist single kullu border design.",
         "desc": "For those who prefer subtle elegance. This shawl features a single geometric border running along the edges. Woven on traditional pit looms in the Kullu valley, the fabric provides excellent insulation without being overly heavy. Ideal for daily wear in autumn and winter. The wool texture is soft and does not itch.",
         "care": "Hand or Machine wash below 40 degree.",
         "inStock": true,
@@ -61,7 +61,7 @@ const PRODUCTS = [
             "3 patti kullu himachali handloom Stole1.3.jpg"
         ],
         "options": { "type": "Color", "values": ["Grey (Shown)", "White", "Black", "Red"] },
-        "shortDesc": "Lightweight traditional stole.",
+        "shortDesc": "Lightweight traditional kulluvi patti/border stole.",
         "desc": "A lighter, more versatile version of the traditional shawl. This stole carries the signature 3-patti design but in a dimension (approx 2 meters x 28 inches) that is easier to drape over suits, kurtas, or western wear. Woven with finer yarn to ensure drape and comfort while retaining warmth.",
         "care": "Hand or Machine wash below 40 degree, use mild deteregent. Use Napthalene ball/ Camphor (Kapur) (when not in use).",
         "inStock": true
@@ -78,7 +78,7 @@ const PRODUCTS = [
             "3 patti kullu himachali handloom Stole2.2.jpg"
         ],
         "options": { "type": "Color", "values": ["Black (Shown)", "White", "Grey"] },
-        "shortDesc": "Classic darker tones stole.",
+        "shortDesc": "Classic darker tones kullu border/Patti stole.",
         "desc": "Handwoven wool stole featuring high-contrast geometric borders. The base fabric is tightly woven to prevent cold air penetration, while the borders showcase the vibrant colors of the valley. Perfect for evening wear or office use.",
         "care": "Hand or Machine wash below 40 degree, use mild deteregent. Use Napthalene ball/ Camphor (Kapur) (when not in use).",
         "inStock": true
@@ -127,7 +127,7 @@ const PRODUCTS = [
             "Traditional typical Kulluvi Himachali Cap pahari Topi1.jpg",
             "cap size.jpg"
         ],
-        "options": { "type": "Size", "values": ["Size 5 (Small)", "Size 6 (Medium)", "Size 7 (Large)"] },
+        "options": { "type": "Size", "values": ["Size 5", "Size 6", "Size 7", "Size 8"] },
         "shortDesc": "Authentic Himachal Topi",
         "desc": "The signature identity of a Pahadi. This cap consists of a woolen base (Thewa) and a colorful geometric border attached to the front. The band is stiffened to maintain the circular shape. Worn during festivals, marriages, and daily life in the valley.",
         "care": "Do not wash in machine.",
@@ -145,7 +145,7 @@ const PRODUCTS = [
             "Traditional Kulluvi Himachali Cap pahari Topi1.jpg",
             "cap size.jpg"
         ],
-        "options": { "type": "Size", "values": ["Size 5 (Small)", "Size 6 (Medium)", "Size 7 (Large)"] },
+        "options": { "type": "Size", "values": ["Size 5", "Size 6", "Size 7", "Size 8"] },
         "shortDesc": "Authentic Himachal Topi",
         "desc": "Features a vibrant, multi-colored border woven on a small frame loom. The base is made of compressed wool/felt material for warmth and structure. A perfect accessory to represent Himachali culture.",
         "care": "Do not wash in machine.",
@@ -163,7 +163,7 @@ const PRODUCTS = [
             "Maroon Himachali Cap pahari Topi1.jpg",
             "cap size.jpg"
         ],
-        "options": { "type": "Size", "values": ["Size 5 (Small)", "Size 6 (Medium)", "Size 7 (Large)"] },
+        "options": { "type": "Size", "values": ["Size 5", "Size 6", "Size 7", "Size 8"] },
         "shortDesc": "Authentic Himachal Topi",
         "desc": "A variation of the classic topi with a deep maroon colour, loved by all over world. The velvet border provides a rich look suitable for weddings and functions.",
         "care": "Do not wash in machine.",
@@ -180,7 +180,7 @@ const PRODUCTS = [
             "Green Himachali Cap Pahari Topi1.jpg",
             "cap size.jpg"
         ],
-        "options": { "type": "Size", "values": ["Size 5 (Small)", "Size 6 (Medium)", "Size 7 (Large)"] },
+        "options": { "type": "Size", "values": ["Size 5", "Size 6", "Size 7", "Size 8"] },
         "shortDesc": "Authentic Himachal Topi",
         "desc": "Features a green velvet which is synonymous with the distinct style of the Himachal region, mostly preffered in upper Shimla and Kinnaur regions but loved by all people. The colorful border pops beautifully against the green background.",
         "care": "Do not wash in machine.",
@@ -198,7 +198,7 @@ const PRODUCTS = [
             "Kingri Malana Himachali Cap Pahari Topi1.jpg",
             "cap size.jpg"
         ],
-        "options": { "type": "Size", "values": ["Size 5 (Small)", "Size 6 (Medium)", "Size 7 (Large)"] },
+        "options": { "type": "Size", "values": ["Size 5", "Size 6", "Size 7", "Size 8"] },
         "shortDesc": "Authentic Malana Style Topi",
         "desc": "Inspired by the Malana region, this cap features the 'Kingri' pattern—a more intricate, Hand made border. It is slightly flatter on top compared to the standard Kullu topi and signifies a distinct regional identity.",
         "care": "Do not wash in machine.",
@@ -394,7 +394,7 @@ const PRODUCTS = [
         "shortDesc": "Heritage Wall Art",
         "desc": "A piece of Himachal on your wall. This decor piece frames a fragment of authentic handloom fabric featuring intricate 'Extra-Weft' patterns. Framed in high-quality wood with a glass panel. Perfect for adding a rustic vibe to modern interiors.",
         "care": "Dust with Soft Cloth.",
-        "inStock": true
+        "inStock": false
     },
     {
         "id": 23,
@@ -1055,6 +1055,7 @@ document.addEventListener('DOMContentLoaded', function() {
         handleURLParameters();
     }, 50);
 });
+
 
 
 
