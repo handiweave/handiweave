@@ -211,21 +211,31 @@
     <script>
 <script>
 <script>
-// ===== FINAL FIXED LOGIC (Smart Badge + Close Button) =====
+<script>
+// ===== FINAL LOGIC: SLIDER + BADGES + WINE BUTTON =====
+
+let currentGallery = []; // Photos store karne ke liye
+let currentIndex = 0;    // Abhi konsi photo hai
 
 function openProductModal(id) {
     const product = PRODUCTS.find(p => p.id === id);
     if(!product) return;
     
+    // 1. SLIDER SETUP
+    currentGallery = product.gallery && product.gallery.length > 0 ? product.gallery : [product.img];
+    currentIndex = 0; // Hamesha pehli photo se shuru karo
+    const showArrows = currentGallery.length > 1; // Agar 1 se zyada photo hai tabhi arrows dikhao
+
     const modal = document.getElementById('productModal');
     const body = document.getElementById('modalBody');
 
-    // 1. Logic: Kya ye Hoodie hai? (To change "Handwoven" tag)
+    // 2. BADGE LOGIC (Ye fix kiya hai)
+    // Check karo agar naam mein 'hoodie' hai
     const isHoodie = product.name.toLowerCase().includes('hoodie');
     const badgeText = isHoodie ? "Premium Quality" : "100% Handwoven";
     const badgeIcon = isHoodie ? "fa-star" : "fa-hand-holding-heart";
 
-    // 2. Discount Calculation
+    // 3. DISCOUNT LOGIC
     let discountHTML = '';
     let saveHTML = '';
     if(product.originalPrice > product.price) {
@@ -234,7 +244,7 @@ function openProductModal(id) {
         saveHTML = `<span class="save-badge">You Save ₹${product.originalPrice - product.price}</span>`;
     }
 
-    // 3. Options Logic
+    // 4. OPTIONS LOGIC
     let optionsHTML = '';
     if(product.options) {
         const opts = product.options.values.map(v => `<option value="${v}">${v}</option>`).join('');
@@ -247,36 +257,30 @@ function openProductModal(id) {
             </div>`;
     }
 
-    // 4. Meter Logic
-    let meterHtml = '';
-    if (product.name.toLowerCase().includes('yardage') || product.name.toLowerCase().includes('coat')) {
-        meterHtml = `
-            <div style="margin: 15px 0; background: #fff8e1; padding: 15px; border-radius: 6px; border: 1px dashed #C5A065;">
-                <label style="font-weight:bold; color:#7A5548;">Length Required (Meters):</label>
-                <div style="display:flex; gap:10px; margin-top:5px;">
-                    <input type="number" id="meterInput" value="1" min="1" 
-                           style="width:80px; padding:8px; border:1px solid #ccc; border-radius:4px; font-weight:bold; font-size:1.1rem;">
-                    <span style="align-self:center; color:#555; font-weight:600;">Meters</span>
-                </div>
-                <small style="color:#666; display:block; margin-top:5px;">*Price calculated per meter.</small>
-            </div>`;
-    }
-
-    // 5. Thumbs
-    let thumbs = product.gallery.map(src => 
+    // 5. THUMBS LOGIC
+    let thumbs = currentGallery.map((src, idx) => 
         `<img src="${src}" class="thumb-img" style="height:60px; width:60px; border:1px solid #ddd; padding:2px; cursor:pointer;" 
-        onclick="document.querySelector('.main-modal-img').src='${src}'">`
+        onclick="changeSlideDirect(${idx})">`
     ).join('');
 
-    // 6. BUILD HTML (With Close Button inside)
+    // 6. ARROWS HTML
+    const arrowsHTML = showArrows ? `
+        <button class="slide-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="slide-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
+    ` : '';
+
+    // 7. BUILD HTML (Wine Button & Fixed Badges included)
     body.innerHTML = `
         <button onclick="closeProductModal()" style="position:absolute; top:15px; right:15px; z-index:100; background:white; border:2px solid #682228; color:#682228; font-weight:bold; padding:8px 15px; border-radius:30px; cursor:pointer; display:flex; align-items:center; gap:8px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
-    CLOSE <i class="fas fa-times"></i>
-</button>
+            CLOSE <i class="fas fa-times"></i>
+        </button>
 
-        <div class="modal-gallery" style="position:relative;">
-            ${discountHTML}
-            <img src="${product.img}" alt="${product.name}" class="main-modal-img" style="width:100%; border-radius:8px;">
+        <div class="modal-gallery">
+            <div class="slider-container">
+                ${discountHTML}
+                ${arrowsHTML}
+                <img id="mainModalImage" src="${currentGallery[0]}" alt="${product.name}" class="main-modal-img" style="width:100%; border-radius:8px; transition: opacity 0.3s;">
+            </div>
             <div class="thumb-grid" style="margin-top:15px; display:flex; gap:10px; overflow-x:auto;">${thumbs}</div>
         </div>
         
@@ -290,14 +294,13 @@ function openProductModal(id) {
             </div>
             <div style="font-size:0.85rem; color:#666; margin-bottom:10px;">(Shipping calculated at checkout)</div>
 
-            <div style="color:#555; font-size:1rem; line-height:1.6; border-left:3px solid #C5A065; padding-left:15px; margin-bottom:20px;">
+            <div style="color:#555; font-size:1rem; line-height:1.6; border-left:3px solid #682228; padding-left:15px; margin-bottom:20px;">
                 ${product.shortDesc}
             </div>
 
             ${product.inStock ? optionsHTML : ''}
-            ${product.inStock ? meterHtml : ''}
             
-            <button class="add-to-cart-btn" style="width:100%; padding:18px; font-size:1.1rem; font-weight:bold; background: #7A5548; color:white; border:none; border-radius:6px; cursor:pointer; display:flex; justify-content:center; gap:10px;" 
+            <button class="add-to-cart-btn" style="width:100%; padding:18px; font-size:1.1rem; font-weight:bold; background: #682228; color:white; border:none; border-radius:6px; cursor:pointer; display:flex; justify-content:center; gap:10px;" 
                 onclick="addToCartFromModal(${product.id})" ${!product.inStock ? 'disabled style="background:#ccc;"' : ''}>
                 <i class="fas fa-shopping-bag"></i> 
                 ${product.inStock ? 'ADD TO BAG' : 'OUT OF STOCK'}
@@ -306,7 +309,7 @@ function openProductModal(id) {
             <div class="modal-trust-badges">
                 <div class="trust-item"><i class="fas ${badgeIcon}"></i> ${badgeText}</div>
                 <div class="trust-item"><i class="fas fa-truck"></i> Pan India Shipping</div>
-                <div class="trust-item"><i class="fas fa-sync-alt"></i> 7 Days Exchange</div>
+                <div class="trust-item"><i class="fas fa-sync-alt"></i> 7 Days Exchange T&C</div>
                 <div class="trust-item"><i class="fas fa-certificate"></i> Authentic Himachali</div>
             </div>
 
@@ -324,6 +327,19 @@ function openProductModal(id) {
     document.body.style.overflow = 'hidden';
 }
 
+// ===== SLIDER FUNCTIONS =====
+function changeSlide(step) {
+    currentIndex += step;
+    if (currentIndex >= currentGallery.length) currentIndex = 0;
+    if (currentIndex < 0) currentIndex = currentGallery.length - 1;
+    document.getElementById('mainModalImage').src = currentGallery[currentIndex];
+}
+
+function changeSlideDirect(idx) {
+    currentIndex = idx;
+    document.getElementById('mainModalImage').src = currentGallery[currentIndex];
+}
+
 function closeProductModal() { 
     document.getElementById('productModal').style.display = 'none'; 
     document.body.style.overflow = 'auto';
@@ -331,6 +347,7 @@ function closeProductModal() {
 </script>
 </body>
 </html>
+
 
 
 
