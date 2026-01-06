@@ -1197,6 +1197,13 @@ window.closeProductModal = function() {
     document.getElementById('productModal').style.display = 'none'; 
     document.body.style.overflow = 'auto';
 }
+// ===== PRO FEATURE: Close Modal on Outside Click =====
+window.onclick = function(event) {
+    const modal = document.getElementById('productModal');
+    if (event.target === modal) {
+        closeProductModal();
+    }
+}
 
 
 
