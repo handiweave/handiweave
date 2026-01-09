@@ -1104,38 +1104,35 @@ body.hide-hero .main-nav {
 <style>
 /* --- Gallery Styles (Section 3) --- */
 
-/* 1. Main Container (Laptop/Desktop View) */
+/* Desktop Layout: Side by Side */
 .patronage-gallery {
-    display: flex !important;       /* Layout ko Flexbox force karega */
-    flex-direction: row !important; /* Images ko ek line mein layega (Left to Right) */
-    justify-content: space-between; /* Beech mein barabar gap rakhega */
+    display: flex !important;       
+    flex-direction: row !important; 
+    justify-content: space-between;
     gap: 15px;
     margin: 25px 0;
 }
 
-/* 2. Individual Item Styling */
 .gallery-item {
-    flex: 1;               /* Teeno box barabar chaudai (width) lenge */
+    flex: 1;               
     text-align: center;
-    min-width: 0;          /* Layout tootne se bachayega */
+    min-width: 0;
 }
 
-/* 3. Image Styling */
 .gallery-item img {
     width: 100%;
-    height: 160px;         /* Height thodi badha di hai taaki 'slit' jaisi na lage */
-    object-fit: cover;     /* Photo stretch nahi hogi, frame mein fit hogi */
+    height: 160px;         /* Laptop height fixed */
+    object-fit: cover;
     border-radius: 6px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.15);
     transition: transform 0.2s;
-    background-color: #f0f0f0; /* Agar image load na ho toh grey box dikhega */
+    background-color: #f0f0f0; 
 }
 
 .gallery-item img:hover {
-    transform: scale(1.02); /* Hover effect */
+    transform: scale(1.02); 
 }
 
-/* 4. Caption Styling */
 .caption {
     font-size: 0.85rem;
     color: #666;
@@ -1143,23 +1140,7 @@ body.hide-hero .main-nav {
     font-style: italic;
 }
 
-/* --- MOBILE VIEW (Phone ke liye special code) --- */
-@media (max-width: 768px) {
-    .patronage-gallery {
-        flex-direction: column !important; /* Phone par wapis ek ke neeche ek kar dega */
-    }
-
-    .gallery-item {
-        width: 100%;       /* Phone par full width */
-        margin-bottom: 20px; /* Har image ke neeche gap */
-    }
-
-    .gallery-item img {
-        height: 220px;     /* Phone par height aur badi hogi taaki saaf dikhe */
-    }
-}
-
-/* --- Section Divider Line --- */
+/* --- Section Divider --- */
 .section-divider {
     border: 0;
     height: 1px;
@@ -1170,7 +1151,7 @@ body.hide-hero .main-nav {
 /* --- Color Cards Styles (Section 4) --- */
 .color-palette-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 columns side by side */
+    grid-template-columns: 1fr 1fr; 
     gap: 15px;
     margin: 25px 0;
 }
@@ -1179,13 +1160,13 @@ body.hide-hero .main-nav {
     background: #fdfdfd;
     padding: 12px 15px;
     border-radius: 6px;
-    border-left: 5px solid #ccc; /* Default border styling */
+    border-left: 5px solid #ccc; 
     font-size: 0.95rem;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     line-height: 1.5;
 }
 
-/* Specific Colors for Borders & Backgrounds */
+/* Color Specifics */
 .card-red { border-left-color: #c62828; background: #fff5f5; }
 .card-yellow { border-left-color: #fbc02d; background: #fffde7; }
 .card-green { border-left-color: #2e7d32; background: #e8f5e9; }
@@ -1193,19 +1174,26 @@ body.hide-hero .main-nav {
 .card-bw { 
     border-left-color: #333; 
     background: #f4f4f4; 
-    grid-column: span 2; /* Black & White wala card poori width lega */
+    grid-column: span 2; 
 }
 
-/* --- Mobile Styling (Phone par sab ek ke neeche ek aayega) --- */
-@media (max-width: 600px) {
+/* --- MOBILE VIEW (Phone Fixes) --- */
+@media (max-width: 768px) {
+    /* Images ek ke neeche ek */
     .patronage-gallery {
-        flex-direction: column;
+        flex-direction: column !important; 
+    }
+    .gallery-item {
+        width: 100%;
+        margin-bottom: 20px;
     }
     .gallery-item img {
-        height: auto; /* Height auto adjust hogi */
+        height: 220px; /* Phone par badi photo */
     }
+
+    /* Colors ek column mein */
     .color-palette-grid {
-        grid-template-columns: 1fr; /* Mobile par 1 column */
+        grid-template-columns: 1fr; 
     }
     .card-bw {
         grid-column: span 1;
