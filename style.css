@@ -1101,3 +1101,83 @@ body.hide-hero .main-nav {
     font-weight: bold; border-radius: 4px; z-index: 10;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
+/* Container Layout */
+.weaving-history-section {
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Helvetica', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.weaving-history-section h4 {
+    color: #2c3e50;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.section-divider {
+    border: 0;
+    height: 1px;
+    background: #e0e0e0;
+    margin: 40px 0;
+}
+
+/* Gallery Styles (Section 3) */
+.patronage-gallery {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.gallery-item {
+    flex: 1;
+    text-align: center;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.caption {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Color Cards Styles (Section 4) */
+.color-palette-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columns */
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.color-card {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    border-left: 4px solid #ccc;
+    font-size: 0.9rem;
+}
+
+/* Specific Border Colors */
+.card-red { border-left-color: #c62828; background: #fff5f5; }
+.card-yellow { border-left-color: #fbc02d; background: #fffde7; }
+.card-green { border-left-color: #2e7d32; background: #e8f5e9; }
+.card-blue { border-left-color: #1565c0; background: #e3f2fd; }
+.card-bw { border-left-color: #424242; grid-column: span 2; } /* Full width */
+
+/* Mobile Fix */
+@media (max-width: 600px) {
+    .patronage-gallery { flex-direction: column; }
+    .gallery-item img { height: auto; }
+    .color-palette-grid { grid-template-columns: 1fr; }
+    .card-bw { grid-column: span 1; }
+}
