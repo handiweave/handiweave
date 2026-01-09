@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#7A5548">
@@ -23,6 +22,97 @@
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Journal Specific Internal Styles to match existing theme */
+        .journal-block {
+            background: white; 
+            padding: 2.5rem; 
+            border-radius: 12px; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
+            margin-bottom: 3rem;
+        }
+        .chapter-header {
+            border-left: 4px solid var(--gold, #c5a059); 
+            padding-left: 20px; 
+            margin-bottom: 2rem;
+        }
+        .chapter-title {
+            color: #3e2723; /* Deep brown */
+            margin-bottom: 0.5rem; 
+            font-size: 1.8rem;
+            font-family: 'Playfair Display', serif;
+        }
+        .chapter-subtitle {
+            color: #777; 
+            font-size: 1rem;
+            font-style: italic;
+        }
+        .journal-content h4 {
+            color: #7A5548;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+        }
+        .journal-content p, .journal-content ul {
+            line-height: 1.9;
+            color: #444;
+            margin-bottom: 1.2rem;
+            text-align: justify;
+            font-size: 1.05rem;
+        }
+        .journal-content li {
+            margin-bottom: 8px;
+        }
+        
+        /* Grid for Motifs */
+        .motif-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .motif-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .motif-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .motif-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: contain;
+            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 15px;
+        }
+        .motif-card h5 {
+            color: #682228;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .motif-card p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+            text-align: center;
+        }
+        .credits-box {
+            background: #f9f9f9;
+            padding: 15px;
+            font-size: 0.85rem;
+            color: #666;
+            border-top: 1px solid #eee;
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
     <div class="trust-banner"><span><i class="fas fa-certificate"></i> Devbhoomi Himachal</span><span><i class="fas fa-hand-holding-heart"></i> Handloom & Handcrafted</span><span><i class="fas fa-truck"></i> Pan India Shipping</span></div>
@@ -43,6 +133,218 @@
         <h2 style="text-align:center; margin-bottom:0.5rem; font-family:'Playfair Display', serif;">The Handiweave Journal</h2>
         <p style="text-align:center; color:#666; margin-bottom:3rem; font-style:italic;">Chronicles of the Loom, the Land, and the Legacy.</p>
 
+        <div class="journal-block">
+            <div class="chapter-header">
+                <h3 class="chapter-title">The History and Origin of Kullu Shawls</h3>
+                <p class="chapter-subtitle">How the Craft Arrived, Took Root, and Became Its Own</p>
+            </div>
+            
+            <img src="history_main.jpg" alt="Vintage Kullu Weaving" style="width:100%; height:auto; border-radius:8px; margin-bottom:30px;" onerror="this.style.display='none'">
+
+            <div class="journal-content">
+                <p>The story of Kullu shawls is not ancient in the mythical sense, nor is it accidental. It is a carefully layered history shaped by geography, migration, skill transfer, and local adaptation. To understand Kullu shawls truthfully, one must separate what already existed in Kullu from what arrived later, and then see how both merged into a distinct textile identity.</p>
+
+                <h4>1. What Existed in Kullu Before the Shawl</h4>
+                <p>Long before the Kullu shawl became known as a cultural product, the valley already had a strong wool based lifestyle. Sheep rearing was common, and wool was spun and woven within households. This weaving, however, was functional, not decorative.</p>
+                <p>Cloth produced in early Kullu was:</p>
+                <ul>
+                    <li>Plain and thick</li>
+                    <li>Mostly undyed, using natural wool shades</li>
+                    <li>Made for warmth, daily wear, and survival</li>
+                </ul>
+                <p>There were no elaborate borders, no complex motifs, and no color systems. Weaving was not yet a professional or market-oriented craft; it was part of domestic life. At this stage, there was no object called a “Kullu shawl.”</p>
+
+                <h4>2. How External Weaving Knowledge Entered Kullu</h4>
+                <p>The defining change came between the 18th and 19th centuries, when Kullu became more connected to surrounding Himalayan regions through movement of people and trade.</p>
+                <p>Skilled weaver communities from Bushahr (Bushehr), Kinnaur, and the Rampur belt began moving into Kullu. Some migrated seasonally, some permanently, and some were invited under local patronage. These regions already had advanced weaving traditions with:</p>
+                <ul>
+                    <li>Structured borders</li>
+                    <li>Repeating geometric motifs</li>
+                    <li>Established dyeing knowledge</li>
+                </ul>
+                <p>These weavers did not bring finished shawls into Kullu — they brought knowledge: how to plan borders, how to repeat motifs, how to balance color, and how to organize design on a loom.</p>
+                <p>Local Kullu households gradually learned these techniques. Over time, weaving shifted from purely domestic cloth-making to skill-based craft production.</p>
+
+                <h4>3. The Role of Royal and Temple Patronage</h4>
+                <p>Local rulers and temple institutions played an important role in stabilizing this new craft. Shawls were commissioned for:</p>
+                <ul>
+                    <li>Religious offerings</li>
+                    <li>Ceremonial gifting</li>
+                    <li>Displays of respect and status</li>
+                </ul>
+                <p>This created demand for consistency and refinement. Weavers began reserving the edges of the fabric for expression. Slowly, borders became a defined space for identity. This moment marks the true birth of the Kullu shawl as a recognizable textile.</p>
+
+                <h4>4. Where Color Came From — and How It Stayed</h4>
+                <p>Color did not originate naturally within early Kullu weaving. The knowledge of dyeing arrived along with migrant weavers and dyers from neighboring Himalayan regions and the plains.</p>
+                <p>Early dyeing relied on: Plant roots, bark, flowers, and minerals; Locally available materials; Techniques learned elsewhere and adapted locally.</p>
+                <p>At first, colors were muted and earthy. As trade routes improved, new dye materials became available, allowing stronger reds, yellows, greens, and blacks to appear — mainly in borders, while the body of the shawl remained restrained.</p>
+                <p>Color in Kullu shawls was never random. Each shade was balanced carefully, respecting the rhythm of the loom and the visual calm of the fabric.</p>
+
+                <h4>5. How Motifs Evolved in Kullu</h4>
+                <p>Early motifs were born from loom structure — squares, steps, and lines. Over time, these developed into identifiable forms such as Dabba (डब्बा) and Jamaa (जमा).</p>
+                <p>Movement-based patterns like Lehriya (लहरिया) entered later, reflecting flow, rhythm, and migration. Symbolic motifs such as Chasam (चसम) and Bulbul Chasam (बुलबुल चसम) added layers of meaning — protection, observation, and balance.</p>
+                <p>Nature- and belief-inspired motifs like Mandir Bel (मंदिरि बेल), Rani Bel (रिानी बेल), Bulbul (बुलबुल), and Ghuhtu (घुट्टू) connected the shawl to landscape and faith.</p>
+                <p>Over time, these motifs were combined into composite borders, creating the signature visual language of Kullu shawls.</p>
+
+                <h4>6. Localization: When the Shawl Became Truly Kullu</h4>
+                <p>By the late 19th and early 20th centuries, the borrowed techniques had fully localized. Motifs were rearranged, proportions refined, and color balance stabilized.</p>
+                <p>What emerged was not a copy of Kinnauri or Bushahr textiles, but a distinct Kullu identity — recognizable by: A calm, plain body; Strong, rhythmic borders; Balanced use of color. The Kullu shawl became a product of its land, climate, and people.</p>
+
+                <h4>7. Handloom as Philosophy</h4>
+                <p>Every Kullu shawl records time and human effort. Handloom weaving requires planning, patience, and memory. Each color change must be anticipated; each motif remembered.</p>
+                <p>Machines can imitate appearance, but not process. Handloom preserves irregularity, intention, and human presence — qualities that define authentic craft.</p>
+                
+                <p><strong>Conclusion: A Living Tradition</strong></p>
+                <p>The Kullu shawl is not ancient folklore, nor modern invention. It is a living tradition shaped by migration, learning, and adaptation.</p>
+                <p>At Handiweave, this history is preserved not as nostalgia, but as responsibility — to ensure that what is worn today carries truth, skill, and respect for the hands that shaped it.</p>
+            </div>
+        </div>
+
+        <div class="journal-block">
+            <div class="chapter-header">
+                <h3 class="chapter-title">Stories Woven in Kullu Shawl Motifs</h3>
+                <p class="chapter-subtitle">Cultural Storytelling Embedded in Traditional Designs</p>
+            </div>
+
+            <div class="journal-content">
+                <p>Handloom is not just a method of making fabric; it is a way of remembering. In the valleys of Kullu, weaving has always been more than production. It is knowledge passed by observation, repetition, patience, and lived experience. Every shawl carries within it a language of symbols, colours, and rhythms that connect the weaver to the mountains, rivers, seasons, deities, and community life.</p>
+                <p>This journal is an attempt to document and share the cultural storytelling embedded in traditional Kullu shawl motifs (कुल्लू शॉल के डिज़ाइन). These motifs are not random decorations. They are visual expressions of belief, protection, movement, fertility, labour, and harmony. When someone wears or purchases a Kullu shawl, they are not only buying a product; they are carrying a fragment of a living culture.</p>
+                <p>This documentation is part of the larger vision of Handiweave — a brand rooted in handicrafts (handi) and weaving (weave). Through this journal, we aim to make visible the unseen labour of handloom, the relationship between hand and machine, and the stories that risk being forgotten unless they are spoken, worn, and valued.</p>
+
+                <h4>Understanding Kullu Shawls and Their Borders</h4>
+                <p>Traditionally, Kullu shawls are known for their distinctive borders (पल्ला / किनारा). These borders are where the most complex motifs appear. The central body of the shawl often remains plain, allowing the borders to speak. Each motif is arranged in repetition, creating rhythm — much like folk music or oral storytelling.</p>
+                <p>The designs are graph-based, carefully counted on the loom. A single mistake can disturb the entire pattern. This precision demands focus, physical endurance, and years of practice. Whether woven on pit looms or frame looms, the process remains slow and deeply human.</p>
+                <p>The motifs documented here are drawn from traditional design charts used by weavers and designers in Kullu. The images used alongside this journal are adapted from reference material sourced from Vivek Sharma’s book, “Himachal Hathkargha.”</p>
+
+                <div class="motif-grid">
+                    <div class="motif-card">
+                        <img src="motif1.jpg" alt="Dabba">
+                        <h5>Motif 1: Dabba (डब्बा)</h5>
+                        <p>The Dabba motif is built from square or box-like forms. At first glance, it appears simple, but its repetition creates a strong visual structure. In local understanding, Dabba represents stability, order, and shelter. It reflects ideas of home, cultivated land, and structured life in the hills. In a region where survival depends on balance with nature, Dabba becomes a reminder of grounding.</p>
+                    </div>
+                    <div class="motif-card">
+                        <img src="motif2.jpg" alt="Lehriya">
+                        <h5>Motif 2: Lehriya (लहरिया)</h5>
+                        <p>Lehriya is inspired by waves and flowing movement. It reflects rivers like the Beas, mountain winds, and the continuous motion of life. The motif suggests adaptability and change — an acceptance that life in the mountains is never static. Lehriya is frequently used to break rigidity in design, allowing visual movement across the border of the shawl.</p>
+                    </div>
+                    <div class="motif-card">
+                        <img src="motif3.jpg" alt="Lehriya Keeda">
+                        <h5>Motif 3: Lehriya Keeda (लहरिया कीड़ा)</h5>
+                        <p>This motif combines wave-like movement with small repeated forms resembling insects or seeds. Lehriya Keeda is closely tied to agrarian life. It symbolises labour, persistence, and the unseen workers of nature. In Kullu’s farming communities, such motifs honour both human and natural effort — acknowledging that growth comes from constant, quiet work.</p>
+                    </div>
+                    <div class="motif-card">
+                        <img src="motif4.jpg" alt="Jmaa">
+                        <h5>Motif 4: Jmaa or Jamaav (जमा / जमाव)</h5>
+                        <p>Jmaa refers to dense, closely packed designs. The motif conveys unity, togetherness, and collective strength. It reflects social structures where survival depends on cooperation — families, villages, and weaving communities working as one. Jmaa motifs are visually heavy and powerful, often used in ceremonial or winter shawls, reinforcing warmth both physically and symbolically.</p>
+                    </div>
+                    <div class="motif-card">
+                        <img src="motif5.jpg" alt="Chasam">
+                        <h5>Motif 5: Chasam (चसम)</h5>
+                        <p>Chasam is a diamond or eye-shaped motif. It is one of the most significant symbols in Kullu shawls. Traditionally, Chasam is associated with protection — a guard against negative energies and the evil eye (नज़र). This motif is deeply spiritual and is believed to bring awareness and balance.</p>
+                    </div>
+                    <div class="motif-card">
+                        <img src="motif6.jpg" alt="Bulbul">
+                        <h5>Motif 6: Bulbul (बुलबुल)</h5>
+                        <p>Bulbul represents a small mountain bird known for its song. In weaving, it symbolises joy, expression, love, and celebration. The presence of Bulbul motifs often indicates festive or special-purpose shawls. The motif reflects the close relationship between local communities and their environment.</p>
+                    </div>
+                    <div class="motif-card">
+                        <img src="motif7.jpg" alt="Bulbul Chasm">
+                        <h5>Motif 7: Bulbul Chasm (बुलबुल चसम)</h5>
+                        <p>This motif combines Bulbul with Chasam, blending beauty with protection. It suggests that joy must be safeguarded, and expression should exist within balance. Bulbul Chasm is a powerful composite motif, often chosen for borders meant to be both decorative and meaningful.</p>
+                    </div>
+                    <div class="motif-card">
+                        <img src="motif8.jpg" alt="Four Bulbul Chasm">
+                        <h5>Motif 8: Four Bulbul Chasm (चार बुलबुल चसम)</h5>
+                        <p>The fourfold repetition of Bulbul Chasm symbolises protection from all directions. It reflects completeness, harmony, and equilibrium. Such motifs are often used in important or ceremonial textiles.</p>
+                    </div>
+                    <div class="motif-card">
+                        <img src="motif9.jpg" alt="Mandir Bel">
+                        <h5>Motif 9: Mandir Bel (मंदिर बेल)</h5>
+                        <p>Mandir Bel draws inspiration from temple architecture and climbing vines. It represents faith, devotion, and continuity. The motif reflects how spirituality is woven into everyday life in Himachal. Mandir Bel is often associated with auspicious occasions and religious offerings.</p>
+                    </div>
+                    <div class="motif-card">
+                        <img src="motif10.jpg" alt="Rani Bel">
+                        <h5>Motif 10: Rani Bel (रानी बेल)</h5>
+                        <p>Rani Bel is a graceful, floral motif associated with elegance, femininity, and royalty. It symbolises strength through beauty and is commonly found in refined, decorative shawls.</p>
+                    </div>
+                    <div class="motif-card">
+                        <img src="motif11.jpg" alt="Gughatu">
+                        <h5>Motif 11: Gughatu (गुघतु)</h5>
+                        <p>Gughatu (often referred to as Ghuhtu) holds a dual meaning in the valley. Visually, its angular, zigzag form mirrors the winding paths of the mountains, symbolizing the resilience required to traverse them. However, in local dialect, 'Ghugtu' also refers to the Dove—a gentle bird found in the hills. Thus, the design balances the ruggedness of the terrain with the peace and innocence of nature.</p>
+                    </div>
+                </div>
+
+                <h4>Handloom, Machinery, and the Human Hand</h4>
+                <p>In today’s world, machine stitching and industrial production coexist with handloom. While machines offer speed and consistency, handloom offers meaning. Each handwoven shawl carries irregularities — small variations that reveal the presence of the human hand.</p>
+                <p>At Handiweave, we do not reject machinery; we contextualise it. Machines may assist finishing, but the soul of the product lies in weaving. Reviving craft does not mean rejecting progress — it means ensuring that progress does not erase identity.</p>
+
+                <h4>Why This Documentation Matters</h4>
+                <p>When a consumer understands what they are wearing, their relationship with the product changes. A shawl becomes a story, not just an accessory. This awareness creates respect — for the weaver, the craft, and the culture.</p>
+                <p>By documenting these motifs, we aim to support cultural continuity, fair valuation of labour, and revival of traditional knowledge systems.</p>
+
+                <div class="credits-box">
+                    <strong>Credits</strong><br>
+                    Brand: Handiweave<br>
+                    Image Source: Vivek Sharma, Himachal Hathkargha<br>
+                    Cultural Documentation and Curation: Handiweave
+                </div>
+            </div>
+        </div>
+
+        <div class="journal-block">
+            <div class="chapter-header">
+                <h3 class="chapter-title">Kinnauri Shawls: Geometry, Faith, and Mountain Memory</h3>
+            </div>
+            
+            <div class="journal-content">
+                <p>Kinnauri shawls come from the higher Himalayan belt, where life is shaped by altitude, weather, and deep-rooted belief systems. Compared to Kullu shawls, Kinnauri designs are more geometric, structured, and symbol-driven. Every motif is arranged with balance and repetition, reflecting discipline, protection, and continuity — values essential for survival in the mountains.</p>
+
+                <div class="motif-grid">
+                    <div class="motif-card">
+                        <img src="motif12.jpg" alt="Palpe">
+                        <h5>Motif 1.1 – Palpe (पलपे)</h5>
+                        <p>This motif is built on interlocking lines forming a continuous path. Palpe represents protection and eternal movement — a reminder that life moves forward while staying connected to its roots. In Kinnauri weaving, such continuous forms are believed to guard the wearer from negative forces.</p>
+                    </div>
+                    <div class="motif-card">
+                        <img src="motif13.jpg" alt="Tanka">
+                        <h5>Motif 1.2 – Tanka (टांका)</h5>
+                        <p>Tanka appears as a central medallion-like form, often symmetrical on all sides. It symbolizes balance, cosmic order, and harmony between nature and human life. The bold central placement reflects the importance of stability in harsh mountain conditions.</p>
+                    </div>
+                    <div class="motif-card">
+                        <img src="motif14.jpg" alt="Swastik Sahit Yangrang">
+                        <h5>Motif 1.3 – Swastik Sahit Yangrang (स्वस्तिक सहित यंगरंग)</h5>
+                        <p>The Swastik is an ancient symbol of auspiciousness across Himalayan cultures. In Kinnauri shawls, it stands for prosperity, protection, and positive energy. Yangrang (often called Rangra) refers to the surrounding geometric framing, which strengthens the motif visually and symbolically.</p>
+                    </div>
+                    <div class="motif-card">
+                        <img src="motif15.jpg" alt="Khonchp Tapru">
+                        <h5>Motif 1.4 – Khonchp Tapru (खोंचप टापरु)</h5>
+                        <p>This motif features rhythmic zigzags and flowing forms, echoing mountain paths, rivers, and migration routes. It narrates movement — of people, seasons, and traditions — woven into cloth.</p>
+                    </div>
+                    <div class="motif-card">
+                        <img src="motif16.jpg" alt="Swastik">
+                        <h5>Motif 1.5 – Swastik (स्वस्तिक)</h5>
+                        <p>Swastik translates to creation. The maze-like linear pattern reflects the complexity of the universe and human existence. It is a visual metaphor for how life unfolds layer by layer, guided by unseen order.</p>
+                    </div>
+                    <div class="motif-card">
+                        <img src="motif17.jpg" alt="Yangrang">
+                        <h5>Motif 1.6 – Yangrang (यंगरंग)</h5>
+                        <p>Yangrang is a composite border motif, bringing together multiple symbolic elements into one frame. It represents community, diversity, and coexistence — different paths sharing one fabric.</p>
+                    </div>
+                </div>
+
+                <h4>Kinnauri Craft Philosophy</h4>
+                <p>Kinnauri shawls are not decorative alone; they are cultural documents. Traditionally woven on handlooms, these patterns demand precision and patience. Each color shift requires planning, each line accuracy. The weaver does not rush — because in Kinnauri tradition, weaving is both skill and meditation.</p>
+                <p>At Handiweave, these motifs are presented not as patterns frozen in time, but as living heritage. When such designs are worn today, they carry centuries of belief, climate wisdom, and human resilience — stitched together by hands, not machines.</p>
+
+                <div class="credits-box">
+                    <strong>Credits</strong><br>
+                    Brand: Handiweave<br>
+                    Image Source: Vivek Sharma, Himachal Hathkargha<br>
+                    Cultural Documentation and Curation: Handiweave
+                </div>
+            </div>
+        </div>
+
         <div style="background:white; padding:2rem; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,0.05); margin-bottom:3rem;">
             <div style="border-left:4px solid var(--gold); padding-left:20px; margin-bottom:1.5rem;">
                 <h3 style="color:var(--brand-dark); margin-bottom:0.5rem; font-size:1.5rem;">Meet the Hands Behind the 'Handloom(khaddi)'</h3>
@@ -62,7 +364,7 @@
                     </p>
                 </div>
             </div>
-            <h4 style="text-align:center; margin: 2rem 0 1rem; color:var(--brand);">The 4-Day Ritual of Creation</h4>
+            <h4 style="text-align:center; margin: 2rem 0 1rem; color:var(--brand);">Introduction to Handloom</h4>
             <div class="craft-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:15px; margin-top:0;">
                 <div style="text-align:center;"><img src="artisan.jpg" style="width:100%; height:160px; object-fit:cover; border-radius:8px;"><h5 style="margin-top:8px; font-size:0.9rem;">1. Handloom</h5></div>
                 <div style="text-align:center;"><img src="close.jpg" style="width:100%; height:160px; object-fit:cover; border-radius:8px;"><h5 style="margin-top:8px; font-size:0.9rem;">2. Intricate Weaving</h5></div>
@@ -103,5 +405,4 @@
     <div class="notification" id="notification"><i class="fas fa-check-circle"></i> <span id="notificationText"></span></div>
     <script src="script.js"></script>
 </body>
-
 </html>
