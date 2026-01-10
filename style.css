@@ -1184,7 +1184,30 @@ body.hide-hero .main-nav {
         height: 250px; /* Phone par photo aur badi dikhegi */
     }
 }
+/* --- Fix for Pit Loom Image (t4.jpg) --- */
+.loom-image-container {
+    text-align: center;    /* Photo ko beech mein (Center) layega */
+    margin: 20px 0;        /* Upar neeche thoda gap */
+    width: 100%;           /* Container ko failne se rokega */
+    overflow: hidden;      /* Agar photo badi bhi ho to bahar na nikle */
+}
 
+.loom-img {
+    width: 100%;           /* Mobile par full width rahegi */
+    max-width: 500px;      /* IMPORTANT: Laptop par 500px se badi nahi hogi */
+    height: auto;          /* Photo chipkegi nahi, ratio sahi rahega */
+    object-fit: contain;   /* Photo kategi nahi */
+    border-radius: 8px;    /* Kinare gol */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Thodi shadow sundar lagne ke liye */
+    display: inline-block;
+}
+
+/* Phone ke liye thoda aur adjust */
+@media (max-width: 768px) {
+    .loom-img {
+        max-width: 100%;   /* Phone par puri screen fit le legi */
+    }
+}
 /* --- Section Divider --- */
 .section-divider {
     border: 0;
@@ -1245,5 +1268,6 @@ body.hide-hero .main-nav {
     }
 }
 </style>
+
 
 
