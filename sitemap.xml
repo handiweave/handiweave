@@ -3,16 +3,23 @@
   
   <url>
     <loc>https://handiweave.com/</loc>
-    <lastmod>2026-01-04</lastmod>
+    <lastmod>2026-01-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.00</priority>
   </url>
 
   <url>
     <loc>https://handiweave.com/shop.html</loc>
-    <lastmod>2026-01-04</lastmod>
+    <lastmod>2026-01-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://handiweave.com/crafts.html</loc>
+    <lastmod>2026-01-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
 
   <url>
