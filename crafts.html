@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#682228">
-    <title>Crafts of Himachal | Virasat-e-Himachal | Handiweave</title>
+    <meta name="theme-color" content="#682228"> <title>Crafts of Himachal | Virasat-e-Himachal | Handiweave</title>
     <meta name="description" content="An authoritative, district-wise documentation of Himachal Pradesh's indigenous crafts by Handiweave. Explore GI-tagged arts, traditional techniques, and cultural heritage.">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="style.css">
@@ -12,7 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --brand-wine: #682228;
+            /* --- COLOR FIXED: WINE --- */
+            --brand-brown: #682228; 
             --brand-gold: #c5a059;
             --bg-cream: #FFFBF0;
             --text-dark: #2c2c2c;
@@ -23,6 +23,61 @@
             color: #444;
             line-height: 1.7;
         }
+        /* --- NAV BAR CSS ADDED HERE --- */
+        .main-nav {
+            background-color: #682228 !important; /* Wine Color */
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #c5a059;
+            position: relative; /* Fixed: Content ke sath scroll nahi karega */
+            width: 100%;
+            z-index: 1000;
+        }
+        .brand-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 12px;
+        }
+        .nav-logo {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            background: #fff;
+            padding: 2px;
+            border-radius: 4px;
+            border: 1px solid #c5a059;
+        }
+        .brand-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #c5a059; /* Gold Text */
+            letter-spacing: 0.5px;
+        }
+        .nav-menu-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .nav-menu-links a {
+            color: #f0e6d6;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+        .nav-menu-links a:hover {
+            color: #c5a059;
+        }
+        @media (max-width: 900px) {
+            .main-nav { padding: 0.8rem 1rem; }
+            .brand-text { font-size: 1.4rem; }
+            .nav-menu-links { display: none; }
+        }
+        /* --- NAV CSS END --- */
+
         .craft-hero {
             text-align: center;
             padding: 3.5rem 1rem;
@@ -54,7 +109,7 @@
             padding: 25px 30px;
             border: 1px solid #e8dfce;
             border-radius: 10px;
-            box-shadow: 0 8px 25px rgba(93, 64, 55, 0.05);
+            box-shadow: 0 8px 25px rgba(104, 34, 40, 0.05);
         }
         .intro-text strong {
             color: var(--brand-brown);
@@ -119,6 +174,7 @@
             scroll-margin-top: 120px;
         }
         .district-header {
+            /* Gradient Fixed for Wine */
             background: linear-gradient(135deg, var(--brand-brown) 0%, #3a0e12 100%);
             color: #fff;
             padding: 18px 30px;
@@ -412,18 +468,30 @@
             .hindi-heading {
                 font-size: 2rem;
             }
+            /* Mobile adjustment for new nav */
+            .brand-text {
+                font-size: 1.3rem;
+            }
+            .nav-logo {
+                width: 35px;
+                height: 35px;
+            }
         }
     </style>
 </head>
 <body>
-    <nav class="main-nav" style="background:var(--brand-brown); color:white; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center; border-bottom:3px solid var(--brand-gold);">
-        <div style="font-family:'Playfair Display', serif; font-size:1.5rem; font-weight:bold;">Handiweave</div>
-        <div style="display:flex; gap:1.5rem;">
-            <a href="index.html" style="color:#f0e6d6; text-decoration:none; font-weight:500;">Home</a>
-            <a href="shop.html" style="color:#f0e6d6; text-decoration:none; font-weight:500;">Wovens</a>
-            <a href="journal.html" style="color:#f0e6d6; text-decoration:none; font-weight:500;">Journal</a>
-            <a href="crafts.html" style="color:var(--brand-gold); text-decoration:none; font-weight:700; border-bottom:2px solid var(--brand-gold);">Crafts</a>
-            <a href="contact.html" style="color:#f0e6d6; text-decoration:none; font-weight:500;">Contact</a>
+    <nav class="main-nav">
+        <a href="index.html" class="brand-link">
+            <img src="logo.png" alt="Handiweave Logo" class="nav-logo" onerror="this.src='https://placehold.co/45x45/c5a059/fff?text=H'">
+            <span class="brand-text">Handiweave</span>
+        </a>
+
+        <div class="nav-menu-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Wovens</a>
+            <a href="journal.html">Journal</a>
+            <a href="crafts.html" style="color:#c5a059; font-weight:700; border-bottom:2px solid #c5a059;">Crafts</a>
+            <a href="contact.html">Contact</a>
         </div>
     </nav>
 
@@ -462,7 +530,6 @@
         </aside>
 
         <main class="content-area">
-            <!-- DISTRICT: CHAMBA -->
             <div id="chamba" class="district-block">
                 <div class="district-header">
                     <h2>1. District Chamba</h2>
@@ -472,7 +539,7 @@
                 <div class="craft-card">
                     <div class="card-top">
                         <div class="craft-img-container">
-                            <img src="kr1.jpg" class="craft-img" alt="Intricate embroidery of Chamba Rumal showing mythological scene" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Chamba+Rumal+GI'">
+                            <img src="kr1.jpg" class="craft-img" alt="Intricate embroidery of Chamba Rumal showing mythological scene" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Chamba+Rumal+GI'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">A. Chamba Rumal <span class="hindi-title">| चंबा रुमाल</span></h3>
@@ -499,7 +566,7 @@
                 <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr2.jpg" class="craft-img" alt="Traditional Chamba Chappal with leather and embroidery" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Chamba+Chappal'">
+                            <img src="kr2.jpg" class="craft-img" alt="Traditional Chamba Chappal with leather and embroidery" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Chamba+Chappal'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">B. Chamba Leather Craft <span class="hindi-title">| चंबा चप्पल</span></h3>
@@ -517,7 +584,7 @@
                 <div class="craft-card">
                     <div class="card-top">
                         <div class="craft-img-container">
-                            <img src="kr3.jpg" class="craft-img" alt="Brass and copper utensils from Chamba" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Metal+Craft'">
+                            <img src="kr3.jpg" class="craft-img" alt="Brass and copper utensils from Chamba" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Metal+Craft'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">C. Metal Craft & Ritual Objects <span class="hindi-title">| धातु शिल्प</span></h3>
@@ -531,7 +598,7 @@
                 <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr16.jpg" class="craft-img" alt="Traditional Pahari silver jewellery" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Pahari+Jewellery'">
+                            <img src="kr16.jpg" class="craft-img" alt="Traditional Pahari silver jewellery" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Pahari+Jewellery'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">D. Traditional Jewellery <span class="hindi-title">| पारंपरिक आभूषण</span></h3>
@@ -544,7 +611,7 @@
                  <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr17.jpg" class="craft-img" alt="Example of Chamba style Pahari miniature painting" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Chamba+Painting'">
+                            <img src="kr17.jpg" class="craft-img" alt="Example of Chamba style Pahari miniature painting" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Chamba+Painting'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">E. Chamba Painting <span class="hindi-title">| चंबा चित्रकला</span></h3>
@@ -601,7 +668,6 @@
                 </div>
             </div>
 
-            <!-- DISTRICT: KANGRA -->
             <div id="kangra" class="district-block">
                 <div class="district-header">
                     <h2>2. District Kangra</h2>
@@ -611,7 +677,7 @@
                 <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr4.jpg" class="craft-img" alt="Coarse woolen fabric of Gaddi Pattu" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Gaddi+Pattu'">
+                            <img src="kr4.jpg" class="craft-img" alt="Coarse woolen fabric of Gaddi Pattu" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Gaddi+Pattu'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">1. Gaddi Pattu <span class="hindi-title">| गद्दी पट्टू</span></h3>
@@ -625,7 +691,7 @@
                  <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr5.jpg" class="craft-img" alt="Kangra miniature painting of Radha Krishna" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Kangra+Painting'">
+                            <img src="kr5.jpg" class="craft-img" alt="Kangra miniature painting of Radha Krishna" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Kangra+Painting'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">2. Kangra Painting <span class="hindi-title">| कांगड़ा चित्रकला</span></h3>
@@ -643,7 +709,7 @@
                  <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr26.jpg" class="craft-img" alt="Basohli painting with bold colors and stylized figures" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Basohli+Painting'">
+                            <img src="kr26.jpg" class="craft-img" alt="Basohli painting with bold colors and stylized figures" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Basohli+Painting'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">3. Basohli Painting <span class="hindi-title">| बसोहली चित्रकला</span></h3>
@@ -656,7 +722,7 @@
                  <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr19.jpg" class="craft-img" alt="Slate roof and carved slate items" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Slate+Craft'">
+                            <img src="kr19.jpg" class="craft-img" alt="Slate roof and carved slate items" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Slate+Craft'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">4. Slate Craft <span class="hindi-title">| स्लेट शिल्प</span></h3>
@@ -699,7 +765,7 @@
                  <div class="craft-card">
                     <div class="card-top">
                         <div class="craft-img-container">
-                            <img src="kr9.jpg" class="craft-img" alt="Tibetan Buddhist Thangka painting" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Thangka+Painting'">
+                            <img src="kr9.jpg" class="craft-img" alt="Tibetan Buddhist Thangka painting" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Thangka+Painting'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">7. Thangka Painting <span class="hindi-title">| थांका चित्रकला</span></h3>
@@ -727,7 +793,7 @@
                  <div class="craft-card">
                     <div class="card-top">
                         <div class="craft-img-container">
-                            <img src="kr29.jpg" class="craft-img" alt="Traditional pottery from Kangra" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Kangra+Pottery'">
+                            <img src="kr29.jpg" class="craft-img" alt="Traditional pottery from Kangra" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Kangra+Pottery'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">9. Clay Craft of Kangra <span class="hindi-title">| कांगड़ा की मिट्टी शिल्प</span></h3>
@@ -740,7 +806,7 @@
                  <div class="craft-card">
                     <div class="card-top">
                         <div class="craft-img-container">
-                            <img src="kr18.jpg" class="craft-img" alt="Traditional metal bell and ritual objects" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Bahloti+Bell'">
+                            <img src="kr18.jpg" class="craft-img" alt="Traditional metal bell and ritual objects" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Bahloti+Bell'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">10. Bahloti & Charoti Metal Casting <span class="hindi-title">| बहलोटी धातु शिल्प</span></h3>
@@ -768,7 +834,7 @@
                  <div class="craft-card">
                     <div class="card-top">
                         <div class="craft-img-container">
-                            <img src="kr20.jpg" class="craft-img" alt="Bamboo baskets and items from Kangra" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Bamboo+Basketry'">
+                            <img src="kr20.jpg" class="craft-img" alt="Bamboo baskets and items from Kangra" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Bamboo+Basketry'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">12. Bamboo & Basketry <span class="hindi-title">| बांस शिल्प</span></h3>
@@ -779,7 +845,6 @@
                 </div>
             </div>
 
-            <!-- DISTRICT: KULLU -->
             <div id="kullu" class="district-block">
                 <div class="district-header">
                     <h2>3. District Kullu</h2>
@@ -789,7 +854,7 @@
                 <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr6.jpg" class="craft-img" alt="Traditional Kullu shawl with geometric borders" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Kullu+Shawl+GI'">
+                            <img src="kr6.jpg" class="craft-img" alt="Traditional Kullu shawl with geometric borders" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Kullu+Shawl+GI'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">1. Kullu Shawl <span class="hindi-title">| कुल्लू शॉल</span></h3>
@@ -808,7 +873,7 @@
                  <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr8.jpg" class="craft-img" alt="Hand-knitted woolens from Kullu" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Kullu+Knitting'">
+                            <img src="kr8.jpg" class="craft-img" alt="Hand-knitted woolens from Kullu" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Kullu+Knitting'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">2. Hand Knitting <span class="hindi-title">| हाथ बुनाई</span></h3>
@@ -821,7 +886,7 @@
                 <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="Kingri Malana Himachali Cap Pahari Topi.jpg" class="craft-img" alt="Traditional Malana cap with embroidery" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Malana+Cap'">
+                            <img src="Kingri Malana Himachali Cap Pahari Topi.jpg" class="craft-img" alt="Traditional Malana cap with embroidery" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Malana+Cap'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">3. Malana Cap Embroidery <span class="hindi-title">| मलाणा टोपी</span></h3>
@@ -835,7 +900,7 @@
                 <div class="craft-card">
                     <div class="card-top">
                         <div class="craft-img-container">
-                            <img src="kr7.jpg" class="craft-img" alt="Traditional Pullan grass slippers" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Pullan+Slippers'">
+                            <img src="kr7.jpg" class="craft-img" alt="Traditional Pullan grass slippers" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Pullan+Slippers'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">4. Pullan (Wool-Felted Slippers) <span class="hindi-title">| पुल्लन</span></h3>
@@ -863,7 +928,7 @@
                  <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr21.jpg" class="craft-img" style="object-position: center;" alt="Intricate wood carving on a temple facade" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Kullu+Woodcarving'">
+                            <img src="kr21.jpg" class="craft-img" style="object-position: center;" alt="Intricate wood carving on a temple facade" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Kullu+Woodcarving'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">6. Woodcraft (Banauta) & Kath-Kuni Architecture <span class="hindi-title">| काष्ठ कला</span></h3>
@@ -876,7 +941,7 @@
                  <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr22.jpg" class="craft-img" alt="Silver Mohra (mask) of a deity" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Mohra+Mask'">
+                            <img src="kr22.jpg" class="craft-img" alt="Silver Mohra (mask) of a deity" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Mohra+Mask'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">7. Ritual Metal Craft (Mohra & Musical Instruments) <span class="hindi-title">| मोहरा और वाद्य यंत्र</span></h3>
@@ -889,7 +954,7 @@
                 <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr28.jpg" class="craft-img" alt="Traditional silver jewellery of Kullu" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Kullu+Jewellery'">
+                            <img src="kr28.jpg" class="craft-img" alt="Traditional silver jewellery of Kullu" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Kullu+Jewellery'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">8. Traditional Jewellery Making <span class="hindi-title">| आभूषण शिल्प</span></h3>
@@ -902,7 +967,7 @@
                 <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr23.jpg" class="craft-img" alt="Stone temple carving in Kullu" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Kullu+Stone+Craft'">
+                            <img src="kr23.jpg" class="craft-img" alt="Stone temple carving in Kullu" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Kullu+Stone+Craft'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">9. Stone Craft <span class="hindi-title">| पत्थर शिल्प</span></h3>
@@ -915,7 +980,7 @@
                 <div class="craft-card" style="border: 2px solid var(--brand-gold); background:#fefcf7;">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr27.jpg" class="craft-img" alt="Goat hair coat (Sela) worn by shepherds" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Sela+Coat'">
+                            <img src="kr27.jpg" class="craft-img" alt="Goat hair coat (Sela) worn by shepherds" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Sela+Coat'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">10. Sela (Goat Hair Coat) <span class="hindi-title">| सेला</span></h3>
@@ -928,7 +993,6 @@
                 </div>
             </div>
 
-            <!-- DISTRICT: LAHAUL & SPITI -->
             <div id="lahaul" class="district-block">
                 <div class="district-header">
                     <h2>4. District Lahaul & Spiti</h2>
@@ -938,7 +1002,7 @@
                 <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr8.jpg" class="craft-img" alt="Hand-knitted Lahauli socks with patterns" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Lahauli+Socks+GI'">
+                            <img src="kr8.jpg" class="craft-img" alt="Hand-knitted Lahauli socks with patterns" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Lahauli+Socks+GI'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">1. Lahauli Socks & Gloves <span class="hindi-title">| लाहौली मोजे</span></h3>
@@ -952,7 +1016,7 @@
                  <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr24.jpg" class="craft-img" alt="Tibetan-style carpet weaving on a vertical loom" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Lahaul+Carpet'">
+                            <img src="kr24.jpg" class="craft-img" alt="Tibetan-style carpet weaving on a vertical loom" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Lahaul+Carpet'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">2. Kharkhana (Carpet Weaving) <span class="hindi-title">| खरखाना</span></h3>
@@ -965,7 +1029,7 @@
                  <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr9.jpg" class="craft-img" alt="Thangka painting of a Buddhist deity" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Thangka+Art'">
+                            <img src="kr9.jpg" class="craft-img" alt="Thangka painting of a Buddhist deity" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Thangka+Art'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">3. Thangka & Appliqué Art <span class="hindi-title">| थंका चित्रकला</span></h3>
@@ -1008,7 +1072,7 @@
                  <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr25.jpg" class="craft-img" alt="Clay sculptures inside a monastery" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Clay+Idols'">
+                            <img src="kr25.jpg" class="craft-img" alt="Clay sculptures inside a monastery" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Clay+Idols'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">6. Clay & Mud Crafts <span class="hindi-title">| मिट्टी शिल्प</span></h3>
@@ -1048,7 +1112,6 @@
                 </div>
             </div>
 
-            <!-- DISTRICT: MANDI -->
             <div id="mandi" class="district-block">
                 <div class="district-header">
                     <h2>5. District Mandi</h2>
@@ -1057,7 +1120,7 @@
                 <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr25.jpg" class="craft-img" alt="Clay pottery from Mandi district" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Mandi+Pottery'">
+                            <img src="kr25.jpg" class="craft-img" alt="Clay pottery from Mandi district" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Mandi+Pottery'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">Clay, Stone & Weaving Traditions <span class="hindi-title">| मंडी के शिल्प</span></h3>
@@ -1072,7 +1135,6 @@
                 </div>
             </div>
 
-            <!-- DISTRICT: KINNAUR -->
             <div id="kinnaur" class="district-block">
                 <div class="district-header">
                     <h2>6. District Kinnaur</h2>
@@ -1081,7 +1143,7 @@
                 <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr10.jpg" class="craft-img" alt="Kinnauri shawl with elaborate borders" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Kinnauri+Shawl'">
+                            <img src="kr10.jpg" class="craft-img" alt="Kinnauri shawl with elaborate borders" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Kinnauri+Shawl'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">1. Kinnauri Weaving <span class="hindi-title">| किन्नौरी शॉल</span></h3>
@@ -1093,7 +1155,7 @@
                 <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr11.jpg" class="craft-img" alt="Braided ritual ropes made from bark" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Ritual+Ropes'">
+                            <img src="kr11.jpg" class="craft-img" alt="Braided ritual ropes made from bark" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Ritual+Ropes'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">2. Ritual Ropes (Dori) <span class="hindi-title">| देव रस्सियाँ</span></h3>
@@ -1105,7 +1167,7 @@
                 <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr30.jpg" class="craft-img" alt="Heavy silver Kinnauri jewellery" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Kinnauri+Jewellery'">
+                            <img src="kr30.jpg" class="craft-img" alt="Heavy silver Kinnauri jewellery" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Kinnauri+Jewellery'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">3. Silver Jewellery <span class="hindi-title">| चांदी के आभूषण</span></h3>
@@ -1116,13 +1178,12 @@
                 </div>
             </div>
 
-             <!-- DISTRICT: HAMIRPUR -->
              <div id="hamirpur" class="district-block">
                 <div class="district-header"><h2>7. District Hamirpur</h2><span>जिला हमीरपुर</span></div>
                 <div class="craft-card">
                      <div class="card-top">
                         <div class="craft-img-container">
-                            <img src="kr20.jpg" class="craft-img" alt="Bamboo and grass crafts from Hamirpur" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Hamirpur+Basketry'">
+                            <img src="kr20.jpg" class="craft-img" alt="Bamboo and grass crafts from Hamirpur" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Hamirpur+Basketry'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">Bamboo, Grass & Ironware <span class="hindi-title">| हमीरपुर के शिल्प</span></h3>
@@ -1136,13 +1197,12 @@
                 </div>
             </div>
             
-             <!-- DISTRICT: UNA -->
              <div id="una" class="district-block">
                 <div class="district-header"><h2>8. District Una</h2><span>जिला ऊना</span></div>
                 <div class="craft-card">
                     <div class="card-top">
                         <div class="craft-img-container">
-                            <img src="kr12.jpg" class="craft-img" alt="Mats woven from date palm leaves" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Khajur+Mats'">
+                            <img src="kr12.jpg" class="craft-img" alt="Mats woven from date palm leaves" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Khajur+Mats'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">Khajur (Date Palm Leaf) Craft <span class="hindi-title">| खजूर की चटाई</span></h3>
@@ -1157,7 +1217,6 @@
                 </div>
             </div>
             
-             <!-- DISTRICT: BILASPUR -->
              <div id="bilaspur" class="district-block">
                 <div class="district-header"><h2>9. District Bilaspur</h2><span>जिला बिलासपुर</span></div>
                 <div class="text-card">
@@ -1171,13 +1230,12 @@
                 </div>
             </div>
 
-            <!-- DISTRICT: SOLAN -->
             <div id="solan" class="district-block">
                 <div class="district-header"><h2>10. District Solan</h2><span>जिला सोलन</span></div>
                 <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr14.jpg" class="craft-img" alt="Baskets woven from pine needles" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Pine+Needle+Craft'">
+                            <img src="kr14.jpg" class="craft-img" alt="Baskets woven from pine needles" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Pine+Needle+Craft'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">Pine Needle Craft <span class="hindi-title">| चीड़ सुई शिल्प</span></h3>
@@ -1193,7 +1251,6 @@
                 </div>
             </div>
 
-            <!-- DISTRICT: SIRMOUR -->
             <div id="sirmour" class="district-block">
                 <div class="district-header"><h2>11. District Sirmour</h2><span>जिला सिरमौर</span></div>
                 <div class="text-card">
@@ -1205,13 +1262,12 @@
                 </div>
             </div>
 
-            <!-- DISTRICT: SHIMLA -->
             <div id="shimla" class="district-block">
                 <div class="district-header"><h2>12. District Shimla</h2><span>जिला शिमला</span></div>
                 <div class="craft-card">
                     <div class="card-top">
                          <div class="craft-img-container">
-                            <img src="kr15.jpg" class="craft-img" alt="Assortment of Shimla's crafts including cap and dolls" onerror="this.src='https://placehold.co/400x300/5D4037/ffffff?text=Shimla+Crafts'">
+                            <img src="kr15.jpg" class="craft-img" alt="Assortment of Shimla's crafts including cap and dolls" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Shimla+Crafts'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">Shimla's Craft Mosaic <span class="hindi-title">| शिमला के शिल्प</span></h3>
@@ -1264,4 +1320,3 @@
     </script>
 </body>
 </html>
-
