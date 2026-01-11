@@ -121,16 +121,22 @@
     <a href="https://wa.me/919882212962" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
     <div class="cart-icon" onclick="openCart()"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="cartCount">0</span></div>
 
-    <nav class="main-nav">
-        <div class="search-container"><input type="text" id="searchInput" placeholder="Search product..." onkeyup="searchProducts(event)"><i class="fas fa-search" onclick="searchProducts(event)"></i></div>
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="shop.html" class="nav-link">Wovens</a>
-        <a href="about.html" class="nav-link">Story</a>
-        <a href="journal.html" class="nav-link active">Journal</a>
-        <a href="crafts.html" class="nav-link">Crafts</a>
-        <a href="contact.html" class="nav-link">Contact</a>
-        <a href="policies.html" class="nav-link">Policies</a>
-    </nav>
+    <nav class="main-nav" style="background-color: #682228 !important; padding: 0.8rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #c5a059; position: sticky; top: 0; z-index: 1000;">
+    
+    <a href="index.html" style="display: flex; align-items: center; text-decoration: none; gap: 12px;">
+        <img src="logo.png" alt="Handiweave Logo" style="width: 45px; height: 45px; object-fit: contain; background: #fff; padding: 2px; border-radius: 5px; border: 1px solid #c5a059;" onerror="this.style.display='none'">
+        <span style="font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: bold; color: #c5a059; letter-spacing: 1px; text-transform: uppercase;">Handiweave</span>
+    </a>
+
+    <div style="display: flex; gap: 20px; align-items: center;">
+        <a href="index.html" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Home</a>
+        <a href="shop.html" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Wovens</a>
+        <a href="about.html" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Story</a>
+        <a href="journal.html" style="color: #c5a059; text-decoration: none; font-weight: 700; border-bottom: 2px solid #c5a059;">Journal</a>
+        <a href="crafts.html" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Crafts</a>
+        <a href="contact.html" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Contact</a>
+    </div>
+</nav>
 
     <section class="section-container" style="display:block; background-color: #fafafa; padding-top: 4rem;">
         <h2 style="text-align:center; margin-bottom:0.5rem; font-family:'Playfair Display', serif;">The Handiweave Journal</h2>
@@ -464,6 +470,7 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
