@@ -927,7 +927,7 @@ function initiateUPIPayment(upiId) {
     formData.append('Payment Status', 'Pending (Check Screenshot/Bank)');
     formData.append('Total Amount', `₹${finalTotal} (Ship: ₹${shipping})`);
     formData.append('Customer Details', `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${fullAddress}`);
-    formData.append('Items', JSON.stringify(cart.map(i => `${i.name} (${i.quantity})`)));
+    formData.append('Items', JSON.stringify(cart.map(i => `${i.name} [Size/Var: ${i.variant}] x${i.quantity}`)));
     
     fetch("https://formspree.io/f/xlgdnggr", { 
         method: "POST", 
@@ -967,7 +967,7 @@ function checkoutWithWhatsApp() {
     
     let itemsText = '';
     cart.forEach(item => {
-        itemsText += `• ${item.name} (${item.variant}) x${item.quantity}: ₹${item.price * item.quantity}\n`;
+        itemsText += `• ${item.name} [Size: ${item.variant}] x${item.quantity}: ₹${item.price * item.quantity}\n`;
     });
     
     const addressText = `Address: ${addrLine1}, ${addrDistrict}, ${addrState} - ${addrPin}\n`;
@@ -1204,6 +1204,7 @@ window.onclick = function(event) {
         closeProductModal();
     }
 }
+
 
 
 
