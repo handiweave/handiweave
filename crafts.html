@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -169,14 +169,57 @@
             align-items: flex-start;
         }
 
-        .craft-img {
+        /* --- FIXED IMAGE STYLING --- */
+        .craft-img-container {
             width: 320px;
             height: 240px;
-            object-fit: cover;
+            flex-shrink: 0;
             border-radius: 8px;
             border: 1px solid #ddd;
-            background-color: #f9f9f9;
+            overflow: hidden;
+            background-color: #fafafa;
+        }
+
+        .craft-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.3s ease;
+        }
+        
+        .craft-img:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- ARTISTIC PLACEHOLDER (For No Image) --- */
+        .artistic-placeholder {
+            width: 320px;
+            height: 240px;
             flex-shrink: 0;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #fdfbf7 0%, #fff 100%);
+            border: 1px dashed var(--brand-gold);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            color: var(--brand-brown);
+        }
+
+        .artistic-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            opacity: 0.8;
+            color: var(--brand-gold);
+        }
+        
+        .artistic-placeholder span {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: bold;
         }
 
         .craft-info {
@@ -211,6 +254,7 @@
             margin-bottom: 15px;
             font-weight: 700;
             margin-top: 5px;
+            border: 1px solid #e0e0e0;
         }
 
         .craft-intro {
@@ -221,7 +265,7 @@
             text-align: justify;
         }
 
-        /* Accordion for Full Text */
+        /* Accordion for Deep Details */
         .accordion-btn {
             background: #fff;
             border: 2px solid var(--brand-gold);
@@ -272,31 +316,28 @@
             margin-bottom: 15px;
         }
 
-        .details-panel ul {
-            padding-left: 20px;
-            margin-bottom: 15px;
-        }
+        .details-panel ul { padding-left: 20px; margin-bottom: 15px; }
+        .details-panel li { margin-bottom: 8px; font-size: 1rem; line-height: 1.6; }
+        .details-panel p { margin-bottom: 15px; line-height: 1.7; font-size: 1rem; text-align: justify; }
 
-        .details-panel li {
-            margin-bottom: 8px;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-        
-        .details-panel p {
-            margin-bottom: 15px;
-            line-height: 1.7;
-            font-size: 1rem;
-            text-align: justify;
-        }
-
-        /* No Image Card Styling */
+        /* No Image Card Styling - Full Width */
         .no-image-content {
-            padding: 20px;
+            padding: 25px;
             background: #fffdf5; /* Light cream */
-            border: 1px dashed var(--brand-gold);
-            border-radius: 8px;
+            border: 2px dashed var(--brand-gold);
+            border-radius: 12px;
+            width: 100%;
         }
+
+        .no-image-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--brand-brown);
+            margin-bottom: 15px;
+        }
+
+        .no-image-content ul { padding-left: 20px; }
+        .no-image-content li { margin-bottom: 10px; font-size: 1.05rem; }
 
         /* Responsive */
         @media (max-width: 900px) {
@@ -306,7 +347,7 @@
             .nav-links a { white-space: nowrap; margin: 0; background: #fff; border: 1px solid #eee; }
             .sidebar h3 { display: none; }
             .card-top { flex-direction: column; }
-            .craft-img { width: 100%; height: 250px; }
+            .craft-img-container, .artistic-placeholder { width: 100%; height: 250px; }
         }
     </style>
 </head>
@@ -331,7 +372,7 @@
         <img src="map.jpg" alt="Himachal Craft Map" style="max-width:100%; max-height:400px; margin:20px auto; border-radius:8px; display:block;" onerror="this.style.display='none'">
 
         <div class="intro-text">
-            <p><strong>Introduction:</strong> Himachal Pradesh, known for its rich cultural heritage and traditional skills, is home to a wide variety of indigenous crafts. These crafts are deeply rooted in the geography, climate, and history of each region. This document provides a comprehensive district-wise list of crafts categorized by material type (fiber, metal, wood, soil/clay, bamboo, leather, grass, stone, etc.), along with the traditional techniques and current status (active, endangered, or extinct).</p>
+            <p><strong>Introduction:</strong> Himachal Pradesh, known for its rich cultural heritage and traditional skills, is home to a wide variety of indigenous crafts. These crafts are deeply rooted in the geography, climate, and history of each region. This document provides a comprehensive district-wise list of crafts categorized by material type (fiber, metal, wood, soil/clay, bamboo, leather, grass, stone, etc.), along with the traditional techniques and current status.</p>
         </div>
     </header>
 
@@ -365,31 +406,30 @@
 
                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr1.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Chamba+Rumal'">
+                        <div class="craft-img-container">
+                            <img src="kr1.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Chamba+Rumal'">
+                        </div>
                         <div class="craft-info">
                             <h3 class="craft-title">A. Chamba Rumal <span class="hindi-title">| चंबा रुमाल</span></h3>
                             <span class="category-badge">Fibre & Embroidery (GI Tagged)</span>
-                            <p class="craft-intro">The Chamba Rumal is a traditional embroidered handkerchief or square cloth, originating from Chamba district in Himachal Pradesh. It is an exquisite art form known for its double-sided embroidery that depicts stories from Indian epics like the Ramayana and Mahabharata. <br><em>चंबा रुमाल हिमाचल प्रदेश के चंबा ज़िले की पारंपरिक कढ़ाई की कला है। यह एक वर्गाकार कपड़ा होता है, जिस पर रामायण, महाभारत और अन्य पौराणिक कथाओं के दृश्यों की दोहरी कढ़ाई की जाती है।</em></p>
+                            <p class="craft-intro">The Chamba Rumal is a traditional embroidered handkerchief or square cloth... known for its double-sided embroidery that depicts stories from Indian epics like the Ramayana and Mahabharata. <br><em>चंबा रुमाल हिमाचल प्रदेश के चंबा ज़िले की पारंपरिक कढ़ाई की कला है... जिस पर रामायण, महाभारत के दृश्यों की दोहरी कढ़ाई की जाती है।</em></p>
                             
-                            <button class="accordion-btn" onclick="togglePanel(this)">Read Full Process & Details <i class="fas fa-chevron-down"></i></button>
+                            <button class="accordion-btn" onclick="togglePanel(this)">Read Full Process <i class="fas fa-chevron-down"></i></button>
                             <div class="details-panel">
                                 <h5>Materials Used | सामग्री</h5>
                                 <ul>
-                                    <li>Fine muslin or khaddar (cotton/silk fabric) / महीन मलमल या खद्दर</li>
-                                    <li>Silk threads (often untwisted) / रेशमी धागे</li>
-                                    <li>Natural or vegetable dyes (traditionally used) / पारंपरिक रूप से प्राकृतिक रंग</li>
+                                    <li>Fine muslin or khaddar (cotton/silk fabric).</li>
+                                    <li>Silk threads (often untwisted).</li>
+                                    <li>Natural or vegetable dyes (traditionally used).</li>
                                 </ul>
                                 <h5>Process of Making | निर्माण प्रक्रिया</h5>
                                 <ul>
-                                    <li><strong>Fabric Preparation:</strong> The muslin or cotton cloth is stretched over a frame.</li>
-                                    <li><strong>Design Tracing:</strong> Mythological scenes are hand-drawn using charcoal or stencil methods.</li>
-                                    <li><strong>Embroidery:</strong> Executed using the double satin stitch (do-rukha tanka), which ensures that both sides of the rumal mirror the same design. Stitches are closely packed for detailed narrative visuals.</li>
-                                    <li><strong>Finishing:</strong> Edges are hemmed neatly, and the rumal is pressed and sometimes framed.</li>
+                                    <li><strong>Fabric Preparation:</strong> The muslin is stretched over a frame.</li>
+                                    <li><strong>Design Tracing:</strong> Mythological scenes are hand-drawn using charcoal.</li>
+                                    <li><strong>Embroidery:</strong> Executed using the double satin stitch (do-rukha tanka), ensuring both sides mirror the same design.</li>
                                 </ul>
-                                <h5>Themes & Motifs | विषयवस्तु</h5>
-                                <p>Episodes from Ramayana, Mahabharata, Krishna Leela. Royal court scenes, marriage processions. Nature elements like flowers, birds, trees.</p>
                                 <h5>Present Status</h5>
-                                <p>Although the craft saw decline post-Independence, revival efforts by NGOs, the Himachal government, and the DC Handicrafts have brought Chamba Rumal back to prominence. It is now GI-tagged.</p>
+                                <p>Revival efforts by NGOs and the Himachal government have brought Chamba Rumal back to prominence. It is now GI-tagged.</p>
                             </div>
                         </div>
                     </div>
@@ -397,110 +437,19 @@
 
                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr2.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Chamba+Chappal'">
+                         <div class="craft-img-container">
+                            <img src="kr2.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Chamba+Chappal'">
+                        </div>
                         <div class="craft-info">
                             <h3 class="craft-title">B. Chamba Leather <span class="hindi-title">| चंबा चप्पल</span></h3>
                             <span class="category-badge">Leather Craft</span>
-                            <p class="craft-intro">The Chamba Leather Craft, particularly famous for the handcrafted Chamba Chappal, is a unique artisanal tradition. These slippers are known for their real leather base, intricate hand embroidery, and use during local festivals. <br><em>चंबा चमड़ा शिल्प, विशेष रूप से चंबा चप्पल... ये चप्पलें असली चमड़े से बनती हैं, जिन पर सुंदर हस्तनिर्मित कढ़ाई की जाती है।</em></p>
-                            
-                            <button class="accordion-btn" onclick="togglePanel(this)">Read Full Process <i class="fas fa-chevron-down"></i></button>
-                            <div class="details-panel">
-                                <h5>Materials Used</h5>
-                                <ul>
-                                    <li>Vegetable-tanned real leather (goat or buffalo hide).</li>
-                                    <li>Cotton or woolen embroidery threads. Brass buttons, mirrors, beads.</li>
-                                </ul>
-                                <h5>Process of Making | निर्माण प्रक्रिया</h5>
-                                <ul>
-                                    <li><strong>Leather Tanning:</strong> Raw hides are cleaned using traditional methods with bark and walnut husk.</li>
-                                    <li><strong>Cutting & Shaping:</strong> Leather is cut into shapes for the sole and upper covering using handmade templates.</li>
-                                    <li><strong>Hand Embroidery:</strong> Upper leather parts are hand-embroidered with bright threads in floral or geometric motifs.</li>
-                                    <li><strong>Stitching:</strong> The embroidered upper is stitched to the sole using strong leather threads.</li>
-                                </ul>
-                                <h5>Design Features</h5>
-                                <p>Handmade, eco-friendly, breathable. Vibrant floral or geometric embroidery. Closed front, open-back structure.</p>
-                                <h5>Current Status</h5>
-                                <p>Due to the rise of synthetic footwear, this traditional craft is nearing extinction. Revival efforts under schemes like NHDP are helping.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="craft-card">
-                    <div class="card-top">
-                        <img src="kr3.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Chamba+Metal'">
-                        <div class="craft-info">
-                            <h3 class="craft-title">C. Metal Craft & Jewellery <span class="hindi-title">| धातु शिल्प और आभूषण</span></h3>
-                            <span class="category-badge">Metal</span>
-                            <p class="craft-intro">Chamba is renowned for its traditional metal crafts and ornate jewellery made using copper, brass, silver, and gold. Items like Chamba Thaal (metal plates) and temple bells reflect skilled craftsmanship. <br><em>तांबा, पीतल, चांदी और सोने से निर्मित ये शिल्प मंदिरों, राजघरानों और धार्मिक आयोजनों से गहराई से जुड़े हैं।</em></p>
-                            
+                            <p class="craft-intro">Famous for the handcrafted Chamba Chappal. Known for their real leather base, intricate hand embroidery. <br><em>ये चप्पलें असली चमड़े से बनती हैं, जिन पर सुंदर हस्तनिर्मित कढ़ाई की जाती है।</em></p>
                             <button class="accordion-btn" onclick="togglePanel(this)">Read Details <i class="fas fa-chevron-down"></i></button>
                             <div class="details-panel">
-                                <h5>Major Products</h5>
-                                <ul>
-                                    <li>Chamba Thaal (decorative copper/brass plates).</li>
-                                    <li>Temple Bells, Kalash, Puja Thalis.</li>
-                                    <li>Silver & Gold Jewellery (chandbalis, toe rings, chokers). Pahari-style Hairpins.</li>
-                                </ul>
-                                <h5>Process of Making</h5>
-                                <p><strong>Metal Craft:</strong> Selection & Melting -> Casting/Shaping (using dies/molds) -> Etching & Engraving (Hand tools used for floral patterns) -> Polishing.</p>
-                                <p><strong>Jewellery:</strong> Design Sketching -> Metal Preparation -> Filigree Work & Setting (Tiny beads/stones) -> Final Polish.</p>
-                                <h5>Status</h5>
-                                <p>Many master artisans have retired. However, government exhibitions and GI registration efforts are trying to revive this heritage.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="craft-card">
-                    <div class="card-top">
-                        <img src="kr4.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Musical+Instruments'">
-                        <div class="craft-info">
-                            <h3 class="craft-title">D. Traditional Musical Instruments <span class="hindi-title">| पारंपरिक वाद्य यंत्र</span></h3>
-                            <span class="category-badge">Wood / Metal</span>
-                            <p class="craft-intro">Chamba district is home to several traditional musical instruments used in religious rituals, local fairs (mela), and folk performances like Kariyala. <br><em>ये वाद्य यंत्र मुख्यतः लकड़ी, धातु, जानवरों की खाल और बाँस से हस्तनिर्मित होते हैं।</em></p>
-                            
-                            <button class="accordion-btn" onclick="togglePanel(this)">Read Instruments List <i class="fas fa-chevron-down"></i></button>
-                            <div class="details-panel">
-                                <h5>Major Instruments</h5>
-                                <ul>
-                                    <li><strong>Nagara (नगाड़ा):</strong> Large two-sided drum used during temple processions.</li>
-                                    <li><strong>Dhol (ढोल):</strong> Barrel-shaped drum played with sticks.</li>
-                                    <li><strong>Shehnai (शहनाई):</strong> Wind instrument of wood and brass.</li>
-                                    <li><strong>Ransinga (रनसिंगा):</strong> Curved trumpet made of copper or brass.</li>
-                                    <li><strong>Karnal:</strong> Straight long trumpet.</li>
-                                    <li><strong>Chimta:</strong> Metal tongs with bells.</li>
-                                </ul>
-                                <h5>Making Process</h5>
-                                <p>Body Construction (carving wood) -> Drum Head Attachment (Animal skin stretched) -> Tuning (Checking sound) -> Decoration (Painting/Engraving).</p>
-                                <h5>Status</h5>
-                                <p>Declining due to machine-made alternatives. Only a handful of families continue this craft.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="craft-card">
-                    <div class="card-top">
-                        <img src="kr5.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Chamba+Wood'">
-                        <div class="craft-info">
-                            <h3 class="craft-title">E. Chamba Wooden Craft <span class="hindi-title">| लकड़ी शिल्प</span></h3>
-                            <span class="category-badge">Wood Carving</span>
-                            <p class="craft-intro">The forests of Chamba offer abundant high-quality cedar (Deodar) and pine. The craft includes intricately carved temple façades, windows, pillars, and decorative wooden boxes. <br><em>मंदिरों की दीवारों, खंभों, दरवाजों से लेकर घरेलू सजावटी वस्तुओं तक, यह शिल्प चंबा की सांस्कृतिक पहचान का प्रतीक है।</em></p>
-                            
-                            <button class="accordion-btn" onclick="togglePanel(this)">Read Details <i class="fas fa-chevron-down"></i></button>
-                            <div class="details-panel">
-                                <h5>Major Products</h5>
-                                <ul>
-                                    <li>Carved temple doors & pillars.</li>
-                                    <li>Jharokhas (windows) with floral/mythological carvings.</li>
-                                    <li>Wooden chests & jewellery boxes (Sandook).</li>
-                                    <li>Wooden masks for folk theatre.</li>
-                                </ul>
                                 <h5>Materials</h5>
-                                <p>Deodar (Cedrus deodara), Pine, Natural dyes.</p>
+                                <p>Vegetable-tanned real leather. Brass buttons, beads.</p>
                                 <h5>Status</h5>
-                                <p>Fading due to modern construction. Seen mostly in temples and heritage homes.</p>
+                                <p>Nearing extinction due to synthetic footwear.</p>
                             </div>
                         </div>
                     </div>
@@ -508,50 +457,63 @@
 
                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr6.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Chamba+Basketry'">
+                        <div class="craft-img-container">
+                            <img src="kr3.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Chamba+Metal'">
+                        </div>
                         <div class="craft-info">
-                            <h3 class="craft-title">F. Chamba Basketry <span class="hindi-title">| चंबा की टोकरियाँ</span></h3>
-                            <span class="category-badge">Grass / Bamboo</span>
-                            <p class="craft-intro">Crafted using local bamboo (baans), ringal, and wild grasses. These handwoven products are used for storage and transportation. <br><em>चंबा की टोकरियाँ वहाँ के ग्रामीण जीवन का एक अविभाज्य हिस्सा हैं। ये स्थानीय बाँस (रिंगाल) और वन घासों से बनाई जाती हैं।</em></p>
-                            
-                            <button class="accordion-btn" onclick="togglePanel(this)">Read Details <i class="fas fa-chevron-down"></i></button>
-                            <div class="details-panel">
-                                <h5>Products</h5>
-                                <ul>
-                                    <li><strong>Tokri:</strong> Circular baskets for vegetables.</li>
-                                    <li><strong>Kilta:</strong> Conical basket carried on the back.</li>
-                                    <li><strong>Mandri:</strong> Flat grass mat.</li>
-                                    <li><strong>Chhaj:</strong> Winnowing tray.</li>
-                                </ul>
-                                <h5>Process</h5>
-                                <p>Harvesting -> Splitting Bamboo -> Weaving (Interlacing techniques) -> Finishing.</p>
-                                <h5>Status</h5>
-                                <p>Plastic containers have reduced demand, but eco-tourism is bringing renewed interest.</p>
-                            </div>
+                            <h3 class="craft-title">C. Metal Craft & Jewellery <span class="hindi-title">| धातु शिल्प</span></h3>
+                            <p class="craft-intro">Renowned for Chamba Thaal (plates) and temple bells. Craftsmen use copper, brass, silver. <br><em>तांबा, पीतल, चांदी और सोने से निर्मित ये शिल्प मंदिरों से जुड़े हैं।</em></p>
                         </div>
                     </div>
                 </div>
 
                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr17.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Chamba+Painting'">
+                         <div class="craft-img-container">
+                            <img src="kr16.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Chamba+Jewellery'">
+                        </div>
                         <div class="craft-info">
-                            <h3 class="craft-title">G. Chamba Painting <span class="hindi-title">| चंबा चित्रकला</span></h3>
+                            <h3 class="craft-title">D. Traditional Jewellery <span class="hindi-title">| पारंपरिक आभूषण</span></h3>
+                            <p class="craft-intro">Exquisite ornaments like Chandbalis, Chokers, and Pahari hairpins. <br><em>पारंपरिक चांदी और सोने के आभूषण।</em></p>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="craft-card">
+                    <div class="card-top">
+                         <div class="craft-img-container">
+                            <img src="kr17.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Chamba+Painting'">
+                        </div>
+                        <div class="craft-info">
+                            <h3 class="craft-title">E. Chamba Painting <span class="hindi-title">| चंबा चित्रकला</span></h3>
                             <span class="category-badge">Pahari Miniature</span>
-                            <p class="craft-intro">Distinctive school of Pahari miniature painting (17th-19th Century). Characterized by fine brushwork, intricate detailing, and emotional expressions. <br><em>बारीक रेखाएँ, हल्के रंग और भावनात्मक गहराई इस शैली की पहचान हैं।</em></p>
-                            
-                            <button class="accordion-btn" onclick="togglePanel(this)">Read Full Process <i class="fas fa-chevron-down"></i></button>
-                            <div class="details-panel">
-                                <h5>Process</h5>
-                                <ul>
-                                    <li><strong>Paper:</strong> Handmade paper polished with shells.</li>
-                                    <li><strong>Sketching:</strong> Outlines drawn with squirrel-hair brushes.</li>
-                                    <li><strong>Coloring:</strong> Natural dyes (Vermilion, Harad, Lapis Lazuli, Gold leaf).</li>
-                                    <li><strong>Burnishing:</strong> Polished with agate.</li>
-                                </ul>
-                                <h5>Themes</h5>
-                                <p>Radha-Krishna, Ramayana, Court Life, Nature.</p>
-                            </div>
+                            <p class="craft-intro">Characterized by romantic expressions and fine brushwork. <br><em>बारीक रेखाएँ, हल्के रंग और भावनात्मक गहराई।</em></p>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="craft-card">
+                    <div class="card-top">
+                        <div class="craft-img-container">
+                            <img src="kr5.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Chamba+Wood'">
+                        </div>
+                        <div class="craft-info">
+                            <h3 class="craft-title">F. Chamba Wooden Craft <span class="hindi-title">| लकड़ी शिल्प</span></h3>
+                            <span class="category-badge">Wood Carving</span>
+                            <p class="craft-intro">Carved temple façades, windows, and 'Sandook' (chests). The forests of Chamba offer abundant high-quality cedar (Deodar). <br><em>मंदिरों की दीवारों, खंभों से लेकर घरेलू सजावटी वस्तुओं तक, यह शिल्प चंबा की पहचान है।</em></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="craft-card">
+                    <div class="card-top">
+                        <div class="craft-img-container">
+                            <img src="kr6.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Chamba+Basketry'">
+                        </div>
+                        <div class="craft-info">
+                            <h3 class="craft-title">G. Basketry <span class="hindi-title">| चंबा की टोकरियाँ</span></h3>
+                            <span class="category-badge">Grass / Bamboo</span>
+                            <p class="craft-intro">Kilta (conical basket) and Tokri woven from Ringal bamboo and wild grass. Used for storage and transportation. <br><em>चंबा की टोकरियाँ वहाँ के ग्रामीण जीवन का एक अविभाज्य हिस्सा हैं।</em></p>
                         </div>
                     </div>
                 </div>
@@ -565,54 +527,62 @@
 
                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr4.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Gaddi+Pattu'">
+                         <div class="craft-img-container">
+                            <img src="kr4.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Gaddi+Pattu'">
+                        </div>
                         <div class="craft-info">
                             <h3 class="craft-title">1. Gaddi Pattu <span class="hindi-title">| गद्दी पट्टू</span></h3>
                             <span class="category-badge">Wool</span>
-                            <p class="craft-intro">Worn traditionally by the Gaddi tribal community, this woolen fabric is handwoven on pit looms in Kangra valley. <br><em>गद्दी समुदाय द्वारा पहना जाने वाला, यह ऊनी वस्त्र पिट लूम पर बुना जाता है।</em></p>
-                            <button class="accordion-btn" onclick="togglePanel(this)">Read Details <i class="fas fa-chevron-down"></i></button>
-                            <div class="details-panel">
-                                <h5>Process</h5>
-                                <p>Wool is locally shorn, cleaned, spun, and dyed in natural colors. Woven into shawls, pattus, and blankets. Often embellished with embroidery.</p>
-                            </div>
+                            <p class="craft-intro">Worn traditionally by the Gaddi tribal community, woven on pit looms. <br><em>गद्दी समुदाय द्वारा पहना जाने वाला ऊनी वस्त्र।</em></p>
                         </div>
                     </div>
                 </div>
 
-                <div class="craft-card">
+                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr5.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Kangra+Painting'">
+                         <div class="craft-img-container">
+                            <img src="kr5.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Kangra+Painting'">
+                        </div>
                         <div class="craft-info">
                             <h3 class="craft-title">2. Kangra Painting <span class="hindi-title">| कांगड़ा चित्रकला</span></h3>
-                            <span class="category-badge">Miniature Art</span>
-                            <p class="craft-intro">Evolved from Basohli School, famed for delicate lines, soft colors, and "Emotions in eyes". Themes revolve around Shringar-Rasa and Bhakti. Patronized by Raja Sansar Chand.</p>
-                            <button class="accordion-btn" onclick="togglePanel(this)">Read Details <i class="fas fa-chevron-down"></i></button>
-                            <div class="details-panel">
-                                <h5>Materials</h5>
-                                <p>Natural pigments from stones/flowers. Fine squirrel-hair brushes. Handmade paper.</p>
-                                <h5>Signature Feature</h5>
-                                <p>“Emotions in eyes”—Kangra paintings are unmatched in their expression.</p>
-                            </div>
+                            <p class="craft-intro">Famed for delicate lines, soft colors, and "Emotions in eyes".</p>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="craft-card">
+                    <div class="card-top">
+                         <div class="craft-img-container">
+                            <img src="kr26.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Basohli+Painting'">
+                        </div>
+                        <div class="craft-info">
+                            <h3 class="craft-title">3. Basohli Painting <span class="hindi-title">| बसोहली चित्रकला</span></h3>
+                            <span class="category-badge">Early Pahari Style</span>
+                            <p class="craft-intro">Precursor to Kangra style. Known for bold primary colors, large eyes, and vigorous lines. <br><em>कांगड़ा शैली से पहले की शैली, जो अपने तेज़ रंगों के लिए जानी जाती है।</em></p>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="craft-card">
+                    <div class="card-top">
+                         <div class="craft-img-container">
+                            <img src="kr19.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Slate+Craft'">
+                        </div>
+                        <div class="craft-info">
+                            <h3 class="craft-title">4. Slate Craft <span class="hindi-title">| स्लेट शिल्प</span></h3>
+                            <p class="craft-intro">Mined in Dehra/Shahpur. Used for roofing and blackboards.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr19.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Slate+Craft'">
-                        <div class="craft-info">
-                            <h3 class="craft-title">3. Slate Craft <span class="hindi-title">| स्लेट शिल्प</span></h3>
-                            <span class="category-badge">Stone</span>
-                            <p class="craft-intro">Mined in Dehra/Shahpur. Used for roofing and blackboards. Artisans craft engraved nameplates and ritual slabs. <br><em>स्लेट पत्थर की नक्काशी और छत निर्माण।</em></p>
+                        <div class="artistic-placeholder">
+                            <i class="fas fa-palette"></i>
+                            <span>Appliqué Art</span>
                         </div>
-                    </div>
-                </div>
-
-                <div class="craft-card">
-                    <div class="card-top">
-                        <img src="kr11.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Applique+Thangka'">
                         <div class="craft-info">
-                            <h3 class="craft-title">4. Drass Dub Ma <span class="hindi-title">| ड्रास डुब मा</span></h3>
+                            <h3 class="craft-title">5. Drass Dub Ma <span class="hindi-title">| ड्रास डुब मा</span></h3>
                             <span class="category-badge">Appliqué Thangka</span>
                             <p class="craft-intro">Tibetan Buddhist appliqué Thangka popular in Dharamshala. Stitched using silk and brocade pieces (not painted). Used in monasteries.</p>
                         </div>
@@ -621,105 +591,88 @@
 
                 <div class="craft-card">
                     <div class="card-top">
-                        <div class="no-image-content" style="width:100%">
-                            <h3 class="craft-title">5. Knitting / Wool Craft <span class="hindi-title">| ऊन बुनाई</span></h3>
-                            <p class="craft-intro">Region: Palampur, Baijnath. Women engage in knitting socks, sweaters, caps with traditional motifs. Promoted by SHGs.</p>
+                        <div class="artistic-placeholder">
+                            <i class="fas fa-hammer"></i>
+                            <span>Metal Embossing</span>
                         </div>
-                    </div>
-                </div>
-
-                <div class="craft-card">
-                    <div class="card-top">
-                        <img src="kr13.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Thakkat+Metal'">
                         <div class="craft-info">
                             <h3 class="craft-title">6. Thakkat Ka Kaam <span class="hindi-title">| ठक्कट का काम</span></h3>
                             <span class="category-badge">Sheet Metal Work</span>
                             <p class="craft-intro">Embossing motifs on copper/brass sheets for temples (doors, masks, bells). <br><em>यह शिल्प मुख्यतः तांबे या पीतल की पतली चादरों पर आकृतियाँ उकेरने का है।</em></p>
-                            <button class="accordion-btn" onclick="togglePanel(this)">Read Process <i class="fas fa-chevron-down"></i></button>
-                            <div class="details-panel">
-                                <p>Sheet Selection -> Tracing Design -> Embossing/Engraving (with chisels/hammers) -> Polishing.</p>
-                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="craft-card">
+                
+                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr9.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Thangka+Painting'">
+                        <div class="craft-img-container">
+                            <img src="kr9.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Thangka+Painting'">
+                        </div>
                         <div class="craft-info">
                             <h3 class="craft-title">7. Thangka Painting <span class="hindi-title">| थांका चित्रकला</span></h3>
                             <span class="category-badge">Painting on Cloth</span>
                             <p class="craft-intro">Sacred Tibetan Buddhist painting depicting deities/mandalas. Painted on cotton/silk canvas using natural mineral pigments. <br><em>थांका एक तिब्बती बौद्ध धार्मिक चित्रकला है।</em></p>
-                            <button class="accordion-btn" onclick="togglePanel(this)">Read Details <i class="fas fa-chevron-down"></i></button>
-                            <div class="details-panel">
-                                <p><strong>Process:</strong> Canvas preparation (glue/chalk) -> Sketching -> Color Filling (Malachite/Lapis) -> Gold Work -> Mounting (Brocade).</p>
-                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="craft-card">
+                
+                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr15.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Dharamshala+Wood'">
+                        <div class="craft-img-container">
+                            <img src="kr15.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Dharamshala+Wood'">
+                        </div>
                         <div class="craft-info">
                             <h3 class="craft-title">8. Woodwork of Dharamshala <span class="hindi-title">| धर्मशाला की लकड़ी शिल्प</span></h3>
-                            <p class="craft-intro">Mix of Himachali and Tibetan influence. Used for altar tables (chokste), carved windows, and prayer wheels. Materials: Deodar, Walnut.</p>
+                            <p class="craft-intro">Mix of Himachali and Tibetan influence. Used for altar tables (chokste), carved windows, and prayer wheels.</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="craft-card">
+                
+                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr16.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Kangra+Clay'">
+                        <div class="craft-img-container">
+                            <img src="kr16.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Kangra+Clay'">
+                        </div>
                         <div class="craft-info">
                             <h3 class="craft-title">9. Clay Craft of Kangra <span class="hindi-title">| कांगड़ा की मिट्टी शिल्प</span></h3>
-                            <span class="category-badge">Pottery</span>
-                            <p class="craft-intro">Potters (Kumhars) create Ghara, Kulhad, Diyas, and decorative toys. Uses 'Lohar mitti'. <br><em>कांगड़ा की यह प्राचीन शिल्प परंपरा सदियों से घरेलू और धार्मिक उपयोगों के लिए विकसित हुई है।</em></p>
-                            <button class="accordion-btn" onclick="togglePanel(this)">Read Details <i class="fas fa-chevron-down"></i></button>
-                            <div class="details-panel">
-                                <h5>Products</h5>
-                                <p>Ghara, Surahi, Diya, Nandi figurine, Clay elephants.</p>
-                                <h5>Status</h5>
-                                <p>Declining due to plastic/steel, but demand for eco-friendly kulhads is reviving it.</p>
-                            </div>
+                            <p class="craft-intro">Potters (Kumhars) create Ghara, Kulhad, Diyas, and decorative toys. Uses 'Lohar mitti'.</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="craft-card">
+                
+                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr18.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Bahloti+Metal'">
+                        <div class="craft-img-container">
+                            <img src="kr18.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Bahloti+Metal'">
+                        </div>
                         <div class="craft-info">
                             <h3 class="craft-title">10. Bahloti & Charoti Metal <span class="hindi-title">| बहलोटी धातु शिल्प</span></h3>
-                            <span class="category-badge">Bell Metal</span>
-                            <p class="craft-intro">Traditional casting of bells (Ghanta), ritual lamps (Deepdan), and vessels using lost-wax technique. Specific to Nagrota Bagwan belt.</p>
-                            <button class="accordion-btn" onclick="togglePanel(this)">Read Details <i class="fas fa-chevron-down"></i></button>
-                            <div class="details-panel">
-                                <h5>Process</h5>
-                                <p>Metal Mixing (Bronze/Brass) -> Wax Molding -> Clay Coating -> Firing -> Finishing.</p>
-                                <h5>Status</h5>
-                                <p>Endangered. Only a few families remain.</p>
-                            </div>
+                            <p class="craft-intro">Traditional casting of bells (Ghanta), ritual lamps (Deepdan), and vessels using lost-wax technique.</p>
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="craft-card">
                     <div class="card-top">
-                        <div class="no-image-content" style="width:100%">
-                            <h3 class="craft-title">11. Traditional Rope-Making <span class="hindi-title">| रस्सी निर्माण</span></h3>
-                            <p class="craft-intro">Made from 'Beul' tree bark fibers and paddy husk. Used for tying cattle and charpai weaving. Local Name: Rassi/Baandhi.</p>
+                         <div class="artistic-placeholder">
+                            <i class="fas fa-link"></i>
+                            <span>Rope Making</span>
                         </div>
-                    </div>
-                </div>
-
-                <div class="craft-card">
-                    <div class="card-top">
-                        <img src="kr14.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Pine+Needle'">
                         <div class="craft-info">
-                            <h3 class="craft-title">12. Pine Needle Craft <span class="hindi-title">| चीड़ सुई शिल्प</span></h3>
-                            <span class="category-badge">Eco Craft</span>
-                            <p class="craft-intro">Coiling fallen pine needles (pirul) into baskets, trays, and mats. Eco-friendly and helps prevent forest fires. <br><em>यह उत्पाद बायो-डिग्रेडेबल और टिकाऊ होते हैं।</em></p>
+                            <h3 class="craft-title">11. Traditional Rope-Making <span class="hindi-title">| रस्सी निर्माण</span></h3>
+                            <p class="craft-intro">Made from 'Beul' tree bark fibers and paddy husk. Used for tying cattle and charpai weaving.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="craft-card">
+                    <div class="card-top">
+                        <div class="craft-img-container">
+                            <img src="kr20.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Bamboo+Basketry'">
+                        </div>
+                        <div class="craft-info">
+                            <h3 class="craft-title">12. Bamboo & Basketry <span class="hindi-title">| बांस शिल्प</span></h3>
+                            <p class="craft-intro">Abundant bamboo in Kangra is used to make Tokri, Kilta, and furniture.</p>
                         </div>
                     </div>
                 </div>
@@ -733,22 +686,24 @@
 
                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr6.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Kullu+Shawl'">
+                         <div class="craft-img-container">
+                            <img src="kr6.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Kullu+Shawl'">
+                        </div>
                         <div class="craft-info">
                             <h3 class="craft-title">1. Wool Weaving <span class="hindi-title">| कुल्लू शॉल</span></h3>
                             <span class="category-badge">Handloom (GI Tagged)</span>
-                            <p class="craft-intro">Includes Kullu Shawl, Pattu, and Lohi. Woven on fly-shuttle pit looms using Angora, Merino, and local wool. Famous for geometric borders.</p>
-                            <button class="accordion-btn" onclick="togglePanel(this)">Read Process <i class="fas fa-chevron-down"></i></button>
-                            <div class="details-panel">
-                                <p>Carding -> Spinning -> Dyeing -> Warping -> Weaving. Embellished with motifs like Akhar, Chakram.</p>
-                            </div>
+                            <p class="craft-intro">Famous for geometric borders (Akhar, Chakram) and vibrant colors. Includes Shawls and Pattus.</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="craft-card">
+                
+                 <div class="craft-card">
                     <div class="card-top">
-                        <div class="no-image-content" style="width:100%">
+                         <div class="artistic-placeholder">
+                            <i class="fas fa-mitten"></i>
+                            <span>Knitting</span>
+                        </div>
+                        <div class="craft-info">
                             <h3 class="craft-title">2. Hand Knitting <span class="hindi-title">| हाथ बुनाई</span></h3>
                             <p class="craft-intro">Sweaters, mufflers, socks, caps. Mainly by women in winters. Common in Sainj, Banjar.</p>
                         </div>
@@ -757,8 +712,12 @@
 
                 <div class="craft-card">
                     <div class="card-top">
-                        <div class="no-image-content" style="width:100%">
+                         <div class="craft-img-container">
+                            <img src="Kingri Malana Himachali Cap Pahari Topi.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Malana+Cap'">
+                        </div>
+                        <div class="craft-info">
                             <h3 class="craft-title">3. Malana Cap Embroidery <span class="hindi-title">| मलाणा टोपी</span></h3>
+                            <span class="category-badge">Embroidery</span>
                             <p class="craft-intro">Caps made from handwoven woolen fabric, embroidered with colored threads in zigzag designs. Symbol of Malana identity.</p>
                         </div>
                     </div>
@@ -766,7 +725,9 @@
 
                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr7.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Pullan'">
+                        <div class="craft-img-container">
+                            <img src="kr7.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Pullan'">
+                        </div>
                         <div class="craft-info">
                             <h3 class="craft-title">4. Pullan <span class="hindi-title">| पुल्लन</span></h3>
                             <span class="category-badge">Footwear</span>
@@ -774,59 +735,63 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="craft-card">
                     <div class="card-top">
-                        <div class="no-image-content" style="width:100%">
+                         <div class="artistic-placeholder">
+                            <i class="fas fa-mat"></i>
+                            <span>Grass Mat</span>
+                        </div>
+                        <div class="craft-info">
                             <h3 class="craft-title">5. Mandri <span class="hindi-title">| मंडड़ी</span></h3>
                             <p class="craft-intro">Grass Mat Weaving using Munj grass. Used for sitting or drying grains. Mostly extinct.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="craft-card">
+                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr21.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Kullu+Wood'">
+                         <div class="craft-img-container">
+                            <img src="kr21.jpg" class="craft-img" style="object-position: center center;" onerror="this.src='https://placehold.co/400x300?text=Kullu+Wood'">
+                        </div>
                         <div class="craft-info">
                             <h3 class="craft-title">6. Woodcraft (Banauta) <span class="hindi-title">| काष्ठ कला</span></h3>
                             <span class="category-badge">Architecture</span>
-                            <p class="craft-intro">Includes 'Kath-Kuni' style temples, carved door frames, and 'Dev Manji' (Palanquins) for deities. Deodar wood is primarily used. <br><em>काष्ठ-कुणी शैली के मंदिर और देवताओं की पालकियों पर की गई नक्काशी।</em></p>
+                            <p class="craft-intro">Includes 'Kath-Kuni' style temples, carved door frames, and 'Dev Manji' (Palanquins) for deities. <br><em>काष्ठ-कुणी शैली के मंदिर और देवताओं की पालकियों पर की गई नक्काशी।</em></p>
                         </div>
                     </div>
                 </div>
-
-                <div class="craft-card">
+                
+                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr22.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Mohra+Mask'">
+                         <div class="craft-img-container">
+                            <img src="kr22.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Mohra+Mask'">
+                        </div>
                         <div class="craft-info">
                             <h3 class="craft-title">7. Ritual Metal Craft <span class="hindi-title">| मोहरा और वाद्य यंत्र</span></h3>
-                            <span class="category-badge">Thathera Craft</span>
-                            <p class="craft-intro">Creation of 'Mohras' (Metal masks of deities) in silver/brass. Production of ritual trumpets like Karnal and Narsingha. Made by Thatheras using hammering and casting.</p>
-                            <button class="accordion-btn" onclick="togglePanel(this)">Read Details <i class="fas fa-chevron-down"></i></button>
-                            <div class="details-panel">
-                                <h5>Items</h5>
-                                <ul>
-                                    <li>Devta's crown, earrings, Khanda (sword).</li>
-                                    <li>Bronze Idol Making (Lost Wax Process).</li>
-                                    <li>Sheet Metal Work (Thakkat ka kaam).</li>
-                                </ul>
-                            </div>
+                            <p class="craft-intro">Creation of 'Mohras' (Metal masks of deities) in silver/brass. Production of ritual trumpets like Karnal and Narsingha.</p>
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="craft-card">
                     <div class="card-top">
-                        <div class="no-image-content" style="width:100%">
+                         <div class="artistic-placeholder">
+                            <i class="fas fa-gem"></i>
+                            <span>Jewellery</span>
+                        </div>
+                        <div class="craft-info">
                             <h3 class="craft-title">8. Jewellery Making <span class="hindi-title">| आभूषण शिल्प</span></h3>
                             <p class="craft-intro">Worn by Gaddi and Pahari women. Items: Paunchi, Chandanhaar, Toras, Gokhru.</p>
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr23.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Kullu+Stone'">
+                         <div class="craft-img-container">
+                            <img src="kr23.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Kullu+Stone'">
+                        </div>
                         <div class="craft-info">
                             <h3 class="craft-title">9. Stone Craft <span class="hindi-title">| पत्थर शिल्प</span></h3>
                             <p class="craft-intro">Seen in ancient stone temples of Naggar and Bajaura. Carving on grey schist and slate.</p>
@@ -836,11 +801,13 @@
 
                 <div class="craft-card" style="border: 2px solid var(--brand-gold);">
                     <div class="card-top">
-                        <img src="kr27.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Sela+Coat'">
+                         <div class="craft-img-container">
+                            <img src="kr27.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Sela+Coat'">
+                        </div>
                         <div class="craft-info">
                             <h3 class="craft-title">10. Sela (Goat Hair Coat) <span class="hindi-title">| सेला</span></h3>
                             <span class="category-badge">Tribal Winter Wear</span>
-                            <p class="craft-intro">Thick overcoats used by shepherds in upper Kullu (Malana, Banjar). Woven manually from goat hair. <br><em>यह गद्दी और पशुपालकों के लिए सर्दियों में जीवन रक्षक वस्त्र माना जाता है। अब यह शिल्प विलुप्त होने की कगार पर है।</em></p>
+                            <p class="craft-intro">Thick overcoats,sheets,socks used by shepherds in upper Kullu (Malana, Banjar) during extreme winters and also have health benefits. Woven manually from goat hair. <br><em>यह गद्दी और पशुपालकों के लिए सर्दियों में जीवन रक्षक वस्त्र माना जाता है। अब यह शिल्प विलुप्त होने की कगार पर है।</em></p>
                         </div>
                     </div>
                 </div>
@@ -854,7 +821,9 @@
 
                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr8.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Lahaul+Socks'">
+                         <div class="craft-img-container">
+                            <img src="kr8.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Lahaul+Socks'">
+                        </div>
                         <div class="craft-info">
                             <h3 class="craft-title">1. Wool Weaving (Socks) <span class="hindi-title">| लाहौली मोजे</span></h3>
                             <span class="category-badge">GI Tagged</span>
@@ -863,9 +832,11 @@
                     </div>
                 </div>
 
-                <div class="craft-card">
+                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr24.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Lahaul+Carpet'">
+                         <div class="craft-img-container">
+                            <img src="kr24.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Lahaul+Carpet'">
+                        </div>
                         <div class="craft-info">
                             <h3 class="craft-title">2. Kharkhana (Carpet Weaving) <span class="hindi-title">| खरखाना</span></h3>
                             <span class="category-badge">Tibetan Knotting</span>
@@ -873,58 +844,80 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="craft-card">
+                
+                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr9.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Thangka+Art'">
+                         <div class="craft-img-container">
+                            <img src="kr9.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Thangka+Art'">
+                        </div>
                         <div class="craft-info">
                             <h3 class="craft-title">3. Thangka & Appliqué Art <span class="hindi-title">| थंका चित्रकला</span></h3>
                             <span class="category-badge">Religious Art</span>
-                            <p class="craft-intro">Religious scrolls depicting Buddha and Mandalas. Painted on cotton canvas or stitched using silk/brocade (Appliqué).</p>
+                            <p class="craft-intro">Religious scrolls depicting Buddha and Mandalas. Preserved in monasteries like Tabo and Ki.</p>
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="craft-card">
                     <div class="card-top">
-                        <div class="no-image-content" style="width:100%">
+                         <div class="artistic-placeholder">
+                            <i class="fas fa-dharmachakra"></i>
+                            <span>Monastic Woodwork</span>
+                        </div>
+                        <div class="craft-info">
                             <h3 class="craft-title">4. Woodwork & Carving <span class="hindi-title">| लकड़ी का काम</span></h3>
                             <p class="craft-intro">Monastic furniture, altar tables, carved window frames. Motifs: Dragons, lotuses. Preserved in Tabo and Dhankar monasteries.</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="craft-card">
+                
+                 <div class="craft-card">
                     <div class="card-top">
-                        <div class="no-image-content" style="width:100%">
+                         <div class="artistic-placeholder">
+                            <i class="fas fa-bell"></i>
+                            <span>Ritual Metal</span>
+                        </div>
+                        <div class="craft-info">
                             <h3 class="craft-title">5. Religious Metal Craft <span class="hindi-title">| धार्मिक धातु शिल्प</span></h3>
                             <p class="craft-intro">Buddhist ritual items: Butter lamps, prayer wheels, trumpets. Made of copper, bronze, silver using lost-wax casting.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="craft-card">
+                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr25.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Clay+Torma'">
+                         <div class="artistic-placeholder">
+                            <i class="fas fa-layer-group"></i>
+                            <span>Mud Craft</span>
+                        </div>
                         <div class="craft-info">
                             <h3 class="craft-title">6. Clay & Mud Crafts <span class="hindi-title">| मिट्टी शिल्प</span></h3>
+                            <span class="category-badge">Monastic Craft</span>
                             <p class="craft-intro">Large clay idols inside monasteries (Tabo) made using natural mud/straw. Also includes 'Torma' (Butter sculptures) for rituals.</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="craft-card">
+                
+                 <div class="craft-card">
                     <div class="card-top">
-                        <div class="no-image-content" style="width:100%">
+                         <div class="artistic-placeholder">
+                            <i class="fas fa-bone"></i>
+                            <span>Bone Craft</span>
+                        </div>
+                        <div class="craft-info">
                             <h3 class="craft-title">7. Bone & Horn Craft <span class="hindi-title">| अस्थि शिल्प</span></h3>
                             <p class="craft-intro">Traditional jewelry made from yak horn and bone. Items: Beads, amulet cases.</p>
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="craft-card">
                     <div class="card-top">
-                        <div class="no-image-content" style="width:100%">
+                         <div class="artistic-placeholder">
+                            <i class="fas fa-history"></i>
+                            <span>Heritage</span>
+                        </div>
+                        <div class="craft-info">
                             <h3 class="craft-title">8. Endangered Crafts <span class="hindi-title">| लुप्तप्राय शिल्प</span></h3>
                             <p class="craft-intro">Leather Boot Making (Spiti Boots), Wool Rope Making (Namlo), Painted Scroll Manuscripts.</p>
                         </div>
@@ -938,18 +931,13 @@
                     <span>जिला मंडी</span>
                 </div>
                 <div class="craft-card">
-                    <div class="craft-info">
-                        <h3 class="craft-title">Mandi Heritage Crafts <span class="hindi-title">| मंडी के शिल्प</span></h3>
-                        <div class="craft-intro">
-                            <ul>
-                                <li><strong>Wool Weaving:</strong> Woolen Pattus and Shawls in Seraj and Balh Valley.</li>
-                                <li><strong>Bamboo Craft:</strong> Tokri and mats in Karsog.</li>
-                                <li><strong>Wood Carving:</strong> Temple architecture (Devta homes).</li>
-                                <li><strong>Stone Carving:</strong> Idols of 'Chhoti Kashi'.</li>
-                                <li><strong>Clay Pottery:</strong> Fermentation jars and pottery of Gohar.</li>
-                                <li><strong>Metal Craft:</strong> Temple bells and ritual vessels in Rewalsar.</li>
-                                <li><strong>Endangered:</strong> Dhaniya rope (Dheeli) made from wild grass.</li>
-                            </ul>
+                    <div class="card-top">
+                         <div class="craft-img-container">
+                            <img src="kr25.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Mandi+Clay'">
+                        </div>
+                        <div class="craft-info">
+                            <h3 class="craft-title">Clay & Stone Craft <span class="hindi-title">| मंडी के शिल्प</span></h3>
+                            <p class="craft-intro"><strong>Clay:</strong> Fermentation jars and pottery of Gohar.<br><strong>Stone:</strong> Idols of 'Chhoti Kashi'.<br><strong>Weaving:</strong> Shawls and Pattus in Seraj Valley.</p>
                         </div>
                     </div>
                 </div>
@@ -960,59 +948,25 @@
                     <h2>6. District Kinnaur</h2>
                     <span>जिला किन्नौर</span>
                 </div>
-
                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr10.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Kinnauri+Shawl'">
+                         <div class="craft-img-container">
+                            <img src="kr10.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Kinnauri+Shawl'">
+                        </div>
                         <div class="craft-info">
                             <h3 class="craft-title">1. Kinnauri Weaving <span class="hindi-title">| किन्नौरी शॉल</span></h3>
                             <span class="category-badge">Textile</span>
-                            <p class="craft-intro">Handwoven Shawls, Dhoru (cloak), and Caps. Famous for elaborate geometric borders involving religious symbols. <br><em>धार्मिक प्रतीकों वाले विस्तृत ज्यामितीय किनारों के लिए प्रसिद्ध।</em></p>
+                            <p class="craft-intro">Handwoven Shawls, Dhoru (cloak), and Caps. Famous for elaborate geometric borders involving religious symbols.</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="craft-card">
                     <div class="card-top">
-                        <div class="no-image-content" style="width:100%">
-                            <h3 class="craft-title">2. Silver Jewellery <span class="hindi-title">| चांदी के आभूषण</span></h3>
-                            <p class="craft-intro">Heavy silver jewellery with oxidized finish. Items: Chakker (headband), Bulak (nose ring), Digra (shawl pin).</p>
+                         <div class="craft-img-container">
+                            <img src="kr11.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Ritual+Ropes'">
                         </div>
-                    </div>
-                </div>
-
-                <div class="craft-card">
-                    <div class="card-top">
-                        <div class="no-image-content" style="width:100%">
-                            <h3 class="craft-title">3. Woodwork <span class="hindi-title">| लकड़ी का काम</span></h3>
-                            <p class="craft-intro">Kinnauri houses with intricate woodwork. Temple façades with floral/mythological carvings.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="craft-card">
-                    <div class="card-top">
-                        <div class="no-image-content" style="width:100%">
-                            <h3 class="craft-title">4. Basketry & Rope <span class="hindi-title">| टोकरा और रस्सी</span></h3>
-                            <p class="craft-intro">Baskets for apples made from Willow twigs. Namlo ropes used to carry headloads.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="craft-card">
-                    <div class="card-top">
-                        <div class="no-image-content" style="width:100%">
-                            <h3 class="craft-title">5. Carpets & Namdas <span class="hindi-title">| कालीन और नमदा</span></h3>
-                            <p class="craft-intro">Sheep wool carpets and felted Namdas. Designs: Stylized flowers, diamonds, Buddhist patterns.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="craft-card">
-                    <div class="card-top">
-                        <img src="kr11.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Ritual+Ropes'">
                         <div class="craft-info">
-                            <h3 class="craft-title">6. Ritual Ropes <span class="hindi-title">| देव रस्सियाँ</span></h3>
+                            <h3 class="craft-title">2. Ritual Ropes <span class="hindi-title">| देव रस्सियाँ</span></h3>
                             <span class="category-badge">Sacred Craft</span>
                             <p class="craft-intro">Braided from Beul bark, yak hair, or hemp. Used to tie Deity Palanquins during Fulaich festival. Symbolize strength and divine connection.</p>
                         </div>
@@ -1020,56 +974,51 @@
                 </div>
             </div>
 
-            <div id="hamirpur" class="district-block">
+             <div id="hamirpur" class="district-block">
                 <div class="district-header"><h2>7. District Hamirpur</h2></div>
                 <div class="craft-card">
-                    <div class="card-top">
-                        <img src="kr12.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Hamirpur+Craft'">
+                     <div class="card-top">
+                        <div class="artistic-placeholder">
+                            <i class="fas fa-tools"></i>
+                            <span>Utility Crafts</span>
+                        </div>
                         <div class="craft-info">
-                            <h3 class="craft-title">Utility Crafts <span class="hindi-title">| हमीरपुर के शिल्प</span></h3>
-                            <p class="craft-intro">
-                                <strong>Wool:</strong> Pattu & Handwoven Woolens.<br>
-                                <strong>Grass Craft:</strong> Daari (mats) and Tokri made from Moonj/Kusha grass.<br>
-                                <strong>Wood Craft:</strong> Agricultural tools and toys.<br>
-                                <strong>Utility Metal:</strong> Rural Ironware (Blacksmithing).<br>
-                                <strong>Knitting:</strong> Hand knitting & Crochet.
-                            </p>
+                            <h3 class="craft-title">Bamboo & Iron <span class="hindi-title">| हमीरपुर के शिल्प</span></h3>
+                            <p class="craft-intro"><strong>Bamboo/Grass:</strong> Daari (mats) and Tokri.<br><strong>Ironware:</strong> Traditional rural blacksmithing tools.</p>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div id="una" class="district-block">
+            
+             <div id="una" class="district-block">
                 <div class="district-header"><h2>8. District Una</h2></div>
                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr13.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Khajur+Mats'">
+                        <div class="craft-img-container">
+                            <img src="kr13.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Khajur+Mats'">
+                        </div>
                         <div class="craft-info">
-                            <h3 class="craft-title">Una Traditional Crafts <span class="hindi-title">| ऊना के शिल्प</span></h3>
-                            <p class="craft-intro">
-                                <strong>Rope Making:</strong> From 'Beul' tree bark and paddy husk.<br>
-                                <strong>Clay Craft:</strong> Pottery & Diya work in Santoshgarh.<br>
-                                <strong>Bamboo:</strong> Basketry & Mats.<br>
-                                <strong>Khajur Mats:</strong> Woven from dried Date Palm leaves. Naturally cool and eco-friendly.<br>
-                                <strong>Religious Craft:</strong> Jhanjhar, Mohras.
-                            </p>
+                            <h3 class="craft-title">Khajur Mats & Rope <span class="hindi-title">| खजूर की चटाई</span></h3>
+                            <p class="craft-intro"><strong>Khajur Mats:</strong> Woven from dried Date Palm leaves. Naturally cool and eco-friendly.<br><strong>Rope Making:</strong> From 'Beul' tree bark and paddy husk.</p>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div id="bilaspur" class="district-block">
+            
+             <div id="bilaspur" class="district-block">
                 <div class="district-header"><h2>9. District Bilaspur</h2></div>
                 <div class="craft-card">
                     <div class="card-top">
-                        <div class="no-image-content" style="width:100%">
+                         <div class="artistic-placeholder">
+                            <i class="fas fa-border-all"></i>
+                            <span>Weaving & Clay</span>
+                        </div>
+                        <div class="craft-info">
                             <h3 class="craft-title">Bilaspur Heritage <span class="hindi-title">| बिलासपुर के शिल्प</span></h3>
                             <p class="craft-intro">
-                                <strong>Wool:</strong> Handwoven Pattu with simple designs.<br>
-                                <strong>Bamboo:</strong> Tokri, Daari.<br>
-                                <strong>Clay:</strong> Pottery of Ghumarwin (Black/Red soil).<br>
-                                <strong>Charpai:</strong> Rope weaving.<br>
-                                <strong>Endangered:</strong> Grass mats and Beul rope.
+                                <strong>Pattu:</strong> Handwoven with simple geometric designs.<br>
+                                <strong>Pottery:</strong> Black and red soil pottery of Ghumarwin.<br>
+                                <strong>Charpai:</strong> Rope weaving using natural fibers.
                             </p>
                         </div>
                     </div>
@@ -1080,16 +1029,13 @@
                 <div class="district-header"><h2>10. District Solan</h2></div>
                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr14.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Pine+Needle'">
+                         <div class="craft-img-container">
+                            <img src="kr14.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Pine+Needle'">
+                        </div>
                         <div class="craft-info">
-                            <h3 class="craft-title">Solan Crafts <span class="hindi-title">| सोलन के शिल्प</span></h3>
-                            <p class="craft-intro">
-                                <strong>Bamboo:</strong> Basketry in Shivalik ranges.<br>
-                                <strong>Pottery:</strong> Clay craft of Nalagarh & Arki.<br>
-                                <strong>Pine Needle Craft:</strong> Sustainable baskets/trays from pine leaves.<br>
-                                <strong>Wool:</strong> Weaving in Rajgarh belt.<br>
-                                <strong>Stone:</strong> Temple architecture.
-                            </p>
+                            <h3 class="craft-title">Pine Needle Craft <span class="hindi-title">| चीड़ सुई शिल्प</span></h3>
+                            <span class="category-badge">Eco Craft</span>
+                            <p class="craft-intro">An emerging sustainable craft in Dharampur/Kasauli involving weaving fallen pine needles into baskets and trays. Promotes zero-waste design.</p>
                         </div>
                     </div>
                 </div>
@@ -1098,17 +1044,14 @@
             <div id="sirmour" class="district-block">
                 <div class="district-header"><h2>11. District Sirmour</h2></div>
                 <div class="craft-card">
-                    <div class="card-top">
-                        <div class="no-image-content" style="width:100%">
+                     <div class="card-top">
+                        <div class="artistic-placeholder">
+                            <i class="fas fa-umbrella"></i>
+                            <span>Ringal Craft</span>
+                        </div>
+                        <div class="craft-info">
                             <h3 class="craft-title">Sirmour Traditions <span class="hindi-title">| सिरमौर के शिल्प</span></h3>
-                            <p class="craft-intro">
-                                <strong>Wool:</strong> Pattus and coats (Shillai/Rajgarh).<br>
-                                <strong>Grass & Ringal:</strong> Fine basketry and 'Chhatries' (Rain shields).<br>
-                                <strong>Woodcraft:</strong> Decorative panels and temples.<br>
-                                <strong>Ritual Ropes:</strong> For deity accessories.<br>
-                                <strong>Metal:</strong> Temple lamps and bells.<br>
-                                <strong>Endangered:</strong> 'Sela' (Goat Hair Coat/socks) & 'Chharpat'.
-                            </p>
+                            <p class="craft-intro"><strong>Ringal Craft:</strong> Fine basketry and 'Chhatries' (Rain shields).<br><strong>Endangered:</strong> 'Sela' (Goat Hair Coat) & 'Chharpat' (Grass Raincoat).</p>
                         </div>
                     </div>
                 </div>
@@ -1118,17 +1061,15 @@
                 <div class="district-header"><h2>12. District Shimla</h2></div>
                 <div class="craft-card">
                     <div class="card-top">
-                        <img src="kr15.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Shimla+Crafts'">
+                         <div class="craft-img-container">
+                            <img src="kr15.jpg" class="craft-img" onerror="this.src='https://placehold.co/400x300?text=Shimla+Crafts'">
+                        </div>
                         <div class="craft-info">
                             <h3 class="craft-title">Shimla Heritage Crafts <span class="hindi-title">| शिमला के शिल्प</span></h3>
                             <ul>
-                                <li><strong>Wood Carving:</strong> Temple architecture in Rohru/Jubbal.</li>
-                                <li><strong>Metal Craft:</strong> Brass/Copper work in Sarahan.</li>
-                                <li><strong>Handloom:</strong> Woolen Pattu/Shawls.</li>
                                 <li><strong>Bushahri Topi:</strong> Traditional cap with velvet band.</li>
-                                <li><strong>Bamboo:</strong> Basketry.</li>
+                                <li><strong>Wood Carving:</strong> Temple architecture in Rohru and Jubbal.</li>
                                 <li><strong>Doll Making:</strong> Traditional cloth dolls.</li>
-                                <li><strong>Stone Carving:</strong> Temple work.</li>
                                 <li><strong>Fruit Box:</strong> Semi-industrial wooden crates.</li>
                             </ul>
                         </div>
