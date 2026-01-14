@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#682228"> <title>Crafts of Himachal | Virasat-e-Himachal | Handiweave</title>
     <meta name="description" content="An authoritative, district-wise documentation of Himachal Pradesh's indigenous crafts by Handiweave. Explore GI-tagged arts, traditional techniques, and cultural heritage.">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link rel="icon" href="favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&family=Rozha+One&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -496,7 +497,7 @@
     </nav>
 
     <header class="craft-hero">
-        <h1 class="main-heading">Crafts of Himachal</h1>
+        <h1 class="main-heading">Crafts of Himachal Pradesh</h1>
         <h2 class="hindi-heading">विरासत-ए-हिमाचल</h2>
         <div class="credit-badge" style="background:var(--brand-gold); color:var(--brand-brown); padding:8px 25px; border-radius:25px; display:inline-block; margin-bottom:25px; font-weight:700; letter-spacing:0.5px;">
             <i class="fas fa-archive" style="margin-right:8px;"></i> A Living Archive by Handiweave
@@ -505,7 +506,7 @@
         <img src="map.jpg" alt="Himachal Pradesh District Map showing craft clusters" style="max-width:95%; max-height:420px; margin:25px auto; border-radius:10px; display:block; border:2px solid #e8dfce;" onerror="this.style.display='none'">
 
         <div class="intro-text">
-            <p><strong>Preamble from our Founder:</strong> At Handiweave, we don't just document crafts; we attempt to listen to the stories whispered by the loom, the chisel, and the needle. This page is our humble <strong>पुरज़ोर</strong> (effort) to map the soul of Himachal—one district, one craft at a time. What you see here is gathered through years of walking the mountain trails, sitting with <strong>उस्ताद कारीगर</strong> (master artisans), and understanding that each craft is not merely an object but a chapter in our collective memory.</p>
+            <p><strong>Preamble from Handiweave:</strong> At Handiweave, we don't just document crafts; we attempt to listen to the stories whispered by the loom, the chisel, and the needle. This page is our humble <strong>पुरज़ोर</strong> (effort) to map the soul of Himachal—one district, one craft at a time. What you see here is gathered through years of walking the mountain trails, sitting with <strong>उस्ताद कारीगर</strong> (master artisans), and understanding that each craft is not merely an object but a chapter in our collective memory.</p>
             <p>This compilation serves as a formal reference for students, researchers, and cultural enthusiasts. It categorizes crafts by their primary material and technique while highlighting their <strong>Geographical Indication (GI) status</strong>—a legal recognition of their unique origin. We have consciously used Hindi terms for craft names and key concepts to retain authenticity while keeping descriptions accessible. Consider this your gateway to the tangible heritage of <strong>देवभूमि</strong> (Land of the Gods).</p>
         </div>
     </header>
@@ -816,21 +817,39 @@
                     </div>
                 </div>
                 
-                <div class="craft-card">
+               <div class="craft-card">
                     <div class="card-top">
-                         <div class="artistic-placeholder">
-                            <i class="fas fa-link"></i>
-                            <span>Rope Making</span>
-                            <p>Twisting nature's fibers</p>
+                        <div class="craft-img-container">
+                            <img src="kr33.jpg" class="craft-img" alt="Biul Fibre Rope Making" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Rope+Making'">
                         </div>
                         <div class="craft-info">
-                            <h3 class="craft-title">11. Traditional Rope-Making <span class="hindi-title">| रस्सी निर्माण</span></h3>
+                            <h3 class="craft-title">Biul (ब्यूल) Fibre Rope-Making <span class="hindi-title">| रस्सी निर्माण</span></h3>
                             <span class="category-badge">Fibre Craft</span>
-                            <p class="craft-intro">A ubiquitous but under-documented craft. Fibers from the <strong>ब्यूल</strong> tree bark, hemp, or even paddy husk are twisted together by hand or using simple tools to create ropes of various thicknesses. These ropes (<strong>रस्सी</strong>) are essential for agriculture (tying cattle), domestic use (charpai beds), and construction. It represents a profound knowledge of local plant properties and sustainable resource use.</p>
+                            
+                            <p class="craft-intro">
+                                <strong>Biul</strong> (locally <em>ब्यूल/Bhimlu</em>) is a native Himalayan tree (<em>Grewia optiva</em>) crucial for natural fibre. The extraction is a manual, seasonal process passed down through generations. The fibre is valued for its high tensile strength and is hand-twisted to create ropes for agriculture and construction.
+                            </p>
+                            
+                            <button class="accordion-btn" onclick="togglePanel(this)">Read Process & History <i class="fas fa-chevron-down"></i></button>
+                            
+                            <div class="details-panel">
+                                <h5>Fibre Extraction Process (रेशा निकालना)</h5>
+                                <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 15px;">
+                                    <li><strong>Harvesting:</strong> Mature bark is peeled from the tree branches.</li>
+                                    <li><strong>Retting (गलाना):</strong> Bark is submerged in water for days. Microbial action softens the wood while preserving fibre strength.</li>
+                                    <li><strong>Separation:</strong> Washed thoroughly to reveal long, cream-coloured fibres.</li>
+                                    <li><strong>Twisting:</strong> Dried fibres are hand-rolled (without machines) to form strong ropes.</li>
+                                </ul>
+
+                                <h5>Historical Context: Rice Straw vs. Biul</h5>
+                                <p>Before Biul became dominant, ropes were made from <strong>Rice Straw (धान की पराली)</strong>. However, Biul replaced straw due to its superior strength and longer lifespan, essential for the rugged hilly terrain.</p>
+
+                                <h5>Cultural Significance</h5>
+                                <p>This craft represents a self-sustaining rural material system. It documents a living relationship between people, the forest, and non-industrial production.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
                  <div class="craft-card">
                     <div class="card-top">
                         <div class="craft-img-container">
@@ -1179,18 +1198,69 @@
             </div>
 
              <div id="hamirpur" class="district-block">
-                <div class="district-header"><h2>7. District Hamirpur</h2><span>जिला हमीरपुर</span></div>
+                <div class="district-header">
+                    <h2>7. District Hamirpur</h2>
+                    <span>जिला हमीरपुर</span>
+                </div>
+
                 <div class="craft-card">
-                     <div class="card-top">
+                    <div class="card-top">
                         <div class="craft-img-container">
                             <img src="kr20.jpg" class="craft-img" alt="Bamboo and grass crafts from Hamirpur" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Hamirpur+Basketry'">
                         </div>
                         <div class="craft-info">
                             <h3 class="craft-title">Bamboo, Grass & Ironware <span class="hindi-title">| हमीरपुर के शिल्प</span></h3>
+                            <span class="category-badge">Utility Craft</span>
                             <p class="craft-intro">Hamirpur's crafts are utilitarian and robust. <strong>Bamboo and Grass</strong> are woven into <strong>दाड़ी</strong> (sleeping mats) and storage baskets by the community. <strong>Traditional Ironware</strong> involves the local blacksmith (<strong>लोहार</strong>) forging agricultural tools like sickles (<strong>दरांती</strong>), axes, and nails using time-honored techniques. These crafts support the agrarian lifestyle but face competition from factory-made goods.</p>
                         </div>
                     </div>
                 </div>
+
+                <div class="craft-card">
+                    <div class="card-top">
+                        <div class="craft-img-container">
+                            <img src="kr31.jpg" class="craft-img" alt="Pand - Traditional Hand Bound Mat" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Pand+Mat'">
+                        </div>
+                        <div class="craft-info">
+                            <h3 class="craft-title">Pand: Hand-Bound Simplicity <span class="hindi-title">| पंद</span></h3>
+                            <span class="category-badge">Fibre Craft</span>
+                            <p class="craft-intro">Pand (locally pronounced as Psnd) is a traditional hand-binding craft practiced in the Kangra and Hamirpur regions. It refers to a hand-woven mat made from natural fibres and grasses sourced from the surrounding landscape. Each piece reflects the artisan’s rhythm and skill, making no two mats exactly alike.</p>
+                            
+                            <button class="accordion-btn" onclick="togglePanel(this)">Read Details <i class="fas fa-chevron-down"></i></button>
+                            <div class="details-panel">
+                                <h5>The Art of Simplicity</h5>
+                                <p>Once an essential part of every household, Pand mats were used for sitting, prayer, gatherings, and daily rituals. Crafted entirely by hand, the process involves preparing natural fibres, softening them with water, and carefully binding them together on the ground — without the use of machines.</p>
+                                <p>At Handiweave, Pand stands as a reminder that true craftsmanship lies in humble materials, thoughtful making, and a deep connection to the land.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="craft-card">
+                    <div class="card-top">
+                        <div class="craft-img-container">
+                            <img src="kr32.jpg" class="craft-img" alt="Binna - Handcrafted Seating" onerror="this.src='https://placehold.co/400x300/682228/ffffff?text=Binna+Seating'">
+                        </div>
+                        <div class="craft-info">
+                            <h3 class="craft-title">Binna: Handcrafted Seating <span class="hindi-title">| बिन्ना</span></h3>
+                            <span class="category-badge">Grass Weaving</span>
+                            <p class="craft-intro">Binna is a traditional handcrafted seating form, typically a small, compact, cushion-like seat placed directly on the floor. Made using natural grasses and locally available plant fibres, it is hand-bound and tightly coiled to form a firm structure. Unlike large mats, the Binna is individual in size, designed for personal use in kitchens and rituals.</p>
+                            
+                            <button class="accordion-btn" onclick="togglePanel(this)">Key Characteristics <i class="fas fa-chevron-down"></i></button>
+                            <div class="details-panel">
+                                <h5>Technique & Significance</h5>
+                                <p>The process relies entirely on manual skill, where fibres are carefully collected, dried, and layered before binding. It represents a vernacular material culture rooted in sustainable practices.</p>
+                                <ul>
+                                    <li><strong>Category:</strong> Handcrafted Seating</li>
+                                    <li><strong>Materials:</strong> Natural grass, plant-based fibres</li>
+                                    <li><strong>Technique:</strong> Hand coiling and binding</li>
+                                    <li><strong>Nature:</strong> Functional, non-mechanised, locally made</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="text-card">
                     <h3 class="craft-title">Woodcraft & Domestic Knitting <span class="hindi-title">| लकड़ी और बुनाई</span></h3>
                     <p class="craft-intro"><strong>Woodcraft</strong> focuses on making agricultural implements (ploughs, yokes) and simple furniture. <strong>Domestic Knitting</strong> of woolens is widespread, producing serviceable sweaters and caps for family use rather than commercial sale. These crafts represent the self-reliant, household-level production that forms the backbone of rural economies in the lower hills.</p>
@@ -1320,3 +1390,4 @@
     </script>
 </body>
 </html>
+
