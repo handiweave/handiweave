@@ -436,21 +436,7 @@ const PRODUCTS = [
     }
 ];
 
-// =========================================
-// HANDIWEAVE: SAFE MODE SCRIPT
-// =========================================
-
-// 1. Safe Cart Loading (To prevent Instagram Crash)
-let cart = [];
-try {
-    const savedCart = localStorage.getItem('handiweave_cart');
-    if (savedCart) {
-        cart = JSON.parse(savedCart);
-    }
-} catch (e) {
-    console.log("Instagram/Browser blocked LocalStorage. Cart will not persist.", e);
-    cart = []; 
-}
+let cart = JSON.parse(localStorage.getItem('handiweave_cart')) || [];
 const RAZORPAY_KEY = "rzp_live_RuhteYn3JzTrhD";
 
 // ===== UTILITY FUNCTIONS =====
@@ -528,87 +514,132 @@ function renderProducts(items = PRODUCTS) {
     `}).join('');
 }
 
-/* ========= FIXED MODAL FUNCTION & ALL LOGIC (FINAL CLEAN VERSION) ========= */
-
-// 1. MODAL FUNCTION
+// ===== PRODUCT MODAL (Updated with Meter Logic) =====
 function openProductModal(id) {
-    // Check if PRODUCTS is defined to prevent crash
-    const product = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.find(p => p.id === id) : null;
-    if (!product) return;
-
+    const product = PRODUCTS.find(p => p.id === id);
+    if(!product) return;
+    
     const modal = document.getElementById('productModal');
     const body = document.getElementById('modalBody');
 
-    // Safe Gallery
-    const gallery = Array.isArray(product.gallery) && product.gallery.length ? product.gallery : [product.img];
-    window.currentGallery = gallery; 
-    window.currentIndex = 0;
-
-    // Badge Logic
-    const pName = product.name ? product.name.toLowerCase() : "";
-    const pCat = product.category ? product.category.toLowerCase() : "";
-    let badgeText = "100% Handwoven";
-    let badgeIcon = "fa-hand-holding-heart";
-    if (pName.includes('hoodie') || pCat.includes('jacket')) {
-        badgeText = "Premium Quality"; badgeIcon = "fa-star";
-    }
-
-    // Options Logic
+    // 1. OPTIONS LOGIC
     let optionsHTML = '';
-    if (product.options) {
+    if(product.options) {
         const opts = product.options.values.map(v => `<option value="${v}">${v}</option>`).join('');
-        optionsHTML = `<div class="variant-selector" style="margin: 1.5rem 0;"><label style="font-weight:bold; display:block; margin-bottom:8px;">Select ${product.options.type}:</label><select id="modalVariantSelect" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px;">${opts}</select></div>`;
+        optionsHTML = `
+            <div class="variant-selector">
+                <label>Select ${product.options.type}:</label>
+                <select id="modalVariantSelect">${opts}</select>
+            </div>
+        `;
     }
 
-    // Meter Logic
+    // 2. METER/YARDAGE LOGIC (Only appears if name contains 'yardage' or 'patti')
     let meterHtml = '';
-    if (pName.includes('yardage') || pName.includes('coat')) {
-        meterHtml = `<div style="margin: 15px 0; background: #fff8e1; padding: 15px; border-radius: 6px; border: 1px dashed #C5A065;"><label style="font-weight:bold; color:#7A5548;">Length Required (Meters):</label><div style="display:flex; gap:10px; margin-top:5px;"><input type="number" id="meterInput" value="1" min="1" style="width:80px; padding:8px; border:1px solid #ccc; border-radius:4px; font-weight:bold; font-size:1.1rem;"><span style="align-self:center; color:#555; font-weight:600;">Meters</span></div><small style="color:#666; display:block; margin-top:5px;">*Price calculated per meter in cart.</small></div>`;
+    if (product.name.toLowerCase().includes('yardage') || product.name.toLowerCase().includes('coat')) {
+        meterHtml = `
+            <div style="margin: 15px 0; background: #fff8e1; padding: 10px; border-radius: 4px; border: 1px dashed #C5A065;">
+                <label style="font-weight:bold; color:#7A5548;">Length (Meters):</label>
+                <div style="display:flex; gap:10px; margin-top:5px;">
+                    <input type="number" id="meterInput" value="1" min="1" 
+                           style="width:80px; padding:8px; border:1px solid #ccc; border-radius:4px; font-weight:bold; font-size:1.1rem;">
+                    <span style="align-self:center; color:#555;">Meters</span>
+                </div>
+                <small style="color:#666;">Price calculates per meter in cart.</small>
+            </div>
+        `;
     }
 
-    // Discount Logic
-    let discountHTML = '', saveHTML = '';
-    if(product.originalPrice > product.price) {
-        const discPercent = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
-        discountHTML = `<span class="off-sticker" style="position: absolute; top: 15px; left: 15px; background: #e74c3c; color: white; padding: 5px 12px; font-weight: bold; border-radius: 4px; z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.2); pointer-events: none;">-${discPercent}% OFF</span>`;
-        saveHTML = `<span class="save-badge" style="background:#d4edda; color:#155724; padding:2px 8px; border-radius:4px; font-size:0.9rem; margin-left:10px;">Save ₹${product.originalPrice - product.price}</span>`;
+    // 3. THUMBS LOGIC
+    let thumbs = product.gallery.map(src => 
+        `<img src="${src}" class="thumb-img" loading="lazy" onclick="document.querySelector('.main-modal-img').src='${src}'">`
+    ).join('');
+
+    // 4. REVIEWS LOGIC
+    let reviewsHTML = '';
+    if (product.reviews && product.reviews.length > 0) {
+        const reviewsList = product.reviews.map(r => `
+            <div class="review-card">
+                <div class="review-header">
+                    <span>${r.user}</span>
+                    <span class="stars">${'★'.repeat(r.rating)}</span>
+                </div>
+                <div style="color:#555;">"${r.text}"</div>
+            </div>
+        `).join('');
+        
+        reviewsHTML = `
+            <div class="review-section">
+                <div class="review-title">Customer Reviews (${product.reviews.length})</div>
+                ${reviewsList}
+            </div>
+        `;
+    } else {
+        reviewsHTML = `<div class="review-section" style="color:#777; font-style:italic;">No reviews yet. Be the first to buy!</div>`;
     }
 
-    // Thumbs & Arrows
-    const thumbs = gallery.map((src, idx) => `<img src="${src}" class="thumb-img" style="height:60px;width:60px;border:1px solid #ddd;padding:2px;cursor:pointer;object-fit:cover;" onclick="changeSlideDirect(${idx})">`).join('');
-    const arrowsHTML = gallery.length > 1 ? `<button class="slide-btn prev-btn" onclick="changeSlide(-1)" style="position:absolute; left:10px; top:50%; transform:translateY(-50%); z-index:11; background:rgba(255,255,255,0.7); border:none; border-radius:50%; width:30px; height:30px; cursor:pointer;">&#10094;</button><button class="slide-btn next-btn" onclick="changeSlide(1)" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); z-index:11; background:rgba(255,255,255,0.7); border:none; border-radius:50%; width:30px; height:30px; cursor:pointer;">&#10095;</button>` : '';
-
-    // Build HTML
     body.innerHTML = `
-        <button onclick="closeProductModal()" style="position:absolute; top:15px; right:15px; z-index:100; background:white; border:2px solid #682228; color:#682228; font-weight:bold; padding:8px 15px; border-radius:30px; cursor:pointer; display:flex; align-items:center; gap:8px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">CLOSE <i class="fas fa-times"></i></button>
         <div class="modal-gallery">
-            <div class="slider-container" style="position:relative; width:100%; min-height:300px; background:#f9f9f9; border-radius:8px; overflow:hidden;">${discountHTML}${arrowsHTML}<img id="mainModalImage" src="${gallery[0]}" class="main-modal-img" style="width:100%; height:100%; object-fit:contain;"></div>
-            <div class="thumb-grid" style="margin-top:15px; display:flex; gap:10px; overflow-x:auto; padding-bottom:5px;">${thumbs}</div>
+            <img src="${product.img}" alt="${product.name}" class="main-modal-img" loading="lazy" onerror="this.src='https://placehold.co/400x400?text=Handiweave';">
+            <div class="thumb-grid">${thumbs}</div>
         </div>
-        <div class="modal-details" style="padding-top:10px;">
-            <h2 style="font-size:1.6rem; margin-bottom:5px; line-height:1.2;">${product.name}</h2>
-            <div class="modal-price" style="margin: 15px 0; display:flex; align-items:center; gap:10px; flex-wrap:wrap;"><span style="font-size:1.8rem; font-weight:700; color:#7A5548;">₹${product.price.toLocaleString('en-IN')}</span><span style="color:#999; text-decoration:line-through; font-size:1.1rem;">₹${product.originalPrice.toLocaleString('en-IN')}</span>${saveHTML}</div>
-            <div style="color:#555; font-size:1rem; border-left:3px solid #682228; padding-left:15px; margin-bottom:20px;">${product.shortDesc}</div>
-            ${product.inStock ? optionsHTML + meterHtml : ''}
-            <button class="add-to-cart-btn" style="width:100%; padding:18px; font-weight:bold; background: #682228; color:white; border:none; border-radius:6px; cursor:pointer;" onclick="addToCartFromModal(${product.id})">${product.inStock ? 'ADD TO BAG' : 'OUT OF STOCK'}</button>
-            <div class="modal-trust-badges" style="margin-top:20px; display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:0.8rem;"><div class="trust-item"><i class="fas ${badgeIcon}"></i> ${badgeText}</div><div class="trust-item"><i class="fas fa-truck"></i> Pan India Shipping</div></div>
-            <div style="margin-top:25px; border-top:1px solid #eee; padding-top:15px;"><h4>Product Details</h4><p style="color:#666; font-size:0.95rem;">${product.desc}</p><div style="background:#fff3cd; padding:10px; margin-top:10px; border-radius:4px;"><strong>Care:</strong> ${product.care}</div></div>
+        
+        <div class="modal-details">
+            <h2>${product.name}</h2>
+            
+            <div class="modal-price">
+                <span style="color:#999; text-decoration:line-through; font-size:1rem; font-weight:normal;">${formatPrice(product.originalPrice)}</span>
+                ${formatPrice(product.price)} <span style="font-size:0.6em;font-weight:400;color:#555;">(Inc. GST)</span>
+            </div>
+
+            <div class="modal-short-desc">${product.shortDesc}</div>
+            <div class="modal-desc">${product.desc}</div>
+            
+            ${product.inStock ? optionsHTML : ''}
+            
+            ${product.inStock ? meterHtml : ''}
+            
+            <div class="action-buttons">
+                <button class="add-to-cart-btn" style="flex:2; padding:15px; ${!product.inStock ? 'background:#888;cursor:not-allowed;' : ''}" 
+                    onclick="addToCartFromModal(${product.id})" ${!product.inStock ? 'disabled' : ''}>
+                    ${product.inStock ? 'ADD TO BAG' : 'OUT OF STOCK'}
+                </button>
+                <button class="share-btn" onclick="shareProduct(${product.id})">
+                    <i class="fas fa-share-alt"></i> Share
+                </button>
+            </div>
+
+            <div class="modal-care"><strong>Care:</strong> ${product.care}</div>
+            
+            ${reviewsHTML}
         </div>
     `;
+
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 }
 
-// 2. ADD TO CART FUNCTION
+function closeProductModal() { 
+    document.getElementById('productModal').style.display = 'none'; 
+    document.body.style.overflow = 'auto';
+}
+
+// ===== ADD TO CART FROM MODAL (Updated to read Meter Input) =====
 function addToCartFromModal(productId) {
     const product = PRODUCTS.find(p => p.id === productId);
-    if (!product || !product.inStock) return;
+    if (!product) return;
+    if (product.inStock === false) return; 
 
+    // Check for Variant
     let selectedVariant = 'Standard';
     const variantSelect = document.getElementById('modalVariantSelect');
-    if (variantSelect) selectedVariant = variantSelect.value;
-    else if (product.options) selectedVariant = product.options.values[0];
+    if (variantSelect) {
+        selectedVariant = variantSelect.value;
+    } else if (product.options) {
+        selectedVariant = product.options.values[0];
+    }
 
+    // Check for Meter/Quantity Input
     let quantity = 1;
     const meterInput = document.getElementById('meterInput');
     if (meterInput) {
@@ -616,7 +647,9 @@ function addToCartFromModal(productId) {
         if (quantity < 1) quantity = 1;
     }
 
+    // Check if item already in cart
     const existingItem = cart.find(item => item.id === productId && item.variant === selectedVariant);
+
     if (existingItem) {
         existingItem.quantity += quantity;
     } else {
@@ -633,15 +666,17 @@ function addToCartFromModal(productId) {
     saveCart();
     closeProductModal();
     
+    // Show Notification
     if(quantity > 1 && product.name.toLowerCase().includes('yardage')) {
         showNotification(`${quantity} Meters Added to Bag`);
     } else {
         showNotification(`${quantity} Item(s) Added to Bag`);
     }
+    
     openCart();
 }
 
-// 3. SHARE FUNCTION
+// ===== SHARE FUNCTION =====
 function shareProduct(productId) {
     const product = PRODUCTS.find(p => p.id === productId);
     if (!product) return;
@@ -652,13 +687,18 @@ function shareProduct(productId) {
     const shareUrl = `${baseUrl}shop.html?product=${productId}&item=${slug}`;
     
     if (navigator.share) {
-        navigator.share({ title: 'Handiweave - ' + product.name, text: `Check out ${product.name}!`, url: shareUrl }).catch(console.error);
+        navigator.share({
+            title: 'Handiweave - ' + product.name,
+            text: `Check out ${product.name} on Handiweave!`,
+            url: shareUrl
+        }).catch(console.error);
     } else {
-        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(`Check out ${product.name}! ${shareUrl}`)}`, '_blank');
+        const text = `Check out ${product.name} on Handiweave! ${shareUrl}`;
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
     }
 }
 
-// 4. CART FUNCTIONS
+// ===== CART FUNCTIONS =====
 function openCart() {
     renderCartItems();
     document.getElementById('cartSidebar').classList.add('active');
@@ -707,30 +747,66 @@ function updateQty(idx, change) {
     renderCartItems();
 }
 
-function removeCartItem(idx) { cart.splice(idx, 1); saveCart(); renderCartItems(); }
+function removeCartItem(idx) { 
+    cart.splice(idx, 1); 
+    saveCart(); 
+    renderCartItems(); 
+}
 
-// 5. CHECKOUT FUNCTIONS
+// ===== CHECKOUT =====
 function openCheckout() {
-    if(cart.length === 0) { showNotification('Your cart is empty!'); return; }
+    if(cart.length === 0) {
+        showNotification('Your cart is empty!');
+        return;
+    }
     closeCart();
+    
     const subtotal = getCartTotal();
     const shipping = calculateShipping();
     const finalTotal = subtotal + shipping;
 
     let summaryHTML = '<h4>Order Summary</h4>';
-    cart.forEach(item => { summaryHTML += `<div style="display:flex; justify-content:space-between; margin:5px 0;"><span>${item.name} x${item.quantity}</span><span>${formatPrice(item.price * item.quantity)}</span></div>`; });
-    summaryHTML += `<hr style="margin:10px 0;"><div style="display:flex; justify-content:space-between;"><span>Subtotal:</span><span>${formatPrice(subtotal)}</span></div><div style="display:flex; justify-content:space-between;"><span>Shipping:</span><span>${formatPrice(shipping)}</span></div>`;
+    cart.forEach(item => {
+        summaryHTML += `<div style="display:flex; justify-content:space-between; margin:5px 0;">
+            <span>${item.name} x${item.quantity}</span>
+            <span>${formatPrice(item.price * item.quantity)}</span>
+        </div>`;
+    });
+    
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    
+    summaryHTML += `<hr style="margin:10px 0;">
+        <div style="display:flex; justify-content:space-between;">
+            <span>Subtotal:</span>
+            <span>${formatPrice(subtotal)}</span>
+        </div>
+        <div style="display:flex; justify-content:space-between;">
+            <span>Shipping (${totalItems} items):</span>
+            <span>${formatPrice(shipping)}</span>
+        </div>`;
 
     document.getElementById('checkoutSummary').innerHTML = summaryHTML;
     document.getElementById('checkoutTotal').textContent = formatPrice(finalTotal);
+
     document.getElementById('paymentButtons').innerHTML = `
-        <button type="button" onclick="checkoutWithRazorpay()" style="background:var(--rzp); color:white; width:100%; padding:15px; border-radius:4px; margin-bottom:10px; border:none; font-weight:bold; cursor:pointer;"><i class="fas fa-credit-card"></i> Pay with Razorpay (${formatPrice(finalTotal)})</button>
+        <button type="button" onclick="checkoutWithRazorpay()" style="background:var(--rzp); color:white; width:100%; padding:15px; border-radius:4px; margin-bottom:10px; border:none; font-weight:bold; cursor:pointer;">
+            <i class="fas fa-credit-card"></i> Pay with Razorpay (${formatPrice(finalTotal)})
+        </button>
+        
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
-            <button type="button" onclick="initiateUPIPayment('9882212962@upi')" style="background:#34a853; color:white; padding:12px; border-radius:4px; border:none; font-weight:bold; cursor:pointer;"><i class="fab fa-google-pay"></i> Google Pay</button>
-            <button type="button" onclick="initiateUPIPayment('sahik886@okaxis')" style="background:#0080FF; color:white; padding:12px; border-radius:4px; border:none; font-weight:bold; cursor:pointer;"><i class="fas fa-university"></i> UPI Apps</button>
+            <button type="button" onclick="initiateUPIPayment('9882212962@upi')" style="background:#34a853; color:white; padding:12px; border-radius:4px; border:none; font-weight:bold; cursor:pointer;">
+                <i class="fab fa-google-pay"></i> Google Pay
+            </button>
+            <button type="button" onclick="initiateUPIPayment('sahik886@okaxis')" style="background:#0080FF; color:white; padding:12px; border-radius:4px; border:none; font-weight:bold; cursor:pointer;">
+                <i class="fas fa-university"></i> UPI Apps
+            </button>
         </div>
-        <button type="button" onclick="checkoutWithWhatsApp()" style="background:var(--wa); color:white; width:100%; padding:15px; border-radius:4px; border:none; font-weight:bold; cursor:pointer;"><i class="fab fa-whatsapp"></i> Order via WhatsApp</button>
+        
+        <button type="button" onclick="checkoutWithWhatsApp()" style="background:var(--wa); color:white; width:100%; padding:15px; border-radius:4px; border:none; font-weight:bold; cursor:pointer;">
+            <i class="fab fa-whatsapp"></i> Order via WhatsApp
+        </button>
     `;
+
     document.getElementById('checkoutModal').classList.add('active');
     document.getElementById('overlay').classList.add('active');
 }
@@ -741,24 +817,53 @@ function closeCheckout() {
 }
 
 function validateCheckoutForm() {
-    const requiredFields = ['customerName', 'customerPhone', 'addrLine1', 'addrDistrict', 'addrState', 'addrPin'];
-    for (let id of requiredFields) {
-        const el = document.getElementById(id);
-        if (!el || !el.value.trim()) { showNotification(`Please fill in all fields`); el?.focus(); return false; }
+    const requiredFields = [
+        {id: 'customerName', name: 'Full Name'},
+        {id: 'customerPhone', name: 'Mobile Number'},
+        {id: 'addrLine1', name: 'Address'},
+        {id: 'addrDistrict', name: 'District'},
+        {id: 'addrState', name: 'State'},
+        {id: 'addrPin', name: 'Pincode'}
+    ];
+    
+    for (let field of requiredFields) {
+        const element = document.getElementById(field.id);
+        if (!element || !element.value.trim()) {
+            showNotification(`Please fill in ${field.name}`);
+            element?.focus();
+            return false;
+        }
     }
-    if (!/^[0-9]{10}$/.test(document.getElementById('customerPhone').value)) { showNotification('Invalid Phone Number'); return false; }
+    
+    const phone = document.getElementById('customerPhone').value;
+    if (!/^[0-9]{10}$/.test(phone)) {
+        showNotification('Please enter a valid 10-digit mobile number');
+        return false;
+    }
+    
     return true;
 }
 
-// 6. PAYMENT HANDLERS
+// ===== RAZORPAY WITH FORMSPREE =====
 function checkoutWithRazorpay() {
     if (!validateCheckoutForm()) return;
+    
     const name = document.getElementById('customerName').value;
     const phone = document.getElementById('customerPhone').value;
     const email = document.getElementById('customerEmail').value;
-    const fullAddress = `${document.getElementById('addrLine1').value}, ${document.getElementById('addrDistrict').value}, ${document.getElementById('addrState').value} - ${document.getElementById('addrPin').value}`;
-    const finalTotal = getCartTotal() + calculateShipping();
+    
+    const addrLine1 = document.getElementById('addrLine1').value;
+    const addrDistrict = document.getElementById('addrDistrict').value;
+    const addrState = document.getElementById('addrState').value;
+    const addrPin = document.getElementById('addrPin').value;
+    const isGift = document.getElementById('isGift').checked ? 'Yes' : 'No';
+    
+    const fullAddress = `${addrLine1}, ${addrDistrict}, ${addrState} - ${addrPin} (Gift: ${isGift})`;
 
+    const subtotal = getCartTotal();
+    const shipping = calculateShipping();
+    const finalTotal = subtotal + shipping;
+    
     const options = {
         key: RAZORPAY_KEY,
         amount: finalTotal * 100,
@@ -766,106 +871,339 @@ function checkoutWithRazorpay() {
         name: 'Handiweave',
         description: 'Handicraft Purchase',
         handler: function(response) {
+            showNotification('Payment successful! Order placed.');
+            
             const formData = new FormData();
-            formData.append('Order Info', `ID: ${response.razorpay_payment_id} | Total: ₹${finalTotal}`);
-            formData.append('Items', JSON.stringify(cart));
-            formData.append('Customer', `Name: ${name}\nPhone: ${phone}\nAddr: ${fullAddress}`);
+            formData.append('Order Summary', `ID: ${response.razorpay_payment_id} | Total: ₹${finalTotal} (Ship: ₹${shipping})`);
+            formData.append('Cart Items', JSON.stringify(cart));
+            formData.append('Customer Details', `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${fullAddress}`);
+            
             fetch("https://formspree.io/f/xlgdnggr", { method: "POST", body: formData, headers: {'Accept': 'application/json'} });
-            cart = []; saveCart(); updateCartCount(); closeCheckout(); showNotification('Order Placed!');
+
+            cart = [];
+            saveCart();
+            updateCartCount();
+            closeCheckout();
         },
-        prefill: { name: name, email: email, contact: phone },
-        theme: { color: '#7A5548' }
+        prefill: {
+            name: name,
+            email: email || 'customer@handiweave.com',
+            contact: phone
+        },
+        theme: { color: '#7A5548' },
+        modal: {
+            ondismiss: function() { showNotification('Payment cancelled'); }
+        }
     };
-    try { new Razorpay(options).open(); } catch (e) { showNotification('Gateway Error'); }
+    
+    try {
+        const rzp = new Razorpay(options);
+        rzp.open();
+    } catch (error) {
+        showNotification('Payment gateway error. Please try UPI or WhatsApp.');
+    }
 }
 
+// ===== UPI WITH FORMSPREE =====
 function initiateUPIPayment(upiId) {
     if (!validateCheckoutForm()) return;
-    const finalTotal = getCartTotal() + calculateShipping();
-    const upiLink = `upi://pay?pa=${upiId}&pn=Handiweave&am=${finalTotal}&cu=INR&tn=Order`;
+    
+    const subtotal = getCartTotal();
+    const shipping = calculateShipping();
+    const finalTotal = subtotal + shipping;
+    
+    const name = document.getElementById('customerName').value;
+    const phone = document.getElementById('customerPhone').value;
+    const email = document.getElementById('customerEmail').value;
+    
+    const addrLine1 = document.getElementById('addrLine1').value;
+    const addrDistrict = document.getElementById('addrDistrict').value;
+    const addrState = document.getElementById('addrState').value;
+    const addrPin = document.getElementById('addrPin').value;
+    const fullAddress = `${addrLine1}, ${addrDistrict}, ${addrState} - ${addrPin}`;
+
+    const formData = new FormData();
+    formData.append('Order Type', 'UPI / Google Pay Order');
+    formData.append('Payment Status', 'Pending (Check Screenshot/Bank)');
+    formData.append('Total Amount', `₹${finalTotal} (Ship: ₹${shipping})`);
+    formData.append('Customer Details', `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${fullAddress}`);
+    formData.append('Items', JSON.stringify(cart.map(i => `${i.name} [Size/Var: ${i.variant}] x${i.quantity}`)));
+    
+    fetch("https://formspree.io/f/xlgdnggr", { 
+        method: "POST", 
+        body: formData, 
+        headers: {'Accept': 'application/json'} 
+    });
+
+    const upiLink = `upi://pay?pa=${upiId}&pn=Handiweave&am=${finalTotal}&cu=INR&tn=Order-${phone}&mc=5411`;
+    
     window.location.href = upiLink;
-    setTimeout(() => { cart = []; saveCart(); updateCartCount(); closeCheckout(); alert('Order Request Sent! Please complete payment in app.'); }, 2000);
+    
+    setTimeout(() => {
+        showNotification(`Request sent! Please pay ₹${finalTotal} in your app.`);
+        alert(`Order Email Sent to Handiweave!\n\nPlease complete payment of ₹${finalTotal} in your UPI App and share screenshot on WhatsApp if needed.`);
+        cart = [];
+        saveCart();
+        updateCartCount();
+        closeCheckout();
+    }, 2000);
 }
 
 function checkoutWithWhatsApp() {
     if (!validateCheckoutForm()) return;
+    
     const name = document.getElementById('customerName').value;
-    const total = getCartTotal() + calculateShipping();
-    let msg = `*NEW ORDER*\nName: ${name}\nTotal: ₹${total}\nItems:\n`;
-    cart.forEach(i => msg += `- ${i.name} (${i.variant}) x${i.quantity}\n`);
-    window.open(`https://wa.me/919882212962?text=${encodeURIComponent(msg)}`, '_blank');
+    const phone = document.getElementById('customerPhone').value;
+    const email = document.getElementById('customerEmail').value;
+    const addrLine1 = document.getElementById('addrLine1').value;
+    const addrDistrict = document.getElementById('addrDistrict').value;
+    const addrState = document.getElementById('addrState').value;
+    const addrPin = document.getElementById('addrPin').value;
+    const isGift = document.getElementById('isGift').checked ? 'Yes' : 'No';
+    
+    const subtotal = getCartTotal();
+    const shipping = calculateShipping();
+    const finalTotal = subtotal + shipping;
+    
+    let itemsText = '';
+    cart.forEach(item => {
+        itemsText += `• ${item.name} [Size: ${item.variant}] x${item.quantity}: ₹${item.price * item.quantity}\n`;
+    });
+    
+    const addressText = `Address: ${addrLine1}, ${addrDistrict}, ${addrState} - ${addrPin}\n`;
+    
+    const message = `*NEW ORDER REQUEST*\n\n*Customer Details:*\nName: ${name}\nPhone: ${phone}\nEmail: ${email || 'Not provided'}\n${addressText}Gift Wrap: ${isGift}\n\n*Order Items:*\n${itemsText}\n*Order Summary:*\nSubtotal: ₹${subtotal}\nShipping: ₹${shipping}\n*Total: ₹${finalTotal}*\n\nPayment Method: Cash on Delivery / UPI`;
+    
+    window.open(`https://wa.me/919882212962?text=${encodeURIComponent(message)}`, '_blank');
 }
 
-// 7. UTILITY FUNCTIONS
+// ===== UTILITY & EVENTS =====
 function searchProducts(event) {
     if (event && event.type === 'keyup' && event.key !== 'Enter') return;
-    const term = document.getElementById('searchInput').value.toLowerCase().trim();
-    if(term) window.location.href = 'shop.html?search=' + encodeURIComponent(term);
+    
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+    if (!searchTerm) return;
+
+    window.location.href = 'shop.html?search=' + encodeURIComponent(searchTerm);
 }
 
 function filterCategory(cat, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    if(btn) btn.classList.add('active');
-    renderProducts(cat === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === cat));
+    btn.classList.add('active');
+    
+    if(cat === 'all') {
+        renderProducts(PRODUCTS);
+    } else {
+        const filtered = PRODUCTS.filter(p => p.category === cat);
+        renderProducts(filtered);
+    }
 }
 
 function togglePolicy(index) {
     const content = document.querySelectorAll('.policy-content')[index];
     const icon = content.previousElementSibling.querySelector('.fa-chevron-down');
     content.classList.toggle('active');
-    if(icon) icon.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
+    icon.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
 }
 
 document.getElementById('contactForm')?.addEventListener('submit', function(e) {
     e.preventDefault();
-    fetch("https://formspree.io/f/xlgdnggr", { method: "POST", body: new FormData(this), headers: { 'Accept': 'application/json' } })
-    .then(r => { if(r.ok) { showNotification('Message Sent!'); this.reset(); } });
+    const data = new FormData(this);
+    fetch("https://formspree.io/f/xlgdnggr", { 
+        method: "POST", body: data, headers: { 'Accept': 'application/json' } 
+    })
+    .then(r => { 
+        if(r.ok) { showNotification('Message sent successfully!'); this.reset(); } 
+        else { showNotification('Error sending message'); } 
+    })
+    .catch(() => showNotification('Error sending message'));
 });
 
-document.getElementById('overlay')?.addEventListener('click', function() {
-    closeCart(); closeCheckout(); closeProductModal();
+document.getElementById('overlay').addEventListener('click', function() {
+    closeCart();
+    closeCheckout();
+    closeProductModal();
 });
 
+// ===== HANDLE URL PARAMS =====
 function handleURLParameters() {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('product')) setTimeout(() => openProductModal(parseInt(params.get('product'))), 100);
-    if (params.get('search')) {
-        const term = params.get('search').toLowerCase();
-        document.getElementById('searchInput').value = term;
-        renderProducts(PRODUCTS.filter(p => p.name.toLowerCase().includes(term) || p.category.toLowerCase().includes(term)));
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('product');
+    const searchTerm = urlParams.get('search'); 
+    
+    if (productId) {
+        const id = parseInt(productId);
+        setTimeout(() => openProductModal(id), 100);
+    } 
+    
+    if (searchTerm) {
+        const input = document.getElementById('searchInput');
+        if(input) input.value = searchTerm;
+        
+        const filtered = PRODUCTS.filter(p => 
+            p.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+            p.category.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        renderProducts(filtered);
     }
 }
 
-// 8. GLOBAL HELPERS & ENGINE START (INSTAGRAM FIX)
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => {
+        renderProducts();
+        updateCartCount();
+        handleURLParameters();
+    }, 50);
+});
+// ===== SUPER FINAL LOGIC (Paste at bottom of script.js) =====
+
+// Global Variables
+window.currentGallery = [];
+window.currentIndex = 0;
+
+// 1. OPEN MODAL FUNCTION
+window.openProductModal = function(id) {
+    if (typeof PRODUCTS === 'undefined') { console.error("PRODUCTS data missing!"); return; }
+
+    const product = PRODUCTS.find(p => p.id === id);
+    if(!product) return;
+    
+    // Setup Gallery
+    window.currentGallery = product.gallery && product.gallery.length > 0 ? product.gallery : [product.img];
+    window.currentIndex = 0;
+    const showArrows = window.currentGallery.length > 1;
+
+    const modal = document.getElementById('productModal');
+    const body = document.getElementById('modalBody');
+
+    // Badge Logic (Hoodie/Jewelry/Footwear detection)
+    const pName = product.name.toLowerCase();
+    const pCat = product.category ? product.category.toLowerCase() : "";
+    let badgeText = "100% Handwoven";
+    let badgeIcon = "fa-hand-holding-heart";
+
+    if (pName.includes('hoodie') || pName.includes('jacket') || pCat.includes('jacket')) {
+        badgeText = "Premium Quality"; badgeIcon = "fa-star";
+    } else if (pName.includes('jewel') || pCat.includes('decor')) {
+        badgeText = "Handcrafted Art"; badgeIcon = "fa-gem";
+    } else if (pCat.includes('footwear') || pName.includes('pullan')) {
+        badgeText = "Handmade Footwear"; badgeIcon = "fa-shoe-prints";
+    }
+
+    // Discount Logic
+    let discountHTML = '', saveHTML = '';
+    if(product.originalPrice > product.price) {
+        const discPercent = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+        discountHTML = `<span class="off-sticker" style="position: absolute; top: 15px; left: 15px; background: #e74c3c; color: white; padding: 5px 12px; font-weight: bold; border-radius: 4px; z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.2); pointer-events: none;">-${discPercent}% OFF</span>`;
+        saveHTML = `<span class="save-badge">You Save ₹${product.originalPrice - product.price}</span>`;
+    }
+
+    // Options Logic
+    let optionsHTML = '';
+    if(product.options) {
+        const opts = product.options.values.map(v => `<option value="${v}">${v}</option>`).join('');
+        optionsHTML = `<div class="variant-selector" style="margin: 1.5rem 0;">
+            <label style="font-weight:bold; display:block; margin-bottom:8px;">Select ${product.options.type}:</label>
+            <select id="modalVariantSelect" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px;">${opts}</select>
+        </div>`;
+    }
+
+    // Meter Logic
+    let meterHtml = '';
+    if (pName.includes('yardage') || pName.includes('coat')) {
+        meterHtml = `<div style="margin: 15px 0; background: #fff8e1; padding: 15px; border-radius: 6px; border: 1px dashed #C5A065;">
+            <label style="font-weight:bold; color:#7A5548;">Length Required (Meters):</label>
+            <div style="display:flex; gap:10px; margin-top:5px;">
+                <input type="number" id="meterInput" value="1" min="1" style="width:80px; padding:8px; border:1px solid #ccc; border-radius:4px; font-weight:bold; font-size:1.1rem;">
+                <span style="align-self:center; color:#555; font-weight:600;">Meters</span>
+            </div>
+            <small style="color:#666; display:block; margin-top:5px;">*Price calculated per meter.</small>
+        </div>`;
+    }
+
+    // Thumbs Logic
+    let thumbs = window.currentGallery.map((src, idx) => 
+        `<img src="${src}" class="thumb-img" style="height:60px; width:60px; border:1px solid #ddd; padding:2px; cursor:pointer;" 
+        onclick="changeSlideDirect(${idx})">`
+    ).join('');
+
+    // Arrows HTML
+    const arrowsHTML = showArrows ? `
+        <button class="slide-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="slide-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
+    ` : '';
+
+    // Build HTML
+    body.innerHTML = `
+        <button onclick="closeProductModal()" style="position:absolute; top:15px; right:15px; z-index:100; background:white; border:2px solid #682228; color:#682228; font-weight:bold; padding:8px 15px; border-radius:30px; cursor:pointer; display:flex; align-items:center; gap:8px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+            CLOSE <i class="fas fa-times"></i>
+        </button>
+
+        <div class="modal-gallery">
+            <div class="slider-container">
+                ${discountHTML}
+                ${arrowsHTML}
+                <img id="mainModalImage" src="${window.currentGallery[0]}" alt="${product.name}" class="main-modal-img" style="width:100%; border-radius:8px; transition: opacity 0.3s;">
+            </div>
+            <div class="thumb-grid" style="margin-top:15px; display:flex; gap:10px; overflow-x:auto;">${thumbs}</div>
+        </div>
+        
+        <div class="modal-details" style="padding-top:10px;">
+            <h2 style="font-size:1.6rem; margin-bottom:5px; line-height:1.2; padding-right:30px;">${product.name}</h2>
+            <div class="modal-price" style="margin: 15px 0; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                <span style="font-size:1.8rem; font-weight:700; color:#7A5548;">₹${product.price.toLocaleString('en-IN')}</span>
+                <span style="color:#999; text-decoration:line-through; font-size:1.1rem;">₹${product.originalPrice.toLocaleString('en-IN')}</span>
+                ${saveHTML}
+            </div>
+            <div style="font-size:0.85rem; color:#666; margin-bottom:10px;">(Shipping calculated at checkout)</div>
+            <div style="color:#555; font-size:1rem; line-height:1.6; border-left:3px solid #682228; padding-left:15px; margin-bottom:20px;">${product.shortDesc}</div>
+            ${product.inStock ? optionsHTML : ''}
+            ${product.inStock ? meterHtml : ''}
+            <button class="add-to-cart-btn" style="width:100%; padding:18px; font-size:1.1rem; font-weight:bold; background: #682228; color:white; border:none; border-radius:6px; cursor:pointer; display:flex; justify-content:center; gap:10px;" 
+                onclick="addToCartFromModal(${product.id})" ${!product.inStock ? 'disabled style="background:#ccc;"' : ''}>
+                <i class="fas fa-shopping-bag"></i> ${product.inStock ? 'ADD TO BAG' : 'OUT OF STOCK'}
+            </button>
+            <div class="modal-trust-badges">
+                <div class="trust-item"><i class="fas ${badgeIcon}"></i> ${badgeText}</div>
+                <div class="trust-item"><i class="fas fa-truck"></i> Pan India Shipping</div>
+                <div class="trust-item"><i class="fas fa-sync-alt"></i> 7 Days Exchange T&C</div>
+                <div class="trust-item"><i class="fas fa-certificate"></i> Authentic Himachali</div>
+            </div>
+            <div style="margin-top:25px; border-top:1px solid #eee; padding-top:15px;">
+                <h4 style="margin-bottom:10px;">Product Details</h4>
+                <p style="color:#666; font-size:0.95rem;">${product.desc}</p>
+                <div style="background:#fff3cd; padding:10px; margin-top:10px; border-radius:4px; font-size:0.9rem;"><strong>Care:</strong> ${product.care}</div>
+            </div>
+        </div>
+    `;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+// 2. SLIDER FUNCTIONS (Global)
 window.changeSlide = function(step) {
-    if (!window.currentGallery.length) return;
-    window.currentIndex = (window.currentIndex + step + window.currentGallery.length) % window.currentGallery.length;
+    window.currentIndex += step;
+    if (window.currentIndex >= window.currentGallery.length) window.currentIndex = 0;
+    if (window.currentIndex < 0) window.currentIndex = window.currentGallery.length - 1;
     document.getElementById('mainModalImage').src = window.currentGallery[window.currentIndex];
-};
+}
 
 window.changeSlideDirect = function(idx) {
     window.currentIndex = idx;
     document.getElementById('mainModalImage').src = window.currentGallery[window.currentIndex];
-};
+}
 
-window.closeProductModal = function() {
-    const m = document.getElementById('productModal');
-    if(m) m.style.display = 'none';
+window.closeProductModal = function() { 
+    document.getElementById('productModal').style.display = 'none'; 
     document.body.style.overflow = 'auto';
-};
-
-window.onclick = function(e) { if(e.target.id === 'productModal') closeProductModal(); };
-
-function bootHandiweave() {
-    console.log("Handiweave Engine Active...");
-    if (typeof renderProducts === 'function') {
-        renderProducts();
-        if (typeof updateCartCount === 'function') updateCartCount();
-        handleURLParameters();
+}
+// ===== PRO FEATURE: Close Modal on Outside Click =====
+window.onclick = function(event) {
+    const modal = document.getElementById('productModal');
+    if (event.target === modal) {
+        closeProductModal();
     }
 }
 
-document.addEventListener('DOMContentLoaded', bootHandiweave);
-window.onload = bootHandiweave;
-setTimeout(bootHandiweave, 500);
+
 
