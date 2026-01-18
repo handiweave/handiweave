@@ -1203,40 +1203,5 @@ window.onclick = function(event) {
     if (event.target === modal) {
         closeProductModal();
     }
-}
-// ===== REPUBLIC DAY COUPON LOGIC =====
-function applyPromoCode() {
-    const codeInput = document.getElementById('promo-code');
-    const msgElement = document.getElementById('promo-message');
-    if(!codeInput || !msgElement) return; // Agar HTML mein dabba nahi hai toh ruk jao
-
-    const code = codeInput.value.toUpperCase().trim();
-    
-    // Cart Total nikalo
-    let totalElement = document.getElementById('cartTotalText'); 
-    // Format: "₹2,500" -> 2500 Number banayenge
-    let currentTotal = parseFloat(totalElement.innerText.replace(/[₹,]/g, ''));
-
-    if (code === "HIND10") {
-        let discount = currentTotal * 0.10;
-        let finalPrice = currentTotal - discount;
-        msgElement.style.color = "green";
-        msgElement.innerText = `Success! 10% Off. Pay: ₹${finalPrice.toLocaleString('en-IN')}`;
-    } else if (code === "REP260") {
-        if (currentTotal >= 1500) {
-            let finalPrice = currentTotal - 260;
-            msgElement.style.color = "green";
-            msgElement.innerText = `Success! ₹260 Off. Pay: ₹${finalPrice.toLocaleString('en-IN')}`;
-        } else {
-            msgElement.style.color = "red";
-            msgElement.innerText = "Order must be above ₹1500 for this code.";
-        }
-    } else {
-        msgElement.style.color = "red";
-        msgElement.innerText = "Invalid Code";
-    }
-}
-
-
 
 
