@@ -1204,6 +1204,22 @@ window.onclick = function(event) {
         closeProductModal();
     }
 }
+// =========================================
+// HANDIWEAVE: ENGINE START (THE MISSING KEY)
+// =========================================
 
+function bootHandiweave() {
+    console.log("Starting Handiweave Engine...");
+    if (typeof renderProducts === 'function') {
+        renderProducts();
+        if (typeof updateCartCount === 'function') updateCartCount();
+        if (typeof handleURLParameters === 'function') handleURLParameters();
+    }
+}
+
+// Multi-Trigger for Instagram & Mobile Browsers
+document.addEventListener('DOMContentLoaded', bootHandiweave);
+window.onload = bootHandiweave;
+setTimeout(bootHandiweave, 500);
 
 
