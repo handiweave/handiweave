@@ -436,7 +436,21 @@ const PRODUCTS = [
     }
 ];
 
-let cart = JSON.parse(localStorage.getItem('handiweave_cart')) || [];
+// =========================================
+// HANDIWEAVE: SAFE MODE SCRIPT
+// =========================================
+
+// 1. Safe Cart Loading (To prevent Instagram Crash)
+let cart = [];
+try {
+    const savedCart = localStorage.getItem('handiweave_cart');
+    if (savedCart) {
+        cart = JSON.parse(savedCart);
+    }
+} catch (e) {
+    console.log("Instagram/Browser blocked LocalStorage. Cart will not persist.", e);
+    cart = []; 
+}
 const RAZORPAY_KEY = "rzp_live_RuhteYn3JzTrhD";
 
 // ===== UTILITY FUNCTIONS =====
@@ -1203,5 +1217,6 @@ window.onclick = function(event) {
     if (event.target === modal) {
         closeProductModal();
     }
+
 
 
