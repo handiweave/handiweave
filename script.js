@@ -1069,40 +1069,51 @@ document.addEventListener('DOMContentLoaded', function() {
         handleURLParameters();
     }, 50);
 });
-// ===== SUPER FINAL LOGIC (Paste at bottom of script.js) =====
+// =========================================
+// HANDIWEAVE: ENGINE START & FIX
+// =========================================
 
-// Global Variables
+// 1. Global Slider Logic
 window.currentGallery = [];
 window.currentIndex = 0;
 
-// 1. OPEN MODAL FUNCTION
-window.openProductModal = function(id) {
-    if (typeof PRODUCTS === 'undefined') { console.error("PRODUCTS data missing!"); return; }
+window.changeSlide = function(step) {
+    if (!window.currentGallery.length) return;
+    window.currentIndex += step;
+    if (window.currentIndex >= window.currentGallery.length) window.currentIndex = 0;
+    if (window.currentIndex < 0) window.currentIndex = window.currentGallery.length - 1;
+    const img = document.getElementById('mainModalImage');
+    if(img) img.src = window.currentGallery[window.currentIndex];
+};
 
-    const product = PRODUCTS.find(p => p.id === id);
-    if(!product) return;
-    
-    // Setup Gallery
-    window.currentGallery = product.gallery && product.gallery.length > 0 ? product.gallery : [product.img];
-    window.currentIndex = 0;
-    const showArrows = window.currentGallery.length > 1;
+window.changeSlideDirect = function(idx) {
+    window.currentIndex = idx;
+    const img = document.getElementById('mainModalImage');
+    if(img) img.src = window.currentGallery[window.currentIndex];
+};
 
+// 2. Outside Click to Close Modal
+window.onclick = function(event) {
     const modal = document.getElementById('productModal');
-    const body = document.getElementById('modalBody');
-
-    // Badge Logic (Hoodie/Jewelry/Footwear detection)
-    const pName = product.name.toLowerCase();
-    const pCat = product.category ? product.category.toLowerCase() : "";
-    let badgeText = "100% Handwoven";
-    let badgeIcon = "fa-hand-holding-heart";
-
-    if (pName.includes('hoodie') || pName.includes('jacket') || pCat.includes('jacket')) {
-        badgeText = "Premium Quality"; badgeIcon = "fa-star";
-    } else if (pName.includes('jewel') || pCat.includes('decor')) {
-        badgeText = "Handcrafted Art"; badgeIcon = "fa-gem";
-    } else if (pCat.includes('footwear') || pName.includes('pullan')) {
-        badgeText = "Handmade Footwear"; badgeIcon = "fa-shoe-prints";
+    if (event.target === modal) {
+        closeProductModal();
     }
+};
+
+// 3. THE TRIGGER: Yeh line products dikhayegi (Instagram Fix)
+function bootHandiweave() {
+    console.log("Handiweave Booting...");
+    if (typeof renderProducts === 'function') {
+        renderProducts();
+        updateCartCount();
+        if (typeof handleURLParameters === 'function') handleURLParameters();
+    }
+}
+
+// Multi-Trigger for Instagram/Mobile
+document.addEventListener('DOMContentLoaded', bootHandiweave);
+window.onload = bootHandiweave;
+setTimeout(bootHandiweave, 500); // Fail-safe backup
 
     // Discount Logic
     let discountHTML = '', saveHTML = '';
@@ -1211,19 +1222,16 @@ window.closeProductModal = function() {
     document.getElementById('productModal').style.display = 'none'; 
     document.body.style.overflow = 'auto';
 }
-// ===== PRO FEATURE: Close Modal on Outside Click =====
-window.onclick = function(event) {
-    const modal = document.getElementById('productModal');
-    if (event.target === modal) {
-        closeProductModal();
-    }
-// FORCED RENDER: Instagram/Mobile Fix
-window.onload = function() {
-    console.log("Page Loaded. Starting Handiweave Engine...");
-    if(typeof renderProducts === 'function') {
+// INSTAGRAM & MOBILE FIX: Yeh line engine start karegi
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof renderProducts === 'function') {
         renderProducts();
         updateCartCount();
-        handleURLParameters();
     }
+});
+
+// Extra safety for Instagram Browser
+window.onload = () => {
+    if (typeof renderProducts === 'function') renderProducts();
 };
 
