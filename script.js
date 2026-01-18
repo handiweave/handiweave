@@ -1217,6 +1217,13 @@ window.onclick = function(event) {
     if (event.target === modal) {
         closeProductModal();
     }
-
-
+// FORCED RENDER: Instagram/Mobile Fix
+window.onload = function() {
+    console.log("Page Loaded. Starting Handiweave Engine...");
+    if(typeof renderProducts === 'function') {
+        renderProducts();
+        updateCartCount();
+        handleURLParameters();
+    }
+};
 
