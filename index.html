@@ -16,8 +16,7 @@
     <meta property="og:type" content="website">
 
     <link rel="canonical" href="https://handiweave.com/">
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="style.css?v=3">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -34,6 +33,7 @@
         gtag('js', new Date());
         gtag('config', 'G-SEWM8S3WL0');
     </script>
+
     <style>
     /* ===== MODAL PREMIUM DESIGN ===== */
     .product-modal-content {
@@ -46,6 +46,9 @@
         padding: 30px !important;
         border-radius: 12px;
         box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        background: #fff;
+        position: relative;
+        overflow-y: auto;
     }
     .modal-trust-badges {
         display: grid;
@@ -84,20 +87,20 @@
         }
         .main-modal-img { max-height: 350px; object-fit: contain; }
     }
-</style>
+    </style>
 </head>
 
 <body>
     <div class="trust-banner">
         <span><i class="fas fa-certificate"></i> Devbhoomi Himachal</span>
-        <span><i class="fas fa-hand-holding-heart"></i>  Handloom & Handcrafted</span>
+        <span><i class="fas fa-hand-holding-heart"></i> Handloom & Handcrafted</span>
         <span><i class="fas fa-truck"></i> Pan India Shipping</span>
     </div>
 
     <a href="https://wa.me/919882212962" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
     <div class="cart-icon" onclick="openCart()"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="cartCount">0</span></div>
 
-   <section class="hero-section" id="home">
+    <section class="hero-section" id="home">
         <div class="hero-logo-container">
             <div class="hero-logo"><img src="logo.png" alt="Handiweave Logo" onerror="this.style.display='none'"></div>
         </div>
@@ -123,21 +126,20 @@
         <p style="max-width: 700px; margin: 0 auto; opacity: 0.9;">Premium handcrafted wovens from Devbhoomi Himachal</p>
     </section>
 
-    <nav class="main-nav" style="background-color: #682228 !important; padding: 0.8rem 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; border-bottom: 2px solid #c5a059; position: sticky; top: 0; z-index: 1000;">
-    
-    <div style="display: flex; gap: 25px; align-items: center; flex-wrap: wrap; justify-content: center;">
-        <a href="index.html" style="color: #c5a059; text-decoration: none; font-weight: 700; border-bottom: 2px solid #c5a059;">Home</a>
-        <a href="shop.html" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Wovens</a>
-        <a href="about.html" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Story</a>
-        <a href="journal.html" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Journal</a>
-        <a href="crafts.html" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Crafts</a>
-        <a href="contact.html" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Contact</a>
-        <a href="policies.html" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Policies</a>
-    </div>
+    <nav class="main-nav" style="background-color: #682228 !important; padding: 0.5rem 1rem; display: flex; justify-content: center; align-items: center; border-bottom: 2px solid #c5a059; position: sticky; top: 0; z-index: 1000;">
+        <div style="display: flex; gap: 25px; align-items: center; flex-wrap: wrap; justify-content: center;">
+            <a href="index.html" style="color: #c5a059; text-decoration: none; font-weight: 700; border-bottom: 2px solid #c5a059;">Home</a>
+            <a href="shop.html" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Wovens</a>
+            <a href="about.html" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Story</a>
+            <a href="journal.html" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Journal</a>
+            <a href="crafts.html" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Crafts</a>
+            <a href="contact.html" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Contact</a>
+            <a href="policies.html" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Policies</a>
+        </div>
+    </nav>
 
-</nav>
-
-    <div style="text-align: center; margin: 15px 20px; color: #682228;"> <p style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-style: italic;">
+    <div style="text-align: center; margin: 15px 20px; color: #682228;"> 
+        <p style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-style: italic;">
             "From the hands of Pahadi artisans, directly to your heart."
         </p>
         <div style="width: 50px; height: 2px; background: #D4AF37; margin: 10px auto;"></div>
@@ -175,14 +177,23 @@
     </section>
 
     <footer class="main-footer">
-        <div class="social-links"><a href="https://instagram.com/handiweave" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://wa.me/919882212962" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i></a><a href="https://x.com/handiweave" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a></div>
+        <div class="social-links">
+            <a href="https://instagram.com/handiweave" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/919882212962" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://x.com/handiweave" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
         <div class="footer-links"><a href="shop.html" class="footer-link">Collection</a><a href="about.html" class="footer-link">Story</a><a href="policies.html" class="footer-link">Policies</a></div>
         <div style="margin-top:1.5rem;"><p>handiweave@gmail.com | +91 98822 12962</p><p style="margin-top:0.5rem; color:#666; font-size:0.9rem;">Devbhoomi Himachal</p></div>
         <div style="margin-top:2rem;"><p>© 2025 Handiweave. All rights reserved.</p></div>
     </footer>
 
     <div class="overlay" id="overlay"></div>
-    <div class="product-modal" id="productModal"><div class="product-modal-content"><button class="modal-close-btn" onclick="closeProductModal()">&times;</button><div id="modalBody"></div></div></div>
+    <div class="notification" id="notification"><i class="fas fa-check-circle"></i> <span id="notificationText"></span></div>
+
+    <div id="productModal" class="modal">
+        <div id="modalBody" class="product-modal-content">
+            </div>
+    </div>
     
     <aside class="cart-sidebar" id="cartSidebar">
         <div style="padding:1.5rem; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">
@@ -222,31 +233,7 @@
         </form>
     </div>
 
-  <div class="notification" id="notification"><i class="fas fa-check-circle"></i> <span id="notificationText"></span></div>
-
-    <div id="productModal" class="modal">
-        <div id="modalBody" class="product-modal-content"></div>
-    </div>
-    
-    <script src="script.js?v=5"></script>
+    <script src="script.js?v=2026_JAN_FIX"></script>
 
 </body>
 </html>
-    
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
