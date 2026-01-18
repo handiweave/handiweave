@@ -1222,16 +1222,20 @@ window.closeProductModal = function() {
     document.getElementById('productModal').style.display = 'none'; 
     document.body.style.overflow = 'auto';
 }
-// INSTAGRAM & MOBILE FIX: Yeh line engine start karegi
-document.addEventListener('DOMContentLoaded', () => {
+// =========================================
+// THE FINAL TRIGGER: Engine Start Fix
+// =========================================
+function bootHandiweave() {
+    console.log("Handiweave Engine Active...");
     if (typeof renderProducts === 'function') {
         renderProducts();
-        updateCartCount();
+        if (typeof updateCartCount === 'function') updateCartCount();
+        if (typeof handleURLParameters === 'function') handleURLParameters();
     }
-});
+}
 
-// Extra safety for Instagram Browser
-window.onload = () => {
-    if (typeof renderProducts === 'function') renderProducts();
-};
+// Multi-Trigger for Instagram Browser
+document.addEventListener('DOMContentLoaded', bootHandiweave);
+window.onload = bootHandiweave;
+setTimeout(bootHandiweave, 500);
 
