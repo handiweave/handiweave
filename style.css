@@ -923,22 +923,6 @@ body.hide-hero .main-nav {
     color: var(--brand);
 }
 
-.whatsapp-float {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 60px;
-    height: 60px;
-    background: var(--wa);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    z-index: 999;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
 
 .notification {
     position: fixed;
@@ -947,7 +931,7 @@ body.hide-hero .main-nav {
     background: #2E8B57;
     color: white;
     padding: 1rem 1.5rem;
-    border-radius: 6px;
+    boer-radius: 6px;
     z-index: 3000;
     display: none;
     align-items: center;
@@ -1268,6 +1252,7 @@ body.hide-hero .main-nav {
     }
 }
 </style>
+
 
 
 
