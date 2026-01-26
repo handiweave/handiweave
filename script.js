@@ -352,7 +352,7 @@ const PRODUCTS = [
         "id": 20,
         "name": "Embroided Women's Sleeveless Jacket (Black)",
         "category": "Jacket",
-        "price": 749,
+        "price": 699,
         "originalPrice": 1199,
         "img": "Embroided Sleeveless women's black jackets.jpg",
         "gallery": [
@@ -1221,5 +1221,6 @@ function bootHandiweave() {
 document.addEventListener('DOMContentLoaded', bootHandiweave);
 window.onload = bootHandiweave;
 setTimeout(bootHandiweave, 500);
+
 
 
