@@ -3,106 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#7A5548">
-
-    <title>Our Story | Handiweave</title>
-
-    <meta name="description" content="Discover the heritage of Handiweave. Empowering Himachali artisans and bridging traditions with trends.">
-
-    <meta property="og:title" content="Our Story | Handiweave">
-    <meta property="og:image" content="https://handiweave.com/logo.png">
-    <meta property="og:url" content="https://handiweave.com/about.html">
-
-    <link rel="canonical" href="https://handiweave.com/about.html">
-
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-    <link rel="icon" href="favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEWM8S3WL0"></script>
-    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-SEWM8S3WL0');</script>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <title>Handiweave | Be Right Back</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #682228; /* Tera Brand Color */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #f0e6d6;
+            text-align: center;
+        }
+        .container {
+            padding: 40px;
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #c5a059; /* Gold Color */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #25D366; /* WhatsApp Green */
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        .icon-box {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #c5a059;
+        }
+    </style>
 </head>
 <body>
-    <div class="trust-banner"><span><i class="fas fa-certificate"></i> Devbhoomi Himachal</span><span><i class="fas fa-hand-holding-heart"></i> Handloom & Handcrafted</span><span><i class="fas fa-truck"></i> Pan India Shipping</span></div>
-    <a href="https://wa.me/919882212962" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
-    <div class="cart-icon" onclick="openCart()"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="cartCount">0</span></div>
 
-    <nav class="main-nav" style="background-color: #682228 !important; padding: 0.8rem 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; border-bottom: 2px solid #c5a059; position: sticky; top: 0; z-index: 1000;">
-    
-    <a href="index.html" style="display: flex; align-items: center; text-decoration: none; gap: 12px;">
-        <img src="logo.png" alt="Handiweave Logo" style="width: 45px; height: 45px; object-fit: contain; background: #fff; padding: 2px; border-radius: 5px; border: 1px solid #c5a059;" onerror="this.style.display='none'">
-        <span style="font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: bold; color: #c5a059; letter-spacing: 1px; text-transform: uppercase;">Handiweave</span>
-    </a>
-
-    <div style="display: flex; gap: 20px;">
-        <a href="index.html" class="nav-link" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Home</a>
-        <a href="shop.html" class="nav-link" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Wovens</a>
-        <a href="journal.html" class="nav-link" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Journal</a>
-        <a href="crafts.html" class="nav-link" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Crafts</a>
-        <a href="about.html" class="nav-link" style="color: #c5a059; text-decoration: none; font-weight: 700; border-bottom: 2px solid #c5a059;">Story</a>
-        <a href="contact.html" class="nav-link" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Contact</a>
-        <a href="policies.html" class="nav-link" style="color: #f0e6d6; text-decoration: none; font-weight: 500;">Policies</a>
-    </div>
-</nav>
-
-    <section class="section-container" style="display:block;">
-        <div class="story-container" style="background-color: #FDFBF7; padding: 2.5rem; border-radius: 8px; border: 1px solid #EFEBE0; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-            <div class="story-image"><img src="cr1.jpg" alt="Handiweave Certificate" loading="lazy"></div>
-            <div class="story-content">
-                <h2>Our Story</h2>
-                <div class="story-text">
-                    <p><strong>Jai Dev (Greetings from Devbhoomi) 🙏</strong></p>
-
-                    <p><strong>Traditions and Trends 🧶.</strong> At Handiweave, we are more than just a marketplace; we are a platform empowering the skilled artisans of Himachal Pradesh. We provide a direct stage ('munch') for creators across the entire state—not just a single region—to showcase and market their authentic handmade crafts to the world.</p>
-
-                    <p>By eliminating middlemen, we help artisans gain fair value for their work while preserving heritage. This is a collective effort to bring the hidden gems of Devbhoomi into the light. We are a firm registered under <strong>MSME, Govt. of India</strong>, committed to authentic growth.</p>
-
-                    <h4 style="color:#682228; margin-top:25px;">The Landscape of Himachal 🏔️</h4>
-                    <p>In Himachal, wool is the heart of our craft. The valley works with a vast spectrum—from rustic <strong>Desi Wool</strong> to imported <strong>Australian & New Zealand Wool</strong>, premium <strong>Merino, Angora, Yak</strong>, and traces of <strong>Pashmina</strong>. Both natural and chemical dyeing processes are used.</p>
-                    
-                    <p>The yarn varies from handspun (on a <strong>Takli</strong>) to semi-mechanized <strong>Charkha Motor</strong>, or industrial <strong>Ring Spun & Rotor Yarn</strong>. The counts range from the coarse warmth of <strong>2/10Nm, 2/32Nm, 2/48Nm</strong> to the finest textures of <strong>2/56Nm, 2/72Nm, and 2/90Nm</strong>.</p>
-                    
-                    <p>Weaving here involves the intricate <strong>Extra-Weft Technique</strong>, mainly using vibrant <strong>Acrylic</strong> for motifs.</p>
-
-                    <img src="she1.jpg" style="width:100%; border-radius:8px; margin: 1.5rem 0;" alt="Artisan Work">
-
-                    <h4 style="color:#682228; margin-top:20px;">The Concern (Why We Worry) 🧶</h4>
-                    <p>Today, the usage of <strong>Poly-wool</strong> is increasing. The influx of imported polyester has forced villagers to burn their indigenous wool due to lack of demand, and sheep rearing is slowly declining.</p>
-                    
-                    <p>But the biggest threat is <strong>Machine Embroidery</strong>. Power Looms, Dobby, and Jacquard machines are creating "fake motifs" on <strong>Kullu and Kinnauri Shawls</strong>. These printed or machine-made copies fade our authenticity and destroy the livelihood of the artisan who weaves every thread by hand.</p>
-
-                    <h4 style="color:#682228; margin-top:20px;">Handiweave's 'Prayas' (Effort) ✨</h4>
-                    <p>Handiweave endeavors to deliver <strong>Genuine Products</strong> to you and ensure employment for the artisan, so that the craft remains alive in Devbhoomi and in our hearts.</p>
-
-                    <p> Our goal is to create products that require less <strong>drudgery</strong> (hard labor) but yield higher income for the artisan.</p>
-
-                    <p class="highlight-quote" style="margin-top:20px;"><strong>"Dhanyabad."</strong></p>
-                </div>
-            </div>
+    <div class="container">
+        <div class="icon-box">
+            <i class="fas fa-store-slash"></i>
         </div>
+        <h1>We Are On A Break</h1>
+        <p>
+            Handiweave is currently undergoing maintenance to serve you better. 
+            We will be back soon with new collections!
+           <br><br>
+            For urgent orders or queries, please email us directly.
+        </p>
         
-        <div style="margin-top: 4rem;">
-            <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--brand-dark);">Behind the Loom</h3>
-            <div class="gallery-grid">
-                <img src="ar1.jpg" alt="Artisan weaving" loading="lazy">
-                <img src="ar2.jpg" alt="Handcrafting process" loading="lazy">
-                <img src="ar3.jpg" alt="Detailed craftsmanship" loading="lazy">
-                <img src="she1.jpg" alt="Wool source" loading="lazy">
-            </div>
+        <a href="mailto:handiweave@gmail.com" class="btn">
+            <i class="fas fa-envelope"></i> Email Us
+        </a>
+        
+        <div style="margin-top: 40px; font-size: 0.9rem; opacity: 0.7;">
+            &copy; 2026 Handiweave. All rights reserved.
         </div>
-    </section>
+    </div>
 
-    <footer class="main-footer">
-        <div class="social-links"><a href="https://instagram.com/handiweave" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://wa.me/919882212962" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i></a><a href="https://x.com/handiweave" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a></div><div class="footer-links"><a href="shop.html" class="footer-link">Collection</a><a href="about.html" class="footer-link">Story</a><a href="policies.html" class="footer-link">Policies</a></div><div style="margin-top:1.5rem;"><p>handiweave@gmail.com | +91 98822 12962</p><p style="margin-top:0.5rem; color:#666; font-size:0.9rem;">Devbhoomi Himachal</p></div><div style="margin-top:2rem;"><p>© 2025 Handiweave. All rights reserved.</p></div>
-    </footer>
-    <div class="overlay" id="overlay"></div>
-    <div class="product-modal" id="productModal"><div class="product-modal-content"><button class="modal-close-btn" onclick="closeProductModal()">&times;</button><div id="modalBody"></div></div></div>
-    <aside class="cart-sidebar" id="cartSidebar"><div style="padding:1.5rem; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;"><h3>Your Bag</h3><button class="modal-close" onclick="closeCart()" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">&times;</button></div><div id="cartItemsList" style="flex:1; overflow-y:auto; padding:1.5rem;"></div><div style="padding:1.5rem; border-top:1px solid #eee;"><div style="display:flex; justify-content:space-between; font-weight:700; margin-bottom:1.5rem;"><span>Total:</span><span id="cartTotalText">₹0</span></div><button onclick="openCheckout()" style="background:var(--brand); color:white; width:100%; padding:15px; border-radius:4px; font-weight:700; border:none; cursor:pointer;">Proceed to Checkout</button></div></aside>
-    <div class="checkout-modal" id="checkoutModal"><button class="modal-close" onclick="closeCheckout()" style="position:absolute; top:15px; right:20px; background:none; border:none; font-size:1.5rem; cursor:pointer; color:#666;">&times;</button><h2 style="margin-bottom:1.5rem;">Checkout</h2><div id="checkoutSummary" style="margin-bottom:1.5rem; padding:1rem; background:#f9f9f9; border-radius:8px; font-size:0.9rem;"></div><div style="font-size:1.3rem; font-weight:700; text-align:right; margin-bottom:1.5rem;">Total: <span id="checkoutTotal">₹0</span></div><form id="checkoutForm"><div class="form-group"><input type="text" id="customerName" class="form-control" placeholder="Full Name *" required></div><div class="form-group"><input type="tel" id="customerPhone" class="form-control" placeholder="Mobile Number *" required pattern="[0-9]{10}"></div><div class="form-group"><input type="email" id="customerEmail" class="form-control" placeholder="Email Address (Optional)"></div><h4 style="margin: 15px 0 10px; font-size: 0.95rem; color: var(--brand); border-bottom: 1px solid #eee; padding-bottom: 5px;">Shipping Address</h4><div class="form-group"><input type="text" id="addrLine1" class="form-control" placeholder="House No, Village / Ward / Town *" required></div><div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;"><input type="text" id="addrDistrict" class="form-control" placeholder="District *" required><input type="text" id="addrState" class="form-control" placeholder="State *" required value="Himachal Pradesh"></div><div class="form-group" style="margin-top: 10px;"><input type="number" id="addrPin" class="form-control" placeholder="Pincode *" required></div><div style="margin-top:15px; background:#fff8e1; padding:10px; border-radius:6px; border:1px dashed var(--gold);"><label style="display:flex; align-items:center; cursor:pointer; gap:10px; margin-bottom:0;"><input type="checkbox" id="isGift" style="width:20px; height:20px; accent-color:var(--brand);"><span style="font-size:0.9rem; color:var(--brand-dark);"><strong>🎁 Send as a Gift?</strong><br><span style="font-size:0.8rem; color:#666;">We'll remove the price tag & pack with love.</span></span></label></div><div id="paymentButtons" style="margin-top:1.5rem;"></div></form></div>
-    <div class="notification" id="notification"><i class="fas fa-check-circle"></i> <span id="notificationText"></span></div>
-    <script src="script.js"></script>
 </body>
 </html>
